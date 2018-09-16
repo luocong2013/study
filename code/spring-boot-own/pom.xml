@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.ccyw</groupId>
+	<artifactId>spring-boot-own</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+
+	<name>spring-boot-own</name>
+	<description>Spring Boot 各种功能测试</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.4.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+
+		<!--mybatis-->
+		<mybatis-spring-boot.version>1.3.2</mybatis-spring-boot.version>
+		<mybatis-generator-core.version>1.3.7</mybatis-generator-core.version>
+		<mybatis-mapper-spring-boot.version>2.0.3</mybatis-mapper-spring-boot.version>
+		<mybatis-mapper-generator.version>1.0.4</mybatis-mapper-generator.version>
+
+		<!--swagger2-->
+		<swagger2.version>2.9.2</swagger2.version>
+		<!--lombok-->
+		<lombok.version>1.18.2</lombok.version>
+
+		<!--工具包-->
+		<hutool-all.version>4.1.8</hutool-all.version>
+		<commons-io.version>2.6</commons-io.version>
+		<commons-collections4.version>4.2</commons-collections4.version>
+
+
+		<!--plugin-->
+		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+		<maven-war-plugin-version>3.2.0</maven-war-plugin-version>
+		<maven-jar-plugin-version>3.0.2</maven-jar-plugin-version>
+		<maven-install-plugin.version>2.5.2</maven-install-plugin.version>
+		<maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
+		<!--mybatis plugin 设置-->
+		<mybatis-plugin-generator.configurationFile>
+			${project.basedir}/src/main/resources/generator/generatorConfig.xml
+		</mybatis-plugin-generator.configurationFile>
+	</properties>
+
+	<dependencies>
+		<!--spring boot start-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!--spring boot end-->
+
+		<!--mybatis start-->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>${mybatis-spring-boot.version}</version>
+		</dependency>
+		<!--mybatis generator-->
+		<dependency>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator-core</artifactId>
+			<version>${mybatis-generator-core.version}</version>
+		</dependency>
+		<!--mybatis mapper-->
+		<dependency>
+			<groupId>tk.mybatis</groupId>
+			<artifactId>mapper-spring-boot-starter</artifactId>
+			<version>${mybatis-mapper-spring-boot.version}</version>
+		</dependency>
+		<!--mybatis end-->
+
+		<!--mysql start-->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<!--mysql end-->
+
+		<!--Swagger2 start-->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger2.version}</version>
+		</dependency>
+		<!--Swagger2 end-->
+
+		<!--lombok start-->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!--lombok end-->
+
+		<!--常用工具包-->
+		<!--hutool工具包-->
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+			<version>${hutool-all.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons-io.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>${commons-collections4.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!--maven compiler plugin-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+
+			<!--mybatis generator maven plugin-->
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>${mybatis-generator-core.version}</version>
+				<configuration>
+					<configurationFile>${mybatis-plugin-generator.configurationFile}</configurationFile>
+					<verbose>true</verbose>
+					<!--是否重写已存在的文件-->
+					<overwrite>true</overwrite>
+				</configuration>
+				<!--dependency可以无，但是就需要在generatorConfig.xml文件中添加本地JDBC驱动-->
+				<dependencies>
+					<dependency>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<version>${mysql.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>tk.mybatis</groupId>
+						<artifactId>mapper-generator</artifactId>
+						<version>${mybatis-mapper-generator.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>

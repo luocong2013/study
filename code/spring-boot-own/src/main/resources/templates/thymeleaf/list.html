@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>系统用户列表</title>
+</head>
+<body>
+    <h2>系统用户列表</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>用户状态</th>
+            <th>是否被删除</th>
+            <th>注册时间</th>
+        </tr>
+        <tr th:each="user:${users}">
+            <th th:text="${user.sysUserId}"></th>
+            <th th:text="${user.sysUserLoginName}"></th>
+            <th th:text="${user.sysUserLoginPassword}"></th>
+            <th th:text="${user.sysUserStatus}"></th>
+            <th th:text="${user.sysUserIsDelete}"></th>
+            <th th:text="${user.sysUserRegisterDatetime}"></th>
+        </tr>
+    </table>
+
+    <select>
+        <option th:each="user:${users}" th:value="${user.sysUserId}" th:text="${user.sysUserLoginName}">默认值</option>
+    </select>
+</body>
+</html>

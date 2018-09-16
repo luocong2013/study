@@ -1,0 +1,11 @@
+server:
+  port: 8000
+
+helloworld: Spring Boot Hello World
+
+spackchinese: "我说中文"
+
+ccyw:
+  address: 成都市武侯区红牌楼街道长益路
+  phone: 028-8888888
+  age: 17

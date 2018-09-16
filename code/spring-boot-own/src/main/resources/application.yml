@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: thymeleaf
+
+# mybatis 配置
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: com.ccyw.springboot.own.common.bean
+
+# 通用 Mapper 配置
+mapper:
+  mappers:
+    - com.ccyw.springboot.own.common.utils.MyMapper
+  not-empty: false
+  identity: MYSQL
+

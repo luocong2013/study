@@ -1,0 +1,18 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: spring-boot-jdbc
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://127.0.0.1:3306/ssm?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 10
+      idle-timeout: 10000

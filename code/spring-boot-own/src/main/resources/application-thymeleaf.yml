@@ -1,0 +1,26 @@
+server:
+  port: 8001
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: spring-boot-jdbc
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://127.0.0.1:3306/ssm?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 10
+      idle-timeout: 10000
+  mvc:
+      static-path-pattern: /**  # 所有的访问都经过静态资源路径
+  resources:
+      static-locations: classpath:/static/  # 配置静态资源根路径
+  thymeleaf:
+    prefix: classpath:/templates/thymeleaf/
+    suffix: .html
+    cache: false  # 关闭缓存
