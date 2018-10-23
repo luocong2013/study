@@ -24,6 +24,7 @@
         <java.version>1.8</java.version>
 
         <lomkok.version>1.18.0</lomkok.version>
+        <guava.version>26.0-jre</guava.version>
 
         <!--plugin-->
         <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
@@ -88,6 +89,16 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lomkok.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
         </dependency>
     </dependencies>
 
