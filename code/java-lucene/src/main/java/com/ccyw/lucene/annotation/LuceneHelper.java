@@ -98,26 +98,27 @@ public class LuceneHelper {
         IndexWriter indexWriter = LuceneRunner.getIndexWriter(indexName);
         Term term = LuceneBeanTrans.bean2Term(obj, "id");
         indexWriter.deleteDocuments(term);
+        indexWriter.commit();
     }
 
     /**
      * 修改索引
-     * @param sourceObj
-     * @param targetObj
+     * @param obj
      * @param <T>
      * @throws Exception
      */
-    public static <T> void update(T sourceObj, T targetObj) throws Exception {
-        if (sourceObj == null || targetObj == null) {
+    public static <T> void update(T obj) throws Exception {
+        if (obj == null) {
             return;
         }
         // 索引名
-        String indexName = getOrmIndexName(sourceObj.getClass());
+        String indexName = getOrmIndexName(obj.getClass());
         IndexWriter indexWriter = LuceneRunner.getIndexWriter(indexName);
-        Document document = LuceneBeanTrans.bean2Document(sourceObj);
-        Term term = LuceneBeanTrans.bean2Term(targetObj, "title");
+        Document document = LuceneBeanTrans.bean2Document(obj);
+        Term term = LuceneBeanTrans.bean2Term(obj, "id");
         //先删除，后创建
         indexWriter.updateDocument(term, document);
+        indexWriter.commit();
     }
 
     /**

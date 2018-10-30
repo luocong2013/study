@@ -48,9 +48,8 @@ public class LuceneTest {
         try {
             System.out.println("*****************检索开始******************");
             long startTime = System.currentTimeMillis();
-            Article sourceArticle = new Article(1, "Google", "成立于1998年9月4日，由拉里·佩奇和谢尔盖·布林共同创建，被公认为全球最大的搜索引擎。谷歌是一家位于美国的跨国科技企业.");
-            Article targetArticle = new Article(1, "BaiDu ", "成立于1998年9月4日，由拉里·佩奇和谢尔盖·布林共同创建，被公认为全球最大的搜索引擎。谷歌是一家位于美国的跨国科技企业.");
-            LuceneHelper.update(sourceArticle, targetArticle);
+            Article article = new Article(1, "BaiDu ", "成立于1998年9月4日，由拉里·佩奇和谢尔盖·布林共同创建，被公认为全球最大的搜索引擎。谷歌是一家位于美国的跨国科技企业.");
+            LuceneHelper.update(article);
             long endTime = System.currentTimeMillis();
             System.out.println("*****************检索结束******************");
             System.out.println("总共花费"+(endTime-startTime)+"ms");
