@@ -1,32 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <!-- 框架约定默认是以 src\main\resources\static 为根目录-->
+    <link rel="stylesheet" th:href="@{/css/plugins/bootstrap/bootstrap.css}" />
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script th:src="@{/js/plugins/bootstrap/bootstrap.js}"></script>
     <title>系统用户列表</title>
 </head>
 <body>
-    <h2>系统用户列表</h2>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>用户名</th>
-            <th>密码</th>
-            <th>用户状态</th>
-            <th>是否被删除</th>
-            <th>注册时间</th>
-        </tr>
-        <tr th:each="user:${users}">
-            <th th:text="${user.sysUserId}"></th>
-            <th th:text="${user.sysUserLoginName}"></th>
-            <th th:text="${user.sysUserLoginPassword}"></th>
-            <th th:text="${user.sysUserStatus}"></th>
-            <th th:text="${user.sysUserIsDelete}"></th>
-            <th th:text="${user.sysUserRegisterDatetime}"></th>
-        </tr>
-    </table>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>系统用户列表</h2>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>ID</th>
+                        <th>用户名</th>
+                        <th>密码</th>
+                        <th>用户状态</th>
+                        <th>是否被删除</th>
+                        <th>注册时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user,iterStat:${users}" th:class="${iterStat.odd}?'danger':'success'">
+                        <th th:text="${iterStat.index}"></th>
+                        <th th:text="${user.sysUserId}"></th>
+                        <th th:text="${user.sysUserLoginName}"></th>
+                        <th th:text="${user.sysUserLoginPassword}"></th>
+                        <th th:text="${user.sysUserStatus}"></th>
+                        <th th:text="${user.sysUserIsDelete}"></th>
+                        <th th:text="${user.sysUserRegisterDatetime}"></th>
+                    </tr>
+                    </tbody>
+                </table>
 
-    <select>
-        <option th:each="user:${users}" th:value="${user.sysUserId}" th:text="${user.sysUserLoginName}">默认值</option>
-    </select>
+                <select>
+                    <option th:each="user:${users}" th:value="${user.sysUserId}" th:text="${user.sysUserLoginName}">默认值</option>
+                </select>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccyw.springboot.own.common.mapper.SysUserTabMapper">
+  <resultMap id="BaseResultMap" type="com.ccyw.springboot.own.common.bean.SysUserTab">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_uuid" jdbcType="VARCHAR" property="userUuid" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="available_enum" jdbcType="CHAR" property="availableEnum" />
+    <result column="delete_enum" jdbcType="CHAR" property="deleteEnum" />
+    <result column="request_ip" jdbcType="VARCHAR" property="requestIp" />
+    <result column="request_mac" jdbcType="VARCHAR" property="requestMac" />
+    <result column="request_user_agent" jdbcType="VARCHAR" property="requestUserAgent" />
+    <result column="avatar_image_path" jdbcType="VARCHAR" property="avatarImagePath" />
+    <result column="self_introduction" jdbcType="VARCHAR" property="selfIntroduction" />
+    <result column="sex_enum" jdbcType="CHAR" property="sexEnum" />
+    <result column="user_birthday" jdbcType="TIMESTAMP" property="userBirthday" />
+    <result column="create_datetime" jdbcType="TIMESTAMP" property="createDatetime" />
+    <result column="lock_version" jdbcType="BIGINT" property="lockVersion" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, user_uuid, login_name, email, password, user_name, salt, available_enum, delete_enum, 
+    request_ip, request_mac, request_user_agent, avatar_image_path, self_introduction, 
+    sex_enum, user_birthday, create_datetime, lock_version
+  </sql>
+</mapper>
