@@ -18,32 +18,32 @@ public class BookDao {
 
     public BookDao() {
         System.out.println("BookDao 构造函数 ......");
-        System.out.println("userDao == null " + (userDao == null));
+        System.out.println("BookDao userDao == null " + (userDao == null));
     }
 
     @PostConstruct
     public void postConstruct() {
-        System.out.println("PostConstruct ......");
-        System.out.println("userDao.hi() " + userDao.hi());
+        System.out.println("BookDao PostConstruct ......");
+        System.out.println("BookDao userDao.hi() " + userDao.hi());
     }
 
     public void init() {
-        System.out.println("init ......");
-        System.out.println("userDao.hi() " + userDao.hi());
+        System.out.println("BookDao init ......");
+        System.out.println("BookDao userDao.hi() " + userDao.hi());
     }
 
     @PreDestroy
     public void preDestroy() {
-        System.out.println("PreDestroy ......");
-        System.out.println("userDao.hi() " + userDao.hi());
+        System.out.println("BookDao PreDestroy ......");
+        System.out.println("BookDao userDao.hi() " + userDao.hi());
     }
 
     public void destroy() {
-        System.out.println("destroy ......");
-        System.out.println("userDao.hi() " + userDao.hi());
+        System.out.println("BookDao destroy ......");
+        System.out.println("BookDao userDao.hi() " + userDao.hi());
     }
 
     public void getBook() {
-        System.out.println("get book ......");
+        System.out.println("BookDao get book ......");
     }
 }

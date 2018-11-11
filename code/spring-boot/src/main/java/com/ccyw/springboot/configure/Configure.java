@@ -22,7 +22,8 @@ public class Configure {
         return new BookDao();
     }
 
-    @Bean(name = "userDao", initMethod = "init")
+    @Bean(name = "userDao", initMethod = "init", destroyMethod = "destroy")
+    @Scope(value = "singleton")
     public UserDao userDao() {
         return new UserDao();
     }
