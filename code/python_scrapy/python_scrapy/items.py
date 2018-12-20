@@ -22,3 +22,13 @@ class NewsscItem(scrapy.Item):
     news_title = scrapy.Field()
     # 新闻内容
     news_content = scrapy.Field()
+
+
+class ImageItem(scrapy.Item):
+    """图片数据"""
+    # 图片标题
+    image_title = scrapy.Field()
+    # 图片链接地址
+    image_link = scrapy.Field()
+    # 图片名称
+    image_name = scrapy.Field()
