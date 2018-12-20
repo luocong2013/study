@@ -4,8 +4,8 @@ from scrapy.http import Request
 from python_scrapy.items import ImageItem
 
 
-class YoonjooSpider(scrapy.Spider):
-    name = 'yoonjoo'
+class TiebaSpider(scrapy.Spider):
+    name = 'tieba'
     allowed_domains = ['tieba.baidu.com']
     start_urls = ['http://tieba.baidu.com/f?kw=%E5%AD%99%E5%85%81%E7%8F%A0']
 
