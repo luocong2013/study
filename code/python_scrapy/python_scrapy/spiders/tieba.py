@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
+import re
+import datetime
 from scrapy.http import Request
 from python_scrapy.items import ImageItem
 
@@ -27,12 +29,19 @@ class TiebaSpider(scrapy.Spider):
     def parse_item(self, response):
         """抓取每个链接里的图片"""
         image_title = response.xpath('//*[@id="j_core_title_wrap"]/div[2]/h1/text()').extract()[0]
+        # 获取创建时间
+        searchObj = re.search(r'\d+', image_title)
+        if searchObj:
+            image_date = searchObj.group()
+        else:
+            image_date = datetime.datetime.now().strftime('%Y%m%d')
         imgs = response.xpath('//*[@class="d_post_content j_d_post_content  clearfix"]/img[@class="BDE_Image"]')
         for img in imgs:
             image_item = ImageItem()
             image_link = img.xpath('.//@src').extract()[0]
             image_name = image_link.split('/')[-1]
             image_item['image_title'] = image_title
+            image_item['image_date'] = image_date
             image_item['image_link'] = image_link
             image_item['image_name'] = image_name
             # 返回爬取到的信息
