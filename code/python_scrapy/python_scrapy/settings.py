@@ -68,8 +68,8 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     # 'python_scrapy.pipelines.PythonScrapyPipeline': 300,
-    'python_scrapy.pipelines.LocalFileTiebaPipeline': 301,
-    # 'python_scrapy.pipelines.MongoDBTiebaPipeline': 302,
+    # 'python_scrapy.pipelines.LocalFileTiebaPipeline': 301,
+    'python_scrapy.pipelines.MongoDBTiebaPipeline': 302,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

@@ -61,17 +61,17 @@ class MongoDBTiebaPipeline(object):
         print('插入数据到MongoDB成功')
 
     # 对图片链接做MD5查询是否已存在该图片
-    # 存在返回 True, 不存在返回 False
+    # 存在返回非0, 不存在返回0
     def query_db(self, item):
         image_link_md5 = hashlib.md5(item['image_link'].encode(encoding='UTF-8')).hexdigest()
         db_query = {"image_link_md5": image_link_md5}
         db_data = self.db_collection.find(db_query, {"_id": 0, "imsge_link_md5": 1})
-        return db_data
+        return db_data.count()
 
     # 对数据进行处理
     def process_item(self, item, spider):
         if isinstance(item, ImageItem):
-            if not self.query_db(item):
+            if self.query_db(item) == 0:
                 self.insert_db(item)
             else:
                 print('图片已经存在了！！！')

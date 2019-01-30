@@ -28,6 +28,8 @@ class ImageItem(scrapy.Item):
     """图片数据"""
     # 图片标题
     image_title = scrapy.Field()
+    # 图片创建日期
+    image_date = scrapy.Field()
     # 图片链接地址
     image_link = scrapy.Field()
     # 图片名称
