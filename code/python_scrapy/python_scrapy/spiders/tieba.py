@@ -34,7 +34,7 @@ class TiebaSpider(scrapy.Spider):
         if searchObj:
             image_date = searchObj.group()
         else:
-            image_date = datetime.datetime.now().strftime('%Y%m%d')
+            image_date = datetime.datetime.now().strftime('%y%m%d')
         imgs = response.xpath('//*[@class="d_post_content j_d_post_content  clearfix"]/img[@class="BDE_Image"]')
         for img in imgs:
             image_item = ImageItem()
