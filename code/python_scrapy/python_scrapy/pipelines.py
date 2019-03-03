@@ -41,7 +41,7 @@ class MongoDBTiebaPipeline(object):
 
     # 打开数据库
     def open_spider(self, spider):
-        self.db_client = MongoClient(settings.MONGODB_URI)
+        self.db_client = MongoClient(settings.MONGODB_URI, connectTimeoutMS=60000)
         self.db = self.db_client.get_database(settings.MONGODB_DB_NAME)
         # 认证
         # self.db.authenticate('tieba', 'tieba')
@@ -71,8 +71,9 @@ class MongoDBTiebaPipeline(object):
     # 对数据进行处理
     def process_item(self, item, spider):
         if isinstance(item, ImageItem):
-            if self.query_db(item) == 0:
-                self.insert_db(item)
-            else:
-                print('图片已经存在了！！！')
+            # if self.query_db(item) == 0:
+            #     self.insert_db(item)
+            # else:
+            #     print('图片已经存在了！！！')
+            self.insert_db(item)
         return item
