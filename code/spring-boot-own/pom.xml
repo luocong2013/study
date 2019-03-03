@@ -35,7 +35,7 @@
 		<lombok.version>1.18.2</lombok.version>
 
 		<!--工具包-->
-		<hutool-all.version>4.1.8</hutool-all.version>
+		<hutool-all.version>4.5.0</hutool-all.version>
 		<commons-io.version>2.6</commons-io.version>
 		<commons-collections4.version>4.2</commons-collections4.version>
 

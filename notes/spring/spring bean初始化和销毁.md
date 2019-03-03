@@ -8,14 +8,17 @@
 > Constructor > @PostConstruct > InitializingBean > initMethod
 
 ### 二、实例化Bean的过程
-1. 创建Bean实例
-2. 设置Bean属性
-3. 调用Bean中的BeanNameAware.setBeanName()方法，如果该Bean实现了BeanNameAware接口
-4. 调用Bean中的BeanFactoryAware.setBeanFactory()方法，如果该Bean实现了BeanFactoryAware接口
-5. 调用BeanPostProcessor.postProcessBeforeInitialization()方法（@PostConstruct注解后的方法就是在这里被执行的）
-6. 调用Bean中的initMethod，通常是在配置bean的时候指定了initMethod
-7. 调用BeanPostProcessor.postProcessAfterInitialization()方法
-8. 如果该Bean是单例的，则当容器销毁并且该Bean实现了DisposableBean接口的时候，调用destory方法；如果该Bean是prototype，则将准备好的Bean提交给调用者，后续不再管理该Bean的生命周期
+1. 调用InstantiationAwareBeanPostProcessor.postProcessBeforeInstantiation()方法，如果该Bean实现了InstantiationAwareBeanPostProcessor接口
+2. 创建Bean实例
+3. 调用InstantiationAwareBeanPostProcessor.postProcessAfterInstantiation()方法，如果该Bean实现了InstantiationAwareBeanPostProcessor接口
+4. 设置Bean属性值
+5. 调用Bean中的BeanNameAware.setBeanName()方法，如果该Bean实现了BeanNameAware接口
+6. 调用Bean中的BeanFactoryAware.setBeanFactory()方法，如果该Bean实现了BeanFactoryAware接口
+7. 调用BeanPostProcessor.postProcessBeforeInitialization()方法（@PostConstruct注解后的方法就是在这里被执行的）
+8. 调用InitializingBean的afterPropertiesSet()方法
+9. 调用Bean中的initMethod，通常是在配置bean的时候指定了initMethod
+10. 调用BeanPostProcessor.postProcessAfterInitialization()方法
+11. 如果该Bean是单例的，则当容器销毁并且该Bean实现了DisposableBean接口的时候，调用destory方法；如果该Bean是prototype，则将准备好的Bean提交给调用者，后续不再管理该Bean的生命周期
 
 ### 三、Spring Bean的作用域
 1. 默认情况下, IOC 容器中的 bean 是单例的! 若对象是单例的, 则在创建 IOC 容器时即创建 bean 的实例, 并对 bean 的属性进行初始化.
