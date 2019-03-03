@@ -3,6 +3,7 @@ package com.ccyw.springboot.own;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.ApplicationContext;
 import tk.mybatis.spring.annotation.MapperScan;
 
@@ -14,6 +15,7 @@ import javax.sql.DataSource;
  */
 @SpringBootApplication
 @MapperScan(basePackages = "com.ccyw.springboot.own.common.mapper")
+@ServletComponentScan("com.ccyw.springboot.own.common.filter")
 public class SpringBootOwnApplication {
 
 	public static void main(String[] args) {
