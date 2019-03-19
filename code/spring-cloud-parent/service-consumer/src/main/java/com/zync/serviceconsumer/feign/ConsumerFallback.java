@@ -1,0 +1,18 @@
+package com.zync.serviceconsumer.feign;
+
+import org.springframework.stereotype.Component;
+
+/**
+ * @author luoc
+ * @version V1.0.0
+ * @description Consumer接口实现
+ * @date 2019/3/19 22:29
+ */
+@Component
+public class ConsumerFallback implements Consumer {
+
+    @Override
+    public String index() {
+        return "Feign客户端访问失败";
+    }
+}
