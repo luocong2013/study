@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @description Consumer接口
  * @date 2019/3/19 22:29
  */
-@FeignClient(name = "service-provide", fallback = ConsumerFallback.class)
+@FeignClient(name = "service-provider", fallback = ConsumerFallback.class)
 public interface Consumer {
 
     /**
