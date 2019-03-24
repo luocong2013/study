@@ -1,0 +1,14 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/luocong2013/spring-cloud-config
+          search-paths: repo
+          default-label: master
+          username: luocong2013
+          password: aA13378215903
