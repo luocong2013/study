@@ -12,6 +12,11 @@ import org.springframework.stereotype.Component;
 public class ConsumerFallback implements Consumer {
 
     @Override
+    public String serviceUrl() {
+        return "Feign客户端访问失败";
+    }
+
+    @Override
     public String index() {
         return "Feign客户端访问失败";
     }

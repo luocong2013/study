@@ -4,6 +4,7 @@ spring:
   security:
     user:
       name: luocong
+      password: pwd123456
 server:
   port: 8761
 eureka:

@@ -13,9 +13,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface Consumer {
 
     /**
-     * 入口
+     * 服务地址
      * @return
      */
-    @GetMapping(value = "/index")
+    @GetMapping(value = "/provider/eureka-instance")
+    String serviceUrl();
+
+    /**
+     * 测试服务
+     * @return
+     */
+    @GetMapping(value = "/provider/index")
     String index();
 }

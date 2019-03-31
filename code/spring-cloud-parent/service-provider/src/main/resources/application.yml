@@ -3,9 +3,26 @@ spring:
     name: service-provider
 server:
   port: 8751
+  servlet:
+    context-path: /
 eureka:
   instance:
+    hostname: ${spring.cloud.client.ip-address}
     prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    # 自定义元数据
+    metadata-map:
+      zone: ABC       # eureka可以理解的元数据
+      lilizhou: BBC  # 不会影响客户端行为
+    lease-renewal-interval-in-seconds: 30
+    # 应用名，默认取spring.application.name的值
+    appname: service-provider
   client:
+    # 检查健康
+    healthcheck:
+      enabled: true
     service-url:
-      defaultZone: http://127.0.0.1:8762/eureka/,http://127.0.0.1:8763/eureka/
+      # eureka server 集群
+      # defaultZone: http://127.0.0.1:8762/eureka/,http://127.0.0.1:8763/eureka/
+      # eureka 单机
+      defaultZone: http://luocong:pwd123456@127.0.0.1:8761/eureka/

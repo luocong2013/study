@@ -10,8 +10,8 @@ spring:
           uri: https://github.com/luocong2013/spring-cloud-config
           search-paths: repo
           default-label: master
-          username: luocong2013
-          password: aA13378215903
+          username:
+          password:
 eureka:
   client:
     service-url:
