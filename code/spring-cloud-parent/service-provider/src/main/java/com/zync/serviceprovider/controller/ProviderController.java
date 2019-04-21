@@ -1,10 +1,10 @@
 package com.zync.serviceprovider.controller;
 
 import com.netflix.appinfo.InstanceInfo;
-import com.netflix.discovery.DiscoveryClient;
 import com.netflix.discovery.EurekaClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,5 +30,10 @@ public class ProviderController {
     @GetMapping("/index")
     public String index() {
         return "这里是Service Provider";
+    }
+
+    @GetMapping("/hello/{name}")
+    public String hello(@PathVariable("name") String name) {
+        return "Hello " + name;
     }
 }

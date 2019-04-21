@@ -1,6 +1,9 @@
 spring:
   application:
     name: service-consumer
+  # 解决多个接口上的@FeignClient(“相同服务名”)报错问题
+  main:
+    allow-bean-definition-overriding: true
 server:
   port: 8741
 eureka:

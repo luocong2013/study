@@ -4,6 +4,7 @@ import com.zync.serviceconsumer.feign.Consumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -30,5 +31,10 @@ public class FeignClientController {
     @GetMapping("/index")
     public String index() {
         return consumer.index();
+    }
+
+    @GetMapping("/hello")
+    public String hello(@RequestParam("name") String name) {
+        return consumer.hello(name);
     }
 }

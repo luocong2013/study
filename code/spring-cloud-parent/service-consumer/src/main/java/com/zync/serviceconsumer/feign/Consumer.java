@@ -2,6 +2,7 @@ package com.zync.serviceconsumer.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * @author luoc
@@ -25,4 +26,12 @@ public interface Consumer {
      */
     @GetMapping(value = "/provider/index")
     String index();
+
+    /**
+     * hello方法
+     * @param name
+     * @return
+     */
+    @GetMapping("/provider/hello/{name}")
+    String hello(@PathVariable("name") String name);
 }
