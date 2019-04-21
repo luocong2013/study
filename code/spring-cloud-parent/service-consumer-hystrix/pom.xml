@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.zync</groupId>
-    <artifactId>service-consumer</artifactId>
+    <artifactId>service-consumer-hystrix</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>service-consumer</name>
+    <name>service-consumer-hystrix</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -35,6 +35,14 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
         </dependency>
 
         <dependency>
