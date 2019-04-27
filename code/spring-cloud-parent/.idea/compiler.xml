@@ -12,12 +12,14 @@
         <module name="service-consumer" />
         <module name="service-provider" />
         <module name="config-client" />
+        <module name="gateway-zuul" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="config-client" target="1.8" />
       <module name="config-server" target="1.8" />
       <module name="eureka-server" target="1.8" />
+      <module name="gateway-zuul" target="1.8" />
       <module name="service-consumer" target="1.8" />
       <module name="service-consumer-hystrix" target="1.8" />
       <module name="service-provider" target="1.8" />
@@ -28,6 +30,7 @@
       <module name="config-client" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
+      <module name="gateway-zuul" options="-parameters" />
       <module name="service-consumer" options="-parameters" />
       <module name="service-consumer-hystrix" options="-parameters" />
       <module name="service-provider" options="-parameters" />

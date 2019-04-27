@@ -3,6 +3,7 @@ package com.zync.serviceconsumerhystrix.feign.factory;
 import feign.hystrix.FallbackFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 /**
  * @author luoc
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
  * @descrption fallbackFactory
  * @date 2019/4/21 22:19
  */
+@Component
 public class HystrixFeignClientFallbackFactory implements FallbackFactory<HystrixFeignClient> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HystrixFeignClientFallbackFactory.class);

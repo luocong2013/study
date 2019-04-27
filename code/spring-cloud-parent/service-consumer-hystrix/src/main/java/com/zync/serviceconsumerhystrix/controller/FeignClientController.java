@@ -20,9 +20,17 @@ public class FeignClientController {
     @Autowired
     private HystrixFeignClient hystrixFeignClient;
 
+    @Autowired
+    private com.zync.serviceconsumerhystrix.feign.factory.HystrixFeignClient hystrixFeignClientFactory;
+
     @GetMapping("/hello")
     public String hello(@RequestParam("name") String name) {
         return hystrixFeignClient.hello(name);
+    }
+
+    @GetMapping("/helloFactory")
+    public String helloFactory(@RequestParam("name") String name) {
+        return hystrixFeignClientFactory.hello(name);
     }
 
 }

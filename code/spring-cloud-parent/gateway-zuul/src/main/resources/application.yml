@@ -1,11 +1,8 @@
 spring:
   application:
-    name: service-consumer-hystrix
-  # 解决多个接口上的@FeignClient(“相同服务名”)报错问题
-  main:
-    allow-bean-definition-overriding: true
+    name: gateway-zuul
 server:
-  port: 8742
+  port: 8730
 eureka:
   instance:
     hostname: ${spring.cloud.client.ip-address}
@@ -21,7 +18,24 @@ eureka:
       # defaultZone: http://127.0.0.1:8762/eureka/,http://127.0.0.1:8763/eureka/
       # eureka 单机
       defaultZone: http://luocong:pwd123456@127.0.0.1:8761/eureka/
-# Feign全局关闭/开启Hystrix支持
-feign:
-  hystrix:
+ribbon:
+  http:
+    client:
+      enabled: true
+  okhttp:
     enabled: true
+zuul:
+  prefix: /api
+  host:
+    max-total-connections: 400
+    max-per-route-connections: 40
+    socket-timeout-millis: 20
+    connect-timeout-millis: 5
+    time-unit: seconds
+  routes:
+    service-consumer:
+      path: /consumer/**
+      serviceId: service-consumer
+    service-consumer-hystrix:
+      path: /hystrix/**
+      serviceId: service-consumer-hystrix
