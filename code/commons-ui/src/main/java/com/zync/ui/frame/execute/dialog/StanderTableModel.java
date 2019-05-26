@@ -1,4 +1,4 @@
-package com.zync.ui.dialog;
+package com.zync.ui.frame.execute.dialog;
 
 import javax.swing.table.DefaultTableModel;
 

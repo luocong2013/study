@@ -1,7 +1,7 @@
-package com.zync.ui;
+package com.zync.ui.frame.execute;
 
 import com.zync.ui.common.consts.Const;
-import com.zync.ui.dialog.DetailsDialog;
+import com.zync.ui.frame.execute.dialog.DetailsDialog;
 import com.zync.ui.vo.ComponentVO;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
@@ -22,12 +22,12 @@ import java.util.stream.Collectors;
 /**
  * @author luoc
  * @version V1.0.0
- * @descrption 主界面
- * @date 2019/5/25 15:58
+ * @descrption 执行任务界面
+ * @date 2019/5/26 21:46
  */
-public class CommonsUI extends JFrame implements ActionListener {
+public class ExecuteUI extends JFrame implements ActionListener {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CommonsUI.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExecuteUI.class);
 
     private JButton chooseFileBt;
     private JButton refreshBt;
@@ -42,7 +42,7 @@ public class CommonsUI extends JFrame implements ActionListener {
      */
     private static LinkedList<ComponentVO> components = new LinkedList<>();
 
-    public CommonsUI() {
+    public ExecuteUI() {
         this.initComponents();
         this.addActionListener();
     }
@@ -199,7 +199,7 @@ public class CommonsUI extends JFrame implements ActionListener {
         JButton detailBt = new JButton("查看详情");
         centerPanel.add(detailBt);
         detailBt.setBounds(720, y, 82, 28);
-        //detailBt.setEnabled(false);
+        detailBt.setEnabled(false);
 
         JButton deleteBt = new JButton("删除");
         centerPanel.add(deleteBt);
@@ -217,7 +217,7 @@ public class CommonsUI extends JFrame implements ActionListener {
                 .deleteBt(deleteBt)
                 .build();
         // 添加“查看详情”点击事件
-        detailBt.addActionListener(e -> new DetailsDialog(CommonsUI.this, "详情", true, component).setVisible(true));
+        detailBt.addActionListener(e -> new DetailsDialog(ExecuteUI.this, "详情", true, component).setVisible(true));
         // 添加“删除”点击事件
         deleteBt.addActionListener(e -> deleteFileButton(component));
         return component;
@@ -281,7 +281,7 @@ public class CommonsUI extends JFrame implements ActionListener {
             return;
         }
         // TODO 其他操作
-        System.out.println("其他操作");
+        LOGGER.info("其他操作");
     }
 
     /**
@@ -298,26 +298,5 @@ public class CommonsUI extends JFrame implements ActionListener {
         centerPanel.revalidate();
         // 重绘此控件
         centerPanel.repaint();
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (Exception ex) {
-            LOGGER.error(ex.getMessage(), ex);
-        }
-
-        /**
-         * Create and display the form
-         */
-        EventQueue.invokeLater(() -> new CommonsUI().setVisible(true));
     }
 }

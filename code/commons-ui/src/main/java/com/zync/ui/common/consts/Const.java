@@ -13,7 +13,7 @@ public interface Const {
     /**
      * 版本号
      */
-    String VERSION = PropertiesUtil.get("commons.io.version");
+    String VERSION = PropertiesUtil.get("commons.ui.version");
     /**
      * UTF-8编码
      */
