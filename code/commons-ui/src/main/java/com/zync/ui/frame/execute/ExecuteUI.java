@@ -1,6 +1,7 @@
 package com.zync.ui.frame.execute;
 
 import com.zync.ui.common.consts.Const;
+import com.zync.ui.frame.AbstractFrame;
 import com.zync.ui.frame.execute.dialog.DetailsDialog;
 import com.zync.ui.vo.ComponentVO;
 import org.apache.commons.collections4.CollectionUtils;
@@ -25,7 +26,7 @@ import java.util.stream.Collectors;
  * @descrption 执行任务界面
  * @date 2019/5/26 21:46
  */
-public class ExecuteUI extends JFrame implements ActionListener {
+public class ExecuteUI extends AbstractFrame implements ActionListener {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ExecuteUI.class);
 

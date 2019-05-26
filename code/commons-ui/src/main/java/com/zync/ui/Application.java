@@ -1,8 +1,9 @@
 package com.zync.ui;
 
-import com.zync.ui.common.consts.FrameType;
 import com.zync.ui.common.utils.PropertiesUtil;
-import com.zync.ui.frame.execute.ExecuteUI;
+import com.zync.ui.factory.FrameFactory;
+import com.zync.ui.frame.AbstractFrame;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,9 +34,16 @@ public class Application {
         } catch (Exception ex) {
             LOGGER.error(ex.getMessage(), ex);
         }
-        String frame = PropertiesUtil.get("commons.ui.frame");
-        if (FrameType.EXECUTE.equals(FrameType.valueOf(frame))) {
-            EventQueue.invokeLater(() -> new ExecuteUI().setVisible(true));
+        String frameName = PropertiesUtil.get("commons.ui.frame.name");
+        if (StringUtils.isBlank(frameName)) {
+            LOGGER.info("启动失败！没有配置窗口类型，请检查配置文件中窗口类型是否配置");
+            return;
         }
+        AbstractFrame frame = FrameFactory.getFrame(frameName);
+        if (frame == null) {
+            LOGGER.info("启动失败！没有该类型【{}】的窗口的实现，请检查配置文件中窗口类型是否配置错误", frameName);
+            return;
+        }
+        EventQueue.invokeLater(() -> frame.setVisible(true));
     }
 }
