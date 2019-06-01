@@ -3,6 +3,20 @@ spring:
     name: gateway-zuul
 server:
   port: 8730
+  tomcat:
+    # 最大worker线程数，默认200
+    max-threads: 400
+    # 最小worker线程，默认10
+    min-spare-threads: 20
+  undertow:
+    # IO线程数，默认为CPU核心数，最小为2
+    io-threads: 8
+    # 阻塞任务线程池，值设置取决于系统的负载，默认为io-threads * 8
+    worker-threads: 40
+    # 每块buffer的空间大小
+    buffer-size: 512
+    # 是否分配的直接内存
+    direct-buffers: true
 eureka:
   instance:
     hostname: ${spring.cloud.client.ip-address}
@@ -24,18 +38,34 @@ ribbon:
       enabled: true
   okhttp:
     enabled: true
+  # 从eureka获取服务列表信息
+  eureka:
+    enabled: true
 zuul:
   prefix: /api
+  # 过滤敏感头信息，默认会过滤掉HTTP请求头信息中的一些敏感信息，防止这些敏感的头信息传递到下游外部服务器
+  sensitive-headers: Cookie,Set-Cookie,Authorization
   host:
+    # 目标主机的最大连接数，默认200
     max-total-connections: 400
+    # 每个主机的初始连接数，默认值为20
     max-per-route-connections: 40
-    socket-timeout-millis: 20
-    connect-timeout-millis: 5
+    socket-timeout-millis: 200
+    connect-timeout-millis: 50
     time-unit: seconds
   routes:
+    # 路由到微服务
     service-consumer:
       path: /consumer/**
       serviceId: service-consumer
     service-consumer-hystrix:
       path: /hystrix/**
       serviceId: service-consumer-hystrix
+    # 静态路由
+    static:
+      path: /static
+      url: http://www.163.com/
+    # 跳转路由
+    local:
+      path: /local/**
+      url: forward:/zuul
