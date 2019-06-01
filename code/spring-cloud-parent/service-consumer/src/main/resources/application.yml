@@ -21,3 +21,13 @@ eureka:
       # defaultZone: http://127.0.0.1:8762/eureka/,http://127.0.0.1:8763/eureka/
       # eureka 单机
       defaultZone: http://luocong:pwd123456@127.0.0.1:8761/eureka/
+# Feign全局关闭/开启Hystrix支持
+feign:
+  hystrix:
+    enabled: true
+# * 全部放开，不然不能访问 actuator/hystrix.stream
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

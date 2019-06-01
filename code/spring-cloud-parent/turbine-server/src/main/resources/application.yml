@@ -24,7 +24,7 @@ turbine:
     # 指定聚合那些集群“,”分割，默认为default
     cluster-config: default
   # 配置Eurake中的serviceId列表，表明监控那些服务
-  app-config: service-consumer-hystrix
+  app-config: service-consumer,service-consumer-hystrix
   cluster-name-expression: "'default'"
   combine-host-port: true
 management:
