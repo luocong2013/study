@@ -1,17 +1,15 @@
 spring:
   application:
-    name: service-consumer-hystrix
-  # 解决多个接口上的@FeignClient(“相同服务名”)报错问题
-  main:
-    allow-bean-definition-overriding: true
+    name: turbine-server
 server:
-  port: 8742
+  port: 8720
 eureka:
   instance:
     hostname: ${spring.cloud.client.ip-address}
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
     lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
   client:
     # 检查健康
     healthcheck:
@@ -21,11 +19,14 @@ eureka:
       # defaultZone: http://127.0.0.1:8762/eureka/,http://127.0.0.1:8763/eureka/
       # eureka 单机
       defaultZone: http://luocong:pwd123456@127.0.0.1:8761/eureka/
-# Feign全局关闭/开启Hystrix支持
-feign:
-  hystrix:
-    enabled: true
-# * 全部放开，不然不能访问 actuator/hystrix.stream
+turbine:
+  aggregator:
+    # 指定聚合那些集群“,”分割，默认为default
+    cluster-config: default
+  # 配置Eurake中的serviceId列表，表明监控那些服务
+  app-config: service-consumer-hystrix
+  cluster-name-expression: "'default'"
+  combine-host-port: true
 management:
   endpoints:
     web:

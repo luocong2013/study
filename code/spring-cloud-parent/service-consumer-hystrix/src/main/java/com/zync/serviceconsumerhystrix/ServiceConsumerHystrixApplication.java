@@ -9,7 +9,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @descrption 服务消费者 - 熔断机制
- *              EnableHystrixDashboard 应用入口指定对HystrixDashboard的支持，访问地址：http://localhost:8742/hystrix/
+ *              EnableFeignClients 启用Feign
+ *              EnableCircuitBreaker 启动熔断
+ *              EnableHystrixDashboard 应用入口指定对Hystrix Dashboard监控的支持，访问地址：http://localhost:8742/hystrix/
+ *                                     在Hystrix Dashboard中填入 http://localhost:8742/actuator/hystrix.stream 查看单个应用的监控
  * @version V1.0.0
  * @author luoc
  */
