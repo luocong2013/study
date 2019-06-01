@@ -12,7 +12,7 @@
     <artifactId>service-consumer-hystrix</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>service-consumer-hystrix</name>
-    <description>Demo project for Spring Boot</description>
+    <description>微服务消费者-基于熔断机制</description>
 
     <properties>
         <java.version>1.8</java.version>

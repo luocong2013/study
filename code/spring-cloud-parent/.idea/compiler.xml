@@ -13,6 +13,7 @@
         <module name="service-provider" />
         <module name="config-client" />
         <module name="gateway-zuul" />
+        <module name="turbine-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
@@ -23,6 +24,7 @@
       <module name="service-consumer" target="1.8" />
       <module name="service-consumer-hystrix" target="1.8" />
       <module name="service-provider" target="1.8" />
+      <module name="turbine-server" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -34,6 +36,7 @@
       <module name="service-consumer" options="-parameters" />
       <module name="service-consumer-hystrix" options="-parameters" />
       <module name="service-provider" options="-parameters" />
+      <module name="turbine-server" options="-parameters" />
     </option>
   </component>
 </project>
