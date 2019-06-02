@@ -1,6 +1,18 @@
 spring:
   application:
     name: gateway-zuul
+  redis:
+    database: 0
+    host: 192.168.0.110
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 200
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+    timeout: 5000
 server:
   port: 8730
   tomcat:
@@ -43,7 +55,10 @@ ribbon:
     enabled: true
 zuul:
   prefix: /api
-  # 过滤敏感头信息，默认会过滤掉HTTP请求头信息中的一些敏感信息，防止这些敏感的头信息传递到下游外部服务器
+  # 忽略所有微服务，只路由指定微服务
+  ignored-services: "*"
+  # 过滤敏感头信息，默认会过滤掉HTTP请求头信息中的一些敏感信息，防止这些敏感的头信息传递到下游外部服务器，默认如下
+  # 可以设置为空来覆盖默认值
   sensitive-headers: Cookie,Set-Cookie,Authorization
   host:
     # 目标主机的最大连接数，默认200
@@ -65,7 +80,38 @@ zuul:
     static:
       path: /static
       url: http://www.163.com/
-    # 跳转路由
+    # 跳转路由，注意：path必须和@RequestMapping中的一致，这里的local
     local:
       path: /local/**
-      url: forward:/zuul
+      url: forward:/local
+  # 限流
+  ratelimit:
+    enabled: true
+    repository: redis
+    behind-proxy: true
+    add-response-headers: true
+    default-policy-list:
+      - limit: 10
+        quota: 1000
+        refresh-interval: 60
+        type:
+          - user
+          - origin
+          - url
+          - httpmethod
+    policy-list:
+      # 限制每分钟最多请求3次
+      service-consumer:
+        - limit: 3
+          quota: 1000
+          refresh-interval: 60
+          type:
+            - user
+            - origin
+            - url
+#        - type:
+#            - user=anonymous
+#            - origin=zync.com
+#            - url=/api
+#            - role=user
+#            - httpmethod=get
