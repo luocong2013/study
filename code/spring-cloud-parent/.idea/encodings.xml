@@ -9,6 +9,8 @@
     <file url="file://$PROJECT_DIR$/service-consumer-hystrix" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-provider" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/turbine-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zipkin-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zipkin-server" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

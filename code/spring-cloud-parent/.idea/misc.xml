@@ -11,6 +11,8 @@
         <option value="$PROJECT_DIR$/service-consumer-hystrix/pom.xml" />
         <option value="$PROJECT_DIR$/gateway-zuul/pom.xml" />
         <option value="$PROJECT_DIR$/turbine-server/pom.xml" />
+        <option value="$PROJECT_DIR$/zipkin-server/pom.xml" />
+        <option value="$PROJECT_DIR$/zipkin-client/pom.xml" />
       </list>
     </option>
   </component>

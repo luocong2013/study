@@ -1,0 +1,12 @@
+server:
+  port: 8711
+spring:
+  application:
+    name: zipkin-client
+  # zipkin采样率，默认为0.1，改为1后全采样，但是会降低接口调用效率
+  sleuth:
+    sampler:
+      probability: 1.0
+  # 服务链路追踪
+  zipkin:
+    base-url: http://127.0.0.1:8710
