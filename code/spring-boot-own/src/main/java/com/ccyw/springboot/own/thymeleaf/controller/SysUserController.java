@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -31,24 +32,35 @@ public class SysUserController {
         return "index";
     }
 
-    @GetMapping(value = "/toLogin")
+    @GetMapping(value = "/login")
     public String toLogin() {
         return "login";
     }
 
     @PostMapping(value = "/login")
     public String login(@RequestParam(value = "username") String username,
-                      @RequestParam(value = "password") String password) {
+                        @RequestParam(value = "password") String password, HttpSession session) {
         System.out.println("登录名：" + username);
         System.out.println("密码是：" + password);
+        session.setAttribute("username", username);
+        session.setAttribute("password", password);
         return "redirect:/thymeleaf/list";
     }
 
     @GetMapping("/list")
-    public String listSysUser(Map<String, Object> map) {
+    public String listSysUser(Map<String, Object> map, HttpSession session) {
+        System.out.println(session);
         List<SysUser> sysUsers = sysUserService.selectAll();
         map.put("users", sysUsers);
         return "list";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        // 清除session
+        session.invalidate();
+        // 重定向到登录页面
+        return "redirect:login";
     }
 
 }
