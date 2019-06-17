@@ -139,7 +139,7 @@ public class ExecuteUI extends AbstractFrame implements ActionListener {
     /**
      * 动态添加组件
      *
-     * @param files
+     * @param files 文件
      */
     private void addComponents(File[] files) {
         int y = 30;
@@ -147,8 +147,7 @@ public class ExecuteUI extends AbstractFrame implements ActionListener {
         // 添加新组件
         if (ArrayUtils.isNotEmpty(files)) {
             List<File> fileLst = miuns(files);
-            for (int i = 0, count = fileLst.size(); i < count; i++) {
-                File file = fileLst.get(i);
+            for (File file : fileLst) {
                 addComponents.add(addComponent(file, y));
                 y += 50;
             }
@@ -156,8 +155,7 @@ public class ExecuteUI extends AbstractFrame implements ActionListener {
 
         // 移动已添加的组件
         if (CollectionUtils.isNotEmpty(components)) {
-            for (int i = 0, count = components.size(); i < count; i++) {
-                ComponentVO component = components.get(i);
+            for (ComponentVO component : components) {
                 moveComponent(component, y);
                 y += 50;
             }
@@ -173,13 +171,12 @@ public class ExecuteUI extends AbstractFrame implements ActionListener {
 
     /**
      * 去除重复上传的文件
-     * @param files
-     * @return
+     * @param files 文件
+     * @return 去重后的文件列表
      */
     private List<File> miuns(File[] files) {
         List<String> chooesFiles = components.stream().map(item -> item.getChooseFile().getAbsolutePath()).collect(Collectors.toList());
-        List<File> fileLst = Arrays.stream(files).filter(item -> !chooesFiles.contains(item.getAbsolutePath())).collect(Collectors.toList());
-        return fileLst;
+        return Arrays.stream(files).filter(item -> !chooesFiles.contains(item.getAbsolutePath())).collect(Collectors.toList());
     }
 
     private ComponentVO addComponent(File file, int y) {
