@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script type="text/javascript" th:src="@{/webjars/vue/vue.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery-3.3.1.js}"></script>
+
+    <title>系统首页</title>
+</head>
+<body>
+<div id="app">
+    <div id="nav">
+        <router-link to="/">Home</router-link>
+        |
+        <router-link to="/about">About</router-link>
+        |
+        <router-link to="/course">Course</router-link>
+        |
+        <span class="pull-right">
+            <span>
+                <a @click="login">登录</a>
+                <router-link to="">注册</router-link>
+            </span>
+            <span>
+                <a @click="">注销</a>
+            </span>
+        </span>
+    </div>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/js/index.js}"></script>
+</html>

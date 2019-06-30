@@ -1,0 +1,31 @@
+/*********************************************
+ * login CSS
+ *
+ * @author luoc
+ * @date 2019/6/23 16:25
+ *********************************************/
+.login-box {
+    margin-top: 10%;
+}
+.login-main {
+    text-align: center;
+}
+.login-title {
+    font-family: 微软雅黑, serif;
+    font-size: 25px;
+    line-height: 60px;
+}
+.login-input {
+    line-height: 60px;
+}
+.login-input-1 {
+    height: 25px;
+    width: 250px;
+}
+.login-button {
+    height: 25px;
+    width: 255px;
+    margin-top: 20px;
+    background-color: #0092ee;
+    color: #fff;
+}
