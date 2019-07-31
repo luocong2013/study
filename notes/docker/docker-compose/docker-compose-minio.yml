@@ -1,0 +1,18 @@
+version: '3'
+services:
+    minio:
+        image: minio/minio
+        container_name: minio_1.0.0
+        ports:
+            - 9000:9000
+        networks:
+            mynetwork:
+                aliases:
+                    - minio
+        volumes:
+            - /home/docker/minio/data:/data
+        command:
+            minio server /data
+networks:
+    mynetwork:
+        driver: bridge
