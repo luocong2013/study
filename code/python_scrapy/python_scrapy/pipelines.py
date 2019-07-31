@@ -9,7 +9,9 @@ import requests
 from python_scrapy import settings
 from python_scrapy.items import ImageItem
 from pymongo import MongoClient
+from minio import Minio
 import hashlib
+
 
 class PythonScrapyPipeline(object):
     def process_item(self, item, spider):
@@ -44,7 +46,7 @@ class MongoDBTiebaPipeline(object):
         self.db_client = MongoClient(settings.MONGODB_URI, connectTimeoutMS=60000)
         self.db = self.db_client.get_database(settings.MONGODB_DB_NAME)
         # 认证
-        # self.db.authenticate('tieba', 'tieba')
+        # self.db.authenticate(settings.MONGODB_USER, settings.MONGODB_PSSWD)
         self.db_collection = self.db.get_collection(settings.MONGODB_COLL_NAME)
 
     # 关闭数据库
@@ -76,4 +78,45 @@ class MongoDBTiebaPipeline(object):
             # else:
             #     print('图片已经存在了！！！')
             self.insert_db(item)
+        return item
+
+
+class MinioTiebaPipeline(object):
+    """将数据写入Minio"""
+
+    def __init__(self):
+        self.minio_client = Minio(endpoint=settings.MINIO_ENDPOINT,
+                                  access_key=settings.MINIO_ACCESS_KEY,
+                                  secret_key=settings.MINIO_SECRET_KEY,
+                                  secure=False)
+
+    # 打开爬虫
+    def open_spider(self, spider):
+        if not self.minio_client.bucket_exists(settings.MINIO_BUCKET):
+            self.minio_client.make_bucket(settings.MINIO_BUCKET)
+
+    def put_object(self, item, file_path):
+        try:
+            object_name = '{}/{}'.format(item['image_title'], item['image_name'])
+            self.minio_client.fput_object(settings.MINIO_BUCKET, object_name, file_path)
+        except Exception as e:
+            print(repr(e))
+        finally:
+            os.remove(file_path)
+
+    # 对数据进行处理
+    def process_item(self, item, spider):
+        try:
+            if not os.path.exists(settings.MINIO_TEMP_DIRECTORY):
+                os.makedirs(settings.MINIO_TEMP_DIRECTORY)
+            file_path = '{}/{}'.format(settings.MINIO_TEMP_DIRECTORY, item['image_name'])
+            if not os.path.exists(file_path):
+                buff = requests.get(item['image_link']).content
+                with open(file_path, 'wb') as f:
+                    f.write(buff)
+                self.put_object(item, file_path)
+            else:
+                print('图片已经存在了！！！')
+        except Exception as e:
+            print(repr(e))
         return item
