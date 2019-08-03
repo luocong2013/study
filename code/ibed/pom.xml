@@ -12,6 +12,7 @@
     <artifactId>ibed</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>ibed</name>
+    <packaging>jar</packaging>
     <description>这是一个模仿 sm.ms 而开发的图床服务。</description>
 
     <properties>
@@ -37,6 +38,7 @@
 
         <!--plugin-->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <docker-maven-plugin.version>1.0.0</docker-maven-plugin.version>
         <!--mybatis plugin 设置-->
         <mybatis-plugin-generator.configurationFile>
             ${project.basedir}/src/main/resources/mybatis/generator/generatorConfig.xml
@@ -171,6 +173,84 @@
                         <version>${mybatis-mapper-generator.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <!--
+            使用Maven制作Docker镜像
+            方式一：
+            直接在pom.xml配置，指定baseImage、entryPoint、cmd、maintainer和files，而不使用Dockerfile的方式
+            但是这种方式只支持一些简单的命令，如果需要VOLUMN命令（或者其他pom不支持的命令）还是需要通过将命令写入Dockerfile中
+            然后在pom中配置dockerDirectory类引入该Dockerfile
+            -->
+            <!--<plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker-maven-plugin.version}</version>
+                <configuration>
+                    <imageName>${project.name}</imageName>
+                    <imageTags>1.0.0</imageTags>
+                    <baseImage>java</baseImage>
+                    <maintainer>luocong<luocong2017@gmail.com></maintainer>
+                    <workdir>/opt</workdir>
+                    <cmd>["java", "-version"]</cmd>
+                    <entryPoint>["java", "-jar", "${project.build.finalName}.jar"]</entryPoint>
+                    &lt;!&ndash;这里复制jar到docker容器指定的目录（会在target下生成docker目录，targetPath是相对于这里的docker目录）&ndash;&gt;
+                    <resources>
+                        <resource>
+                            <targetPath>/opt</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                    <dockerHost>http://192.168.0.111:2375</dockerHost>
+                </configuration>
+            </plugin>-->
+
+            <!--
+            使用Maven制作Docker镜像 <mvn clean package docker:build>
+            方式二：
+            通过Dockerfile来构建，必须在pom中配置dockerDirectory来指明Dockerfile文件所在的目录
+            如果配置了dockerDirectory，那么baseImage、maintainer、cmd和entryPoint等配置将被忽略
+            -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker-maven-plugin.version}</version>
+                <configuration>
+                    <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+                    <imageName>${project.name}</imageName>
+                    <imageTags>1.0.0</imageTags>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                    <dockerHost>http://192.168.0.111:2375</dockerHost>
+                </configuration>
+            </plugin>
+
+            <!--
+            方式三：
+            不使用Maven制作Docker镜像，使用idea的docker插件run in docker
+            这里是将打包好的jar复制到docker下
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <configuration>
+                            <tasks>
+                                <copy todir="${project.basedir}/src/main/docker" file="${project.basedir}/target/${project.build.finalName}.${project.packaging}"></copy>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
