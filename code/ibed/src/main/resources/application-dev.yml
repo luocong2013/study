@@ -2,7 +2,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/ssm?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://192.168.0.100:3306/ssm?useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: root
     hikari:
@@ -16,12 +16,11 @@ spring:
 
 # MyBatis配置
 mybatis:
-  base-packages: com.zync.ibed.mapper
   mapper-locations: classpath:mybatis/mapper/*.xml
   type-aliases-package: com.zync.ibed.po
   # 检查MyBatis配置文件是否存在
-  check-config-location: true
-  config-location: classpath:mybatis/mybatis.cfg.xml
+  # check-config-location: true
+  # config-location: classpath:mybatis/mybatis.cfg.xml
   # 以下可以替换配置文件
   configuration:
     cache-enabled: true
@@ -44,5 +43,5 @@ mapper:
 minio:
   endpoint: http://192.168.0.110:9000
   access-key: dev
-  secret-key: 123456
+  secret-key: 123456789
   bucket: ibed

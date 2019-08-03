@@ -29,8 +29,8 @@ public final class ResultApiFactory {
      * @param data     数据
      * @return
      */
-    public static ResultApi buildSuccessResult(Integer code, String message, Object data) {
-        return new ResultApi(code, message, Boolean.TRUE, data);
+    public static <T> ResultApi buildSuccessResult(Integer code, String message, T data) {
+        return new ResultApi<>(code, message, Boolean.TRUE, data);
     }
 
     /**
@@ -40,7 +40,7 @@ public final class ResultApiFactory {
      * @param data     数据
      * @return
      */
-    public static ResultApi buildFailResult(Integer code, String message, Object data) {
-        return new ResultApi(code, message, Boolean.FALSE, data);
+    public static <T> ResultApi buildFailResult(Integer code, String message, T data) {
+        return new ResultApi<>(code, message, Boolean.FALSE, data);
     }
 }

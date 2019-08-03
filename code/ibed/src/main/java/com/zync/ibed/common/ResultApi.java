@@ -11,7 +11,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class ResultApi {
+public class ResultApi<T> {
     /**
      * 状态码
      */
@@ -27,6 +27,6 @@ public class ResultApi {
     /**
      * 数据
      */
-    private Object data;
+    private T data;
 
 }
