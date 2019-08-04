@@ -17,7 +17,7 @@ public final class Result<T> {
     private T data;
 
     public static <T> Result buildSuccessResult(Integer code, String message, T data) {
-        return new Result(code, true, message, data);
+        return new Result<>(code, true, message, data);
     }
 
     private Result(Integer code, Boolean success, String message, T data) {
