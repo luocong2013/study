@@ -1,0 +1,23 @@
+PUT baike
+{
+    "settings": {
+        "number_of_replicas": 0,
+        "number_of_shards": 2
+    },
+    "mappings": {
+        "properties": {
+            "baike_title": {
+                "type": "text",
+                "analyzer": "ik_max_word"
+            },
+            "baike_link": {
+                "type": "text",
+                "analyzer": "ik_max_word"
+            },
+            "baike_content": {
+                "type": "text",
+                "analyzer": "ik_max_word"
+            }
+        }
+    }
+}
