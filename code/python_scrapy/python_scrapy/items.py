@@ -34,3 +34,13 @@ class ImageItem(scrapy.Item):
     image_link = scrapy.Field()
     # 图片名称
     image_name = scrapy.Field()
+
+
+class BaikeItem(scrapy.Item):
+    """百度百科词条"""
+    # 词条链接
+    baike_link = scrapy.Field()
+    # 词条标题
+    baike_title = scrapy.Field()
+    # 词条内容
+    baike_content = scrapy.Field()

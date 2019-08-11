@@ -11,6 +11,7 @@ from python_scrapy.items import ImageItem
 from pymongo import MongoClient
 from minio import Minio
 import hashlib
+from python_scrapy.utils.elasticsearch_util import ElasticSearchClient
 
 
 class PythonScrapyPipeline(object):
@@ -119,4 +120,39 @@ class MinioTiebaPipeline(object):
                 print('图片已经存在了！！！')
         except Exception as e:
             print(repr(e))
+        return item
+
+
+class ElasticSearchBaikePipeline(object):
+    """将百度百科数据写入ElasticSearch"""
+
+    def __init__(self):
+        self.client = ElasticSearchClient(settings.ELASTICSEARCH_HOST,
+                                          settings.ELASTICSEARCH_PORT,
+                                          settings.ELASTICSEARCH_INDEX_NAME)
+
+    def open_spider(self, spider):
+        """
+        在Spider开启的时候被自动调用
+        :param spider: Spider对象，即生成该Item的Spider
+        :return:
+        """
+        pass
+
+    def close_spider(self, spider):
+        """
+        在Spider关闭的时候自动调用
+        :param spider: Spider对象，即生成该Item的Spider
+        :return:
+        """
+        pass
+
+    def process_item(self, item, spider):
+        """
+        必须要实现的方法，被定义的Item Pipeline会默认调用这个方法对Item进行处理
+        :param item: Item对象，即被处理的Item
+        :param spider: Spider对象，即生成该Item的Spider
+        :return:
+        """
+        self.client.index(dict(item))
         return item

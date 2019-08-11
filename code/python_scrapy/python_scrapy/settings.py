@@ -18,7 +18,7 @@ NEWSPIDER_MODULE = 'python_scrapy.spiders'
 # USER_AGENT = 'python_scrapy (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # 并发数
@@ -69,7 +69,8 @@ ITEM_PIPELINES = {
     # 'python_scrapy.pipelines.PythonScrapyPipeline': 300,
     # 'python_scrapy.pipelines.LocalFileTiebaPipeline': 301,
     # 'python_scrapy.pipelines.MongoDBTiebaPipeline': 302,
-    'python_scrapy.pipelines.MinioTiebaPipeline': 303,
+    # 'python_scrapy.pipelines.MinioTiebaPipeline': 303,
+    'python_scrapy.pipelines.ElasticSearchBaikePipeline': 304,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -116,3 +117,8 @@ MINIO_ACCESS_KEY = 'dev'
 MINIO_SECRET_KEY = '123456789'
 MINIO_BUCKET = 'tieba'
 MINIO_TEMP_DIRECTORY = "D:/pic/.minio"
+
+# ElasticSearch
+ELASTICSEARCH_HOST = '192.168.0.111'
+ELASTICSEARCH_PORT = 9200
+ELASTICSEARCH_INDEX_NAME = 'baike'
