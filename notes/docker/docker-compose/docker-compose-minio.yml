@@ -5,6 +5,7 @@ services:
         container_name: minio_1.0.0
         ports:
             - 9000:9000
+        restart: always
         networks:
             mynetwork:
                 aliases:
