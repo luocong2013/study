@@ -1,0 +1,10 @@
+#Version: 1.0.0
+FROM registry.cn-hangzhou.aliyuncs.com/luocong/python:3.7.3
+
+MAINTAINER luocong2017<luocong2017@gmail.com>
+
+COPY code /opt/
+
+WORKDIR /opt/python_scrapy/python_scrapy
+
+ENTRYPOINT ["sh", "-c", "python3 runspider.py"]

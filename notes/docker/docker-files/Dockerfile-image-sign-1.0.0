@@ -1,0 +1,31 @@
+#Version: 1.0.0
+FROM docker.io/jeanblanchard/alpine-glibc
+
+MAINTAINER luocong<luocong@thunisoft.com>
+
+EXPOSE 9466
+
+WORKDIR /opt
+
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+		 echo 'Asia/Shanghai' > /etc/timezone && \
+		 apk add --update ttf-dejavu fontconfig && \
+		 rm -rf /var/cache/apk/*
+
+COPY image-sign.jar /opt/image-sign.jar
+
+COPY simsun.ttc /usr/share/fonts/chinese/simsun.ttc
+
+ADD jre8.tar.gz /usr/local/java
+
+ENV JAVA_HOME /usr/local/java
+
+ENV PATH ${PATH}:${JAVA_HOME}/bin
+
+ENV LANG zh_CN.UTF-8
+
+ENV LANGUAGE zh_CN:en
+
+ENV LC_ALL zh_CN.UTF-8
+
+ENTRYPOINT ["sh", "-c", "java -jar -Dfile.encoding=UTF-8 image-sign.jar"]
