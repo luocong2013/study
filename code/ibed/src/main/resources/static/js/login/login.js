@@ -10,7 +10,8 @@ new Vue({
         user: {
             username: null,
             password: null
-        }
+        },
+        visible: false
     },
     methods: {
         check: function () {
