@@ -1,5 +1,5 @@
 # Version: 1.0.0
-FROM registry.cn-hangzhou.aliyuncs.com/cuit-luoc/python:3.7.3
+FROM registry.cn-hangzhou.aliyuncs.com/luocong/python:3.7.3
 
 MAINTAINER luocong2017<luocong2017@gmail.com>
 
