@@ -1,0 +1,64 @@
+version: '3'
+services:
+    elasticsearch-service-1:
+        image: registry.cn-hangzhou.aliyuncs.com/luocong/elasticsearch:7.3.0
+        container_name: elasticsearch-service-1
+        environment:
+          - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+        ulimits:
+          memlock:
+            soft: -1
+            hard: -1
+        volumes:
+          - ./elasticsearch-service-1/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+          - ./elasticsearch-service-1/data:/usr/share/elasticsearch/data
+          - ./elasticsearch-service-1/logs:/usr/share/elasticsearch/logs
+        ports:
+          - 9201:9200
+          - 9300:9300
+        networks:
+          mynetwork:
+            aliases:
+                - elasticsearch-service-1
+    elasticsearch-service-2:
+        image: registry.cn-hangzhou.aliyuncs.com/luocong/elasticsearch:7.3.0
+        container_name: elasticsearch-service-2
+        environment:
+          - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+        ulimits:
+          memlock:
+            soft: -1
+            hard: -1
+        volumes:
+          - ./elasticsearch-service-2/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+          - ./elasticsearch-service-2/data:/usr/share/elasticsearch/data
+          - ./elasticsearch-service-2/logs:/usr/share/elasticsearch/logs
+        ports:
+          - 9202:9200
+        networks:
+          mynetwork:
+            aliases:
+              - elasticsearch-service-2
+    elasticsearch-service-3:
+        image: registry.cn-hangzhou.aliyuncs.com/luocong/elasticsearch:7.3.0
+        container_name: elasticsearch-service-3
+        environment:
+          - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+        ulimits:
+          memlock:
+            soft: -1
+            hard: -1
+        volumes:
+          - ./elasticsearch-service-3/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+          - ./elasticsearch-service-3/data:/usr/share/elasticsearch/data
+          - ./elasticsearch-service-3/logs:/usr/share/elasticsearch/logs
+        ports:
+          - 9203:9200
+        networks:
+          mynetwork:
+            aliases:
+              - elasticsearch-service-3
+
+networks:
+  mynetwork:
+      driver: bridge
