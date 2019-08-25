@@ -4,7 +4,7 @@ services:
         image: registry.cn-hangzhou.aliyuncs.com/luocong/elasticsearch:7.3.0
         container_name: elasticsearch-service-1
         environment:
-          - cluster.name=elasticsearch-cluster
+          - cluster.name=elk-cluster
           - node.name=node-1
           - node.master=true
           - node.data=true
@@ -35,7 +35,7 @@ services:
         image: registry.cn-hangzhou.aliyuncs.com/luocong/elasticsearch:7.3.0
         container_name: elasticsearch-service-2
         environment:
-          - cluster.name=elasticsearch-cluster
+          - cluster.name=elk-cluster
           - node.name=node-2
           - node.master=true
           - node.data=true
@@ -60,7 +60,7 @@ services:
         image: registry.cn-hangzhou.aliyuncs.com/luocong/elasticsearch:7.3.0
         container_name: elasticsearch-service-3
         environment:
-          - cluster.name=elasticsearch-cluster
+          - cluster.name=elk-cluster
           - node.name=node-3
           - node.master=true
           - node.data=true
@@ -81,6 +81,21 @@ services:
           mynetwork:
             aliases:
               - elasticsearch-service-3
+    kibana-service:
+        image: registry.cn-hangzhou.aliyuncs.com/luocong/kibana:7.3.0
+        container_name: kibana-service
+        environment:
+          - SERVER.NAME=kibana.example.org
+          - I18N.LOCALE=zh-CN
+          - ELASTICSEARCH.HOSTS=http://elasticsearch-service-1:9200
+        ports:
+          - 5601:5601
+        depends_on:
+          - elasticsearch-service-1
+        networks:
+          mynetwork:
+            aliases:
+              - kibana-service
 
 volumes:
   elasticsearch-data-1:
