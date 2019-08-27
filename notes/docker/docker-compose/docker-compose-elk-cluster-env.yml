@@ -85,9 +85,9 @@ services:
         image: registry.cn-hangzhou.aliyuncs.com/luocong/kibana:7.3.0
         container_name: kibana-service
         environment:
-          - SERVER.NAME=kibana.example.org
-          - I18N.LOCALE=zh-CN
-          - ELASTICSEARCH.HOSTS=http://elasticsearch-service-1:9200
+          - SERVER_NAME=kibana
+          - I18N_LOCALE=zh-CN
+          - ELASTICSEARCH_HOSTS=http://elasticsearch-service-1:9200
         ports:
           - 5601:5601
         depends_on:
