@@ -1,0 +1,15 @@
+version: '3'
+services:
+    baike-service:
+        image: registry.cn-hangzhou.aliyuncs.com/luocong/spider-baike:1.0.0
+        container_name: baike-service
+        volumes:
+            - /home/docker/spider/settings.py:/opt/Baike/Baike/settings.py
+        networks:
+            mynetwork:
+                aliases:
+                    - baike
+
+networks:
+  mynetwork:
+      driver: bridge

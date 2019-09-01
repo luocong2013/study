@@ -1,0 +1,123 @@
+version: '3'
+services:
+    elasticsearch-service-1:
+        image: registry.cn-hangzhou.aliyuncs.com/luocong/elasticsearch:7.3.0
+        container_name: elasticsearch-service-1
+        environment:
+          - cluster.name=elasticsearch-cluster
+          - node.name=node-1
+          - node.master=true
+          - node.data=true
+          - bootstrap.memory_lock=true
+          - network.host=0.0.0.0
+          - transport.tcp.port=9300
+          - http.port=9200
+          - http.cors.enabled=true
+          - http.cors.allow-origin=*
+          - discovery.seed_hosts=elasticsearch-service-1,elasticsearch-service-2,elasticsearch-service-3
+          - cluster.initial_master_nodes=node-1
+          - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+        ulimits:
+          memlock:
+            soft: -1
+            hard: -1
+        volumes:
+          - elasticsearch-data-1:/usr/share/elasticsearch/data
+          - elasticsearch-logs-1:/usr/share/elasticsearch/logs
+        ports:
+          - 9200:9200
+          - 9300:9300
+        networks:
+          mynetwork:
+            aliases:
+                - elasticsearch-service-1
+    elasticsearch-service-2:
+        image: registry.cn-hangzhou.aliyuncs.com/luocong/elasticsearch:7.3.0
+        container_name: elasticsearch-service-2
+        environment:
+          - cluster.name=elasticsearch-cluster
+          - node.name=node-2
+          - node.master=true
+          - node.data=true
+          - bootstrap.memory_lock=true
+          - discovery.seed_hosts=elasticsearch-service-1,elasticsearch-service-2,elasticsearch-service-3
+          - cluster.initial_master_nodes=node-1
+          - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+        ulimits:
+          memlock:
+            soft: -1
+            hard: -1
+        volumes:
+          - elasticsearch-data-2:/usr/share/elasticsearch/data
+          - elasticsearch-logs-2:/usr/share/elasticsearch/logs
+        networks:
+          mynetwork:
+            aliases:
+              - elasticsearch-service-2
+    elasticsearch-service-3:
+        image: registry.cn-hangzhou.aliyuncs.com/luocong/elasticsearch:7.3.0
+        container_name: elasticsearch-service-3
+        environment:
+          - cluster.name=elasticsearch-cluster
+          - node.name=node-3
+          - node.master=true
+          - node.data=true
+          - bootstrap.memory_lock=true
+          - discovery.seed_hosts=elasticsearch-service-1,elasticsearch-service-2,elasticsearch-service-3
+          - cluster.initial_master_nodes=node-1
+          - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+        ulimits:
+          memlock:
+            soft: -1
+            hard: -1
+        volumes:
+          - elasticsearch-data-3:/usr/share/elasticsearch/data
+          - elasticsearch-logs-3:/usr/share/elasticsearch/logs
+        networks:
+          mynetwork:
+            aliases:
+              - elasticsearch-service-3
+    kibana-service:
+        image: registry.cn-hangzhou.aliyuncs.com/luocong/kibana:7.3.0
+        container_name: kibana-service
+        environment:
+          - SERVER_NAME=kibana
+          - I18N_LOCALE=zh-CN
+          - ELASTICSEARCH_HOSTS=http://elasticsearch-service-1:9200
+        ports:
+          - 5601:5601
+        depends_on:
+          - elasticsearch-service-1
+        networks:
+          mynetwork:
+            aliases:
+              - kibana-service
+    baike-service:
+        image: registry.cn-hangzhou.aliyuncs.com/luocong/spider-baike:1.0.0
+        container_name: baike-service
+        volumes:
+          - /home/docker/spider/settings.py:/opt/Baike/Baike/settings.py
+        depends_on:
+          - elasticsearch-service-1
+        networks:
+          mynetwork:
+            aliases:
+              - baike-service
+
+volumes:
+  elasticsearch-data-1:
+    driver: local
+  elasticsearch-data-2:
+    driver: local
+  elasticsearch-data-3:
+    driver: local
+  elasticsearch-logs-1:
+    driver: local
+  elasticsearch-logs-2:
+    driver: local
+  elasticsearch-logs-3:
+    driver: local
+
+networks:
+  mynetwork:
+      driver: bridge
