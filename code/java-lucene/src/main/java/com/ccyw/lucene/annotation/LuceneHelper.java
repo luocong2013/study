@@ -139,8 +139,7 @@ public class LuceneHelper {
      * @return
      */
     private static String getOrmIndexName(Class<?> clazz) {
-        String indexName = clazz.getAnnotation(LuceneIndex.class).indexName();
-        return indexName;
+        return clazz.getAnnotation(LuceneIndex.class).indexName();
     }
 
     /**
@@ -152,7 +151,7 @@ public class LuceneHelper {
      * @throws Exception
      */
     public static QueryResult search(String queryString, int firstReuslt, int maxResult) throws Exception {
-        List<Article> list = new ArrayList<Article>();
+        List<Article> list = new ArrayList<>();
         DirectoryReader reader = DirectoryReader.open(FSDirectory.open(Paths.get("D:/lucene/test1")));
         //创建搜索器
         IndexSearcher searcher = new IndexSearcher(reader);
@@ -173,7 +172,8 @@ public class LuceneHelper {
          * 第二个参数是要查询的行数
          */
         TopDocs topDocs = searcher.search(query, firstReuslt+maxResult);
-        long count = topDocs.totalHits;//总记录数
+        // 总记录数
+        long count = topDocs.totalHits.value;
         System.out.println("总记录数为：" + count);
         ScoreDoc[] hits = topDocs.scoreDocs;
 

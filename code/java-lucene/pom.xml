@@ -9,15 +9,21 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
-        <lucene.version>7.5.0</lucene.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+
+        <lucene.version>8.1.0</lucene.version>
         <lombok.version>1.18.2</lombok.version>
         <commons-lang3.version>3.7</commons-lang3.version>
         <commons-io.version>2.5</commons-io.version>
         <commons-collections4.version>4.2</commons-collections4.version>
         <junit.version>4.12</junit.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     </properties>
 
     <dependencies>
+        <!--lucene start-->
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-core</artifactId>
@@ -43,6 +49,7 @@
             <artifactId>lucene-highlighter</artifactId>
             <version>${lucene.version}</version>
         </dependency>
+        <!--lucene end-->
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -66,7 +73,6 @@
             <version>${commons-collections4.version}</version>
         </dependency>
 
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -75,5 +81,18 @@
         </dependency>
     </dependencies>
 
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
