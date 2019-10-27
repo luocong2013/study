@@ -1,4 +1,4 @@
-package com.zync.map;
+package com.zync.thre;
 
 import java.util.HashMap;
 import java.util.Map;
