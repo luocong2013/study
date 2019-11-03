@@ -19,17 +19,44 @@ import java.util.concurrent.TimeUnit;
  */
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
-public class JMHSample {
+public class JmhSample {
 
+    /**
+     * 测试平均执行时间
+     * @throws InterruptedException
+     */
     @Benchmark
     public void wellHelloThere() throws InterruptedException {
         // 这个就是被度量的代码函数，用 @Benchmark 标注
         TimeUnit.MILLISECONDS.sleep(10);
     }
 
+    /**
+     * 吞吐量测试
+     * @throws InterruptedException
+     */
+    @Benchmark
+    @BenchmarkMode(Mode.Throughput)
+    @OutputTimeUnit(TimeUnit.SECONDS)
+    public void measureThroughput() throws InterruptedException {
+        TimeUnit.MILLISECONDS.sleep(100);
+    }
+
+    /**
+     * 测试采样
+     * @throws InterruptedException
+     */
+    @Benchmark
+    @BenchmarkMode(Mode.SampleTime)
+    @OutputTimeUnit(TimeUnit.MICROSECONDS)
+    public void measureSamples() throws InterruptedException {
+        TimeUnit.MILLISECONDS.sleep(100);
+    }
+
     public static void main(String[] args) throws RunnerException {
         Options opt = new OptionsBuilder()
-                .include(JMHSample.class.getSimpleName())
+                .include(JmhSample.class.getSimpleName())
+                // 线程数量
                 .forks(1)
                 .build();
         new Runner(opt).run();
