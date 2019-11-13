@@ -1,30 +1,27 @@
-package com.zync.cas;
+package com.zync.atomic;
 
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.atomic.AtomicStampedReference;
 
 /**
  * @author luoc
  * @version V1.0.0
- * @descrption AtomicReference测试
- * @date 2019/11/13 22:44
+ * @descrption AtomicStampedReference测试，带有时间戳的对象引用
+ * @date 2019/11/13 23:23
  */
-public class AtomicReferenceDemo {
-
-    private static AtomicReference<Integer> money = new AtomicReference<>();
-    static {
-        money.set(19);
-    }
+public class AtomicStampedReferenceDemo {
+    private static AtomicStampedReference<Integer> money = new AtomicStampedReference<>(19, 0);
 
     public static void main(String[] args){
         for (int i = 0; i < 3; i++) {
+            final int timestamp = money.getStamp();
             new Thread(() -> {
                 while (true) {
                     while (true) {
-                        final Integer m = money.get();
+                        final Integer m = money.getReference();
                         if (m < 20) {
-                            if (money.compareAndSet(m, m + 20)) {
-                                System.out.println("余额小于20元，充值成功，余额：" + money.get() + "元");
+                            if (money.compareAndSet(m, m + 20, timestamp, timestamp + 1)) {
+                                System.out.println("余额小于20元，充值成功，余额：" + money.getReference() + "元");
                                 break;
                             }
                         } else {
@@ -39,11 +36,12 @@ public class AtomicReferenceDemo {
         new Thread(() -> {
             for (int i = 0; i < 100; i++) {
                 while (true) {
-                    final Integer m = money.get();
+                    final int timestamp = money.getStamp();
+                    final Integer m = money.getReference();
                     if (m > 10) {
                         System.out.println("大于10元");
-                        if (money.compareAndSet(m, m - 10)) {
-                            System.out.println("成功消费10元，余额：" + money.get());
+                        if (money.compareAndSet(m, m - 10, timestamp, timestamp + 1)) {
+                            System.out.println("成功消费10元，余额：" + money.getReference());
                             break;
                         }
                     } else {
