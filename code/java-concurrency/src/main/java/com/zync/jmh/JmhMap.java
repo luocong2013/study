@@ -26,7 +26,7 @@ public class JmhMap {
     private static Map<String, String> syncHashMap = Collections.synchronizedMap(new HashMap<>(10240));
     private static Map<String, String> concurrentHashMap = new ConcurrentHashMap<>(10240);
 
-    @Setup
+    //@Setup
     public void setup() {
         for (int i = 0; i < 10000; i++) {
             hashMap.put(Integer.toString(i), Integer.toString(i));
