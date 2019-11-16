@@ -18,6 +18,9 @@
         <commons-collections4.version>4.4</commons-collections4.version>
         <guava.version>28.1-jre</guava.version>
 
+        <!-- Disruptor框架 -->
+        <disruptor.version>3.4.2</disruptor.version>
+
         <!--log-->
         <logback.version>1.2.3</logback.version>
 
@@ -48,6 +51,13 @@
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
         </dependency>
+        <!-- Disruptor框架 START -->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>${disruptor.version}</version>
+        </dependency>
+        <!-- Disruptor框架 END -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
