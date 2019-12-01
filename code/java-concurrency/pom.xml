@@ -11,7 +11,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
 
         <commons-io.version>2.6</commons-io.version>
         <commons-lang3.version>3.9</commons-lang3.version>
@@ -20,6 +20,9 @@
 
         <!-- Disruptor框架 -->
         <disruptor.version>3.4.2</disruptor.version>
+
+        <!-- Akka框架 -->
+        <akka.version>2.6.0</akka.version>
 
         <!--log-->
         <logback.version>1.2.3</logback.version>
@@ -58,6 +61,13 @@
             <version>${disruptor.version}</version>
         </dependency>
         <!-- Disruptor框架 END -->
+        <!-- Akka 框架 START -->
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-actor_2.13</artifactId>
+            <version>${akka.version}</version>
+        </dependency>
+        <!-- Akka 框架 END -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
