@@ -22,7 +22,7 @@ public class CompletableFutureTimeoutClient {
                 e.printStackTrace();
             }
             return calc(50);
-        })/*.orTimeout(1, TimeUnit.SECONDS)*/.exceptionally(e -> {
+        }).orTimeout(1, TimeUnit.SECONDS).exceptionally(e -> {
             System.out.println(e.toString());
             return 0;
         }).thenAccept(System.out::println).get();
