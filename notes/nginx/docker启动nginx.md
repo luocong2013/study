@@ -8,7 +8,7 @@ docker run --name mynginx -d -p 8080:80 nginx:latest
 
 1. 将所有nginx启动需要的文件放到/home/docker/nginx下，如下所示：
 
-![](../../../images/docker/nginx/docker-nginx-01.jpg)
+![](../../images/nginx/nginx-01.jpg)
 
 2. 启动命令
 
