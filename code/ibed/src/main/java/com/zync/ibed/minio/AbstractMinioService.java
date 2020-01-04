@@ -87,9 +87,9 @@ public abstract class AbstractMinioService {
      * @param prefix
      * @return
      */
-    public List<String> getObjectName(String prefix) throws XmlPullParserException, InsufficientDataException, NoSuchAlgorithmException,
+    public List<String> getObjectName(String prefix, boolean recursive) throws XmlPullParserException, InsufficientDataException, NoSuchAlgorithmException,
             IOException, NoResponseException, InvalidKeyException, InternalException, InvalidBucketNameException, ErrorResponseException {
-        Iterable<Result<Item>> listObjects = this.minioClient.listObjects(getBucket(), prefix);
+        Iterable<Result<Item>> listObjects = this.minioClient.listObjects(getBucket(), prefix, recursive);
         List<String> objectNames = new ArrayList<>();
         for (Result<Item> listObject : listObjects) {
             objectNames.add(listObject.get().objectName());
@@ -102,9 +102,9 @@ public abstract class AbstractMinioService {
      * @param prefix
      * @return
      */
-    public List<String> getObjectUrl(String prefix) throws XmlPullParserException, InsufficientDataException, NoSuchAlgorithmException,
+    public List<String> getObjectUrl(String prefix, boolean recursive) throws XmlPullParserException, InsufficientDataException, NoSuchAlgorithmException,
             IOException, NoResponseException, InvalidKeyException, InternalException, InvalidBucketNameException, ErrorResponseException, InvalidResponseException {
-        Iterable<Result<Item>> listObjects = this.minioClient.listObjects(getBucket(), prefix);
+        Iterable<Result<Item>> listObjects = this.minioClient.listObjects(getBucket(), prefix, recursive);
         List<String> objectUrls = new ArrayList<>();
         for (Result<Item> listObject : listObjects) {
             objectUrls.add(this.minioClient.getObjectUrl(getBucket(), listObject.get().objectName()));
@@ -116,9 +116,9 @@ public abstract class AbstractMinioService {
      * 列出minio文件
      * @return
      */
-    public List<Item> listObjects(String prefix) throws XmlPullParserException, InsufficientDataException, NoSuchAlgorithmException,
+    public List<Item> listObjects(String prefix, boolean recursive) throws XmlPullParserException, InsufficientDataException, NoSuchAlgorithmException,
             IOException, NoResponseException, InvalidKeyException, InternalException, InvalidBucketNameException, ErrorResponseException {
-        Iterable<Result<Item>> listObjects = this.minioClient.listObjects(getBucket(), prefix);
+        Iterable<Result<Item>> listObjects = this.minioClient.listObjects(getBucket(), prefix, recursive);
         List<Item> items = new ArrayList<>();
         for (Result<Item> listObject : listObjects) {
             items.add(listObject.get());
