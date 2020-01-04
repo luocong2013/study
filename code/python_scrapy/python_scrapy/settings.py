@@ -69,8 +69,8 @@ ITEM_PIPELINES = {
     # 'python_scrapy.pipelines.PythonScrapyPipeline': 300,
     # 'python_scrapy.pipelines.LocalFileTiebaPipeline': 301,
     # 'python_scrapy.pipelines.MongoDBTiebaPipeline': 302,
-    # 'python_scrapy.pipelines.MinioTiebaPipeline': 303,
-    'python_scrapy.pipelines.ElasticSearchBaikePipeline': 304,
+    'python_scrapy.pipelines.MinioTiebaPipeline': 303,
+    # 'python_scrapy.pipelines.ElasticSearchBaikePipeline': 304,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

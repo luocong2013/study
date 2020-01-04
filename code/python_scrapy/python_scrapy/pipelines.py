@@ -98,7 +98,7 @@ class MinioTiebaPipeline(object):
 
     def put_object(self, item, file_path):
         try:
-            object_name = '{}/{}'.format(item['image_title'], item['image_name'])
+            object_name = '{}/{}/{}'.format(item['image_date'], item['image_title'], item['image_name'])
             self.minio_client.fput_object(settings.MINIO_BUCKET, object_name, file_path)
         except Exception as e:
             print(repr(e))
