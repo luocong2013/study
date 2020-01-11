@@ -17,7 +17,7 @@ spring:
 # MyBatis配置
 mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
-  type-aliases-package: com.zync.ibed.po
+  type-aliases-package: com.zync.ibed.bean.po
   # 检查MyBatis配置文件是否存在
   # check-config-location: true
   # config-location: classpath:mybatis/mybatis.cfg.xml

@@ -1,7 +1,7 @@
 package com.zync.ibed.service.impl;
 
 import com.zync.ibed.mapper.SysUserMapper;
-import com.zync.ibed.po.SysUser;
+import com.zync.ibed.bean.po.SysUser;
 import com.zync.ibed.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

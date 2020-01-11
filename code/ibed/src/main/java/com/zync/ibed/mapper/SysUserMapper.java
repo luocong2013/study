@@ -1,6 +1,6 @@
 package com.zync.ibed.mapper;
 
-import com.zync.ibed.po.SysUser;
+import com.zync.ibed.bean.po.SysUser;
 import com.zync.ibed.utils.CustomMapper;
 
 /**

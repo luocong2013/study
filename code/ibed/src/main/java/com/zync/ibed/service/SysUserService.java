@@ -1,6 +1,6 @@
 package com.zync.ibed.service;
 
-import com.zync.ibed.po.SysUser;
+import com.zync.ibed.bean.po.SysUser;
 
 /**
  * @author luoc

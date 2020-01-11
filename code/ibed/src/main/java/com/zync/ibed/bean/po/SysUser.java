@@ -1,4 +1,4 @@
-package com.zync.ibed.po;
+package com.zync.ibed.bean.po;
 
 import javax.persistence.*;
 import java.util.Date;
