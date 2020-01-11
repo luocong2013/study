@@ -7,18 +7,25 @@
 new Vue({
     el: '#homeApp',
     data: {
+        // 请求参数
         requestParam: {
             prefix: null
         },
-        responseData: []
+        // 返回结果
+        responseData: [],
+        // 记录栈
+        recordStack: []
     },
     methods: {
+        // 初始化方法
         init: function() {
             var _this = this;
-            _this.loadData("");
+            _this.loadData();
         },
+        // 加载数据
         loadData: function(prefix) {
             var _this = this;
+            _this.requestParam.prefix = prefix;
             $.ajax({
                 type: 'GET',
                 url: 'home/loadData',
@@ -35,6 +42,21 @@ new Vue({
                     console.log(data);
                 }
             });
+        },
+        // 查看
+        lookOver: function(row) {
+            var _this = this;
+            if (row.dir) {
+                _this.recordStack.push(row.objectName);
+                _this.loadData(row.objectName);
+            } else {
+                // 打开图片
+            }
+        },
+        // 返回上一页
+        backTrack: function() {
+            var _this = this;
+            _this.loadData(_this.recordStack.pop());
         }
     },
     // vm实例初始化后、创建之前执行

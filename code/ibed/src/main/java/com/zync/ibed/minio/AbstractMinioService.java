@@ -1,5 +1,6 @@
 package com.zync.ibed.minio;
 
+import com.zync.ibed.bean.bo.MinioItem;
 import com.zync.ibed.exception.MinioRuntimeException;
 import com.zync.ibed.utils.StringUtil;
 import io.minio.MinioClient;
@@ -110,6 +111,23 @@ public abstract class AbstractMinioService {
             objectUrls.add(this.minioClient.getObjectUrl(getBucket(), listObject.get().objectName()));
         }
         return objectUrls;
+    }
+
+    /**
+     * 遍历minio数据项
+     * @param prefix 前缀
+     * @param recursive 是否递归遍历
+     * @return
+     */
+    public List<MinioItem> listMinioItems(String prefix, boolean recursive) throws IOException, InvalidKeyException, NoSuchAlgorithmException,
+            InsufficientDataException, InternalException, NoResponseException, InvalidBucketNameException, XmlPullParserException, ErrorResponseException {
+        Iterable<Result<Item>> listObjects = this.minioClient.listObjects(getBucket(), prefix, recursive);
+        List<MinioItem> items = new ArrayList<>();
+        for (Result<Item> listObject : listObjects) {
+            Item item = listObject.get();
+            items.add(new MinioItem(item.objectName(), item.isDir()));
+        }
+        return items;
     }
 
     /**
