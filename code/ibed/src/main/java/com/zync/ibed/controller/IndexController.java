@@ -12,9 +12,31 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
 
+    /**
+     * 入口方法
+     * @return
+     */
     @GetMapping("/")
     public String index() {
         return "index";
+    }
+
+    /**
+     * 登录页面跳转方法
+     * @return
+     */
+    @GetMapping("/toLogin")
+    public String toLogin() {
+        return "login/login";
+    }
+
+    /**
+     * 首页跳转方法
+     * @return
+     */
+    @GetMapping("/toHome")
+    public String toHome() {
+        return "home/home";
     }
 
 }

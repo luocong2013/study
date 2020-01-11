@@ -15,7 +15,7 @@ var vm = new Vue({
     },
     methods: {
         login: function () {
-            window.location.href = '/ibed/login';
+            window.location.href = '/ibed/toLogin';
         }
     }
 });

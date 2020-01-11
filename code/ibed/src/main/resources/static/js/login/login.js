@@ -5,24 +5,39 @@
 // @date 2019/6/23 16:25
 // **********************************************//
 new Vue({
-    el: '#app',
+    el: '#loginApp',
     data: {
         user: {
             username: null,
             password: null
         },
-        visible: false
+        visible: false,
+        userRules: {
+            username: [
+                {required: true, message: '请输入用户名', trigger: 'blur'},
+                {min: 3, max: 10, message: '用户名长度在 3 到 10 个字符之间', trigger: 'blur'}
+            ],
+            password: [
+                {required: true, message: '请输入密码', trigger: 'change'}
+            ]
+        }
     },
     methods: {
-        check: function () {
-            // 获取值
+        // 校验提交数据
+        submitForm: function(formName) {
             var _this = this;
-            var username = _this.user.username;
-            var password = _this.user.password;
-            if (_this.isEmpty(username) || _this.isEmpty(password)) {
-                alert('账号或密码为空！');
-                return;
-            }
+            _this.$refs[formName].validate(function(valid) {
+                if (valid) {
+                    _this.doSubmit();
+                } else {
+                    console.log('error submit!');
+                    return false;
+                }
+            })
+        },
+        // 提交请求
+        doSubmit: function () {
+            var _this = this;
             $.ajax({
                 type: 'POST',
                 url: 'login',
@@ -32,15 +47,20 @@ new Vue({
                 success: function (data) {
                     var success = data.success;
                     if (success) {
-                        alert("登录成功");
+                        window.location.href = '/ibed/toHome';
                     } else {
-                        alert("登录失败");
+                        console.log("登录失败");
                     }
                 },
                 error: function (data) {
-                    alert(data.responseText);
+                    console.log(data.responseText);
                 }
             });
+        },
+        // 清空表单
+        resetForm: function(formName) {
+            var _this = this;
+            _this.$refs[formName].resetFields();
         },
         isEmpty: function (obj) {
             return typeof obj == 'undefined' || obj == null || obj === '';

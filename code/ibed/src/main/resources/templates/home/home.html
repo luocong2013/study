@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" th:href="@{/webjars/element-ui/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/home/home.css}"/>
+
+    <!-- 引入组件库 -->
+    <script type="text/javascript" th:src="@{/webjars/vue/vue.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/element-ui/js/index.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery-3.3.1.js}"></script>
+
+    <title>首页</title>
+</head>
+<body>
+<div id="homeApp">
+    <el-table :data="responseData" style="width: 100%;">
+        <el-table-column label="目录"></el-table-column>
+    </el-table>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/js/home/home.js}"></script>
+</html>

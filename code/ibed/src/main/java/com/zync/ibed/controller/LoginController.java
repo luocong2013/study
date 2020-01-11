@@ -5,11 +5,10 @@ import com.zync.ibed.common.ResultApiFactory;
 import com.zync.ibed.vo.UserVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author luoc
@@ -17,21 +16,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @descrption 登录控制器
  * @date 2019/6/22 18:42
  */
-@Controller
+@RestController
 public class LoginController {
 
-    @GetMapping("/login")
-    public String toLogin() {
-        return "login/login";
-    }
-
+    /**
+     * 登录方法
+     * @param user 用户信息
+     * @return
+     */
     @PostMapping("/login")
-    @ResponseBody
-    public ResultApi login(@RequestBody UserVO user) {
-        if (StringUtils.equals(user.getUsername(), "张三") && StringUtils.equals(user.getPassword(), "123456")) {
-            return ResultApiFactory.buildSuccessResult("登录成功");
+    public ResponseEntity<ResultApi> login(@RequestBody UserVO user) {
+        if (StringUtils.equals(user.getUsername(), "admin") && StringUtils.equals(user.getPassword(), "123456")) {
+            return ResponseEntity.ok(ResultApiFactory.buildSuccessResult("登录成功"));
         }
-        return ResultApiFactory.buildFailResult(HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), null);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResultApiFactory.buildFailResult("登录失败"));
     }
 
 }

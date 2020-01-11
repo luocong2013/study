@@ -42,7 +42,7 @@ mapper:
 # Minio的配置，这是一个用于开发测试的 minio 地址.
 minio:
   tieba:
-    endpoint: http://192.168.0.110:9000
+    endpoint: http://192.168.0.111:9000
     access-key: dev
     secret-key: 123456789
     bucket: tieba
