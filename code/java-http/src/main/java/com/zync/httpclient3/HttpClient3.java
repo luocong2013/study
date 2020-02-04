@@ -27,6 +27,9 @@ import java.util.Map;
  */
 public final class HttpClient3 {
 
+    private HttpClient3() {
+    }
+
     /**
      * GET方法
      * @param httpUrl 请求地址
