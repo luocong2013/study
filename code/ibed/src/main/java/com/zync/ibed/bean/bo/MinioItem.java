@@ -15,11 +15,15 @@ import lombok.Setter;
 @AllArgsConstructor
 public class MinioItem {
     /**
+     * 是否是目录
+     */
+    private boolean isDir;
+    /**
      * objectName
      */
     private String objectName;
     /**
-     * 是否是目录
+     * objectUrl
      */
-    private boolean isDir;
+    private String objectUrl;
 }

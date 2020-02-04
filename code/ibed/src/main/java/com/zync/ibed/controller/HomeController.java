@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -43,22 +42,6 @@ public class HomeController {
         } catch (Exception e) {
             log.error("加载数据失败", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResultApiFactory.buildFailResult("加载数据失败"));
-        }
-    }
-
-    /**
-     * 加载ObjectName数据
-     * @param objectName
-     * @return
-     */
-    @GetMapping("/loadObject")
-    public ResponseEntity<ResultApi> loadObject(@RequestParam(value = "objectName") String objectName) {
-        try {
-            InputStream data = tiebaMinioService.getObject(objectName);
-            return ResponseEntity.ok(ResultApiFactory.buildSuccessResult(data));
-        } catch (Exception e) {
-            log.error("加载数据流失败", e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResultApiFactory.buildFailResult("加载数据流失败"));
         }
     }
 }

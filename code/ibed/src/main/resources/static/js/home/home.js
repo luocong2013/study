@@ -14,7 +14,15 @@ new Vue({
         // 返回结果
         responseData: [],
         // 记录栈
-        recordStack: []
+        recordStack: [],
+        // 当前查看的记录
+        currentLookOver: {
+            dir: false,
+            objectName: null,
+            objectUrl: null
+        },
+        // 打开弹窗
+        lookOverVisible: false
     },
     methods: {
         // 初始化方法
@@ -51,6 +59,8 @@ new Vue({
                 _this.loadData(row.objectName);
             } else {
                 // 打开图片
+                _this.currentLookOver = row;
+                _this.lookOverVisible = true;
             }
         },
         // 返回上一页

@@ -120,12 +120,13 @@ public abstract class AbstractMinioService {
      * @return
      */
     public List<MinioItem> listMinioItems(String prefix, boolean recursive) throws IOException, InvalidKeyException, NoSuchAlgorithmException,
-            InsufficientDataException, InternalException, NoResponseException, InvalidBucketNameException, XmlPullParserException, ErrorResponseException {
+            InsufficientDataException, InternalException, NoResponseException, InvalidBucketNameException, XmlPullParserException, ErrorResponseException, InvalidResponseException {
         Iterable<Result<Item>> listObjects = this.minioClient.listObjects(getBucket(), prefix, recursive);
         List<MinioItem> items = new ArrayList<>();
         for (Result<Item> listObject : listObjects) {
             Item item = listObject.get();
-            items.add(new MinioItem(item.objectName(), item.isDir()));
+            String objectUrl = this.minioClient.getObjectUrl(getBucket(), item.objectName());
+            items.add(new MinioItem(item.isDir(), item.objectName(), objectUrl));
         }
         return items;
     }

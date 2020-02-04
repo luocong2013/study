@@ -27,6 +27,13 @@
             </template>
         </el-table-column>
     </el-table>
+    <el-dialog title="查看" :visible.sync="lookOverVisible" >
+        <el-image :src="currentLookOver.objectUrl">
+            <div slot="placeholder" class="image-slot">
+                加载中<span class="dot">...</span>
+            </div>
+        </el-image>
+    </el-dialog>
 </div>
 </body>
 <script type="text/javascript" th:src="@{/js/home/home.js}"></script>
