@@ -14,12 +14,10 @@ public class FtpClientTest {
 
     public static void main(String[] args) throws Exception {
         FtpClientFactory factory = new FtpClientFactory();
-        FtpClientPoolConfig<FtpClientExt> config = new FtpClientPoolConfig<>();
+        FtpClientPoolConfig config = new FtpClientPoolConfig();
         config.setMaxTotal(10);
 
-        FtpClientPoolManager manager = new FtpClientPoolManager();
-        manager.setFactory(factory);
-        manager.setConfig(config);
+        FtpClientPoolManager manager = new FtpClientPoolManager(factory, config);
 
         FtpInfo ftpInfo = FtpInfo.builder().host("localhost").port(2121).userName("admin").passWord("123456").build();
         FtpClientExt ftpClient = manager.getFtpClient(ftpInfo);

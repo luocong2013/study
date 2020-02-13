@@ -1,5 +1,7 @@
 package com.zync.pools.ftp.pool;
 
+import com.zync.pools.ftp.client.FtpClientExt;
+import com.zync.pools.ftp.client.FtpInfo;
 import org.apache.commons.pool2.KeyedPooledObjectFactory;
 import org.apache.commons.pool2.impl.GenericKeyedObjectPool;
 import org.apache.commons.pool2.impl.GenericKeyedObjectPoolConfig;
@@ -11,13 +13,13 @@ import org.apache.commons.pool2.impl.GenericKeyedObjectPoolConfig;
  *             此连接池类似于一个map，根据不同的key(FtpInfo)可以初始化多个连接池
  * @date 2020/2/11 15:19
  */
-public class FtpClientPool<K, T> extends GenericKeyedObjectPool<K, T> {
+public class FtpClientPool extends GenericKeyedObjectPool<FtpInfo, FtpClientExt> {
 
-    public FtpClientPool(KeyedPooledObjectFactory<K, T> factory) {
+    public FtpClientPool(KeyedPooledObjectFactory<FtpInfo, FtpClientExt> factory) {
         super(factory);
     }
 
-    public FtpClientPool(KeyedPooledObjectFactory<K, T> factory, GenericKeyedObjectPoolConfig<T> config) {
+    public FtpClientPool(KeyedPooledObjectFactory<FtpInfo, FtpClientExt> factory, GenericKeyedObjectPoolConfig<FtpClientExt> config) {
         super(factory, config);
     }
 }

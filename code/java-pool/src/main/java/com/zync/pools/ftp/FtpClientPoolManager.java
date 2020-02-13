@@ -14,11 +14,11 @@ import org.apache.commons.pool2.PooledObject;
  */
 public class FtpClientPoolManager {
 
-    private FtpClientPool<FtpInfo, FtpClientExt> pool;
+    private FtpClientPool pool;
 
-    private FtpClientPoolConfig<FtpClientExt> config;
-
-    private FtpClientFactory factory;
+    public FtpClientPoolManager(FtpClientFactory factory, FtpClientPoolConfig config) {
+        this.pool = new FtpClientPool(factory, config.buildPoolConfig());
+    }
 
     /**
      * 获取ftp连接
@@ -27,9 +27,6 @@ public class FtpClientPoolManager {
      * @throws Exception
      */
     public FtpClientExt getFtpClient(FtpInfo ftpInfo) throws Exception {
-        if (pool == null) {
-            init();
-        }
         return pool.borrowObject(ftpInfo);
     }
 
@@ -45,13 +42,6 @@ public class FtpClientPoolManager {
     }
 
     /**
-     * 初始化数据
-     */
-    public void init() {
-        pool = new FtpClientPool<>(factory, config.buildPoolConfig());
-    }
-
-    /**
      * 销毁连接池
      */
     public void destroy() {
@@ -60,15 +50,7 @@ public class FtpClientPoolManager {
         }
     }
 
-    public void setConfig(FtpClientPoolConfig<FtpClientExt> config) {
-        this.config = config;
-    }
-
-    public void setFactory(FtpClientFactory factory) {
-        this.factory = factory;
-    }
-
-    public FtpClientPool<FtpInfo, FtpClientExt> getPool() {
+    public FtpClientPool getPool() {
         return pool;
     }
 }
