@@ -4,22 +4,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.zync.pool</groupId>
-    <artifactId>java-pool</artifactId>
+    <groupId>com.zync.zookeeper</groupId>
+    <artifactId>java-zookeeper</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <description>Java使用commons-pool2创建连接池</description>
+    <description>Java使用Curator客户端连接Zookeeper</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
 
-        <!--minio-->
-        <minio.version>6.0.13</minio.version>
-        <!--apache commons pool2-->
-        <commons-pool2.version>2.8.0</commons-pool2.version>
-        <!--apache commons net-->
-        <commons-net.version>3.6</commons-net.version>
+        <!--Curator-->
+        <curator.version>4.2.0</curator.version>
+
         <!--apache tools-->
         <commons-lang3.version>3.9</commons-lang3.version>
         <commons-io.version>2.6</commons-io.version>
@@ -32,24 +29,18 @@
     </properties>
 
     <dependencies>
-        <!--minio-->
+        <!--Curator-->
         <dependency>
-            <groupId>io.minio</groupId>
-            <artifactId>minio</artifactId>
-            <version>${minio.version}</version>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+            <version>${curator.version}</version>
         </dependency>
-        <!--apache commons pool2-->
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-pool2</artifactId>
-            <version>${commons-pool2.version}</version>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>${curator.version}</version>
         </dependency>
-        <!--apache commons net-->
-        <dependency>
-            <groupId>commons-net</groupId>
-            <artifactId>commons-net</artifactId>
-            <version>${commons-net.version}</version>
-        </dependency>
+
         <!--常用工具包-->
         <dependency>
             <groupId>org.apache.commons</groupId>
