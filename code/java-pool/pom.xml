@@ -20,6 +20,8 @@
         <commons-pool2.version>2.8.0</commons-pool2.version>
         <!--apache commons net-->
         <commons-net.version>3.6</commons-net.version>
+        <!--aliyun oss sdk-->
+        <aliyun-sdk-oss.version>3.8.0</aliyun-sdk-oss.version>
         <!--apache tools-->
         <commons-lang3.version>3.9</commons-lang3.version>
         <commons-io.version>2.6</commons-io.version>
@@ -49,6 +51,12 @@
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
             <version>${commons-net.version}</version>
+        </dependency>
+        <!--aliyun oss-->
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+            <version>${aliyun-sdk-oss.version}</version>
         </dependency>
         <!--常用工具包-->
         <dependency>
