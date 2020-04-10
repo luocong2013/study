@@ -1,13 +1,76 @@
-## <center>JVM性能调优</center>
-### 一、JVM参数
-1. 可以通过下面的参数打印出 Heap Dump 信息
- * -XX:HeapDumpPath
- * -XX:+PrintGCDetails
- * -XX:+PrintGCTimeStamps
- * -Xloggc:/usr/aaa/dump/heap_trace.txt
+## JVM性能调优
 
-2. 通过下面的参数可以控制 OutOfMemoryError 时打印堆信息
- * -XX:+HeapDumpOnOutOfMemoryError
+
+
+### 一、JVM调优相关参数解读
+
+```
+查看jdk1.7、jdk1.8的所有参数：java -XX:+PrintFlagsFinal -version
+查看jvm启动默认参数：java -XX:+PrintCommandLineFlags -version
+```
+
+
+
+#### 1）JVM内存配置
+
+| 参数 | 说明     | 示例     |
+| ---- | -------- | -------- |
+| -Xms                | 堆初始值                                             | -Xms512M             |
+| -Xmx                | 堆最大值                                             | -Xmx512M             |
+| -Xmn | 新生代空间大小，此处的大小是（eden+2Survivor space） | -Xmn200M |
+| -Xss | 设置每个线程栈大小 | -Xss128K |
+| -XX:NewSize         | 新生代空间初始值                                     | -XX:NewSize=1310M |
+| -XX:MaxNewSize      | 新生代空间最大值                                     | -XX:MaxNewSize=200M  |
+| -XX:MetaspaceSize | 元空间初始值 | -XX:MetaspaceSize=128M |
+| -XX:MaxMetaspaceSize | 元空间最大值 | -XX:MaxMetaspaceSize=256M |
+| -XX:PermSize        | 永久代空间初始值**（1.8后废弃）**                    | -XX:PermSize=128M    |
+| -XX:MaxPermSize     | 永久代空间最大值**（1.8后废弃）**                    | -XX:MaxPermSize=256M |
+
+
+
+#### 2）GC收集器配置
+
+| 参数                    | 说明                                                         |
+| ----------------------- | ------------------------------------------------------------ |
+| -XX:+UseSerialGC        | 虚拟机运行在Client模式下的默认值，使用 **Serial + Serial Old** 的收集器组合进行内存回收 |
+| -XX:+UseParNewGC        | 使用 **ParNew + Serial Old** 的收集器组合进行内存回收        |
+| -XX:+UseConcMarkSweepGC | 使用 **ParNew + CMS + Serial Old** 的收集器组合进行内存回收。Serial Old 收集器将作为CMS收集器出现 Concurrent Mode Failure 失败后的后备收集器使用 |
+| -XX:+UseParallelGC      | 虚拟机运行在Server模式下的默认值，使用 **Parallel Scavenge + Serial Old（PS MarkSweep）**的收集器组合进行内存回收 |
+| -XX:+UseParallelOldGC   | 使用 **Parallel Scavenge + Parallel Old** 的收集器组合进行内存回收 |
+| -XX:+UseG1GC            | G1 垃圾回收器（jdk1.7、jdk1.8都是默认关闭的）                |
+
+
+
+#### 3）GC相关配置
+
+| 参数                                      | 说明                                                         | 默认值 |
+| ----------------------------------------- | ------------------------------------------------------------ | ------ |
+| -verbose:gc                               | 输出GC日志，没有PrintGCDetails详细                           |        |
+| -XX:+PrintGC                              | 输出GC日志                                                   |        |
+| -XX:+PrintGCDetails                       | 输出GC的详细日志                                             |        |
+| -XX:+PrintGCTimeStamps                    | 输出GC的时间戳（以基准时间的形式）                           |        |
+| -XX:+PrintGCDateStamps                    | 输出GC的时间戳（以日期的形式，如2020-04-10T13:14:00.000+0800） |        |
+| -XX:+PrintHeapAtGC                        | 在进行GC的前后打印出堆的信息                                 |        |
+| -XX:+HeapDumpOnOutOfMemoryError           | 当JVM出现OOM时自动生成dump文件                               |        |
+| -XX:HeapDumpPath=<../logs/dumpfile.hprof> | dump文件的输出路径                                           |        |
+| -Xloggc:<../logs/gc.log>                  | GC日志文件的输出路径                                         |        |
+| -XX:+DisableExplicitGC                    | 屏蔽掉System.gc()                                            |        |
+| -XX:MinHeapFreeRatio                      | GC后java堆中空闲量占的最小比例                               | 0      |
+| -XX:MaxHeapFreeRatio                      | GC后java堆中空闲量占的最大比例                               | 100    |
+| -XX:NewRatio=<N>                          | 年轻代和老年代的容量比值，默认为2                            | 2      |
+| -XX:SurvivorRatio=<N>                     | 新生代中Eden区域与Survivor区域的容量比值，默认为8，代表Eden : Survivor = 8 : 1 | 8      |
+| -XX:PretenureSizeThreshold=<N>            | 直接晋升到老年代的对象大小，设置这个参数后，大于这个参数的对象将直接在老年代分配 |        |
+| -XX:MaxTenuringThreshold=<N>              | 晋升到老年代的对象年龄。每个对象在坚持过一次Minor GC之后，年龄就增加1，当超过这个参数值时就进入老年代 |        |
+| -XX:+HandlePromotionFailure               | 是否允许分配担保失败，即老年代是剩余空间不足以应付新生代的整个Eden和Survivor区的所有对象都存活的极端情况**【JDK1.6 Update 24 后废弃，规则变为只要老年代的连续空间大于新生代对象总大小或者历次晋升的平均大小就会进行Minor GC，否则进行Full GC】** |        |
+| -XX:ParallelGCThreads=<N>                 | 设置并行GC时进行内存回收的线程数                             |        |
+| -XX:MaxGCPauseMillis=<N>                  | 设置GC的最大停顿时间**【仅在使用Parallel Scavenge收集器时生效】** |        |
+| -XX:GCTimeRatio=<N>                       | GC时间占总时间的比率，默认值为99，即允许1%的GC时间**【仅在使用Parallel Scavenge收集器时生效】** | 99     |
+| -XX:+UseAdaptiveSizePolicy                | 开启GC自适应调节策略**【仅在使用Parallel Scavenge收集器时生效】** |        |
+| -XX:CMSInitiatingOccupancyFraction=<N>    | 设置CMS收集器在老年代空间被使用多少后触发垃圾收集**【仅在使用CMS收集器时生效】** | -1     |
+| -XX:+UseCMSCompactAtFullCollection        | 设置CMS收集器在完成垃圾收集后是否要进行一次内存碎片整理**【仅在使用CMS收集器时生效】** |        |
+| -XX:CMSFullGCsBeforeCompaction=<N>        | 设置CMS收集器在进行若干次垃圾收集后再启动一次内存碎片整理**【仅在使用CMS收集器时生效】** | 0      |
+
+
 
 
 ### 二、实例
@@ -23,7 +86,7 @@ import java.util.List;
  * @author luoc
  * @version V1.0.0
  * @description 堆溢出测试
- * @VM args: -Xms20M -Xmx20M -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=F:/JVM/dumpfile.hprof -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:F:/JVM/heap_trace.txt
+ * @VM args: -Xms20M -Xmx20M -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=F:/JVM/dumpfile.hprof -XX:+PrintGCDetails -Xloggc:F:/JVM/heap_trace.txt
  * @date 2018/9/10 22:13
  */
 public class HeapOutOfMemory {
@@ -85,24 +148,3 @@ public class StackOverFlow {
 }
 
 ```
-
-### 三、手动获取堆转储文件
-1. 采用jamp获取，对于部署到服务器上的程序可以采用这种方式，获取堆转储文件后scp到本地，然后本地分析。获取命令为：
-```txt
-jmap -dump:format=b,file=<dumpfile.hprof> <pid>
-```
-
-2. 在eclipse中安装mat插件，运行程序，File --> new --> Other --> Heap Dump --> next ，选择对应的进程, Finish。这种方式似乎对远程服务器上的程序也可以
-
-### 四、堆转储文件分析
-1. jhat
- > 这是最原始的分析工具，它会读取堆转储文件，并运行一个小型的HTTP服务器，该服务器运行你通过一系列网易链接查看堆转储信息
- > 找一台带浏览器的机器访问它，http://ip:7000
-
-2. jvisualvm
- > jvisualvm的监视（Monitor） 选项卡可以从一个运行中的程序获得堆转储文件，也可以打开之前生成堆转储文件。
-
-3. mat
- > 打开map，File --> Open File... --> Leak Suspects
- > 之后会在转储文件同目录内生成一个 *_Suspects.zip文件
- > 解压该文件后可以通过浏览器打开分析结果
