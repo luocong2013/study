@@ -20,3 +20,8 @@
 .login-input {
     line-height: 60px;
 }
+.login-center {
+    width: 20%;
+    text-align: right;
+    margin: 0 auto;
+}

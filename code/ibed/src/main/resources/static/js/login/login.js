@@ -11,7 +11,6 @@ new Vue({
             username: null,
             password: null
         },
-        visible: false,
         userRules: {
             username: [
                 {required: true, message: '请输入用户名', trigger: 'blur'},

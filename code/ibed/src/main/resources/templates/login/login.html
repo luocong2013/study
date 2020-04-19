@@ -21,30 +21,28 @@
 <body>
 <div id="loginApp" class="login-box">
     <div class="login-title">登录页面</div>
-    <el-form ref="userForm" :model="user" :rules="userRules">
-        <el-form-item prop="username">
-            <el-input
-                    v-model="user.username"
-                    prefix-icon="el-icon-user"
-                    placeholder="请输入账号"
-                    clearable></el-input>
-        </el-form-item>
-        <el-form-item prop="password">
-            <el-input
-                    v-model="user.password"
-                    prefix-icon="el-icon-lock"
-                    placeholder="请输入密码"
-                    show-password></el-input>
-        </el-form-item>
-        <el-form-item>
-            <el-button type="primary" @click="submitForm('userForm')">登录</el-button>
-            <el-button @click="resetForm('userForm')">清空</el-button>
-        </el-form-item>
-    </el-form>
-    <el-button @click="visible = true">Button</el-button>
-    <el-dialog :visible.sync="visible" title="Hello World">
-        <p>Try Element</p>
-    </el-dialog>
+    <div class="login-center">
+        <el-form ref="userForm" :model="user" :rules="userRules">
+            <el-form-item prop="username">
+                <el-input
+                        v-model="user.username"
+                        prefix-icon="el-icon-user"
+                        placeholder="请输入账号"
+                        clearable></el-input>
+            </el-form-item>
+            <el-form-item prop="password">
+                <el-input
+                        v-model="user.password"
+                        prefix-icon="el-icon-lock"
+                        placeholder="请输入密码"
+                        show-password></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="submitForm('userForm')">登录</el-button>
+                <el-button @click="resetForm('userForm')">清空</el-button>
+            </el-form-item>
+        </el-form>
+    </div>
 </div>
 </body>
 <script type="text/javascript" th:src="@{/js/login/login.js}"></script>
