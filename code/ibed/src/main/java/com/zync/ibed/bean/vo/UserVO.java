@@ -1,4 +1,4 @@
-package com.zync.ibed.vo;
+package com.zync.ibed.bean.vo;
 
 import lombok.Builder;
 import lombok.Data;

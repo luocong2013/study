@@ -2,7 +2,7 @@ package com.zync.ibed.controller;
 
 import com.zync.ibed.common.ResultApi;
 import com.zync.ibed.common.ResultApiFactory;
-import com.zync.ibed.vo.UserVO;
+import com.zync.ibed.bean.vo.UserVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
