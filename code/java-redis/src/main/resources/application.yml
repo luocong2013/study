@@ -1,0 +1,18 @@
+spring:
+  redis:
+    # redis数据库索引（默认为0）
+    database: 0
+    # redis服务器地址
+    host: localhost
+    # redis服务器连接端口
+    port: 6379
+    lettuce:
+      pool:
+        # 连接池最大连接数（负数表示没有限制）默认8
+        max-active: 8
+        # 连接池最大阻塞等待时间（负数表示没有限制）默认-1
+        max-wait: -1
+        # 连接池中最大的空闲连接，默认8
+        max-idle: 8
+        # 连接池中最小空闲连接，默认0
+        min-idle: 0

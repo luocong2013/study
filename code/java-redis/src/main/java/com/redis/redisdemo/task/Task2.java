@@ -1,0 +1,46 @@
+package com.redis.redisdemo.task;
+
+import com.redis.redisdemo.common.Const;
+import com.redis.redisdemo.lock.RedisLock;
+
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * @author luocong
+ * @description 任务2
+ * @date 2020/5/26 13:47
+ */
+public class Task2 implements Runnable {
+
+    private final RedisLock redisLock;
+
+    public Task2(RedisLock redisLock) {
+        this.redisLock = redisLock;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            String value = UUID.randomUUID().toString();
+            if (redisLock.acquire(Const.REDIS_LOCK_KEY, value, 10, TimeUnit.SECONDS)) {
+                try {
+                    System.out.println("TASK2 init ... " + Thread.currentThread().getName() + " " + System.currentTimeMillis());
+                    TimeUnit.SECONDS.sleep(5);
+                    System.out.println("TASK2 end ... " + Thread.currentThread().getName() + " " + System.currentTimeMillis());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    redisLock.release(Const.REDIS_LOCK_KEY, value);
+                }
+            } else {
+                System.out.println("TASK2 未获取到锁");
+            }
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
