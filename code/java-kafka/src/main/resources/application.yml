@@ -32,3 +32,5 @@ spring:
       group-id: test-consumer-group
     listener:
       missing-topics-fatal: false
+    template:
+      default-topic: defaultTopic
