@@ -4,7 +4,7 @@
 > Zookeeper是一个高效的分布式协调服务，可以提供配置信息管理、命名、分布式同步、集群管理、数据库切换等服务。它不适合用来存储大量信息，可以用来存储一些配置、发布与订阅等少量信息。Hadoop、Storm、消息中间件、RPC服务框架、分布式数据库同步系统，这些都是Zookeeper的应用场景。
 
 2. Zookeeper提供了什么？
-  1）文件系统
+    1）文件系统
   2）通知机制
 
 3. Zookeeper文件系统
@@ -12,12 +12,16 @@
 
   有四种类型的znode:
   1. PERSISTENT(持久化目录节点)
+
     > 客户端与zookeeper断开连接后，该节点依旧存在
   2. PERSISTENT_SEQUENTIAL(持久化顺序编号目录节点)
+
     > 客户端与zookeeper断开连接后，该节点依旧存在，只是Zookeeper给该节点名称进行顺序编号
   3. EPHEMERAL(临时目录节点)
+
     > 客户端与zookeeper断开连接后，该节点被删除
   4. EPHEMERAL_SEQUENTIAL(临时顺序编号目录节点)
+
     > 客户端与zookeeper断开连接后，该节点被删除，只是Zookeeper给该节点名称进行顺序编号
 
 4. Zookeeper通知机制
