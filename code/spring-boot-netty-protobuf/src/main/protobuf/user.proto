@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+/*protoc ./src/main/user.proto --java_out=./src/main/java*/
+
+/*包*/
+package com.zync.netty.proto;
+/*是否生成多个文件*/
+option java_multiple_files = false;
+/*protobuf 编译器将生成用于对消息类型进行序列化，解析和执行其他常见操作的代码。此代码经过高度优化。*/
+option optimize_for = SPEED;
+/*用于生成的Java类的包*/
+option java_package = "com.zync.netty.protobuf";
+/*要生成的最外层Java类（以及文件名）的类名*/
+option java_outer_classname = "UserData";
+
+message UserMessage {
+
+    enum UserType {
+        /*超级管理员*/
+        Admin = 0;
+        /*领导*/
+        Leader = 1;
+        /*普通用户*/
+        General = 2;
+        /*匿名用户*/
+        Anonymous = 3;
+    }
+
+    UserType user_type = 1;
+
+    message UserInfo {
+        oneof UserInfoBody {
+            Basic basic = 1;
+            Network network = 2;
+        }
+
+        message Basic {
+            int32 id = 1;
+            string username = 2;
+            string password = 3;
+            int32 age = 4;
+        }
+
+        message Network {
+            int32 id = 1;
+            string ip = 2;
+        }
+    }
+
+    UserInfo user_info = 2;
+
+    //状态
+    int32 state = 4;
+}
