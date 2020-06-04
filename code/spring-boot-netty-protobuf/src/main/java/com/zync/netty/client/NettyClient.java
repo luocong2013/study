@@ -94,8 +94,9 @@ public class NettyClient implements InitializingBean, DisposableBean {
                     eventLoop.schedule(() -> connect(new Bootstrap(), eventLoop), 10, TimeUnit.SECONDS);
                 }
             });
-            if (init.getAndSet(false)) {
+            if (init.get()) {
                 log.info("Netty客户端连接成功！");
+                init.compareAndSet(true, false);
             }
         } catch (Exception e) {
             log.error("Netty客户端连接失败！", e);

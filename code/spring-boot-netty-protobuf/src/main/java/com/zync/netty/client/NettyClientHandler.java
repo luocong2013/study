@@ -31,18 +31,23 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
     @Autowired
     private NettyClient nettyClient;
 
+    @Autowired
+    private NettyClientPool nettyClientPool;
+
     /** 循环次数 */
     private AtomicInteger count = new AtomicInteger(1);
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        log.info("建立连接时：" + new Date());
+        log.info("建立连接时间：" + new Date());
+        nettyClientPool.executeTask(ctx.channel());
         super.channelActive(ctx);
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        log.info("关闭连接时：" + new Date());
+        log.info("关闭连接时间：" + new Date());
+        nettyClientPool.cancel(ctx.channel());
         final EventLoop eventLoop = ctx.channel().eventLoop();
         nettyClient.connect(new Bootstrap(), eventLoop);
         super.channelInactive(ctx);
@@ -82,7 +87,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
             // 进行相应的业务处理。。。
             // 这里就从简了，只是打印而已
             Basic basic = message.getUserInfo().getBasic();
-            log.info("客户端接受到的用户信息。编号: [{}]，姓名: [{}]，年龄: [{}]", basic.getId(), basic.getUsername(), basic.getPassword());
+            log.info("客户端接受到的用户信息。编号: [{}]，姓名: [{}]，密码: [{}]，年龄：[{}]", basic.getId(), basic.getUsername(), basic.getPassword(), basic.getAge());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

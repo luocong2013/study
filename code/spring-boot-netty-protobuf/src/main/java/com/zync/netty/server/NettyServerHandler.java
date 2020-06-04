@@ -1,5 +1,6 @@
 package com.zync.netty.server;
 
+import com.zync.netty.client.NettyClientConst;
 import com.zync.netty.protobuf.UserData.UserMessage;
 import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
@@ -11,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static com.zync.netty.protobuf.UserData.UserMessage.UserType.Anonymous;
 
 /**
  * @author luocong
@@ -61,7 +64,9 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
             if (msg instanceof UserMessage) {
                 UserMessage message = (UserMessage) msg;
                 if (message.getState() == 1) {
-                    log.info("客户端业务处理成功！");
+                    log.info("客户端业务处理成功！data: [{}]", message);
+                    UserMessage userMessage = NettyClientConst.buildUserMessage(1, Anonymous, "张三丰", "1qaz2wsx", 121);
+                    ctx.channel().writeAndFlush(userMessage);
                 } else if (message.getState() == 2) {
                     log.info("接受到客户端发送的心跳！");
                 } else {
@@ -117,7 +122,7 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
             IdleStateEvent event = (IdleStateEvent) evt;
             // 如果读通道处于空闲状态，说明没有接收到心跳命令
             if (IdleState.READER_IDLE.equals(event.state())) {
-                log.info("已经10分钟没有接收到客户端的信息了，关闭通道 [{}].", ctx.channel());
+                log.info("已经10秒钟没有接收到客户端的信息了，关闭通道 [{}].", ctx.channel());
                 ctx.channel().close();
             }
         } else {
