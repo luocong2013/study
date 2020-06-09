@@ -5,14 +5,15 @@
 
 <configuration>
     <settings>
-        <!-- 开启mybatis缓存设置,一般都是true -->
+        <!-- 二级缓存，默认是true（启用二级缓存，需要对每个Mapper进行配置） -->
         <setting name="cacheEnabled" value="true"/>
         <!--延迟加载的全局开关-->
         <setting name="lazyLoadingEnabled" value="false"/>
         <!--设置超时时间-->
         <setting name="defaultStatementTimeout" value="3000"/>
-        <!--本地缓存机制-->
-        <setting name="localCacheScope" value="STATEMENT"/>
+        <!--一级缓存范围，有 SESSION 和 STATEMENT 两种-->
+        <!--如果不想使用一级缓存，可以把一级缓存的范围指定为STATEMENT，这样每次执行完一个Mapper中的语句后都会将一级缓存清除-->
+        <setting name="localCacheScope" value="SESSION"/>
         <setting name="defaultExecutorType" value="SIMPLE"/>
         <!--开启驼峰命名转换-->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
