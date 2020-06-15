@@ -1,0 +1,58 @@
+version: '3'
+services:
+    es-service-1:
+        image: registry.cn-hangzhou.aliyuncs.com/luocong/elasticsearch:7.3.0
+        container_name: es-container-1
+        environment:
+          - cluster.name=es-single
+          - node.name=node-1
+          - node.master=true
+          - node.data=true
+          - bootstrap.memory_lock=true
+          - network.host=0.0.0.0
+          - transport.tcp.port=9300
+          - http.port=9200
+          - http.cors.enabled=true
+          - http.cors.allow-origin=*
+          - discovery.seed_hosts=es-service-1
+          - cluster.initial_master_nodes=node-1
+          - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+        ulimits:
+          memlock:
+            soft: -1
+            hard: -1
+        volumes:
+          - es-data-1:/usr/share/elasticsearch/data
+          - es-logs-1:/usr/share/elasticsearch/logs
+        ports:
+          - 9200:9200
+          - 9300:9300
+        networks:
+          mynetwork:
+            aliases:
+                - es-service-1
+    kib-service:
+        image: registry.cn-hangzhou.aliyuncs.com/luocong/kibana:7.3.0
+        container_name: kib-container
+        environment:
+          - SERVER_NAME=kibana
+          - I18N_LOCALE=zh-CN
+          - ELASTICSEARCH_HOSTS=http://es-service-1:9200
+        ports:
+          - 5601:5601
+        depends_on:
+          - es-service-1
+        networks:
+          mynetwork:
+            aliases:
+              - kib-service
+
+volumes:
+  es-data-1:
+    driver: local
+  es-logs-1:
+    driver: local
+
+networks:
+  mynetwork:
+      driver: bridge

@@ -1,0 +1,9 @@
+spring:
+  elasticsearch:
+    rest:
+      uris: http://192.168.3.27:9200
+  task:
+    scheduling:
+      thread-name-prefix: LOAD_DATA-
+      pool:
+        size: 2

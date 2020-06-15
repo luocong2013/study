@@ -1,0 +1,17 @@
+version: '3'
+services:
+  zookeeper:
+    image: zookeeper:latest
+    container_name: zookeeper_1.0.0
+    ports:
+      - 2181:2181
+    restart: "no"
+    networks:
+      mynetwork:
+        aliases:
+          - zookeeper
+    environment:
+      ZOO_MY_ID: 1
+networks:
+  mynetwork:
+    driver: bridge
