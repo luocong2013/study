@@ -6,8 +6,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
+import org.springframework.data.redis.core.script.RedisScript;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
@@ -39,5 +42,31 @@ public class RedisConfig {
         template.setHashValueSerializer(jackson2JsonRedisSerializer);
         template.afterPropertiesSet();
         return template;
+    }
+
+    /**
+     * 第②种限流方式 RedisScript
+     * @return
+     */
+    //@Bean
+    //public RedisScript<Boolean> redisScript() {
+    //    DefaultRedisScript<Boolean> redisScript = new DefaultRedisScript<>();
+    //    redisScript.setLocation(new ClassPathResource("/lua/TimeRateLimit.lua"));
+    //    redisScript.setResultType(Boolean.class);
+    //    return redisScript;
+    //}
+
+
+    /**
+     * 第③种限流方式 RedisScript
+     * @return
+     */
+    @Bean
+    public RedisScript<Number> redisScript() {
+        DefaultRedisScript<Number> redisScript = new DefaultRedisScript<>();
+        // 读取 lua 脚本
+        redisScript.setLocation(new ClassPathResource("/lua/TokenBucketRateLimit.lua"));
+        redisScript.setResultType(Number.class);
+        return redisScript;
     }
 }

@@ -1,7 +1,9 @@
 package com.redis.redisdemo.aspect;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import com.redis.redisdemo.annotation.Limit;
+import com.redis.redisdemo.common.Const;
 import com.redis.redisdemo.common.LimitType;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -12,12 +14,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.data.redis.core.script.RedisScript;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.Objects;
@@ -35,8 +37,20 @@ public class LimitAspect {
 
     private static final String UNKNOWN = "unknown";
 
-    @Autowired
+    @Resource
     private RedisTemplate<String, Serializable> redisTemplate;
+
+    /**
+     * 第②种限流方式
+     */
+    //@Autowired
+    //private RedisScript<Boolean> redisScript;
+
+    /**
+     * 第③种限流方式
+     */
+    @Autowired
+    private RedisScript<Number> redisScript;
 
     @Pointcut(value = "@annotation(com.redis.redisdemo.annotation.Limit)")
     public void pointcut() {
@@ -65,11 +79,30 @@ public class LimitAspect {
 
         ImmutableList<String> keys = ImmutableList.of(StringUtils.join(limit.prefix(), key));
         try {
-            String luaScript = buildLuaScript();
-            RedisScript<Number> redisScript = new DefaultRedisScript<>(luaScript, Number.class);
-            Number count = redisTemplate.execute(redisScript, keys, limitCount, limitPeriod);
-            logger.info("Access try count is {} for name is {} and key is {}", count, name, key);
-            if (count != null && count.intValue() <= limitCount) {
+            // 第①种限流方式 START
+            //String luaScript = buildLuaScript();
+            //RedisScript<Number> redisScript = new DefaultRedisScript<>(luaScript, Number.class);
+            //Number count = redisTemplate.execute(redisScript, keys, limitCount, limitPeriod);
+            //logger.info("Access try count is {} for name is {} and key is {}", count, name, key);
+            // 第①种限流方式 END
+
+
+            // 第②种限流方式 START
+            //Boolean acquireSuccess = Optional.ofNullable(redisTemplate.execute(redisScript, keys, limitCount, limitPeriod)).orElse(false)
+            // 第②种限流方式 END
+
+
+            // 第③种限流方式 START
+            Number currentTimeMillis = redisTemplate.execute(redisScript, Lists.newArrayList("Token_Bucket"), Const.CURRENT_TIME_MILLIS);
+            Number number = redisTemplate.execute(redisScript, Lists.newArrayList("Token_Bucket"), Const.ACQUIRE, 1, currentTimeMillis);
+            // 第③种限流方式 END
+
+
+            //if (count != null && count.intValue() <= limitCount) { // 第①种限流方式
+
+            //if (acquireSuccess) { // 第②种限流方式
+
+            if (Objects.nonNull(number) && number.intValue() == 1) { // 第③种限流方式 令牌桶
                 return pjp.proceed();
             } else {
                 throw new RuntimeException("You have been dragged into the blacklist");

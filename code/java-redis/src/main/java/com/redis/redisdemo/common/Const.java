@@ -14,4 +14,19 @@ public final class Const {
      * redis锁key
      */
     public static final String REDIS_LOCK_KEY = "RedisLock";
+
+    /**
+     * 初始化令牌桶方法
+     */
+    public static final String INIT_TOKEN_BUCKET = "initTokenBucket";
+
+    /**
+     * 获取当前时间方法
+     */
+    public static final String CURRENT_TIME_MILLIS = "currentTimeMillis";
+
+    /**
+     * 请求令牌方法
+     */
+    public static final String ACQUIRE = "acquire";
 }
