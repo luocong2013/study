@@ -7,3 +7,9 @@ spring:
       thread-name-prefix: LOAD_DATA-
       pool:
         size: 2
+    execution:
+      pool:
+        core-size: 8
+        max-size: 20
+        queue-capacity: 20000000
+      thread-name-prefix: sorting-
