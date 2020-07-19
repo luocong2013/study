@@ -11,6 +11,8 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
 public class SpringSecurityApplicationInitializer extends AbstractSecurityWebApplicationInitializer {
 
     public SpringSecurityApplicationInitializer() {
+        // 在非Spring环境中，需要这样配置Spring Security
+        // 在Spring环境中，就在SpringApplicationInitializer里初始化
         //super(WebSecurityConfig.class);
     }
 }

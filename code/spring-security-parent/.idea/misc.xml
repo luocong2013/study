@@ -79,11 +79,9 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/spring-security-session/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-security-springboot/pom.xml" />
       </list>
     </option>
-  </component>
-  <component name="ProjectDictionaryState">
-    <dictionary name="luoc" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
