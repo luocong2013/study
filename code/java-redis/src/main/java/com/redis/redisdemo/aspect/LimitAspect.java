@@ -3,7 +3,6 @@ package com.redis.redisdemo.aspect;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.redis.redisdemo.annotation.Limit;
-import com.redis.redisdemo.common.Const;
 import com.redis.redisdemo.common.LimitType;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -49,8 +48,14 @@ public class LimitAspect {
     /**
      * 第③种限流方式
      */
+    //@Autowired
+    //private RedisScript<Number> redisScript;
+
+    /**
+     * 第④种限流方式
+     */
     @Autowired
-    private RedisScript<Number> redisScript;
+    private RedisScript<Boolean> redisScript;
 
     @Pointcut(value = "@annotation(com.redis.redisdemo.annotation.Limit)")
     public void pointcut() {
@@ -93,16 +98,22 @@ public class LimitAspect {
 
 
             // 第③种限流方式 START
-            Number currentTimeMillis = redisTemplate.execute(redisScript, Lists.newArrayList("Token_Bucket"), Const.CURRENT_TIME_MILLIS);
-            Number number = redisTemplate.execute(redisScript, Lists.newArrayList("Token_Bucket"), Const.ACQUIRE, 1, currentTimeMillis);
+            //Number currentTimeMillis = redisTemplate.execute(redisScript, Lists.newArrayList("Token_Bucket"), Const.CURRENT_TIME_MILLIS);
+            //Number number = redisTemplate.execute(redisScript, Lists.newArrayList("Token_Bucket"), Const.ACQUIRE, 1, currentTimeMillis);
             // 第③种限流方式 END
+
+            // 第④种限流方式 START
+            Boolean success = redisTemplate.execute(redisScript, Lists.newArrayList("k1"), 1, 3, 1);
+            // 第④种限流方式 START
 
 
             //if (count != null && count.intValue() <= limitCount) { // 第①种限流方式
 
             //if (acquireSuccess) { // 第②种限流方式
 
-            if (Objects.nonNull(number) && number.intValue() == 1) { // 第③种限流方式 令牌桶
+            //if (Objects.nonNull(number) && number.intValue() == 1) { // 第③种限流方式 令牌桶
+
+            if (success) { // 第④种限流方式 令牌桶
                 return pjp.proceed();
             } else {
                 throw new RuntimeException("You have been dragged into the blacklist");

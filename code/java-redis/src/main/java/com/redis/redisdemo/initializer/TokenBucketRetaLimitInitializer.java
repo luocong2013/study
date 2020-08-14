@@ -7,7 +7,6 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.RedisScript;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
@@ -21,7 +20,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @date 2020/7/9 10:36
  */
 @Slf4j
-@Component
+//@Component
 public class TokenBucketRetaLimitInitializer implements InitializingBean {
 
     @Resource

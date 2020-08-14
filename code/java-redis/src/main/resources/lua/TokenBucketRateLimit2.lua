@@ -5,18 +5,6 @@
 -- Date: 2020/7/9 9:32
 --
 
---- key，即redis中的key
-local key = KEYS[1]
---- 请求令牌数量
-local permits = ARGV[1]
---- 桶内令牌最大数量
-local max_permits = ARGV[1]
---- 令牌放置速度 (多少个/秒)
-local rate = ARGV[1]
-
-return acquire(key, permits, currentTimeMillis(), max_permits, rate)
-
-
 --- @param key 令牌的唯一标识
 --- @param permits  请求令牌数量
 --- @param curr_mill_second 当前时间
@@ -124,3 +112,14 @@ local function currentTimeMillis()
     local times = redis.pcall("TIME")
     return tonumber(times[1]) * 1000 + tonumber(times[2]) / 1000
 end
+
+--- key，即redis中的key
+local key = KEYS[1]
+--- 请求令牌数量
+local permits = ARGV[1]
+--- 桶内令牌最大数量
+local max_permits = ARGV[2]
+--- 令牌放置速度 (多少个/秒)
+local rate = ARGV[3]
+
+return acquire(key, permits, currentTimeMillis(), max_permits, rate)

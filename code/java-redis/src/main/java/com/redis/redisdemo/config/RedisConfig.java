@@ -61,12 +61,25 @@ public class RedisConfig {
      * 第③种限流方式 RedisScript
      * @return
      */
+    //@Bean
+    //public RedisScript<Number> redisScript() {
+    //    DefaultRedisScript<Number> redisScript = new DefaultRedisScript<>();
+    //    // 读取 lua 脚本
+    //    redisScript.setLocation(new ClassPathResource("/lua/TokenBucketRateLimit.lua"));
+    //    redisScript.setResultType(Number.class);
+    //    return redisScript;
+    //}
+
+    /**
+     * 第④种限流方式 RedisScript
+     * @return
+     */
     @Bean
-    public RedisScript<Number> redisScript() {
-        DefaultRedisScript<Number> redisScript = new DefaultRedisScript<>();
+    public RedisScript<Boolean> redisScript() {
+        DefaultRedisScript<Boolean> redisScript = new DefaultRedisScript<>();
         // 读取 lua 脚本
-        redisScript.setLocation(new ClassPathResource("/lua/TokenBucketRateLimit.lua"));
-        redisScript.setResultType(Number.class);
+        redisScript.setLocation(new ClassPathResource("/lua/TokenBucketRateLimit3.lua"));
+        redisScript.setResultType(Boolean.class);
         return redisScript;
     }
 }

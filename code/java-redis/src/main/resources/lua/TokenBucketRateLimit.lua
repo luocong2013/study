@@ -5,23 +5,6 @@
 -- Date: 2020/7/9 9:32
 --
 
---- key，即redis中的key
-local key = KEYS[1]
---- args第一个参数即要调用的方法名
-local method = ARGV[1]
-
---- 请求令牌
-if method == 'acquire' then
-    return acquire(key, ARGV[2], ARGV[3])
-    --- 请求时间
-elseif method == 'currentTimeMillis' then
-    return currentTimeMillis()
-    --- 初始化令牌桶
-elseif method == 'initTokenBucket' then
-    return initTokenBucket(key, ARGV[2], ARGV[3])
-end
-
-
 --- @param key 令牌的唯一标识
 --- @param permits  请求令牌数量
 --- @param curr_mill_second 当前时间
@@ -108,4 +91,20 @@ end
 local function currentTimeMillis()
     local times = redis.pcall("TIME")
     return tonumber(times[1]) * 1000 + tonumber(times[2]) / 1000
+end
+
+--- key，即redis中的key
+local key = KEYS[1]
+--- args第一个参数即要调用的方法名
+local strings method = ARGV[1]
+
+--- 请求令牌
+if method == 'acquire' then
+    return acquire(key, ARGV[2], ARGV[3])
+    --- 请求时间
+elseif method == 'currentTimeMillis' then
+    return currentTimeMillis()
+    --- 初始化令牌桶
+elseif method == 'initTokenBucket' then
+    return initTokenBucket(key, ARGV[2], ARGV[3])
 end
