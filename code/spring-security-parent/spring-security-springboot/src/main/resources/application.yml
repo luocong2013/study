@@ -1,0 +1,32 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /security-springboot
+    # session过期时间 1小时（使用tomcat容器时，如果设置小于60秒的话，则会默认取1分钟）
+    session:
+      timeout: 30m
+spring:
+  application:
+    name: security-springboot
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  # 没有配置UserDetailsService时，默认自动创建的账号 {@code UserDetailsServiceAutoConfiguration.inMemoryUserDetailsManager}
+  security:
+    user:
+      name: admin
+      password: admin
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/ssm?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+    hikari:
+      connection-test-query: SELECT 1
+      read-only: false
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      maximum-pool-size: 15
+      minimum-idle: 10
