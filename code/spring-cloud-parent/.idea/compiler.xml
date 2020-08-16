@@ -2,20 +2,21 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="service-consumer-hystrix" />
+        <module name="zipkin-server" />
+        <module name="turbine-server" />
         <module name="eureka-server" />
         <module name="config-server" />
-        <module name="service-consumer" />
-        <module name="zipkin-client" />
-        <module name="zipkin-server" />
-        <module name="service-provider" />
         <module name="config-client" />
+        <module name="service-consumer" />
+        <module name="service-provider" />
+        <module name="service-consumer-hystrix" />
         <module name="gateway-zuul" />
-        <module name="turbine-server" />
+        <module name="zipkin-client" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">

@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: single-security-memory
+server:
+  port: 9000

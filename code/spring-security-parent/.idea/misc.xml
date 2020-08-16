@@ -82,6 +82,7 @@
         <option value="$PROJECT_DIR$/spring-security-springboot/pom.xml" />
         <option value="$PROJECT_DIR$/distributed-security-uaa/pom.xml" />
         <option value="$PROJECT_DIR$/distributed-security-order/pom.xml" />
+        <option value="$PROJECT_DIR$/single-security-memory/pom.xml" />
       </list>
     </option>
   </component>
