@@ -83,6 +83,9 @@
         <option value="$PROJECT_DIR$/distributed-security-uaa/pom.xml" />
         <option value="$PROJECT_DIR$/distributed-security-order/pom.xml" />
         <option value="$PROJECT_DIR$/single-security-memory/pom.xml" />
+        <option value="$PROJECT_DIR$/authorization-code-authorization-server/pom.xml" />
+        <option value="$PROJECT_DIR$/authorization-code-resource-server/pom.xml" />
+        <option value="$PROJECT_DIR$/authorization-code-client/pom.xml" />
       </list>
     </option>
   </component>

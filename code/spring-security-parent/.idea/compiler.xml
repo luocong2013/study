@@ -10,8 +10,11 @@
         <module name="spring-security-springboot" />
         <module name="spring-security-springsecurity" />
         <module name="single-security-memory" />
+        <module name="authorization-code-client" />
         <module name="spring-security-session" />
         <module name="distributed-security-order" />
+        <module name="authorization-code-authorization-server" />
+        <module name="authorization-code-resource-server" />
         <module name="distributed-security-uaa" />
       </profile>
     </annotationProcessing>
@@ -19,6 +22,9 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="authorization-code-authorization-server" options="-parameters" />
+      <module name="authorization-code-client" options="-parameters" />
+      <module name="authorization-code-resource-server" options="-parameters" />
       <module name="distributed-security-order" options="-parameters" />
       <module name="distributed-security-uaa" options="-parameters" />
       <module name="single-security-memory" options="-parameters" />
