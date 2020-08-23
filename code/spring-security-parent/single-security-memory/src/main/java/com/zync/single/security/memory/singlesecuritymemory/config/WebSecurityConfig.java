@@ -35,18 +35,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("admin").password(passwordEncoder().encode("123456")).roles("ADMIN")
+                .withUser("admin").password(passwordEncoder().encode("123456")).roles("admin")
                 .and()
-                .withUser("user").password(passwordEncoder().encode("123456")).roles("USER");
+                .withUser("user").password(passwordEncoder().encode("123456")).roles("user");
     }
 
 
+    /**
+     * 注意：
+     * 在这个 Spring Security 配置和资源服务器配置中，都涉及到了 HttpSecurity。
+     * 其中 Spring Security 中的配置优先级高于资源服务器中的配置，
+     * 即: 请求地址先经过 Spring Security 的 HttpSecurity，再经过资源服务器的 HttpSecurity。
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.requestMatchers().anyRequest()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/oauth/**")
-                .permitAll();
+                .antMatchers("/oauth/**").permitAll()
+                .and()
+                // Basic提交
+                .httpBasic()
+                .and()
+                // 关跨域保护
+                .csrf().disable();
     }
 }

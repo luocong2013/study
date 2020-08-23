@@ -121,8 +121,8 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
                 .secret(passwordEncoder.encode("secret"))
                 // 资源列表
                 .resourceIds("res1")
-                // 授权方式: 授权码，简单，客户端，账户密码
-                .authorizedGrantTypes("authorization_code", "refresh_token", "password", "implicit", "client_credentials")
+                // 授权方式: 授权码模式，简化模式，密码模式，客户端模式（刷新token）
+                .authorizedGrantTypes("authorization_code", "implicit", "password", "client_credentials", "refresh_token")
                 // 允许的授权范围
                 .scopes("all")
                 // false 跳转到授权页面
