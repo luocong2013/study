@@ -10,15 +10,17 @@
         <module name="spring-security-springboot" />
         <module name="spring-security-springsecurity" />
         <module name="single-security-memory" />
-        <module name="authorization-code-client" />
         <module name="spring-security-session" />
         <module name="distributed-security-order" />
         <module name="authorization-code-authorization-server" />
         <module name="authorization-code-resource-server" />
         <module name="distributed-security-uaa" />
+        <module name="single-security-jdbc" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8" />
+    <bytecodeTargetLevel target="8">
+      <module name="authorization-code-client" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -27,6 +29,7 @@
       <module name="authorization-code-resource-server" options="-parameters" />
       <module name="distributed-security-order" options="-parameters" />
       <module name="distributed-security-uaa" options="-parameters" />
+      <module name="single-security-jdbc" options="-parameters" />
       <module name="single-security-memory" options="-parameters" />
       <module name="spring-security-session" options="" />
       <module name="spring-security-springboot" options="-parameters" />

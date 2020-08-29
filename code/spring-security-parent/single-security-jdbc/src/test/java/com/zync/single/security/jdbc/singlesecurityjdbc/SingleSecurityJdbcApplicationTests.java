@@ -1,10 +1,10 @@
-package com.zync.security.client;
+package com.zync.single.security.jdbc.singlesecurityjdbc;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AuthorizationCodeClientApplicationTests {
+class SingleSecurityJdbcApplicationTests {
 
     @Test
     void contextLoads() {

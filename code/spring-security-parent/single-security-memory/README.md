@@ -1,7 +1,7 @@
 ### 一、授权码模式
 
 启动成功后，用这个地址进行授权访问：
-[http://localhost:9000/oauth/authorize?client_id=client&response_type=code](http://localhost:9000/oauth/authorize?client_id=client&response_type=code)
+[http://localhost:9000/oauth/authorize?client_id=client&client_secret=secret&response_type=code](http://localhost:9000/oauth/authorize?client_id=client&client_secret=secret&response_type=code)
 
 到登录页面：
 输入账号：admin  密码: 123456 登录

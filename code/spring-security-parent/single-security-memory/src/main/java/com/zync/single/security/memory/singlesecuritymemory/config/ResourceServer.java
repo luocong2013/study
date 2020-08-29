@@ -21,7 +21,7 @@ public class ResourceServer extends ResourceServerConfigurerAdapter {
         resources
                 // 配置资源ID，这里的资源ID和授权服务器中的资源ID一致
                 .resourceId("rid")
-                // 设置这些资源仅基于令牌认证
+                // 设置这些资源仅基于令牌（Token）认证
                 .stateless(true);
     }
 
