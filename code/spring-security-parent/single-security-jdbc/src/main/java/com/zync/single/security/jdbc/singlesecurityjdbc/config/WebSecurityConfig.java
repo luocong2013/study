@@ -1,5 +1,7 @@
 package com.zync.single.security.jdbc.singlesecurityjdbc.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -8,6 +10,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
@@ -24,9 +27,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * userDetailsService 获取token的时候对用户进行一些自定义过滤，并将保存用户信息（用户名，密码，角色等）
      */
-    //@Autowired
-    //@Qualifier("jdbcUserDetails")
-    //private UserDetailsService userDetailsService;
+    @Autowired
+    @Qualifier("jdbcUserDetails")
+    private UserDetailsService userDetailsService;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -41,10 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("admin").password(passwordEncoder().encode("123456")).roles("admin")
-                .and()
-                .withUser("user").password(passwordEncoder().encode("123456")).roles("user");
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
 

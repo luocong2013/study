@@ -1,13 +1,17 @@
 package com.zync.single.security.jdbc.singlesecurityjdbc.config;
 
-import com.zync.single.security.jdbc.singlesecurityjdbc.web.mapper.UserDAO;
-import com.zync.single.security.jdbc.singlesecurityjdbc.web.model.UserDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.zync.single.security.jdbc.singlesecurityjdbc.web.mapper.TbPermissionMapper;
+import com.zync.single.security.jdbc.singlesecurityjdbc.web.mapper.TbUserMapper;
+import com.zync.single.security.jdbc.singlesecurityjdbc.web.model.TbUser;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,21 +21,24 @@ import java.util.Objects;
  * @descrption 用户
  * @date 2020/8/29 22:23
  */
-//@Component
+@Component
 public class JdbcUserDetails implements UserDetailsService {
 
-    @Autowired
-    private UserDAO userDAO;
+    @Resource
+    private TbUserMapper userMapper;
+
+    @Resource
+    private TbPermissionMapper permissionMapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDTO user = userDAO.getUserByUsername(username);
-        if (Objects.isNull(user)) {
+        TbUser tbUser = userMapper.selectOne(Wrappers.lambdaQuery(TbUser.class).eq(TbUser::getUsername, username));
+        if (Objects.isNull(tbUser)) {
             // 如果用户查不到，返回null，由provider来抛出异常
             return null;
         }
-        List<String> permissions = userDAO.getPermissionsByUserId(user.getId());
-        String[] perarray = permissions.toArray(new String[0]);
-        return User.withUsername(user.getUsername()).password(user.getPassword()).authorities(perarray).build();
+        List<String> permissions = permissionMapper.selectByUserId(tbUser.getId());
+        String[] perarray = permissions.stream().filter(StringUtils::isNotBlank).toArray(String[]::new);
+        return User.withUsername(tbUser.getUsername()).password(tbUser.getPassword()).authorities(perarray).build();
     }
 }
