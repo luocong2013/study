@@ -87,6 +87,7 @@
         <option value="$PROJECT_DIR$/authorization-code-resource-server/pom.xml" />
         <option value="$PROJECT_DIR$/authorization-code-client/pom.xml" />
         <option value="$PROJECT_DIR$/single-security-jdbc/pom.xml" />
+        <option value="$PROJECT_DIR$/single-security-jwt/pom.xml" />
       </list>
     </option>
   </component>

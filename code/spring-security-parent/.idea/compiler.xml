@@ -10,6 +10,7 @@
         <module name="spring-security-springboot" />
         <module name="spring-security-springsecurity" />
         <module name="single-security-memory" />
+        <module name="single-security-jwt" />
         <module name="spring-security-session" />
         <module name="distributed-security-order" />
         <module name="authorization-code-authorization-server" />
@@ -30,6 +31,7 @@
       <module name="distributed-security-order" options="-parameters" />
       <module name="distributed-security-uaa" options="-parameters" />
       <module name="single-security-jdbc" options="-parameters" />
+      <module name="single-security-jwt" options="-parameters" />
       <module name="single-security-memory" options="-parameters" />
       <module name="spring-security-session" options="" />
       <module name="spring-security-springboot" options="-parameters" />
