@@ -32,7 +32,10 @@ public class JdbcUserDetails implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        TbUser tbUser = userMapper.selectOne(Wrappers.lambdaQuery(TbUser.class).eq(TbUser::getUsername, username));
+        TbUser tbUser = userMapper.selectOne(Wrappers.lambdaQuery(TbUser.class)
+                .select(TbUser::getId, TbUser::getUsername, TbUser::getPassword)
+                .eq(TbUser::getUsername, username)
+                .eq(TbUser::getRemoved, 0));
         if (Objects.isNull(tbUser)) {
             // 如果用户查不到，返回null，由provider来抛出异常
             return null;

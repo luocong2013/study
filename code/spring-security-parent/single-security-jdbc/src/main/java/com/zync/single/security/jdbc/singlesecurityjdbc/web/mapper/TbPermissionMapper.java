@@ -20,7 +20,7 @@ public interface TbPermissionMapper extends BaseMapper<TbPermission> {
      * @param id
      * @return
      */
-    @Select("SELECT url FROM tb_permission WHERE id IN (SELECT permission_id FROM tb_role_permission WHERE role_id IN (SELECT role_id FROM tb_user_role WHERE user_id = #{id}))")
+    @Select("SELECT ename FROM tb_permission WHERE id IN (SELECT permission_id FROM tb_role_permission WHERE role_id IN (SELECT role_id FROM tb_user_role WHERE user_id = #{id}))")
     List<String> selectByUserId(@Param("id") Long id);
 
 }

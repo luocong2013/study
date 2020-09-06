@@ -14,6 +14,31 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ResourceController {
 
+    /**
+     * 需要有 SystemUser 权限的人才能访问
+     * @param username
+     * @return
+     */
+    @GetMapping("/users/{username}")
+    public UserVO users(@PathVariable String username) {
+        return new UserVO(username, username + "@outlook.com");
+    }
+
+    /**
+     * 需要有 api 权限的人才能访问
+     * @param username
+     * @return
+     */
+    @GetMapping("/api/{username}")
+    public String api(@PathVariable String username) {
+        return "对接系统：" + username;
+    }
+
+    /**
+     * 只需认证通过就可访问
+     * @param username
+     * @return
+     */
     @GetMapping("/user/{username}")
     public UserVO user(@PathVariable String username) {
         return new UserVO(username, username + "@foxmail.com");
