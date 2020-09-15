@@ -13,3 +13,15 @@ spring:
         max-size: 20
         queue-capacity: 20000000
       thread-name-prefix: sorting-
+
+
+#jasypt加密的密匙
+jasypt:
+  encryptor:
+    password: jasypt
+
+#加密的用户数据
+user:
+  username: ENC(YoTmru8dXV4ZiC/qEhEGUwbLbE6g1IrY0Ug0GbSrp6gvQ+k/BErC1XeKPsm1cEzm)
+  password: ENC(Gw44crZW8nvTw0GcgLRoEJHZIT2OJqMrx/SHrqjI+l2Q1X6+j9A/enuNjmdBOL6Q)
+  telphone: ENC(2u5z67ssyzH42TFoodkf7dGLolwBNKlAcbVV1fSXLLBCKsSfmIKotE4djn8LExV1)
