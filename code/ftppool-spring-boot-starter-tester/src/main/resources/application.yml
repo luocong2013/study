@@ -1,0 +1,9 @@
+server:
+  port: 7088
+spring:
+  ftp:
+    enabled: true
+    host: 127.0.0.1
+    port: 2121
+    username: admin
+    password: admin
