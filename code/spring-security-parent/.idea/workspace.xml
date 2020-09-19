@@ -1,0 +1,1399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="spring-security-springsecurity:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c3834279-c98d-4aa1-8cf4-3a1860e21f4b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../redis-tools-spring-boot-starter/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis-tools-spring-boot-starter/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis-tools-spring-boot-starter/src/main/java/com/zync/boot/redistools/RedisToolsSpringBootStarterApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../redis-tools-spring-boot-starter/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <list id="4d48b178-9a2d-4b74-a87f-5501edae4fe7" name="uncommit" comment="不提交的内容&#10;">
+      <change afterPath="$PROJECT_DIR$/../ibed/src/main/java/com/zync/ibed/controller/IbedController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ibed/src/main/resources/static/css/ibed/ibed.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ibed/src/main/resources/static/js/ibed/ibed.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ibed/src/main/resources/templates/ibed/ibed.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ibed/src/main/java/com/zync/ibed/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ibed/src/main/java/com/zync/ibed/controller/IndexController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ibed/src/main/java/com/zync/ibed/minio/TiebaMinioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ibed/src/main/java/com/zync/ibed/minio/TiebaMinioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ibed/src/main/resources/static/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ibed/src/main/resources/static/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ibed/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../ibed/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java-leetcode/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java-leetcode/pom.xml" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/spring-security-session/target/" />
+    <ignored path="$PROJECT_DIR$/spring-security-springsecurity/target/" />
+    <ignored path="$PROJECT_DIR$/spring-security-springboot/target/" />
+    <ignored path="$PROJECT_DIR$/distributed-security-uaa/target/" />
+    <ignored path="$PROJECT_DIR$/distributed-security-order/target/" />
+    <ignored path="$PROJECT_DIR$/single-security-memory/target/" />
+    <ignored path="$PROJECT_DIR$/authorization-code/target/" />
+    <ignored path="$PROJECT_DIR$/authorization-code/authorization-code-authorization-server/target/" />
+    <ignored path="$PROJECT_DIR$/authorization-code-authorization-server/target/" />
+    <ignored path="$PROJECT_DIR$/authorization-code-resource-server/target/" />
+    <ignored path="$PROJECT_DIR$/authorization-code-client/target/" />
+    <ignored path="$PROJECT_DIR$/single-security-jdbc/target/" />
+    <ignored path="$PROJECT_DIR$/single-security-jwt/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="127.0.0.1" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="127.0.0.1" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="127.0.0.1" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="oauth2: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="spring-security-parent" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.idea/compiler.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jsp File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>login-success</find>
+      <find>isAllowIfAllAbstainDecisions</find>
+      <find>allowIfAllAbstainDecisions</find>
+      <find>loginProcessingUrl</find>
+      <find>userDetailsService</find>
+      <find>Using generated security password</find>
+      <find>generated security password</find>
+      <find>tokenServicesOverride</find>
+      <find>tokenServices</find>
+      <find>oauth/authorize</find>
+      <find>Failed to find access token</find>
+      <find>logImpl</find>
+      <find>tokenStore</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/single-security-memory/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/single-security-memory/src/main/java/com/zync/single/security/memory/singlesecuritymemory/config/WebSecurityConfig.java" />
+        <option value="$PROJECT_DIR$/single-security-memory/src/main/java/com/zync/single/security/memory/singlesecuritymemory/config/AuthorizationServer.java" />
+        <option value="$PROJECT_DIR$/authorization-code/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/authorization-code-authorization-server/src/main/java/com/zync/security/authorizationserver/AuthorizationCodeAuthorizationServerApplication.java" />
+        <option value="$PROJECT_DIR$/authorization-code-authorization-server/pom.xml" />
+        <option value="$PROJECT_DIR$/authorization-code-authorization-server/src/main/java/com/zync/security/authorizationserver/config/AuthorizationConfig.java" />
+        <option value="$PROJECT_DIR$/authorization-code-authorization-server/src/main/java/com/zync/security/authorizationserver/config/WebSecurityConfig.java" />
+        <option value="$PROJECT_DIR$/authorization-code-authorization-server/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/authorization-code-resource-server/pom.xml" />
+        <option value="$PROJECT_DIR$/authorization-code-resource-server/src/main/java/com/zync/security/resourceserver/AuthorizationCodeResourceServerApplication.java" />
+        <option value="$PROJECT_DIR$/authorization-code-resource-server/src/main/java/com/zync/security/resourceserver/config/ResourceConfig.java" />
+        <option value="$PROJECT_DIR$/single-security-memory/pom.xml" />
+        <option value="$PROJECT_DIR$/authorization-code-client/src/main/java/com/zync/security/client/AuthorizationCodeClientApplication.java" />
+        <option value="$PROJECT_DIR$/authorization-code-resource-server/src/main/java/com/zync/security/resourceserver/web/vo/UserVO.java" />
+        <option value="$PROJECT_DIR$/authorization-code-resource-server/src/main/java/com/zync/security/resourceserver/web/controller/ResourceController.java" />
+        <option value="$PROJECT_DIR$/authorization-code-resource-server/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/single-security-memory/README.md" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/controller/ResourceController.java" />
+        <option value="$PROJECT_DIR$/single-security-memory/src/main/java/com/zync/single/security/memory/singlesecuritymemory/config/ResourceServer.java" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/config/AuthorizationServer.java" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/web/model/UserDTO.java" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/web/vo/UserVO.java" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/SingleSecurityJdbcApplication.java" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/web/po/TbUserPO.java" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/src/main/resources/mybatis/TbPermissionMapper.xml" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/web/model/TbUser.java" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/web/model/PermissionDTO.java" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/web/mapper/UserDAO.java" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/web/mapper/TbUserMapper.java" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/pom.xml" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/config/WebSecurityConfig.java" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/web/mapper/TbPermissionMapper.java" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/src/test/java/com/zync/single/security/jdbc/singlesecurityjdbc/SingleSecurityJdbcApplicationTests.java" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/config/JdbcUserDetails.java" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/web/controller/ResourceController.java" />
+        <option value="$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/config/JdbcUserDetails.java" />
+        <option value="$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/config/ResourceServer.java" />
+        <option value="$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/SingleSecurityJwtApplication.java" />
+        <option value="$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/web/mapper/TbPermissionMapper.java" />
+        <option value="$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/web/mapper/TbUserMapper.java" />
+        <option value="$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/web/controller/ResourceController.java" />
+        <option value="$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/config/AuthorizationServer.java" />
+        <option value="$PROJECT_DIR$/single-security-jwt/src/main/resources/pub.txt" />
+        <option value="$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/config/ResourceServer.java" />
+        <option value="$PROJECT_DIR$/single-security-jwt/pom.xml" />
+        <option value="$PROJECT_DIR$/single-security-jwt/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/config/JwtTokenConfig.java" />
+      </list>
+    </option>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../WorkTools/MavenTool/apache-maven-3.6.1" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="jdkForImporter" value="1.8" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="spring-security-parent" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="spring-security-parent" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="#JAVA_HOME" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="716" />
+    <option name="y" value="80" />
+    <option name="width" value="974" />
+    <option name="height" value="1057" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="spring-security-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring-security-parent" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring-security-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring-security-parent" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring-security-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring-security-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="spring-security-springsecurity" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/single-security-jwt/src/main/resources" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.40677965" />
+    <property name="settings.editor.selected.configurable" value="preferences.customizations" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.zync.security.session.model" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.zync.distributed.security.order" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.zync.single.security.jdbc.singlesecurityjdbc.config" />
+      <recent name="com.zync.distributed.security.uaa.service" />
+      <recent name="com.zync.distributed.security.uaa.dao" />
+      <recent name="com.zync.distributed.security.order.dao" />
+      <recent name="com.zync.distributed.security.order.service" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\mywork\study\code\spring-security-parent\single-security-jwt\src\main\resources" />
+      <recent name="D:\mywork\study\code\spring-security-parent\single-security-jwt\src\main\java\com\zync\single\security\jwt\singlesecurityjwt" />
+      <recent name="D:\mywork\study\code\spring-security-parent\single-security-jdbc\src\main\java\com\zync\single\security\jdbc\singlesecurityjdbc\web" />
+      <recent name="D:\mywork\study\code\spring-security-parent\single-security-jdbc\src\main\java\com\zync\single\security\jdbc\singlesecurityjdbc" />
+      <recent name="D:\mywork\study\code\spring-security-parent\single-security-jdbc\src\main\java\com\zync\single\security\jdbc\singlesecurityjdbc\config" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+    <option name="contentProportion" value="0.23647186" />
+  </component>
+  <component name="RunManager" selected="Spring Boot.SingleSecurityJwtApplication">
+    <configuration name="SingleSecurityJdbcApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="single-security-jdbc" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zync.single.security.jdbc.singlesecurityjdbc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zync.single.security.jdbc.singlesecurityjdbc" />
+      <option name="MAIN_CLASS_NAME" value="com.zync.single.security.jdbc.singlesecurityjdbc.SingleSecurityJdbcApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestBCrypt.testBCrypt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-security-springboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zync.security.springsecurity.passwordencoder.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.zync.security.springsecurity.passwordencoder" />
+      <option name="MAIN_CLASS_NAME" value="com.zync.security.springsecurity.passwordencoder.TestBCrypt" />
+      <option name="METHOD_NAME" value="testBCrypt" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="spring-security-session" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="tomcat7:run" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$/spring-security-session" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="AuthorizationCodeAuthorizationServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="authorization-code-authorization-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zync.security.authorizationserver.AuthorizationCodeAuthorizationServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthorizationCodeClientApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="authorization-code-client" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zync.security.client.AuthorizationCodeClientApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthorizationCodeResourceServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="authorization-code-resource-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zync.security.resourceserver.AuthorizationCodeResourceServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DistributedSecurityOrderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="distributed-security-order" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zync.distributed.security.order.OrderApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DistributedSecurityUaaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="distributed-security-uaa" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zync.distributed.security.uaa.UaaApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SingleSecurityJdbcApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="single-security-jdbc" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zync.single.security.jdbc.singlesecurityjdbc.SingleSecurityJdbcApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SingleSecurityJwtApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="single-security-jwt" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zync.single.security.jwt.singlesecurityjwt.SingleSecurityJwtApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SingleSecurityMemoryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="single-security-memory" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zync.single.security.memory.singlesecuritymemory.SingleSecurityMemoryApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringSecurityApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="spring-security-springboot" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zync.security.springsecurity.SpringSecurityApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="spring-security-springsecurity" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.40" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/spring-security-springsecurity/" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="spring-security-springsecurity:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/spring-security-springsecurity" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_spring-security-parent" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="61638" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="spring-security-springsecurity:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.TestBCrypt.testBCrypt" />
+      <item itemvalue="JUnit.SingleSecurityJdbcApplicationTests.contextLoads" />
+      <item itemvalue="Maven.spring-security-session" />
+      <item itemvalue="Spring Boot.SpringSecurityApplication" />
+      <item itemvalue="Spring Boot.DistributedSecurityUaaApplication" />
+      <item itemvalue="Spring Boot.DistributedSecurityOrderApplication" />
+      <item itemvalue="Spring Boot.SingleSecurityMemoryApplication" />
+      <item itemvalue="Spring Boot.AuthorizationCodeAuthorizationServerApplication" />
+      <item itemvalue="Spring Boot.AuthorizationCodeResourceServerApplication" />
+      <item itemvalue="Spring Boot.AuthorizationCodeClientApplication" />
+      <item itemvalue="Spring Boot.SingleSecurityJdbcApplication" />
+      <item itemvalue="Spring Boot.SingleSecurityJwtApplication" />
+      <item itemvalue="Tomcat Server.spring-security-springsecurity" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.SingleSecurityJdbcApplicationTests.contextLoads" />
+        <item itemvalue="JUnit.TestBCrypt.testBCrypt" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\luoc\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c3834279-c98d-4aa1-8cf4-3a1860e21f4b" name="Default Changelist" comment="" />
+      <changelist id="4d48b178-9a2d-4b74-a87f-5501edae4fe7" name="uncommit" comment="不提交的内容&#10;" />
+      <created>1593957648483</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1593957648483</updated>
+      <workItem from="1593957650027" duration="615000" />
+      <workItem from="1594429460362" duration="4667000" />
+      <workItem from="1594448234402" duration="6200000" />
+      <workItem from="1594454504075" duration="4485000" />
+      <workItem from="1594817151940" duration="4068000" />
+      <workItem from="1595054206777" duration="16385000" />
+      <workItem from="1595139243914" duration="11243000" />
+      <workItem from="1596352423469" duration="2727000" />
+      <workItem from="1596357446578" duration="8673000" />
+      <workItem from="1597551497669" duration="16898000" />
+      <workItem from="1598167800923" duration="14116000" />
+      <workItem from="1598193722322" duration="972000" />
+      <workItem from="1598604842239" duration="4061000" />
+      <workItem from="1598611512520" duration="1948000" />
+      <workItem from="1598707767597" duration="4684000" />
+      <workItem from="1598774090671" duration="4477000" />
+      <workItem from="1599370954966" duration="501000" />
+      <workItem from="1599371985304" duration="12024000" />
+      <workItem from="1600494275781" duration="259000" />
+      <workItem from="1600495134105" duration="61000" />
+      <workItem from="1600495370249" duration="26000" />
+    </task>
+    <task id="LOCAL-00001" summary="Spring Security">
+      <created>1594824474064</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1594824474064</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Spring Security">
+      <created>1595152839515</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1595152839515</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Spring Boot + Security + OAuth2.0">
+      <created>1596380985475</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1596380985475</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Security + OAuth2.0 认证服务">
+      <created>1597589902715</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1597589902715</updated>
+    </task>
+    <task id="LOCAL-00005" summary=" OAuth2.0 四种模式">
+      <created>1598193033198</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1598193033198</updated>
+    </task>
+    <task id="LOCAL-00006" summary="授权码模式">
+      <created>1598194685294</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1598194685294</updated>
+    </task>
+    <task id="LOCAL-00007" summary="JdbcToken">
+      <created>1598712444785</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1598712444785</updated>
+    </task>
+    <task id="LOCAL-00008" summary="JdbcToken">
+      <created>1598778768450</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1598778768450</updated>
+    </task>
+    <task id="LOCAL-00009" summary="JdbcToken 权限使用">
+      <created>1599377705522</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1599377705523</updated>
+    </task>
+    <task id="LOCAL-00010" summary="JwtToken 对称密钥 &amp; 非对称密钥">
+      <created>1599384072191</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1599384072191</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="TestBCrypt_testBCrypt - 2020.07.18 at 17h 33m 31s.xml">
+      <configuration name="TestBCrypt.testBCrypt" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestBCrypt_testBCrypt - 2020.07.18 at 17h 35m 19s.xml">
+      <configuration name="TestBCrypt.testBCrypt" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestBCrypt_testBCrypt - 2020.07.18 at 17h 40m 39s.xml">
+      <configuration name="TestBCrypt.testBCrypt" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestBCrypt_testBCrypt - 2020.07.19 at 14h 20m 24s.xml">
+      <configuration name="TestBCrypt.testBCrypt" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestBCrypt_testBCrypt - 2020.07.19 at 14h 21m 05s.xml">
+      <configuration name="TestBCrypt.testBCrypt" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SingleSecurityJdbcApplicationTests_contextLoads - 2020.09.06 at 15h 07m 14s.xml">
+      <configuration name="SingleSecurityJdbcApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SingleSecurityJdbcApplicationTests_contextLoads - 2020.09.06 at 15h 17m 00s.xml">
+      <configuration name="SingleSecurityJdbcApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SingleSecurityJdbcApplicationTests_contextLoads - 2020.09.06 at 15h 18m 09s.xml">
+      <configuration name="SingleSecurityJdbcApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="119090000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2531983" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="UI Designer" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" weight="0.32889125" />
+      <window_info id="Web" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3283582" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.41546962" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989059" weight="0.43333334" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32928178" />
+      <window_info anchor="bottom" id="Docker" order="7" weight="0.32928178" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.59337014" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5010661" side_tool="true" weight="0.3160221" />
+      <window_info anchor="bottom" id="Spring" order="12" weight="0.32928178" />
+      <window_info anchor="bottom" id="Java Enterprise" order="13" />
+      <window_info anchor="bottom" id="MyBatis Log" order="14" />
+      <window_info anchor="bottom" id="Tail" order="15" />
+      <window_info anchor="bottom" id="Application Servers" order="16" weight="0.32928178" />
+      <window_info anchor="bottom" id="Messages" order="17" weight="0.3272101" />
+      <window_info anchor="bottom" id="Run Dashboard" order="18" sideWeight="0.4989339" weight="0.5226519" />
+      <window_info anchor="right" id="Bean Validation" order="0" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="leetcode" order="5" side_tool="true" />
+      <window_info anchor="right" id="RestServices" order="6" />
+      <window_info anchor="right" id="Maven" order="7" weight="0.34808102" />
+      <window_info anchor="right" id="Word Book" order="8" side_tool="true" />
+      <window_info anchor="right" id="Database" order="9" weight="0.32995737" />
+      <window_info anchor="right" id="Palette&#9;" order="10" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24200426" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="UI Designer" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" weight="0.32889125" />
+      <window_info id="Web" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3283582" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.41546962" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989059" weight="0.43333334" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32928178" />
+      <window_info anchor="bottom" id="Docker" order="7" weight="0.32928178" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.5878453" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5010661" side_tool="true" weight="0.3160221" />
+      <window_info anchor="bottom" id="Spring" order="12" weight="0.32928178" />
+      <window_info anchor="bottom" id="Java Enterprise" order="13" />
+      <window_info anchor="bottom" id="MyBatis Log" order="14" />
+      <window_info anchor="bottom" id="Tail" order="15" />
+      <window_info anchor="bottom" id="Application Servers" order="16" weight="0.32928178" />
+      <window_info anchor="bottom" id="Messages" order="17" weight="0.3272101" />
+      <window_info anchor="bottom" id="Run Dashboard" order="18" sideWeight="0.4989339" weight="0.5226519" />
+      <window_info anchor="right" id="Bean Validation" order="0" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="leetcode" order="5" side_tool="true" />
+      <window_info anchor="right" id="RestServices" order="6" />
+      <window_info anchor="right" id="Maven" order="7" weight="0.34808102" />
+      <window_info anchor="right" id="Word Book" order="8" side_tool="true" />
+      <window_info anchor="right" id="Database" order="9" weight="0.32995737" />
+      <window_info anchor="right" id="Palette&#9;" order="10" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Spring Security" />
+    <MESSAGE value="Spring Boot + Security + OAuth2.0" />
+    <MESSAGE value="Security + OAuth2.0 认证服务" />
+    <MESSAGE value=" OAuth2.0 四种模式" />
+    <MESSAGE value="授权码模式" />
+    <MESSAGE value="JdbcToken" />
+    <MESSAGE value="JdbcToken 权限使用" />
+    <MESSAGE value="JwtToken 对称密钥 &amp; 非对称密钥" />
+    <option name="LAST_COMMIT_MESSAGE" value="JwtToken 对称密钥 &amp; 非对称密钥" />
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>user.getName()</expression-string>
+        <language-id>JAVA</language-id>
+        <custom-info>org.springframework.security.oauth2.provider.OAuth2Authentication</custom-info>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>((OAuth2Authentication) user).getUserAuthentication()</expression-string>
+        <language-id>JAVA</language-id>
+        <custom-info>org.springframework.security.oauth2.provider.OAuth2Authentication</custom-info>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>user.getDetails()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>user.getCredentials()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>user.getPrincipal()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>StringUtils.substringAfter(header,&quot;Bearer &quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>SpringB</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>getToken</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>passwordEncoder.encode(&quot;admin&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/baomidou/mybatis-plus-core/3.4.0/mybatis-plus-core-3.4.0-sources.jar!/com/baomidou/mybatisplus/core/mapper/BaseMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="174" column="12" selection-start-line="174" selection-start-column="12" selection-end-line="174" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/baomidou/mybatis-plus-core/3.4.0/mybatis-plus-core-3.4.0-sources.jar!/com/baomidou/mybatisplus/core/toolkit/CollectionUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="38" column="51" selection-start-line="38" selection-start-column="51" selection-end-line="38" selection-end-column="51" />
+          <folding>
+            <element signature="e#1103#1104#0" expanded="true" />
+            <element signature="e#1158#1159#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/5.3.4.RELEASE/spring-security-core-5.3.4.RELEASE-sources.jar!/org/springframework/security/crypto/bcrypt/BCryptPasswordEncoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="133" column="19" selection-start-line="133" selection-start-column="19" selection-end-line="133" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/5.3.4.RELEASE/spring-security-core-5.3.4.RELEASE-sources.jar!/org/springframework/security/crypto/password/PasswordEncoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="46" column="67" lean-forward="true" selection-start-line="46" selection-start-column="7" selection-end-line="46" selection-end-column="67" />
+          <folding>
+            <element signature="e#2000#2001#0" expanded="true" />
+            <element signature="e#2019#2020#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jdbc/src/test/java/com/zync/single/security/jdbc/singlesecurityjdbc/SingleSecurityJdbcApplicationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/baomidou/mybatis-plus-core/3.4.0/mybatis-plus-core-3.4.0-sources.jar!/com/baomidou/mybatisplus/core/conditions/interfaces/Compare.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="82" column="21" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
+          <folding>
+            <element signature="e#2332#2333#0" expanded="true" />
+            <element signature="e#2376#2377#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/baomidou/mybatis-plus-core/3.4.0/mybatis-plus-core-3.4.0-sources.jar!/com/baomidou/mybatisplus/core/conditions/AbstractWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3312">
+          <caret line="136" lean-forward="true" selection-start-line="136" selection-end-line="136" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/baomidou/mybatis-plus-core/3.4.0/mybatis-plus-core-3.4.0-sources.jar!/com/baomidou/mybatisplus/core/conditions/AbstractLambdaWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="39" column="20" lean-forward="true" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/baomidou/mybatis-plus-core/3.4.0/mybatis-plus-core-3.4.0-sources.jar!/com/baomidou/mybatisplus/core/conditions/query/LambdaQueryWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="36" column="60" selection-start-line="36" selection-start-column="60" selection-end-line="36" selection-end-column="60" />
+          <folding>
+            <element signature="e#1702#1703#0" expanded="true" />
+            <element signature="e#1732#1733#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/baomidou/mybatis-plus-core/3.4.0/mybatis-plus-core-3.4.0-sources.jar!/com/baomidou/mybatisplus/core/toolkit/Wrappers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="93" column="29" lean-forward="true" selection-start-line="93" selection-start-column="29" selection-end-line="93" selection-end-column="29" />
+          <folding>
+            <element signature="e#2041#2042#0" expanded="true" />
+            <element signature="e#2090#2091#0" expanded="true" />
+            <element signature="e#2315#2316#0" expanded="true" />
+            <element signature="e#2370#2371#0" expanded="true" />
+            <element signature="e#2871#2872#0" expanded="true" />
+            <element signature="e#2915#2916#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/web/vo/UserVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/config/JdbcUserDetails.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="487">
+          <caret line="37" column="44" lean-forward="true" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/web/controller/ResourceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#631#632#0" expanded="true" />
+            <element signature="e#701#702#0" expanded="true" />
+            <element signature="e#619#620#0" expanded="true" />
+            <element signature="e#660#661#0" expanded="true" />
+            <element signature="e#621#622#0" expanded="true" />
+            <element signature="e#691#692#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jdbc/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="622">
+          <caret line="93" column="12" selection-start-line="16" selection-start-column="4" selection-end-line="93" selection-end-column="12" />
+        </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jdbc/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="21" lean-forward="true" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/web/vo/UserVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/web/model/TbUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/web/model/TbPermission.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/config/JdbcUserDetails.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/config/WebSecurityConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/oauth/boot/spring-security-oauth2-autoconfigure/2.1.2.RELEASE/spring-security-oauth2-autoconfigure-2.1.2.RELEASE.jar!/org/springframework/boot/autoconfigure/security/oauth2/resource/ResourceServerTokenServicesConfiguration.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="338" column="46" selection-start-line="338" selection-start-column="46" selection-end-line="338" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/oauth/spring-security-oauth2/2.3.4.RELEASE/spring-security-oauth2-2.3.4.RELEASE.jar!/org/springframework/security/oauth2/client/token/grant/client/ClientCredentialsResourceDetails.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/oauth/spring-security-oauth2/2.3.4.RELEASE/spring-security-oauth2-2.3.4.RELEASE.jar!/org/springframework/security/oauth2/client/token/grant/code/AuthorizationCodeResourceDetails.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.3.3.RELEASE/spring-boot-autoconfigure-2.3.3.RELEASE.jar!/org/springframework/boot/autoconfigure/condition/ConditionMessage.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="97" column="43" selection-start-line="97" selection-start-column="43" selection-end-line="97" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/oauth/boot/spring-security-oauth2-autoconfigure/2.1.2.RELEASE/spring-security-oauth2-autoconfigure-2.1.2.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/security/oauth2/resource/ResourceServerTokenServicesConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="437" column="29" selection-start-line="437" selection-start-column="29" selection-end-line="437" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/oauth/boot/spring-security-oauth2-autoconfigure/2.1.2.RELEASE/spring-security-oauth2-autoconfigure-2.1.2.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/security/oauth2/resource/ResourceServerProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3450">
+          <caret line="34" column="3" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
+          <folding>
+            <element signature="e#7924#7925#0" expanded="true" />
+            <element signature="e#7954#7955#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-config/5.3.4.RELEASE/spring-security-config-5.3.4.RELEASE-sources.jar!/org/springframework/security/config/annotation/web/configurers/ExceptionHandlingConfigurer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="64" column="19" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-memory/src/main/java/com/zync/single/security/memory/singlesecuritymemory/config/ResourceServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/web/mapper/TbPermissionMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/oauth/spring-security-oauth2/2.3.4.RELEASE/spring-security-oauth2-2.3.4.RELEASE-sources.jar!/org/springframework/security/oauth2/provider/ClientDetailsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/config/AuthorizationServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="37" column="22" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/5.3.4.RELEASE/spring-security-core-5.3.4.RELEASE-sources.jar!/org/springframework/security/authentication/AuthenticationEventPublisher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/config/WebSecurityConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1567#1568#0" expanded="true" />
+            <element signature="e#1617#1618#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/oauth/spring-security-oauth2/2.3.4.RELEASE/spring-security-oauth2-2.3.4.RELEASE-sources.jar!/org/springframework/security/oauth2/config/annotation/web/configurers/ResourceServerSecurityConfigurer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-84">
+          <caret line="58" column="19" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
+          <folding>
+            <element signature="e#4223#4224#0" expanded="true" />
+            <element signature="e#4293#4294#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/oauth/spring-security-oauth2/2.3.4.RELEASE/spring-security-oauth2-2.3.4.RELEASE-sources.jar!/org/springframework/security/oauth2/config/annotation/web/configuration/ResourceServerConfigurer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/oauth/spring-security-oauth2/2.3.4.RELEASE/spring-security-oauth2-2.3.4.RELEASE-sources.jar!/org/springframework/security/oauth2/config/annotation/web/configuration/ResourceServerConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="124" column="43" lean-forward="true" selection-start-line="124" selection-start-column="43" selection-end-line="124" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/oauth/spring-security-oauth2/2.3.4.RELEASE/spring-security-oauth2-2.3.4.RELEASE-sources.jar!/org/springframework/security/oauth2/config/annotation/web/configuration/ResourceServerConfigurerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="21" column="61" lean-forward="true" selection-start-line="21" selection-start-column="61" selection-end-line="21" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/config/ResourceServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/oauth/spring-security-oauth2/2.3.4.RELEASE/spring-security-oauth2-2.3.4.RELEASE-sources.jar!/org/springframework/security/oauth2/provider/token/store/JwtAccessTokenConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1559">
+          <caret line="161" column="5" lean-forward="true" selection-start-line="161" selection-start-column="5" selection-end-line="161" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/web/mapper/TbUserMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jdbc/src/main/java/com/zync/single/security/jdbc/singlesecurityjdbc/SingleSecurityJdbcApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="e#440#441#0" expanded="true" />
+            <element signature="e#520#521#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/web/mapper/TbPermissionMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/SingleSecurityJwtApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/web/controller/ResourceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#881#882#0" expanded="true" />
+            <element signature="e#922#923#0" expanded="true" />
+            <element signature="e#1087#1088#0" expanded="true" />
+            <element signature="e#1157#1158#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/config/AuthorizationServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="60" column="28" lean-forward="true" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jwt/src/main/resources/pub.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="17" column="52" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/config/ResourceServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47">
+          <caret line="16" column="15" lean-forward="true" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jwt/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jwt/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="103" column="17" lean-forward="true" selection-start-line="103" selection-start-column="17" selection-end-line="103" selection-end-column="17" />
+        </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single-security-jwt/src/main/java/com/zync/single/security/jwt/singlesecurityjwt/config/JwtTokenConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/compiler.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>spring-security-springsecurity:war</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.40677965" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Web (spring-security-springboot)|Web</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.40677965" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>index</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>11</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.40677965" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>spring-security-springboot</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.40677965" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
