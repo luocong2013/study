@@ -39,8 +39,8 @@ public class DistributedLockAspect {
 
     /**
      * 环绕通知
-     * @param point
-     * @param lock
+     * @param point ProceedingJoinPoint
+     * @param lock  {@link DistributedLock}
      * @return
      */
     @Around(value = "pointcut() && @annotation(lock)", argNames = "point, lock")
