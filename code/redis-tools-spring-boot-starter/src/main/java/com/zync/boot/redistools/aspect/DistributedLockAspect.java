@@ -3,7 +3,7 @@ package com.zync.boot.redistools.aspect;
 import com.zync.boot.redistools.annotation.DistributedLock;
 import com.zync.boot.redistools.common.Const;
 import com.zync.boot.redistools.common.DistributedLockValueType;
-import com.zync.boot.redistools.exception.ServiceException;
+import com.zync.boot.redistools.exception.RedisToolsServiceException;
 import com.zync.boot.redistools.utils.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -18,7 +18,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author luoc
+ * @author luocong
  * @version V1.0.0
  * @descrption 分布式锁切面
  * @date 2020/9/19 15:03
@@ -55,10 +55,12 @@ public class DistributedLockAspect {
         long timeout = lock.timeout();
         // 分布式锁过期时间单位
         TimeUnit unit = lock.unit();
+        // 获取锁的次数
+        int count = lock.count();
+        // 重复抢锁等待时间间隔 (单位: 毫秒)
+        long timeInterval = lock.timeInterval();
 
-        /**
-         * 根据不同的值类型，来取值
-         */
+        // 根据不同的值类型，来取值
         String value;
         switch (valueType) {
             case CUSTOMER:
@@ -70,24 +72,28 @@ public class DistributedLockAspect {
             default:
                 value = StringUtil.snowflake();
         }
+        log.info("get redis lock, name is {} key is {} value is {} timeout is {} count is {}", name, key, value, timeout, count);
 
         try {
             do {
-                log.debug("get redis lock, name is {} key is {} value is {} timeout is {}", name, key, value, timeout);
-                if (acquire(name, key, value, timeout, unit)) {
+                if (Boolean.TRUE.equals(acquire(name, key, value, timeout, unit))) {
                     // 执行目标方法
                     return point.proceed();
                 }
                 try {
-                    TimeUnit.MILLISECONDS.sleep(10);
+                    TimeUnit.MILLISECONDS.sleep(timeInterval);
                 } catch (InterruptedException e) {
                     // 设置中断状态
                     Thread.currentThread().interrupt();
                     log.error("线程被中断", e);
                 }
-            } while (true);
+            } while (count <= 0 || --count > 0);
+            throw new RedisToolsServiceException("Your operation is too frequent, please wait two seconds and try again.");
         } catch (Throwable e) {
-            throw new ServiceException(e);
+            if (e instanceof RuntimeException) {
+                throw new RedisToolsServiceException(e.getMessage(), e);
+            }
+            throw new RuntimeException(e);
         } finally {
             // 释放锁
             release(key, value);
@@ -107,9 +113,9 @@ public class DistributedLockAspect {
         try {
             return redisTemplate.boundValueOps(key).setIfAbsent(value, timeout, unit);
         } catch (Exception e) {
-            log.error(StringUtil.format("name is {}, get redis lock error", name), e);
+            log.error(StringUtil.format("Name is {}, get redis lock error", name), e);
         }
-        return false;
+        return Boolean.FALSE;
     }
 
     /**

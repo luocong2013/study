@@ -11,7 +11,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.core.RedisTemplate;
 
 /**
- * @author luoc
+ * @author luocong
  * @version V1.0.0
  * @descrption redis tools 自动配置类
  * @date 2020/9/19 14:09
@@ -21,18 +21,18 @@ import org.springframework.data.redis.core.RedisTemplate;
 public class RedisToolsAutoConfiguration {
 
     @Bean
-    @Order(2)
-    @ConditionalOnMissingBean(value = DistributedLockAspect.class)
-    @ConditionalOnProperty(prefix = "redis.tools.lock", value = "enabled", havingValue = "true")
-    public DistributedLockAspect distributedLockAspect() {
-        return new DistributedLockAspect();
-    }
-
-    @Bean
     @Order(1)
     @ConditionalOnMissingBean(value = DistributedLimitAspect.class)
     @ConditionalOnProperty(prefix = "redis.tools.limit", value = "enabled", havingValue = "true")
     public DistributedLimitAspect distributedLimitAspect() {
         return new DistributedLimitAspect();
+    }
+
+    @Bean
+    @Order(2)
+    @ConditionalOnMissingBean(value = DistributedLockAspect.class)
+    @ConditionalOnProperty(prefix = "redis.tools.lock", value = "enabled", havingValue = "true")
+    public DistributedLockAspect distributedLockAspect() {
+        return new DistributedLockAspect();
     }
 }

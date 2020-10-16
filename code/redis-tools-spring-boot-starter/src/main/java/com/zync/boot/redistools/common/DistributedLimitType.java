@@ -1,18 +1,29 @@
 package com.zync.boot.redistools.common;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 /**
- * @author luoc
+ * @author luocong
  * @version V1.0.0
- * @descrption 分布式限流类型
- * @date 2020/9/20 15:38
+ * @description 分布式限流类型
+ * @date 2020/10/16 17:31
  */
+@Getter
+@AllArgsConstructor
 public enum DistributedLimitType {
     /**
-     * 自定义key
+     * 基于时间窗口限流
      */
-    CUSTOMER,
+    TIME("/lua/TimeRateLimit.lua"),
     /**
-     * 请求者IP
+     * 基于令牌桶限流
      */
-    IP
+    TOKEN_BUCKET("/lua/TokenBucketRateLimit.lua")
+    ;
+
+    /**
+     * Lua脚本对应路径
+     */
+    private final String path;
 }

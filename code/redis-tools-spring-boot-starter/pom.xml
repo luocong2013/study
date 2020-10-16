@@ -19,6 +19,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <hutool.version>5.4.3</hutool.version>
+        <guava.version>29.0-jre</guava.version>
     </properties>
 
     <dependencies>
@@ -49,10 +50,16 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
+        <!--hutool-->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>${hutool.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
         </dependency>
         <!--lombox-->
         <dependency>
@@ -95,4 +102,16 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>nexus-releases</name>
+            <url>https://192.168.0.111:8080/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>nexus-snapshots</name>
+            <url>https://192.168.0.111:8080/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

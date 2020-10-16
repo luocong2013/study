@@ -1,7 +1,7 @@
 package com.zync.boot.redistools.common;
 
 /**
- * @author luoc
+ * @author luocong
  * @version V1.0.0
  * @descrption 分布式锁值的类型
  * @date 2020/9/19 20:44

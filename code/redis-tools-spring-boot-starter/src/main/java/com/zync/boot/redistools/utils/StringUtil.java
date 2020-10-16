@@ -24,7 +24,7 @@ public class StringUtil {
      * @date 2020/09/19 15:24
      * @version V1.0.0
      */
-    public static String format(String pattern, Object... args) {
+    public String format(String pattern, Object... args) {
         return MessageFormatter.arrayFormat(pattern, args).getMessage();
     }
 
@@ -32,7 +32,7 @@ public class StringUtil {
      * 生成UUID
      * @return
      */
-    public static String uuid() {
+    public String uuid() {
         return IdUtil.fastSimpleUUID();
     }
 
@@ -40,7 +40,7 @@ public class StringUtil {
      * 雪花算法生成的分布式ID
      * @return
      */
-    public static String snowflake() {
+    public String snowflake() {
         return IdUtil.getSnowflake(1, 1).nextIdStr();
     }
 }
