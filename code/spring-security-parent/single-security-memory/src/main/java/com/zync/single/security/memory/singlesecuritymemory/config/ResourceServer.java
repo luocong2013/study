@@ -30,6 +30,7 @@ public class ResourceServer extends ResourceServerConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/admin/**").hasRole("admin")
                 .antMatchers("/user/**").hasRole("user")
+                // 其他所有请求都需要认证
                 .anyRequest().authenticated();
     }
 }

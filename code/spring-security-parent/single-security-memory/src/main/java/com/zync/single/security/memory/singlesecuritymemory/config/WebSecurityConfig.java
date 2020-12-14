@@ -2,13 +2,18 @@ package com.zync.single.security.memory.singlesecuritymemory.config;
 
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 /**
  * @author luoc
@@ -32,12 +37,41 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+    /**
+     * 角色继承，admin角色的人员有user角色
+     * TODO 暂时不是这样的效果，后续来排查  1. 引入Oauth2的原因？
+     * @return
+     */
+    @Bean
+    public RoleHierarchy roleHierarchy() {
+        RoleHierarchyImpl hierarchy = new RoleHierarchyImpl();
+        hierarchy.setHierarchy("ROLE_admin > ROLE_user");
+        return hierarchy;
+    }
+
+    /**
+     * 创建用户，方式二
+     * @return
+     */
+    @Override
+    @Bean
+    protected UserDetailsService userDetailsService() {
+        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+        manager.createUser(User.withUsername("admin").password(passwordEncoder().encode("123456")).roles("admin").build());
+        manager.createUser(User.withUsername("user").password(passwordEncoder().encode("123456")).roles("user").build());
+        return manager;
+    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("admin").password(passwordEncoder().encode("123456")).roles("admin")
-                .and()
-                .withUser("user").password(passwordEncoder().encode("123456")).roles("user");
+        // 创建用户：
+        // 方式一
+        //auth.inMemoryAuthentication()
+        //        .withUser("admin").password(passwordEncoder().encode("123456")).roles("admin")
+        //        .and()
+        //        .withUser("user").password(passwordEncoder().encode("123456")).roles("user");
+        // 方式二
+        auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
     }
 
 
