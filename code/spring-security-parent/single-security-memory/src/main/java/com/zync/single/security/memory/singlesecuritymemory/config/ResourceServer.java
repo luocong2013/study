@@ -28,6 +28,7 @@ public class ResourceServer extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/verifyCode/**").permitAll()
                 .antMatchers("/admin/**").hasRole("admin")
                 .antMatchers("/user/**").hasRole("user")
                 // 其他所有请求都需要认证
