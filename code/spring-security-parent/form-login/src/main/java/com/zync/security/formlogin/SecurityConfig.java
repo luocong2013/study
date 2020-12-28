@@ -38,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                // 设置登录页面地址为：login.html
                 .loginPage("/login.html")
                 .permitAll()
                 .and()
