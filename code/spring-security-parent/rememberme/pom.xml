@@ -12,7 +12,7 @@
     <artifactId>rememberme</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>rememberme</name>
-    <description>Demo project for Spring Boot</description>
+    <description>自动登录功能</description>
 
     <properties>
         <java.version>1.8</java.version>

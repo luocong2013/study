@@ -12,7 +12,7 @@
     <artifactId>form-login-3</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>form-login-3</name>
-    <description>Demo project for Spring Boot</description>
+    <description>前后端分离项目，使用JSON交互</description>
 
     <properties>
         <java.version>1.8</java.version>

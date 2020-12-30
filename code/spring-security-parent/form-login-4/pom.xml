@@ -12,7 +12,7 @@
     <artifactId>form-login-4</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>form-login-4</name>
-    <description>Demo project for Spring Boot</description>
+    <description>登录，授权</description>
 
     <properties>
         <java.version>1.8</java.version>
