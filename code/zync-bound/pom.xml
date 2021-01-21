@@ -27,6 +27,8 @@
         <hanlp.version>portable-1.7.7</hanlp.version>
         <!--jasypt spring boot starter-->
         <jasypt-spring-boot-starter.version>3.0.3</jasypt-spring-boot-starter.version>
+        <!-- easypoi-spring-boot-starter -->
+        <easypoi-spring-boot-starter.version>4.2.0</easypoi-spring-boot-starter.version>
     </properties>
 
     <dependencies>
@@ -81,6 +83,13 @@
             <groupId>com.github.ulisesbocchio</groupId>
             <artifactId>jasypt-spring-boot-starter</artifactId>
             <version>${jasypt-spring-boot-starter.version}</version>
+        </dependency>
+
+        <!-- easypoi-spring-boot-starter -->
+        <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-spring-boot-starter</artifactId>
+            <version>${easypoi-spring-boot-starter.version}</version>
         </dependency>
 
         <!--Curator-->
