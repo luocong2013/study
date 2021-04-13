@@ -6,7 +6,6 @@
         <groupId>com.zync.nacos</groupId>
         <artifactId>spring-cloud-alibaba-parent</artifactId>
         <version>${revision}</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>nacos-discovery-provide</artifactId>
