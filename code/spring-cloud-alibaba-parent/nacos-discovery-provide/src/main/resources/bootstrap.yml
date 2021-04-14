@@ -1,0 +1,14 @@
+server:
+  port: 8762
+spring:
+  application:
+    name: nacos-discovery-provide
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      discovery:
+        namespace: 26cbe664-0ed6-4288-9c7a-5e8b71974b15
+      config:
+        namespace: 26cbe664-0ed6-4288-9c7a-5e8b71974b15
+        group: nacos-test-group
+        file-extension: yaml
