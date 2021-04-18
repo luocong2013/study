@@ -29,6 +29,8 @@
 
         <!-- JMH 性能测试 -->
         <jmh.version>1.21</jmh.version>
+        <!-- jol-core 打印对象头信息 -->
+        <jol-core.version>0.15</jol-core.version>
 
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     </properties>
@@ -84,9 +86,16 @@
             <groupId>org.openjdk.jmh</groupId>
             <artifactId>jmh-generator-annprocess</artifactId>
             <version>${jmh.version}</version>
-            <scope>provided</scope>
+            <!--<scope>provided</scope>-->
         </dependency>
         <!-- JMH 性能测试 END -->
+
+        <!-- jol-core 打印对象头信息 -->
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>${jol-core.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
