@@ -88,6 +88,27 @@
         <option value="$PROJECT_DIR$/authorization-code-client/pom.xml" />
         <option value="$PROJECT_DIR$/single-security-jdbc/pom.xml" />
         <option value="$PROJECT_DIR$/single-security-jwt/pom.xml" />
+        <option value="$PROJECT_DIR$/csrf-2/pom.xml" />
+        <option value="$PROJECT_DIR$/cors-1/pom.xml" />
+        <option value="$PROJECT_DIR$/cors-2/pom.xml" />
+        <option value="$PROJECT_DIR$/csrf-1/pom.xml" />
+        <option value="$PROJECT_DIR$/csrf-3/pom.xml" />
+        <option value="$PROJECT_DIR$/form-login/pom.xml" />
+        <option value="$PROJECT_DIR$/form-login-2/pom.xml" />
+        <option value="$PROJECT_DIR$/form-login-3/pom.xml" />
+        <option value="$PROJECT_DIR$/form-login-4/pom.xml" />
+        <option value="$PROJECT_DIR$/form-login-5/pom.xml" />
+        <option value="$PROJECT_DIR$/httpbasic/pom.xml" />
+        <option value="$PROJECT_DIR$/rememberme/pom.xml" />
+        <option value="$PROJECT_DIR$/rememberme-persis/pom.xml" />
+        <option value="$PROJECT_DIR$/session-1/pom.xml" />
+        <option value="$PROJECT_DIR$/session-2/pom.xml" />
+        <option value="$PROJECT_DIR$/session-3/pom.xml" />
+        <option value="$PROJECT_DIR$/session-4/pom.xml" />
+        <option value="$PROJECT_DIR$/stricthttpfirewall/pom.xml" />
+        <option value="$PROJECT_DIR$/verifycode/pom.xml" />
+        <option value="$PROJECT_DIR$/verifycode-2/pom.xml" />
+        <option value="$PROJECT_DIR$/withjpa/pom.xml" />
       </list>
     </option>
   </component>

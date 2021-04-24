@@ -7,16 +7,37 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="spring-security-springboot" />
-        <module name="spring-security-springsecurity" />
-        <module name="single-security-memory" />
-        <module name="single-security-jwt" />
-        <module name="spring-security-session" />
-        <module name="distributed-security-order" />
-        <module name="authorization-code-authorization-server" />
-        <module name="authorization-code-resource-server" />
+        <module name="form-login-2" />
+        <module name="session-1" />
+        <module name="stricthttpfirewall" />
         <module name="distributed-security-uaa" />
+        <module name="session-2" />
+        <module name="form-login-4" />
+        <module name="single-security-memory" />
+        <module name="form-login-3" />
+        <module name="authorization-code-resource-server" />
+        <module name="session-3" />
+        <module name="session-4" />
+        <module name="form-login" />
+        <module name="form-login-5" />
+        <module name="cors-1" />
+        <module name="withjpa" />
+        <module name="verifycode" />
+        <module name="cors-2" />
         <module name="single-security-jdbc" />
+        <module name="distributed-security-order" />
+        <module name="rememberme" />
+        <module name="single-security-jwt" />
+        <module name="rememberme-persis" />
+        <module name="spring-security-springsecurity" />
+        <module name="verifycode-2" />
+        <module name="csrf-2" />
+        <module name="spring-security-session" />
+        <module name="csrf-1" />
+        <module name="csrf-3" />
+        <module name="spring-security-springboot" />
+        <module name="authorization-code-authorization-server" />
+        <module name="httpbasic" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
@@ -28,13 +49,34 @@
       <module name="authorization-code-authorization-server" options="-parameters" />
       <module name="authorization-code-client" options="-parameters" />
       <module name="authorization-code-resource-server" options="-parameters" />
+      <module name="cors-1" options="-parameters" />
+      <module name="cors-2" options="-parameters" />
+      <module name="csrf-1" options="-parameters" />
+      <module name="csrf-2" options="-parameters" />
+      <module name="csrf-3" options="-parameters" />
       <module name="distributed-security-order" options="-parameters" />
       <module name="distributed-security-uaa" options="-parameters" />
+      <module name="form-login" options="-parameters" />
+      <module name="form-login-2" options="-parameters" />
+      <module name="form-login-3" options="-parameters" />
+      <module name="form-login-4" options="-parameters" />
+      <module name="form-login-5" options="-parameters" />
+      <module name="httpbasic" options="-parameters" />
+      <module name="rememberme" options="-parameters" />
+      <module name="rememberme-persis" options="-parameters" />
+      <module name="session-1" options="-parameters" />
+      <module name="session-2" options="-parameters" />
+      <module name="session-3" options="-parameters" />
+      <module name="session-4" options="-parameters" />
       <module name="single-security-jdbc" options="-parameters" />
       <module name="single-security-jwt" options="-parameters" />
       <module name="single-security-memory" options="-parameters" />
       <module name="spring-security-session" options="" />
       <module name="spring-security-springboot" options="-parameters" />
+      <module name="stricthttpfirewall" options="-parameters" />
+      <module name="verifycode" options="-parameters" />
+      <module name="verifycode-2" options="-parameters" />
+      <module name="withjpa" options="-parameters" />
     </option>
   </component>
 </project>
