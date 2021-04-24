@@ -10,12 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3834279-c98d-4aa1-8cf4-3a1860e21f4b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-security-springsecurity/spring-security-springsecurity.iml" beforeDir="false" />
     </list>
     <list id="4d48b178-9a2d-4b74-a87f-5501edae4fe7" name="uncommit" comment="不提交的内容&#10;">
       <change afterPath="$PROJECT_DIR$/../ibed/src/main/java/com/zync/ibed/controller/IbedController.java" afterDir="false" />
@@ -251,7 +246,7 @@
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/cors-1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/withjpa" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -263,7 +258,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2363996" />
-    <property name="settings.editor.selected.configurable" value="preferences.customizations" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -651,7 +646,6 @@
       <item itemvalue="Spring Boot.SingleSecurityJdbcApplication" />
       <item itemvalue="Spring Boot.SingleSecurityJwtApplication" />
       <item itemvalue="Spring Boot.Csrf2Application" />
-      <item itemvalue="Tomcat Server.spring-security-springsecurity" />
       <item itemvalue="Spring Boot.Verifycode2Application" />
       <item itemvalue="Spring Boot.FormLogin2Application" />
       <item itemvalue="Spring Boot.FormLogin4Application" />
@@ -672,6 +666,7 @@
       <item itemvalue="Spring Boot.Session3Application" />
       <item itemvalue="Spring Boot.HttpbasicApplication" />
       <item itemvalue="Spring Boot.FormLogin3Application" />
+      <item itemvalue="Tomcat Server.spring-security-springsecurity" />
     </list>
     <recent_temporary>
       <list>
@@ -713,7 +708,8 @@
       <workItem from="1600494275781" duration="259000" />
       <workItem from="1600495134105" duration="61000" />
       <workItem from="1600495370249" duration="26000" />
-      <workItem from="1619274286849" duration="84000" />
+      <workItem from="1619274286849" duration="496000" />
+      <workItem from="1619275049727" duration="420000" />
     </task>
     <task id="LOCAL-00001" summary="Spring Security">
       <created>1594824474064</created>
@@ -785,7 +781,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599384072191</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="更换IDEA">
+      <created>1619274612742</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1619274612742</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -943,7 +946,12 @@
     <MESSAGE value="JdbcToken" />
     <MESSAGE value="JdbcToken 权限使用" />
     <MESSAGE value="JwtToken 对称密钥 &amp; 非对称密钥" />
-    <option name="LAST_COMMIT_MESSAGE" value="JwtToken 对称密钥 &amp; 非对称密钥" />
+    <MESSAGE value="更换IDEA" />
+    <option name="LAST_COMMIT_MESSAGE" value="更换IDEA" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
