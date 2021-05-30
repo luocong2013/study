@@ -5,10 +5,10 @@ spring:
     name: nacos-discovery-provide
   cloud:
     nacos:
-      server-addr: 127.0.0.1:8848
+      server-addr: 192.168.0.111:8848
       discovery:
-        namespace: 26cbe664-0ed6-4288-9c7a-5e8b71974b15
+        namespace: 92314d57-b92c-424f-a15a-ffd734b72bee
       config:
-        namespace: 26cbe664-0ed6-4288-9c7a-5e8b71974b15
+        namespace: 92314d57-b92c-424f-a15a-ffd734b72bee
         group: nacos-test-group
         file-extension: yaml

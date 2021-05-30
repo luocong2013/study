@@ -6,6 +6,7 @@
     <groupId>com.zync.nacos</groupId>
     <artifactId>spring-cloud-alibaba-parent</artifactId>
     <version>${revision}</version>
+    <packaging>pom</packaging>
 
     <properties>
         <revision>1.0.0-SNAPSHOT</revision>
