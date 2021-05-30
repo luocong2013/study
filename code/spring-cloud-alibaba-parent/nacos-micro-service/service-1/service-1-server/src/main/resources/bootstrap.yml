@@ -1,0 +1,31 @@
+server:
+  port: ${port:56030}
+
+spring:
+  application:
+    name: service1
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      server-addr: 192.168.0.111:8848
+      discovery:
+        namespace: 92314d57-b92c-424f-a15a-ffd734b72bee
+        cluster-name: DEFAULT
+      config:
+        namespace: 92314d57-b92c-424f-a15a-ffd734b72bee
+        group: NACOS_MICROSERVICE_GROUP
+        file-extension: yaml
+
+dubbo:
+  scan:
+    base-packages: com.zync.nacos
+  protocol:
+    name: dubbo
+    port: ${dubbo_port:20881}
+  registry:
+    address: nacos://192.168.0.111:8848
+  application:
+    qos-enable: false #dubbo运维服务是否开启
+  consumer:
+    check: false #启动时就检查依赖的服务
