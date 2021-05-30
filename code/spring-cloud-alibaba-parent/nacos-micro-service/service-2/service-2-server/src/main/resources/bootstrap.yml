@@ -25,7 +25,7 @@ dubbo:
     # dubbo协议
     name: dubbo
     # dubbo协议端口（-1 表示自增端口，从20880开始）
-    port: ${dubbo_port:20881}
+    port: ${dubbo_port:20891}
   registry:
     address: nacos://192.168.0.111:8848
   application:
