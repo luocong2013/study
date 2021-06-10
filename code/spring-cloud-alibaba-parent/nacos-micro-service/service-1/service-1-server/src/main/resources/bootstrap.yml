@@ -8,7 +8,7 @@ spring:
     allow-bean-definition-overriding: true
   cloud:
     nacos:
-      server-addr: 192.168.0.111:8848
+      server-addr: 192.168.3.111:8848
       discovery:
         namespace: 92314d57-b92c-424f-a15a-ffd734b72bee
         cluster-name: DEFAULT
@@ -24,7 +24,7 @@ dubbo:
     name: dubbo
     port: ${dubbo_port:20881}
   registry:
-    address: nacos://192.168.0.111:8848
+    address: nacos://192.168.3.111:8848
   application:
     qos-enable: false #dubbo运维服务是否开启
   consumer:
