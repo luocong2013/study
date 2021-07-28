@@ -39,4 +39,13 @@ public class IndexController {
         return "home/home";
     }
 
+    /**
+     * 图床跳转方法
+     * @return
+     */
+    @GetMapping("/toIbed")
+    public String toIbed() {
+        return "ibed/ibed";
+    }
+
 }
