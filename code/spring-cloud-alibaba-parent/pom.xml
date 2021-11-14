@@ -20,6 +20,7 @@
 
     <modules>
         <module>nacos-discovery-provide</module>
+        <module>nacos-discovery-gateway</module>
         <module>nacos-discovery-consumer</module>
         <module>nacos-micro-service</module>
     </modules>

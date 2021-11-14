@@ -1,0 +1,50 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: nacos-discovery-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enable: true
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowCredentials: true
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods: "*"
+      routes:
+        - id: url-proxy-0
+          uri: http://127.0.0.1:8888
+          predicates:
+            - Path=/api/**
+          filters:
+            - StripPrefix=1
+        - id: url-proxy-1
+          uri: https://www.baidu.com
+          predicates:
+            - Query=smile
+        - id: url-proxy-2
+          uri: https://www.baidu.com
+          predicates:
+            - Path=/
+        - id: url-proxy-3
+          uri: https://www.baidu.com
+          predicates:
+            - Path=/baidu
+          filters:
+            - SetPath=/
+        - id: url-proxy-3
+          uri: https://www.baidu.com
+          predicates:
+            - Path=/baidu1
+          filters:
+            - RewritePath=/baidu1,/
+        - id: url-proxy-4
+          uri: https://www.baidu.com
+          predicates:
+            - Path=/baidu2
+          filters:
+            - StripPrefix=1
