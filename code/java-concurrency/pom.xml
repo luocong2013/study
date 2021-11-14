@@ -16,7 +16,7 @@
         <commons-io.version>2.6</commons-io.version>
         <commons-lang3.version>3.9</commons-lang3.version>
         <commons-collections4.version>4.4</commons-collections4.version>
-        <guava.version>28.1-jre</guava.version>
+        <guava.version>29.0-jre</guava.version>
 
         <!-- Disruptor框架 -->
         <disruptor.version>3.4.2</disruptor.version>
