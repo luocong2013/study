@@ -10,13 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3834279-c98d-4aa1-8cf4-3a1860e21f4b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../.idea/study.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/qaplug_profiles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java-eight/src/main/java/com/zync/eight/Test1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <list id="4d48b178-9a2d-4b74-a87f-5501edae4fe7" name="uncommit" comment="不提交的内容&#10;" />
@@ -720,7 +714,7 @@
       <workItem from="1619274286849" duration="496000" />
       <workItem from="1619275049727" duration="420000" />
       <workItem from="1636877703430" duration="719000" />
-      <workItem from="1636879296086" duration="307000" />
+      <workItem from="1636879296086" duration="1051000" />
     </task>
     <task id="LOCAL-00001" summary="Spring Security">
       <created>1594824474064</created>
@@ -799,7 +793,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619274612742</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary=".idea">
+      <created>1636879729402</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1636879729402</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -958,7 +959,8 @@
     <MESSAGE value="JdbcToken 权限使用" />
     <MESSAGE value="JwtToken 对称密钥 &amp; 非对称密钥" />
     <MESSAGE value="更换IDEA" />
-    <option name="LAST_COMMIT_MESSAGE" value="更换IDEA" />
+    <MESSAGE value=".idea" />
+    <option name="LAST_COMMIT_MESSAGE" value=".idea" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
