@@ -16,7 +16,7 @@
         <lucene.version>8.1.0</lucene.version>
         <lombok.version>1.18.2</lombok.version>
         <commons-lang3.version>3.7</commons-lang3.version>
-        <commons-io.version>2.5</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
         <commons-collections4.version>4.2</commons-collections4.version>
         <junit.version>4.12</junit.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
