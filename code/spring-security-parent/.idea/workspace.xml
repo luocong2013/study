@@ -10,19 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3834279-c98d-4aa1-8cf4-3a1860e21f4b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../.idea/study.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/qaplug_profiles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
-    <list id="4d48b178-9a2d-4b74-a87f-5501edae4fe7" name="uncommit" comment="不提交的内容&#10;">
-      <change afterPath="$PROJECT_DIR$/../ibed/src/main/java/com/zync/ibed/controller/IbedController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ibed/src/main/resources/static/css/ibed/ibed.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ibed/src/main/resources/static/js/ibed/ibed.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ibed/src/main/resources/templates/ibed/ibed.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ibed/src/main/java/com/zync/ibed/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ibed/src/main/java/com/zync/ibed/controller/IndexController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ibed/src/main/java/com/zync/ibed/minio/TiebaMinioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ibed/src/main/java/com/zync/ibed/minio/TiebaMinioService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ibed/src/main/resources/static/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ibed/src/main/resources/static/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ibed/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../ibed/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-leetcode/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../java-leetcode/pom.xml" afterDir="false" />
-    </list>
+    <list id="4d48b178-9a2d-4b74-a87f-5501edae4fe7" name="uncommit" comment="不提交的内容&#10;" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -235,6 +232,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
@@ -246,7 +244,7 @@
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/withjpa" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -264,6 +262,13 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.zync.security.session.model" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="D:\mywork\study\code\spring-security-parent\single-security-jwt\src\main\resources" />
+      <recent name="D:\mywork\study\code\spring-security-parent\single-security-jwt\src\main\java\com\zync\single\security\jwt\singlesecurityjwt" />
+      <recent name="D:\mywork\study\code\spring-security-parent\single-security-jdbc\src\main\java\com\zync\single\security\jdbc\singlesecurityjdbc\web" />
+      <recent name="D:\mywork\study\code\spring-security-parent\single-security-jdbc\src\main\java\com\zync\single\security\jdbc\singlesecurityjdbc" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.zync.distributed.security.order" />
     </key>
@@ -274,13 +279,6 @@
       <recent name="com.zync.distributed.security.order.dao" />
       <recent name="com.zync.distributed.security.order.service" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\mywork\study\code\spring-security-parent\single-security-jwt\src\main\resources" />
-      <recent name="D:\mywork\study\code\spring-security-parent\single-security-jwt\src\main\java\com\zync\single\security\jwt\singlesecurityjwt" />
-      <recent name="D:\mywork\study\code\spring-security-parent\single-security-jdbc\src\main\java\com\zync\single\security\jdbc\singlesecurityjdbc\web" />
-      <recent name="D:\mywork\study\code\spring-security-parent\single-security-jdbc\src\main\java\com\zync\single\security\jdbc\singlesecurityjdbc" />
-      <recent name="D:\mywork\study\code\spring-security-parent\single-security-jdbc\src\main\java\com\zync\single\security\jdbc\singlesecurityjdbc\config" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
@@ -290,6 +288,17 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.SingleSecurityJwtApplication">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SingleSecurityJdbcApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="single-security-jdbc" />
       <extension name="coverage">
@@ -710,6 +719,8 @@
       <workItem from="1600495370249" duration="26000" />
       <workItem from="1619274286849" duration="496000" />
       <workItem from="1619275049727" duration="420000" />
+      <workItem from="1636877703430" duration="719000" />
+      <workItem from="1636879296086" duration="307000" />
     </task>
     <task id="LOCAL-00001" summary="Spring Security">
       <created>1594824474064</created>
