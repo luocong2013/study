@@ -36,7 +36,7 @@
 
 		<!--工具包-->
 		<hutool-all.version>4.5.0</hutool-all.version>
-		<commons-io.version>2.6</commons-io.version>
+		<commons-io.version>2.7</commons-io.version>
 		<commons-collections4.version>4.2</commons-collections4.version>
 
 
