@@ -10,7 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3834279-c98d-4aa1-8cf4-3a1860e21f4b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../java-eight/src/main/java/com/zync/eight/Test1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <list id="4d48b178-9a2d-4b74-a87f-5501edae4fe7" name="uncommit" comment="不提交的内容&#10;" />
@@ -282,17 +281,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.SingleSecurityJwtApplication">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="SingleSecurityJdbcApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="single-security-jdbc" />
       <extension name="coverage">
@@ -715,6 +703,7 @@
       <workItem from="1619275049727" duration="420000" />
       <workItem from="1636877703430" duration="719000" />
       <workItem from="1636879296086" duration="1051000" />
+      <workItem from="1636886275821" duration="127000" />
     </task>
     <task id="LOCAL-00001" summary="Spring Security">
       <created>1594824474064</created>
