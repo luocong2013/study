@@ -1,0 +1,41 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: multiple-datasource
+  datasource:
+    stock:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/seata_multiple_stock?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 1qaz2wsx
+    pay:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/seata_multiple_pay?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 1qaz2wsx
+    order:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/seata_multiple_order?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 1qaz2wsx
+seata:
+  tx-service-group: my_test_tx_group
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      namespace: 8b9bad7f-d58e-4f76-95f5-780aa8bdc9b3
+      group: SEATA_GROUP
+      username: nacos
+      password: nacos
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
+      group: SEATA_GROUP
+      namespace: 8b9bad7f-d58e-4f76-95f5-780aa8bdc9b3
+      cluster: default
+      username: nacos
+      password: nacos
