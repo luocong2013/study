@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option optimize_for = SPEED;
+option java_package = "com.zync.grpc.student.lib";
+option java_outer_classname = "StudentProto";
+
+service StudentService {
+
+  //单向阻塞数据传递
+  rpc getRealName (StudentRequest) returns (StudentResponse) {};
+
+  //单向服务器端流式响应
+  rpc getRealByAge (ByAgeRequest) returns (stream StudentByAgeResponse) {};
+
+  //单向客户端端流式请求
+  rpc getStudentByAge (stream ByAgeRequest) returns (StudentListResponse) {};
+
+  //双向流式请求和响应
+  rpc getStudentByBItalk (stream StreamRequest) returns (stream StreamResponse) {};
+}
+
+message StudentRequest {
+  string name = 1;
+}
+
+message StudentResponse {
+  string realName = 1;
+}
+
+message ByAgeRequest {
+  string age = 1;
+}
+
+message StudentByAgeResponse {
+  string name = 1;
+  string age = 2;
+}
+
+message StudentListResponse {
+  repeated StudentByAgeResponse response = 1;
+}
+
+
+message StreamRequest {
+  string request_info = 1;
+}
+
+
+message StreamResponse {
+  string response_info = 1;
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.zync.grpc</groupId>
+    <artifactId>spring-boot-grpc-parent</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
+
+    <description>Google GRpc 测试</description>
+
+    <modules>
+        <module>grpc-common</module>
+        <module>grpc-server</module>
+        <module>grpc-client</module>
+    </modules>
+
+    <properties>
+        <revision>1.0.0-SNAPSHOT</revision>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <grpc.version>1.39.0</grpc.version>
+        <os.plugin.version>1.7.0</os.plugin.version>
+        <protobuf.plugin.version>0.6.1</protobuf.plugin.version>
+        <protoc.version>3.17.3</protoc.version>
+        <spring-boot.version>2.6.1</spring-boot.version>
+        <net-devh-grpc.version>2.12.0.RELEASE</net-devh-grpc.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring Boot Dependencies -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

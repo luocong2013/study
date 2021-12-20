@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+// golang package define
+option go_package = "nikita/pkg/ansible/proto/";
+
+option java_multiple_files = true;
+option optimize_for = SPEED;
+option java_package = "com.zync.grpc.ansible.lib";
+option java_outer_classname = "PlaybookProto";
+
+service Playbook {
+  rpc ExecutePlaybook (PlaybookRequest) returns (stream PlayBookResponse) {}
+}
+
+message PlaybookRequest {
+
+  // 任务类型枚举
+  enum TaskType {
+    // playbook
+    PLAYBOOK = 0;
+    // 脚本
+    COMMAND = 1;
+  }
+
+  TaskType type = 1;
+  // 任务ID
+  int64 taskId = 2;
+  // 文件流
+  bytes playbook = 3;
+  // 脚本
+  string command = 4;
+  // host ip 文件流
+  bytes host = 5;
+}
+
+message PlayBookResponse {
+
+  // 任务执行状态
+  enum Status {
+    // 未执行
+    UN_EXECUTE = 0;
+    // 执行中
+    IN_EXECUTE = 1;
+    // 执行结束
+    END_EXECUTE = 2;
+  }
+
+  // 任务ID
+  int64 taskId = 1;
+  // 执行状态
+  Status status = 2;
+  // 日志输出
+  string output = 3;
+}
