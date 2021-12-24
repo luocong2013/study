@@ -1,0 +1,35 @@
+<idea-plugin>
+  <id>com.zync.unique.plugin.id</id>
+  <name>Test</name>
+  <version>1.0</version>
+  <vendor email="luocong2013@outlook.com" url="https://lalita.gitee.io/">SF-Express</vendor>
+
+  <description><![CDATA[
+      测试Idea插件.<br>
+    ]]></description>
+
+  <change-notes><![CDATA[
+      Add change notes here.<br>
+      <em>most HTML tags may be used</em>
+    ]]>
+  </change-notes>
+
+  <!-- please see https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+       on how to target different products -->
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+    <action id="Test.TestAction" class="com.zync.plugin.TestAction" text="Test" description="test idea plugin">
+      <add-to-group group-id="OtherMenu" anchor="last"/>
+    </action>
+  </actions>
+
+</idea-plugin>
