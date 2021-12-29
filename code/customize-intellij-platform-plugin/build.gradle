@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version "${intellijPluginVersion}"
+}
+
+group = "${pluginGroup}" as String
+version = "${pluginVersion}" as String
+// 编译时使用的jdk版本
+// Java language level used to compile sources and to generate the files for - Java 11 is required since 2020.3
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.apache.commons:commons-lang3:${commonsLang3Version}"
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    pluginName = "${pluginName}"
+    version = "${platformVersion}" as String
+    type = "${platformType}"
+    plugins = ['java']
+}
+patchPluginXml {
+    changeNotes = """
+      Add change notes here.<br>
+      <em>most HTML tags may be used</em>"""
+}
+test {
+    useJUnitPlatform()
+}
