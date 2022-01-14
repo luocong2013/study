@@ -11,19 +11,23 @@ public class CloneClient {
 
     public static void main(String[] args) throws CloneNotSupportedException {
         CloneDomain domain = new CloneDomain(11, "张三");
-        CloneDomain clone = (CloneDomain) domain.clone();
+        String domainNameClass = domain.getName().getClass().getName() + "@" + Integer.toHexString(domain.getName().hashCode());
+        System.out.println(domainNameClass);
 
-        System.out.println(domain.getName().getClass().getName() + "@" + Integer.toHexString(domain.getName().hashCode()));
-        System.out.println(clone.getName().getClass().getName() + "@" + Integer.toHexString(clone.getName().hashCode()));
-        System.out.println(domain.getName() == clone.getName() ? "浅拷贝" : "深拷贝");
+        CloneDomain clone = (CloneDomain) domain.clone();
+        String cloneNameClass = clone.getName().getClass().getName() + "@" + Integer.toHexString(clone.getName().hashCode());
+        System.out.println(cloneNameClass);
+        System.out.println(domainNameClass.equals(cloneNameClass) ? "浅拷贝" : "深拷贝");
 
         CloneDomain shallowCopy = BeanUtil.shallowCopy(domain, CloneDomain.class);
-        System.out.println(shallowCopy.getName().getClass().getName() + "@" + Integer.toHexString(shallowCopy.getName().hashCode()));
-        System.out.println(domain.getName() == shallowCopy.getName() ? "浅拷贝" : "深拷贝");
+        String shallowCopyNameClass = shallowCopy.getName().getClass().getName() + "@" + Integer.toHexString(shallowCopy.getName().hashCode());
+        System.out.println(shallowCopyNameClass);
+        System.out.println(domainNameClass.equals(shallowCopyNameClass) ? "浅拷贝" : "深拷贝");
 
 
         CloneDomain copyProperties = cn.hutool.core.bean.BeanUtil.copyProperties(domain, CloneDomain.class);
-        System.out.println(copyProperties.getName().getClass().getName() + "@" + Integer.toHexString(copyProperties.getName().hashCode()));
-        System.out.println(domain.getName() == copyProperties.getName() ? "浅拷贝" : "深拷贝");
+        String copyPropertiesNameClass = copyProperties.getName().getClass().getName() + "@" + Integer.toHexString(copyProperties.getName().hashCode());
+        System.out.println(copyPropertiesNameClass);
+        System.out.println(domainNameClass.equals(copyPropertiesNameClass) ? "浅拷贝" : "深拷贝");
     }
 }
