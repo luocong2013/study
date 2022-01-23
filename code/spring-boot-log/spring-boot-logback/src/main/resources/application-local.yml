@@ -1,0 +1,31 @@
+logging:
+  file:
+    # LOG_PATH
+    path: local_logs
+    # LOG_FILE
+    name: local_app_info
+
+# Enable debug output模式下，屏蔽springboot的debug日志 {@link org.springframework.boot.context.logging.LoggingApplicationListener}
+#logging:
+#  level:
+#    web: info
+#    org:
+#      springframework:
+#        boot: info
+
+# 在配置文件中定义包的日志分组和日志级别(优先级高于在logback.xml、logback-spring.xml等文件的配置) {@link org.springframework.boot.context.logging.LoggingApplicationListener}
+#logging:
+#  group:
+#    customer:
+#      - com.zync.logback.controller
+#      - com.zync.logback.service
+#  level:
+#    customer: error
+
+# 在配置文件中定义包的日志级别(优先级高于在logback.xml、logback-spring.xml等文件的配置) {@link org.springframework.boot.context.logging.LoggingApplicationListener}
+#logging:
+#  level:
+#    com:
+#      zync:
+#        logback:
+#          controller: warn
