@@ -33,8 +33,8 @@
     <!-- %.-n 如果长度超过会从结尾开始截取直到长度对应 -->
     <!-- %n.m 第一种情况和第三种情况结合，1、2和3、4可以任意结合 -->
     <!-- 此外，还可以通过"%black", "%red", "%green", "%yellow", "%blue", "%magenta", "%cyan", "%white", "%gray", "%boldRed", "%boldGreen", "%boldYellow", "%boldBlue", "%boldMagenta", "%boldCyan", "%boldWhite"和"%highlight"来加颜色 -->
-    <property name="CUSTOMIZE_CONSOLE_LOG_PATTERN" value="[%highlight(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}})] [%highlight(${LOG_LEVEL_PATTERN:-%5p})] [%highlight(${PID:- })] %clr(---){faint} [%highlight(%20.20t)] %clr(%-50.50c{50}:%-4L){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" />
-    <property name="CUSTOMIZE_FILE_LOG_PATTERN" value="[%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}] [${LOG_LEVEL_PATTERN:-%5p}] [${PID:- }] --- [%t] %-50.50c{50}:%-4L : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" />
+    <property name="CUSTOMIZE_CONSOLE_LOG_PATTERN" value="[%highlight(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}})] [%highlight(${LOG_LEVEL_PATTERN:-%5p})] [%highlight(${PID:- })] %clr(---){faint} [%highlight(%20.20t)] %clr(%c{50}:%L){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" />
+    <property name="CUSTOMIZE_FILE_LOG_PATTERN" value="[%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}] [${LOG_LEVEL_PATTERN:-%5p}] [${PID:- }] --- [%t] %c{50}:%L : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" />
 
     <!-- ConsoleAppender 控制台输出日志 -->
     <appender name="CONSOLE-LOG" class="ch.qos.logback.core.ConsoleAppender">
@@ -179,7 +179,7 @@
         <appender-ref ref="INFO-LOG"/>
     </appender>
 
-    <logger name="com.zync.logback.controller" level="info" additivity="false">
+    <logger name="com.zync.logback.test" level="INFO" additivity="false">
         <appender-ref ref="CONSOLE-LOG" />
     </logger>
 
@@ -204,7 +204,7 @@
             <!-- 文件输出 -->
             <appender-ref ref="ERROR-LOG"/>
             <appender-ref ref="WARN-LOG"/>
-            <appender-ref ref="INFO-LOG"/>
+            <appender-ref ref="ASYNC-INFO"/>
             <appender-ref ref="DEBUG-LOG"/>
             <appender-ref ref="TRACE-LOG"/>
         </root>
