@@ -15,6 +15,7 @@
     <!-- 日志最大的历史 默认: 30天 -->
     <property name="maxHistory" value="${LOGBACK_ROLLINGPOLICY_MAX_HISTORY:-30}"/>
 
+    <!-- 参考: ch.qos.logback.classic.PatternLayout -->
     <!-- 格式化输出: %n是换行符 -->
     <!-- %c{n} / %lo{n} / %logger{n} 所对应logger的名字，后面跟长度，如果长度过长会吧前面的包名省略到首字母 -->
     <!-- %C{n} / %class{n} logger所在class的名字，其他的和上面一样。一般来说logger的名字和所在的class名字最好一样 -->
