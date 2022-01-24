@@ -10,6 +10,8 @@
 
     <!-- 引用 Spring Boot 的 logback 基础配置 -->
     <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <!-- 导入自定义logback.properties文件 -->
+    <property resource="logback.properties" />
     <!-- 定义日志文件 输出位置 -->
     <property name="log_dir" value="${LOG_PATH:-logs}"/>
     <!-- 日志最大的历史 默认: 30天 -->
@@ -211,7 +213,7 @@
     </springProfile>
     <!-- 其他环境 -->
     <springProfile name="dev,default">
-        <root level="INFO">
+        <root level="${ROOT_LEVEL}">
             <!-- 控制台输出 -->
             <appender-ref ref="CONSOLE-LOG"/>
             <!-- 文件输出 -->
