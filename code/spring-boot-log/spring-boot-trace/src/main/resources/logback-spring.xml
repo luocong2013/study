@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 级别从高到低 OFF 、 FATAL 、 ERROR 、 WARN 、 INFO 、 DEBUG 、 TRACE 、 ALL -->
+<!-- 日志输出规则 根据当前ROOT 级别，日志输出时，级别高于root默认的级别时 会输出 -->
+<!-- 以下 每个配置的 filter 是过滤掉输出文件里面，会出现高级别文件，依然出现低级别的日志信息，通过filter 过滤只记录本级别的日志 -->
+<!-- scan 当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。 -->
+<!-- scanPeriod 设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。 -->
+<!-- debug 当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 -->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <!-- 引用 Spring Boot 的 logback 基础配置 -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <!-- 导入自定义logback.properties文件 -->
+    <property resource="logback.properties" />
+    <!-- 定义日志文件 输出位置 -->
+    <property name="log_dir" value="${LOG_PATH:-logs}"/>
+    <!-- 日志最大的历史 默认: 30天 -->
+    <property name="maxHistory" value="${LOGBACK_ROLLINGPOLICY_MAX_HISTORY:-30}"/>
+
+    <!-- 参考: ch.qos.logback.classic.PatternLayout -->
+    <!-- 格式化输出: %n是换行符 -->
+    <!-- %c{n} / %lo{n} / %logger{n} 所对应logger的名字，后面跟长度，如果长度过长会吧前面的包名省略到首字母 -->
+    <!-- %C{n} / %class{n} logger所在class的名字，其他的和上面一样。一般来说logger的名字和所在的class名字最好一样 -->
+    <!-- %d{pattern} / %date{pattern} 时间，pattern里可以用分号来指定输出多个 -->
+    <!-- %L / %line logger所在文件的行数 -->
+    <!-- %m / %msg / %message logger的信息 -->
+    <!-- %p / %le / %level 日志等级 -->
+    <!-- %t / %thread 线程名 -->
+    <!-- %X{key:-defaultVal} / %mdc{key:-defaultVal} MDC信息，MDC也是log4j的东西，也自然可以用在这里 -->
+    <!-- %ex{depth} / %exception{depth} / %throwable{depth} 错误信息，默认值是full，也就是全栈打出 -->
+    <!-- 制表对齐 -->
+    <!-- %n 如果长度不够会在左边加空格 -->
+    <!-- %-n 如果长度不够会在右边加空格 -->
+    <!-- %.n 如果长度超过会从开头开始截取直到长度对应 -->
+    <!-- %.-n 如果长度超过会从结尾开始截取直到长度对应 -->
+    <!-- %n.m 第一种情况和第三种情况结合，1、2和3、4可以任意结合 -->
+    <!-- 此外，还可以通过"%black", "%red", "%green", "%yellow", "%blue", "%magenta", "%cyan", "%white", "%gray", "%boldRed", "%boldGreen", "%boldYellow", "%boldBlue", "%boldMagenta", "%boldCyan", "%boldWhite"和"%highlight"来加颜色 -->
+    <property name="CUSTOMIZE_CONSOLE_LOG_PATTERN" value="[%highlight(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}})] [%highlight(${LOG_LEVEL_PATTERN:-%5p})] [%highlight(${PID:- })] [%red(%19.19X{traceId:-0})] %clr(---){faint} [%highlight(%20.20t)] %clr(%c{50}:%L){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" />
+    <property name="CUSTOMIZE_FILE_LOG_PATTERN" value="[%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}] [${LOG_LEVEL_PATTERN:-%5p}] [${PID:- }] [%X{traceId:-0}] --- [%t] %c{50}:%L : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" />
+
+    <!-- ConsoleAppender 控制台输出日志 -->
+    <appender name="CONSOLE-LOG" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- 设置日志输出格式 -->
+            <pattern>${CUSTOMIZE_CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- ERROR级别日志 -->
+    <!-- 滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件 RollingFileAppender -->
+    <appender name="ERROR-LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，只记录ERROR级别的日志 -->
+        <!-- 如果日志级别等于配置级别，过滤器会根据onMath 和 onMismatch接收或拒绝日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!-- 设置过滤级别 -->
+            <level>ERROR</level>
+            <!-- 用于配置符合过滤条件的操作 -->
+            <onMatch>ACCEPT</onMatch>
+            <!-- 用于配置不符合过滤条件的操作 -->
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!-- 根据时间来制定滚动策略, 既负责滚动也负责出发滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 滚动后的日志文件名 可相对、和绝对路径 -->
+            <fileNamePattern>${log_dir}/error/${LOGBACK_ROLLINGPOLICY_FILE_NAME_PATTERN:-%d{yyyy-MM-dd}/app_error.log}</fileNamePattern>
+            <!-- 启动服务时，是否清理历史日志，一般不建议清理 -->
+            <cleanHistoryOnStart>${LOGBACK_ROLLINGPOLICY_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
+            <!-- 日志文件的总大小，0 表示不限制 -->
+            <totalSizeCap>${LOGBACK_ROLLINGPOLICY_TOTAL_SIZE_CAP:-0}</totalSizeCap>
+            <!-- 日志文件的保留天数 -->
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <!-- 设置日志输出格式 -->
+            <pattern>${CUSTOMIZE_FILE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+
+    <!-- WARN级别日志 -->
+    <appender name="WARN-LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，只记录WARN级别的日志 -->
+        <!-- 如果日志级别等于配置级别，过滤器会根据onMath 和 onMismatch接收或拒绝日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!-- 设置过滤级别 -->
+            <level>WARN</level>
+            <!-- 用于配置符合过滤条件的操作 -->
+            <onMatch>ACCEPT</onMatch>
+            <!-- 用于配置不符合过滤条件的操作 -->
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!-- 根据大小和时间来制定滚动策略, 既负责滚动也负责出发滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- 滚动后的日志文件名 可相对、和绝对路径 -->
+            <fileNamePattern>${log_dir}/warn/${LOGBACK_ROLLINGPOLICY_FILE_NAME_PATTERN:-%d{yyyy-MM-dd}/app_warn.%i.gz}</fileNamePattern>
+            <!-- 启动服务时，是否清理历史日志，一般不建议清理 -->
+            <cleanHistoryOnStart>${LOGBACK_ROLLINGPOLICY_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
+            <!-- 日志文件，到达多少容量，进行滚动 -->
+            <maxFileSize>${LOGBACK_ROLLINGPOLICY_MAX_FILE_SIZE:-10MB}</maxFileSize>
+            <!-- 日志文件的总大小，0 表示不限制 -->
+            <totalSizeCap>${LOGBACK_ROLLINGPOLICY_TOTAL_SIZE_CAP:-0}</totalSizeCap>
+            <!-- 日志文件的保留天数 -->
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <!-- 设置日志输出格式 -->
+            <pattern>${CUSTOMIZE_FILE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+
+    <!-- INFO级别日志 -->
+    <appender name="INFO-LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log_dir}/info/${LOGBACK_ROLLINGPOLICY_FILE_NAME_PATTERN:-%d{yyyy-MM-dd}/${LOG_FILE:-app_info}.%i.gz}</fileNamePattern>
+            <cleanHistoryOnStart>${LOGBACK_ROLLINGPOLICY_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
+            <maxFileSize>${LOGBACK_ROLLINGPOLICY_MAX_FILE_SIZE:-10MB}</maxFileSize>
+            <totalSizeCap>${LOGBACK_ROLLINGPOLICY_TOTAL_SIZE_CAP:-0}</totalSizeCap>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <!-- 设置日志输出格式 -->
+            <pattern>${CUSTOMIZE_FILE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+
+    <!-- DEBUG级别日志 -->
+    <appender name="DEBUG-LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log_dir}/debug/${LOGBACK_ROLLINGPOLICY_FILE_NAME_PATTERN:-%d{yyyy-MM-dd}/app_debug.%i.gz}</fileNamePattern>
+            <cleanHistoryOnStart>${LOGBACK_ROLLINGPOLICY_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
+            <maxFileSize>${LOGBACK_ROLLINGPOLICY_MAX_FILE_SIZE:-10MB}</maxFileSize>
+            <totalSizeCap>${LOGBACK_ROLLINGPOLICY_TOTAL_SIZE_CAP:-0}</totalSizeCap>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <!-- 设置日志输出格式 -->
+            <pattern>${CUSTOMIZE_FILE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+
+    <!-- TRACE级别日志 -->
+    <appender name="TRACE-LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>TRACE</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log_dir}/trace/${LOGBACK_ROLLINGPOLICY_FILE_NAME_PATTERN:-%d{yyyy-MM-dd}/app_trace.%i.gz}</fileNamePattern>
+            <cleanHistoryOnStart>${LOGBACK_ROLLINGPOLICY_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
+            <maxFileSize>${LOGBACK_ROLLINGPOLICY_MAX_FILE_SIZE:-10MB}</maxFileSize>
+            <totalSizeCap>${LOGBACK_ROLLINGPOLICY_TOTAL_SIZE_CAP:-0}</totalSizeCap>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <!-- 设置日志输出格式 -->
+            <pattern>${CUSTOMIZE_FILE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 异步写入日志，提升性能 -->
+    <appender name="ASYNC-INFO" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 设置不丢失日志。默认的，如果队列的 80% 已满，则会丢弃 TRACT、DEBUG、INFO 级别的日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列的深度，该值会影响性能。默认值为 256 -->
+        <queueSize>1000</queueSize>
+        <!-- 添加附加的appender，最多只能添加一个 -->
+        <appender-ref ref="INFO-LOG"/>
+    </appender>
+
+    <logger name="com.zync.logback.test" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE-LOG" />
+    </logger>
+
+    <!-- ROOT 级别 DEBUG，打印DEBUG级别日志及以上级别日志 -->
+    <!--<root level="DEBUG">
+        &lt;!&ndash; 控制台输出 &ndash;&gt;
+        <appender-ref ref="CONSOLE-LOG"/>
+        &lt;!&ndash; 文件输出 &ndash;&gt;
+        <appender-ref ref="ERROR-LOG"/>
+        <appender-ref ref="WARN-LOG"/>
+        <appender-ref ref="INFO-LOG"/>
+        <appender-ref ref="DEBUG-LOG"/>
+        <appender-ref ref="TRACE-LOG"/>
+    </root>-->
+
+    <!-- 区分SpringBoot环境配置START -->
+    <!-- 本地环境 -->
+    <springProfile name="local">
+        <root level="TRACE">
+            <!-- 控制台输出 -->
+            <appender-ref ref="CONSOLE-LOG"/>
+            <!-- 文件输出 -->
+            <appender-ref ref="ERROR-LOG"/>
+            <appender-ref ref="WARN-LOG"/>
+            <appender-ref ref="ASYNC-INFO"/>
+            <appender-ref ref="DEBUG-LOG"/>
+            <appender-ref ref="TRACE-LOG"/>
+        </root>
+    </springProfile>
+    <!-- 其他环境 -->
+    <springProfile name="dev,default">
+        <root level="${ROOT_LEVEL}">
+            <!-- 控制台输出 -->
+            <appender-ref ref="CONSOLE-LOG"/>
+            <!-- 文件输出 -->
+            <appender-ref ref="ERROR-LOG"/>
+            <appender-ref ref="WARN-LOG"/>
+            <appender-ref ref="ASYNC-INFO"/>
+            <appender-ref ref="DEBUG-LOG"/>
+            <appender-ref ref="TRACE-LOG"/>
+        </root>
+    </springProfile>
+    <!-- 区分SpringBoot环境配置END -->
+
+</configuration>

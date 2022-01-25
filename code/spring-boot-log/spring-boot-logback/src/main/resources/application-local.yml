@@ -29,3 +29,9 @@ logging:
 #      zync:
 #        logback:
 #          controller: warn
+
+# 在配置文件中配置logback.properties文件中使用到的配置 {@link org.springframework.boot.logging.logback.LogbackLoggingSystemProperties} {@link org.springframework.boot.logging.LoggingSystemProperties}
+#logging:
+#  pattern:
+#    level: "%p"
+#    dateformat: "yyyy-MM-dd"
