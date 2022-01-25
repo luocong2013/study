@@ -29,4 +29,10 @@ public interface LogbackTraceService {
      * @return
      */
     String okHttp(String httpUrl);
+
+    /**
+     * 使用线程池的okHttp执行GET请求
+     * @param httpUrl
+     */
+    void threadPool(final String httpUrl);
 }

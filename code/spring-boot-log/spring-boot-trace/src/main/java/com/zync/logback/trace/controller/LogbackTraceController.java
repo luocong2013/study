@@ -78,4 +78,11 @@ public class LogbackTraceController {
         return ResponseEntity.ok(logbackTraceService.okHttp(httpUrl));
     }
 
+    @GetMapping("/threadPool")
+    public ResponseEntity<String> threadPool(@RequestParam(value = "httpUrl", defaultValue = Const.HTTP_URL) String httpUrl) {
+        log.info("Controller: 使用线程池的okHttp执行GET请求, httpUrl: [{}]", httpUrl);
+        logbackTraceService.threadPool(httpUrl);
+        return ResponseEntity.ok(HttpStatus.OK.getReasonPhrase());
+    }
+
 }
