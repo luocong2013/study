@@ -1,0 +1,9 @@
+server:
+  port: 9997
+  servlet:
+    context-path: /log4j2
+
+logging:
+  file:
+    # LOG_PATH
+    path: local_logs

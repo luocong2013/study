@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 日志级别以及优先级排序: OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL -->
+<!-- Configuration后面的status,这个用于设置log4j2自身内部的信息输出,可以不设置,当设置成trace时,你会看到log4j2内部各种详细输出 -->
+<!-- monitorInterval：Log4j能够自动检测修改配置 文件和重新配置本身,设置间隔秒数 -->
+<Configuration status="WARN" monitorInterval="1800">
+    <!-- log4j2日志格式化输出参考: org.apache.logging.log4j.core.pattern.PatternConverter -->
+    <!-- 这是一个接口, 具体格式化在子类实现, 如: %c / %logger 的具体实现在: org.apache.logging.log4j.core.pattern.LoggerPatternConverter -->
+    <!-- 如: %clr / %color 的具体实现在: org.springframework.boot.logging.log4j2.ColorConverter -->
+    <!-- @ConverterKeys({ "c", "logger" }) 表示使用的格式化字符 -->
+    <Properties>
+        <!-- ==============================================公共配置============================================== -->
+        <Property name="LOG_EXCEPTION_CONVERSION_WORD">%xwEx</Property>
+        <Property name="LOG_LEVEL_PATTERN">%5p</Property>
+        <!-- 日期格式化 -->
+        <Property name="LOG_DATEFORMAT_PATTERN">yyyy-MM-dd HH:mm:ss.SSS</Property>
+        <!-- 控制台日志输出格式 -->
+        <Property name="CONSOLE_LOG_PATTERN">[%highlight{%d{${sys:LOG_DATEFORMAT_PATTERN}}}] [%highlight{${sys:LOG_LEVEL_PATTERN}}] [%clr{%pid}{magenta}] %clr{---}{faint} [%highlight{%20.20t}] %clr{%c{50}:%L}{cyan} %clr{:}{faint} %m%n${sys:LOG_EXCEPTION_CONVERSION_WORD}</Property>
+        <!-- 文件日志输出格式 -->
+        <Property name="FILE_LOG_PATTERN">[%d{${sys:LOG_DATEFORMAT_PATTERN}}] [${sys:LOG_LEVEL_PATTERN}] [%pid] --- [%t] %c{50}:%L : %m%n${sys:LOG_EXCEPTION_CONVERSION_WORD}</Property>
+
+        <!-- 日志默认存放的位置,可以设置为项目根路径下,也可指定绝对路径 -->
+        <!-- 存放路径一:通用路径,window平台 -->
+        <!-- <property name="LOG_DIR">d:/logs</property> -->
+        <!-- 存放路径二:web工程专用,java项目没有这个变量,需要删掉,否则会报异常,这里把日志放在web项目的根目录下 -->
+        <!-- <property name="LOG_DIR">${web:rootDir}</property> -->
+        <!-- 存放路径三:web工程专用,java项目没有这个变量,需要删掉,否则会报异常,这里把日志放在tocmat的logs目录下 -->
+        <!-- <Property name="LOG_DIR">${sys:catalina.home}/logs</Property> -->
+        <Property name="LOG_DIR">${sys:LOG_PATH}</Property>
+
+        <!-- 日志默认切割的最小单位 -->
+        <Property name="EVERY_FILE_SIZE">20MB</Property>
+        <!-- 日志默认输出级别 -->
+        <Property name="ROOT_LOG_LEVEL">DEBUG</Property>
+
+        <!-- ===========================================所有级别日志配置=========================================== -->
+        <!-- 日志默认存放路径(所有级别日志) -->
+        <Property name="ROLLING_FILENAME">${LOG_DIR}/all/all.log</Property>
+        <!-- 日志默认压缩路径,将超过指定文件大小的日志,自动存入按"年月"建立的文件夹下面并进行压缩,作为存档 -->
+        <Property name="ROLLING_FILE_PATTERN">${LOG_DIR}/all/%d{yyyy-MM}/all-%d{yyyy-MM-dd-HH}-%i.log.gz</Property>
+        <!-- 日志默认同类型日志,同一文件夹下可以存放的数量,不设置此属性则默认为7个,filePattern最后要带%i才会生效 -->
+        <Property name="ROLLING_MAX">500</Property>
+        <!-- 日志默认同类型日志,多久生成一个新的日志文件,这个配置需要和filePattern结合使用;
+        		如果设置为1,filePattern是%d{yyyy-MM-dd}到天的格式,则间隔一天生成一个文件
+        		如果设置为12,filePattern是%d{yyyy-MM-dd-HH}到小时的格式,则间隔12小时生成一个文件 -->
+        <Property name="ROLLING_TIME_INTERVAL">12</Property>
+        <!-- 日志默认同类型日志,是否对封存时间进行调制,若为true,则封存时间将以0点为边界进行调整,
+        		如:现在是早上3am,interval是4,那么第一次滚动是在4am,接着是8am,12am...而不是7am -->
+        <Property name="ROLLING_TIME_MODULATE">true</Property>
+
+        <!-- ============================================Info级别日志============================================ -->
+        <!-- Info日志默认存放路径(Info级别日志) -->
+        <Property name="INFO_FILENAME">${LOG_DIR}/info/info.log</Property>
+        <!-- Info日志默认压缩路径,将超过指定文件大小的日志,自动存入按"年月"建立的文件夹下面并进行压缩,作为存档 -->
+        <Property name="INFO_FILE_PATTERN">${LOG_DIR}/info/%d{yyyy-MM}/info-%d{yyyy-MM-dd}-%i.log.gz</Property>
+        <!-- Info日志默认同一文件夹下可以存放的数量,不设置此属性则默认为7个 -->
+        <Property name="INFO_MAX">100</Property>
+        <!-- 日志默认同类型日志,多久生成一个新的日志文件,这个配置需要和filePattern结合使用;
+        		如果设置为1,filePattern是%d{yyyy-MM-dd}到天的格式,则间隔一天生成一个文件
+        		如果设置为12,filePattern是%d{yyyy-MM-dd-HH}到小时的格式,则间隔12小时生成一个文件 -->
+        <Property name="INFO_TIME_INTERVAL">1</Property>
+        <!-- 日志默认同类型日志,是否对封存时间进行调制,若为true,则封存时间将以0点为边界进行调整,
+        		如:现在是早上3am,interval是4,那么第一次滚动是在4am,接着是8am,12am...而不是7am -->
+        <Property name="INFO_TIME_MODULATE">true</Property>
+
+        <!-- ============================================Warn级别日志============================================ -->
+        <!-- Warn日志默认存放路径(Warn级别日志) -->
+        <Property name="WARN_FILENAME">${LOG_DIR}/warn/warn.log</Property>
+        <!-- Warn日志默认压缩路径,将超过指定文件大小的日志,自动存入按"年月"建立的文件夹下面并进行压缩,作为存档 -->
+        <Property name="WARN_FILE_PATTERN">${LOG_DIR}/warn/%d{yyyy-MM}/warn-%d{yyyy-MM-dd}-%i.log.gz</Property>
+        <!-- Warn日志默认同一文件夹下可以存放的数量,不设置此属性则默认为7个 -->
+        <Property name="WARN_MAX">100</Property>
+        <!-- 日志默认同类型日志,多久生成一个新的日志文件,这个配置需要和filePattern结合使用;
+        		如果设置为1,filePattern是%d{yyyy-MM-dd}到天的格式,则间隔一天生成一个文件
+        		如果设置为12,filePattern是%d{yyyy-MM-dd-HH}到小时的格式,则间隔12小时生成一个文件 -->
+        <Property name="WARN_TIME_INTERVAL">1</Property>
+        <!-- 日志默认同类型日志,是否对封存时间进行调制,若为true,则封存时间将以0点为边界进行调整,
+        		如:现在是早上3am,interval是4,那么第一次滚动是在4am,接着是8am,12am...而不是7am -->
+        <Property name="WARN_TIME_MODULATE">true</Property>
+
+        <!-- ============================================Error级别日志============================================ -->
+        <!-- Error日志默认存放路径(Error级别日志) -->
+        <Property name="ERROR_FILENAME">${LOG_DIR}/error/error.log</Property>
+        <!-- Error日志默认压缩路径,将超过指定文件大小的日志,自动存入按"年月"建立的文件夹下面并进行压缩,作为存档 -->
+        <Property name="ERROR_FILE_PATTERN">${LOG_DIR}/error/%d{yyyy-MM}/error-%d{yyyy-MM-dd}-%i.log.gz</Property>
+        <!-- Error日志默认同一文件夹下可以存放的数量,不设置此属性则默认为7个 -->
+        <Property name="ERROR_MAX">100</Property>
+        <!-- 日志默认同类型日志,多久生成一个新的日志文件,这个配置需要和filePattern结合使用;
+        		如果设置为1,filePattern是%d{yyyy-MM-dd}到天的格式,则间隔一天生成一个文件
+        		如果设置为12,filePattern是%d{yyyy-MM-dd-HH}到小时的格式,则间隔12小时生成一个文件 -->
+        <Property name="ERROR_TIME_INTERVAL">1</Property>
+        <!-- 日志默认同类型日志,是否对封存时间进行调制,若为true,则封存时间将以0点为边界进行调整,
+        		如:现在是早上3am,interval是4,那么第一次滚动是在4am,接着是8am,12am...而不是7am -->
+        <Property name="ERROR_TIME_MODULATE">true</Property>
+
+        <!-- ============================================控制台显示控制============================================ -->
+        <!-- 控制台显示的日志最低级别 -->
+        <Property name="CONSOLE_LOG_LEVEL">DEBUG</Property>
+    </Properties>
+
+    <!-- 定义appender, appender种类参考: org.apache.logging.log4j.core.appender.AbstractAppender -->
+    <Appenders>
+        <!-- 控制台输出: org.apache.logging.log4j.core.appender.ConsoleAppender -->
+        <Console name="CONSOLE-LOG" target="SYSTEM_OUT">
+            <!-- 设置控制台只输出level及以上级别的信息(onMatch),其他的直接拒绝(onMismatch)-->
+            <ThresholdFilter level="${CONSOLE_LOG_LEVEL}" onMatch="ACCEPT" onMismatch="DENY"/>
+            <!-- 设置输出格式,不设置默认为:%m%n -->
+            <PatternLayout pattern="${sys:CONSOLE_LOG_PATTERN}" charset="${sys:CONSOLE_LOG_CHARSET}" />
+        </Console>
+
+        <!-- ================================打印Root中指定的level级别以上的日志到文件================================ -->
+        <RollingFile name="ROLLING-LOG" fileName="${ROLLING_FILENAME}" filePattern="${ROLLING_FILE_PATTERN}">
+            <PatternLayout pattern="${sys:FILE_LOG_PATTERN}" charset="${sys:FILE_LOG_CHARSET}" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="${ROLLING_TIME_INTERVAL}" modulate="${ROLLING_TIME_MODULATE}"/>
+                <SizeBasedTriggeringPolicy size="${EVERY_FILE_SIZE}"/>
+            </Policies>
+            <!-- 设置同类型日志,同一文件夹下可以存放的数量,如果不设置此属性则默认存放7个文件 -->
+            <DefaultRolloverStrategy max="${ROLLING_MAX}" />
+        </RollingFile>
+
+        <!-- =======================================打印INFO级别的日志到文件======================================= -->
+        <RollingFile name="INFO-LOG" fileName="${INFO_FILENAME}" filePattern="${INFO_FILE_PATTERN}">
+            <PatternLayout pattern="${sys:FILE_LOG_PATTERN}" charset="${sys:FILE_LOG_CHARSET}" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="${INFO_TIME_INTERVAL}" modulate="${INFO_TIME_MODULATE}"/>
+                <SizeBasedTriggeringPolicy size="${EVERY_FILE_SIZE}"/>
+            </Policies>
+            <DefaultRolloverStrategy max="${INFO_MAX}" />
+            <Filters>
+                <LevelMatchFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY" />
+                <!-- 也可使用 LevelMatchFilter 直接过滤
+                <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+                -->
+            </Filters>
+        </RollingFile>
+
+        <!-- =======================================打印WARN级别的日志到文件======================================= -->
+        <RollingFile name="WARN-LOG" fileName="${WARN_FILENAME}" filePattern="${WARN_FILE_PATTERN}">
+            <PatternLayout pattern="${sys:FILE_LOG_PATTERN}" charset="${sys:FILE_LOG_CHARSET}" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="${WARN_TIME_INTERVAL}" modulate="${WARN_TIME_MODULATE}"/>
+                <SizeBasedTriggeringPolicy size="${EVERY_FILE_SIZE}"/>
+            </Policies>
+            <DefaultRolloverStrategy max="${WARN_MAX}" />
+            <Filters>
+                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </RollingFile>
+
+        <!-- =======================================打印ERROR级别的日志到文件======================================= -->
+        <!-- RollingFile: org.apache.logging.log4j.core.appender.RollingFileAppender -->
+        <RollingFile name="ERROR-LOG" fileName="${ERROR_FILENAME}" filePattern="${ERROR_FILE_PATTERN}" immediateFlush="true">
+            <PatternLayout pattern="${sys:FILE_LOG_PATTERN}" charset="${sys:FILE_LOG_CHARSET}" />
+            <!-- triggeringPolicy: org.apache.logging.log4j.core.appender.rolling.TriggeringPolicy -->
+            <!-- Policies: org.apache.logging.log4j.core.appender.rolling.CompositeTriggeringPolicy -->
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="${ERROR_TIME_INTERVAL}" modulate="${ERROR_TIME_MODULATE}" />
+                <SizeBasedTriggeringPolicy size="${EVERY_FILE_SIZE}" />
+            </Policies>
+            <DefaultRolloverStrategy max="${ERROR_MAX}" />
+            <!-- Filter: org.apache.logging.log4j.core.Filter -->
+            <!-- Filters: org.apache.logging.log4j.core.filter.CompositeFilter -->
+            <!-- ThresholdFilter: org.apache.logging.log4j.core.filter.ThresholdFilter -->
+            <Filters>
+                <!-- ACCEPT: 该事件将被处理, 不再需要根据日志级别进行下一步过滤
+                     NEUTRAL: 无法做出决定, 需要根据日志级别进行下一步过滤
+                     DENY: 不处理该事件 -->
+                <ThresholdFilter level="FATAL" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </RollingFile>
+    </Appenders>
+
+    <!-- 定义Logger,只有定义了logger并引入的appender,appender才会生效 -->
+    <Loggers>
+        <!--<AsyncLogger name="com.h2t.study" additivity="false">
+            <AppenderRef ref="ERROR-LOG"/>
+            <AppenderRef ref="INFO-LOG"/>
+        </AsyncLogger>-->
+
+        <!-- 设置打印sql语句配置开始,以下两者配合使用,可以优化日志的输出信息,减少一些不必要信息的输出 -->
+        <!-- 设置java.sql包下的日志只打印DEBUG及以上级别的日志,此设置可以支持sql语句的日志打印 -->
+        <Logger name="java.sql" level="DEBUG" additivity="false">
+            <appender-ref ref="CONSOLE-LOG"/>
+        </Logger>
+        <!-- 设置org.mybatis.spring包下的日志只打印WARN及以上级别的日志 -->
+        <Logger name="org.mybatis.spring" level="WARN" additivity="false">
+            <appender-ref ref="CONSOLE-LOG"/>
+        </Logger>
+        <!-- 设置org.springframework包下的日志只打印WARN及以上级别的日志 -->
+        <Logger name="org.springframework" level="WARN" additivity="false">
+            <appender-ref ref="CONSOLE-LOG"/>
+        </Logger>
+        <!-- 设置com.qfx.workflow.service包下的日志只打印WARN及以上级别的日志 -->
+        <Logger name="com.qfx.workflow.service" level="WARN" additivity="false">
+            <appender-ref ref="CONSOLE-LOG"/>
+        </Logger>
+        <!-- 设置打印sql语句配置结束 -->
+
+        <!-- 建立一个默认的root的logger -->
+        <Root level="${ROOT_LOG_LEVEL}">
+            <AppenderRef ref="CONSOLE-LOG" />
+            <AppenderRef ref="ROLLING-LOG" />
+            <AppenderRef ref="INFO-LOG" />
+            <AppenderRef ref="WARN-LOG" />
+            <AppenderRef ref="ERROR-LOG" />
+        </Root>
+    </Loggers>
+
+</Configuration>

@@ -5,6 +5,9 @@ logging:
     # LOG_FILE
     name: local_app_info
 
+# logback.xml文件名获取位置
+# {@link org.springframework.boot.logging.AbstractLoggingSystem.getStandardConfigLocations}
+
 # Enable debug output模式下，屏蔽springboot的debug日志 {@link org.springframework.boot.context.logging.LoggingApplicationListener}
 #logging:
 #  level:
