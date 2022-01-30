@@ -1,6 +1,6 @@
 package com.zync;
 
-import com.zync.httpasyncclient.HttpAsyncClient;
+import com.zync.okhttp.HttpClientOk;
 
 /**
  * @author luoc
@@ -11,7 +11,8 @@ import com.zync.httpasyncclient.HttpAsyncClient;
 public class Client {
 
     public static void main(String[] args) {
-        String httpUrl = "http://www.sctv.com/";
+        //String httpUrl = "http://www.sctv.com/";
+        String httpUrl = "http://127.0.0.1:9999/logback/post/";
         String result;
         // 1.Java原生的HttpURLConnection
         // GET请求
@@ -33,12 +34,12 @@ public class Client {
 
         // 4. OkHttp
         // GET请求
-        //result = HttpClientOk.doGet(httpUrl);
+        result = HttpClientOk.doPost(httpUrl);
 
         // 5. HttpAsyncClient
         // GET请求
         //result = HttpAsyncClient.doGet(httpUrl);
-        result = HttpAsyncClient.doPost(httpUrl, null);
+        //result = HttpAsyncClient.doPost(httpUrl, null);
 
         // 打印请求结果
         System.out.println(result);
