@@ -26,6 +26,9 @@
  4) virtual(虚拟类型)：虚拟仓库（这个基本用不到，重点关注上面三个仓库的使用）
 
 ### 三、jar发布到私服
+
+#### 1）方式一
+
 1. 本地maven库配置setting.xml
 ![](../../images/maven/maven-04.png)
 
@@ -33,5 +36,36 @@
 ![](../../images/maven/maven-05.png)
 **注意事项**
 pom文件中的repository中的 id 要与 setting.xml 中的server的 id 一致
+
+3. 使用 mvn clean deploy 命令运行即可上传到私服
+
+#### 2）方式二
+
+1. 本地maven库配置setting.xml
+![](../../images/maven/maven-06.png)
+![](../../images/maven/maven-07.png)
+**注意事项**
+rdc-releases 和 rdc-snapshots 要和maven的配置文件settings.xml文件中的server的id，两者必须保持一致
+属性altSnapshotDeploymentRepository和altReleaseDeploymentRepository是随maven-release-plugin 2.8版一起引入的。低于2.8版本，执行mvn deploy时，则会报如下错误
+
+```
+Deployment failed: repository element was not specified in the POM inside distributionManagement element or in -DaltDeploymentRepository=id::layout::url parameter -> [Help 1]
+```
+
+2. 针对报错的解决方案如下
+
+指定`maven-deploy-plugin` 为2.8版本以上的插件
+
+```xml
+<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+            </plugin>
+        </plugins>
+    </build>
+```
 
 3. 使用 mvn clean deploy 命令运行即可上传到私服
