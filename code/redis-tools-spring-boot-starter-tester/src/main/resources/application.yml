@@ -13,4 +13,5 @@ spring:
         min-idle: 0
 redis:
   tools:
-    enabled: true
+    limit:
+      enabled: false

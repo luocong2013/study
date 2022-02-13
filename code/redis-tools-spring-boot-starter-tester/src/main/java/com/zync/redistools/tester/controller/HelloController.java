@@ -1,5 +1,6 @@
 package com.zync.redistools.tester.controller;
 
+import com.zync.boot.redistools.annotation.DistributedLimit;
 import com.zync.boot.redistools.annotation.DistributedLock;
 import com.zync.boot.redistools.common.DistributedLockValueType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * @descrption 测试控制器
  * @date 2020/9/19 18:19
  */
-@RestController("/hello")
+@RestController
 public class HelloController {
 
     /**
@@ -58,5 +59,16 @@ public class HelloController {
             e.printStackTrace();
         }
         return "hello3 " + name;
+    }
+
+    /**
+     * 测试限流
+     * @param name
+     * @return
+     */
+    @DistributedLimit(count = 1)
+    @GetMapping("/hi/{name}")
+    public String hi(@PathVariable String name) {
+        return "hi " + name;
     }
 }
