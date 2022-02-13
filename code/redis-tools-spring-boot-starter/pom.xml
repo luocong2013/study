@@ -10,11 +10,12 @@
     </parent>
     <groupId>com.zync.boot</groupId>
     <artifactId>redis-tools-spring-boot-starter</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${revision}</version>
     <name>redis-tools-spring-boot-starter</name>
     <description>redis tools spring boot starter</description>
 
     <properties>
+        <revision>1.0.1</revision>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -102,7 +103,7 @@
         </plugins>
     </build>
 
-    <distributionManagement>
+    <!--<distributionManagement>
         <repository>
             <id>releases</id>
             <name>nexus-releases</name>
@@ -113,5 +114,5 @@
             <name>nexus-snapshots</name>
             <url>https://192.168.0.111:8080/repositories/snapshots/</url>
         </snapshotRepository>
-    </distributionManagement>
+    </distributionManagement>-->
 </project>
