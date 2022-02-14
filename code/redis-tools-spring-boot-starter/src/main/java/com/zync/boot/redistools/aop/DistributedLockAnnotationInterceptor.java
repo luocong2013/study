@@ -31,8 +31,6 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class DistributedLockAnnotationInterceptor implements MethodInterceptor {
 
-    private static final DistributedLock ANNOTATION_NULL = DistributedLockAnnotationInterceptor.class.getAnnotation(DistributedLock.class);
-
     private final Map<MethodClassKey, DistributedLock> distributedLockCache = new ConcurrentHashMap<>(16);
 
     private final RedisTemplate<String, String> redisTemplate;
@@ -115,7 +113,7 @@ public class DistributedLockAnnotationInterceptor implements MethodInterceptor {
         // 1. 从缓存中获取
         DistributedLock annotation = distributedLockCache.get(cacheKey);
         if (Objects.nonNull(annotation)) {
-            return annotation != ANNOTATION_NULL ? annotation : null;
+            return annotation;
         }
 
         // 2. 从方法中获取
@@ -124,8 +122,11 @@ public class DistributedLockAnnotationInterceptor implements MethodInterceptor {
             // 3. 从类上获取
             annotation = AnnotationUtils.findAnnotation(clazz, DistributedLock.class);
         }
+        if (Objects.isNull(annotation)) {
+            return null;
+        }
         // 4. 添加到缓存
-        distributedLockCache.put(cacheKey, Objects.nonNull(annotation) ? annotation : ANNOTATION_NULL);
+        distributedLockCache.put(cacheKey, annotation);
         return annotation;
     }
 
