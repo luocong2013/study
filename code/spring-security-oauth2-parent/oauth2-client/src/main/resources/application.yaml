@@ -1,0 +1,33 @@
+server:
+  port: 8080
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          lalita:
+            client-id: lalita-client
+            client-secret: secret
+            client-authentication-method: client_secret_basic
+            authorization-grant-type: authorization_code
+            redirect-uri: 'http://127.0.0.1:8080/foo/bar'
+            scope: message.read,message.write
+        provider:
+          lalita:
+            # provider 尽量用域名 不要用localhost 一定不要用IP 而且要和well-known接口中保持一致
+            issuer-uri: http://localhost:9000
+            # issuer-uri 可以简化下面的配置，实际是调用 {issuer-uri}/.well-known/openid-configuration 接口获取授权服务器端的配置
+            # @see org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientPropertiesRegistrationAdapter.getBuilderFromIssuerIfPossible
+            #authorization-uri: http://127.0.0.1:9000/oauth2/authorize
+            #token-uri: http://127.0.0.1:9000/oauth2/token
+            #user-info-uri: http://your-userinfo-endpoiont
+            #user-name-attribute: username
+            #user-info-authentication-method: GET
+
+
+# 方便调试
+logging:
+  level:
+    org.springframework.web: trace
+    org.springframework.security: debug
+    org.springframework.security.oauth2: debug
