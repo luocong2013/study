@@ -4,6 +4,7 @@ import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import com.zync.oauth2.server.jose.Jwks;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,11 +34,6 @@ import org.springframework.security.oauth2.server.authorization.config.TokenSett
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
-import java.security.interfaces.RSAPrivateKey;
-import java.security.interfaces.RSAPublicKey;
 import java.util.UUID;
 
 /**
@@ -90,10 +86,10 @@ public class AuthorizationServerConfiguration {
     public RegisteredClientRepository registeredClientRepository(JdbcTemplate jdbcTemplate) {
         RegisteredClient client = RegisteredClient.withId(UUID.randomUUID().toString())
                 // 客户端ID和密码
-                .clientId("lalita-client")
-                .clientSecret("secret")
+                .clientId("messaging-client")
+                .clientSecret("{noop}secret")
                 // 名称 可不定义
-                .clientName("lalita")
+                .clientName("messaging")
                 // 授权方法
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 // 授权类型
@@ -103,7 +99,7 @@ public class AuthorizationServerConfiguration {
                     types.add(AuthorizationGrantType.CLIENT_CREDENTIALS);
                 })
                 // 回调地址名单，不在此列将被拒绝 而且只能使用IP或者域名 不能使用 localhost
-                .redirectUri("http://127.0.0.1:8080/login/oauth2/code/lalita-client")
+                .redirectUri("http://127.0.0.1:8080/login/oauth2/code/messaging-client-oidc")
                 .redirectUri("http://127.0.0.1:8080/authorized")
                 .redirectUri("http://127.0.0.1:8080/foo/bar")
                 .redirectUri("https://baidu.com")
@@ -149,20 +145,10 @@ public class AuthorizationServerConfiguration {
     /**
      * 加载JWK资源
      * @return
-     * @throws NoSuchAlgorithmException
      */
     @Bean
-    public JWKSource<SecurityContext> jwkSource() throws NoSuchAlgorithmException {
-        KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
-        generator.initialize(2048);
-        KeyPair keyPair = generator.generateKeyPair();
-        RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
-        RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
-
-        RSAKey rsaKey = new RSAKey.Builder(publicKey)
-                .privateKey(privateKey)
-                .keyID(UUID.randomUUID().toString())
-                .build();
+    public JWKSource<SecurityContext> jwkSource() {
+        RSAKey rsaKey = Jwks.generateRsa();
         JWKSet jwkSet = new JWKSet(rsaKey);
         return (jwkSelector, securityContext) -> jwkSelector.select(jwkSet);
     }
@@ -174,8 +160,8 @@ public class AuthorizationServerConfiguration {
      */
     @Bean
     public ProviderSettings providerSettings(@Value("${server.port}") Integer port) {
-        //TODO 生产应该使用域名
-        return ProviderSettings.builder().issuer("http://localhost:" + port).build();
+        //TODO 必须使用域名，不能用IP
+        return ProviderSettings.builder().issuer("http://auth-server:" + port).build();
     }
 
     /**

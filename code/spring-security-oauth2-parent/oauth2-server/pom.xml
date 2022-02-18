@@ -38,7 +38,7 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-oauth2-authorization-server</artifactId>
-            <version>0.2.0</version>
+            <version>0.2.2</version>
         </dependency>
         <!-- Spring Security End -->
 
@@ -49,6 +49,10 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.htmlunit</groupId>
+            <artifactId>htmlunit</artifactId>
         </dependency>
 
         <!-- 测试 -->

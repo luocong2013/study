@@ -23,7 +23,7 @@ import java.util.Map;
 public class FooController {
 
     @GetMapping("/bar")
-    public Map<String, Object> bar(@RegisteredOAuth2AuthorizedClient("lalita") OAuth2AuthorizedClient client) {
+    public Map<String, Object> bar(@RegisteredOAuth2AuthorizedClient("messaging") OAuth2AuthorizedClient client) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Map<String, Object> map = new HashMap<>(4);
         map.put("authentication", authentication);

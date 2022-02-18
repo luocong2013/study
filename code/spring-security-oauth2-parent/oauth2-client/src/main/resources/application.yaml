@@ -1,21 +1,47 @@
 server:
   port: 8080
 spring:
+  thymeleaf:
+    cache: false
   security:
     oauth2:
       client:
         registration:
-          lalita:
-            client-id: lalita-client
+          messaging:
+            provider: messaging
+            client-id: messaging-client
             client-secret: secret
             client-authentication-method: client_secret_basic
             authorization-grant-type: authorization_code
             redirect-uri: 'http://127.0.0.1:8080/foo/bar'
             scope: message.read,message.write
+          messaging-client-oidc:
+            provider: messaging
+            client-id: messaging-client
+            client-secret: secret
+            client-authentication-method: client_secret_basic
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:8080/login/oauth2/code/{registrationId}"
+            scope: openid
+          messaging-client-authorization-code:
+            provider: messaging
+            client-id: messaging-client
+            client-secret: secret
+            client-authentication-method: client_secret_basic
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:8080/authorized"
+            scope: message.read,message.write
+          messaging-client-client-credentials:
+            provider: messaging
+            client-id: messaging-client
+            client-secret: secret
+            client-authentication-method: client_secret_basic
+            authorization-grant-type: client_credentials
+            scope: message.read,message.write
         provider:
-          lalita:
+          messaging:
             # provider 尽量用域名 不要用localhost 一定不要用IP 而且要和well-known接口中保持一致
-            issuer-uri: http://localhost:9000
+            issuer-uri: http://auth-server:9000
             # issuer-uri 可以简化下面的配置，实际是调用 {issuer-uri}/.well-known/openid-configuration 接口获取授权服务器端的配置
             # @see org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientPropertiesRegistrationAdapter.getBuilderFromIssuerIfPossible
             #authorization-uri: http://127.0.0.1:9000/oauth2/authorize
@@ -24,6 +50,8 @@ spring:
             #user-name-attribute: username
             #user-info-authentication-method: GET
 
+messages:
+  base-uri: http://127.0.0.1:8090/messages
 
 # 方便调试
 logging:
