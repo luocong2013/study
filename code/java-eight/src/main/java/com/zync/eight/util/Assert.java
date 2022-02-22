@@ -10,7 +10,7 @@ import java.util.function.Supplier;
  * @version v1.0
  * @date 2022/2/22 17:33
  */
-public class Assert {
+public final class Assert {
 
     /**
      * Assert a boolean expression, throwing an {@code X}
@@ -20,7 +20,7 @@ public class Assert {
      * @param supplier a supplier for the exception to use if the assertion fails
      * @throws X if {@code expression} is {@code false}
      */
-    public <X extends Throwable> void isTrue(boolean expression, Supplier<? extends X> supplier) throws X {
+    public static <X extends Throwable> void isTrue(boolean expression, Supplier<? extends X> supplier) throws X {
         if (!expression) {
             throw supplier.get();
         }
@@ -33,7 +33,7 @@ public class Assert {
      * @param supplier a supplier for the exception to use if the assertion fails
      * @throws X if the object is not {@code null}
      */
-    public <X extends Throwable> void isNull(Object object, Supplier<? extends X> supplier) throws X {
+    public static <X extends Throwable> void isNull(Object object, Supplier<? extends X> supplier) throws X {
         if (Objects.nonNull(object)) {
             throw supplier.get();
         }
@@ -46,9 +46,12 @@ public class Assert {
      * @param supplier a supplier for the exception to use if the assertion fails
      * @throws X if the object is {@code null}
      */
-    public <X extends Throwable> void notNull(Object object, Supplier<? extends X> supplier) throws X {
+    public static <X extends Throwable> void notNull(Object object, Supplier<? extends X> supplier) throws X {
         if (Objects.isNull(object)) {
             throw supplier.get();
         }
+    }
+
+    private Assert() {
     }
 }
