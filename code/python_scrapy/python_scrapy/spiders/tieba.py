@@ -20,7 +20,7 @@ class TiebaSpider(scrapy.Spider):
                 next_link = response.urljoin(next_href)
                 yield Request(next_link, callback=self.parse)
 
-        infos = response.xpath('//*[@class=" j_thread_list clearfix"]/div/div[2]/div[1]/div[1]/a[@class="j_th_tit "]')
+        infos = response.xpath('//*[@class=" j_thread_list clearfix thread_item_box"]/div/div[2]/div[1]/div[1]/a[@class="j_th_tit "]')
         for info in infos:
             href = info.xpath('.//@href').extract()[0]
             link = response.urljoin(href)

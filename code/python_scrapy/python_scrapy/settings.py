@@ -67,9 +67,9 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     # 'python_scrapy.pipelines.PythonScrapyPipeline': 300,
-    # 'python_scrapy.pipelines.LocalFileTiebaPipeline': 301,
+    'python_scrapy.pipelines.LocalFileTiebaPipeline': 301,
     # 'python_scrapy.pipelines.MongoDBTiebaPipeline': 302,
-    'python_scrapy.pipelines.MinioTiebaPipeline': 303,
+    # 'python_scrapy.pipelines.MinioTiebaPipeline': 303,
     # 'python_scrapy.pipelines.ElasticSearchBaikePipeline': 304,
 }
 
@@ -97,7 +97,7 @@ ITEM_PIPELINES = {
 
 # 自定义变量
 # 本地图片存储目录
-IMAGES_STORE = 'D:/pic'
+IMAGES_STORE = '/Volumes/硬盘/工作资料/pic'
 
 # MongoDB
 # ①使用这种URI连接MongoDB不需要后面的认证
