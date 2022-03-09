@@ -97,7 +97,7 @@ ITEM_PIPELINES = {
 
 # 自定义变量
 # 本地图片存储目录
-IMAGES_STORE = '/Volumes/硬盘/工作资料/pic'
+IMAGES_STORE = '/Volumes/硬盘/工作资料/.pic'
 
 # MongoDB
 # ①使用这种URI连接MongoDB不需要后面的认证
