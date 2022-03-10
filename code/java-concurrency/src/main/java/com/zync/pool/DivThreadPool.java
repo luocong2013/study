@@ -67,7 +67,7 @@ public class DivThreadPool {
                 new BasicThreadFactory.Builder().namingPattern("example-pool-%d").daemon(false).build(), new ThreadPoolExecutor.AbortPolicy());
 
         for (int i = 0; i < 5; i++) {
-            // ① 使用submit没有任何异常线程
+            // ① 使用submit没有任何异常线程，因为 submit 的runnable会被包装为FutureTask，FutureTask的run方法会捕获Throwable set到outcome里，可以通过 get 获取异常
             service.submit(new DivTask(100, i));
 
             // ② 使用execute有异常信息
