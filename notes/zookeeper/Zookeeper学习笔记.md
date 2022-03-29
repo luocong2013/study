@@ -73,11 +73,14 @@
   # 比如我配置的三个server，myid里面写的A就是server.A=B:C:D 中的A
   ```
   5. 启动Zookeeper
-  ```
+  ```shell
   # 方式①使用默认配置文件
   zkServer.sh start
   # 方式②指定启动时使用的配置文件
-  zkServer.sh /usr/local/zookeeper/conf/zoo.cfg
+  zkServer.sh --config conf start             // 使用 zkServer.sh 所在目录的上级目录下的 conf 目录中的 zoo.cfg 启动
+  zkServer.sh --config conf start zoo1.cfg    // 使用 zkServer.sh 所在目录的上级目录下的 conf 目录中的 zoo1.cfg 启动
+  zkServer.sh --config /usr/local/zookeeper/conf start            // 使用指定目录下的 zoo.cfg 启动
+  zkServer.sh --config /usr/local/zookeeper/conf start zoo1.cfg   // 使用指定目录下的 zoo1.cfg 启动
   ```
   6. 查看状态
   ```
