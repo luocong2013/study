@@ -5,7 +5,7 @@
 
 2. Zookeeper提供了什么？
     1）文件系统
-  2）通知机制
+    2）通知机制
 
 3. Zookeeper文件系统
 > 每个子目录项如 NameService 都被称作为znode，和文件系统一样，我们能够自由的增加、删除znode，在一个znode下增加、删除子znode，唯一的不同在于znode是可以存储数据的。
@@ -64,10 +64,11 @@
   vim zoo.cfg
   ```
   ![](../../images/zookeeper/zookeeper-02.png)
-  4. 根据dataDir进行A的配置【这里三台机子不一样！！！】
+  4. 根据dataDir进行A的配置【这里三台机子不一样！！！myid文件是放在dataDir目录下！！！】
   ```
   cd /usr/local/zookeeper
   mkdir data
+  cd data
   touch myid
   echo 1 > myid
   # 比如我配置的三个server，myid里面写的A就是server.A=B:C:D 中的A
