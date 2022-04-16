@@ -1,0 +1,50 @@
+
+GET http://127.0.0.1:18083/api/v4/auth_username
+Accept: */*
+Content-Type: application/json
+Authorization: Basic YWRtaW46cHVibGlj
+
+<> 2022-04-16T153946.200.json
+<> 2022-04-16T152623.200.json
+
+
+###
+
+
+POST http://127.0.0.1:18083/api/v4/auth_username
+Accept: */*
+Content-Type: application/json
+Authorization: Basic YWRtaW46cHVibGlj
+
+{
+  "username": "user",
+  "password": "123456"
+}
+
+<> 2022-04-16T153941.200.json
+
+###
+
+GET http://127.0.0.1:18083/api/v4/auth_clientid
+Accept: */*
+Content-Type: application/json
+Authorization: Basic YWRtaW46cHVibGlj
+
+<> 2022-04-16T154450.200.json
+<> 2022-04-16T154250.200.json
+
+###
+
+POST http://127.0.0.1:18083/api/v4/auth_clientid
+Accept: */*
+Content-Type: application/json
+Authorization: Basic YWRtaW46cHVibGlj
+
+{
+  "clientid": "emqx-client1",
+  "password": "123456"
+}
+
+<> 2022-04-16T154446.200.json
+
+###
