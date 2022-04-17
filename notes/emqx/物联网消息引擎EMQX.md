@@ -132,6 +132,22 @@ Authorization: Basic YWRtaW46cHVibGlj
 
 ### 2. 客户端SDK
 
-#### 2.1 使用
+#### 2.1 Eclipse Paho Java Client 使用
 
-参考 [emqx](../../code/emqx)
+[Eclipse Paho Java Client](https://www.eclipse.org/paho/clients/java/)是用 Java 编写的 MQTT 客户端库（MQTT Java Client），可用于 JVM 或其他 Java 兼容平台（例如Android）。
+
+Eclipse Paho Java Client 提供了MqttAsyncClient 和 MqttClient 异步和同步 API。
+
+**通过 Maven 安装 Paho Java**
+
+通过包管理工具 Maven 可以方便地安装 Paho Java 客户端库，截止目前最新版本安装如下：
+
+```xml
+<dependency>
+  <groupId>org.eclipse.paho</groupId>
+	<artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+	<version>1.2.5</version>
+</dependency>
+```
+
+代码参考 [emqx](../../code/emqx)

@@ -3,3 +3,9 @@ server:
 spring:
   application:
     name: emqx
+
+mqtt:
+  broker-url: tcp://127.0.0.1:1883
+  client-id: emqx-client-springboot
+  username: user
+  password: 123456
