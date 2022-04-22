@@ -1,11 +1,11 @@
 server:
-  port: 8991
+  port: 8992
 spring:
   application:
-    name: emqx
+    name: emqx-client
 
 mqtt:
   broker-url: tcp://127.0.0.1:1883
   client-id: emqx-client-springboot
-  username: user
-  password: 123456
+  username: userhttp
+  password: 123

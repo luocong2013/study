@@ -1,4 +1,4 @@
-package com.zync.emqx.controller;
+package com.zync.emqx.server.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

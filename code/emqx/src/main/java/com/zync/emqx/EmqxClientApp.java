@@ -1,10 +1,12 @@
-package com.zync.emqx.mqtt.config;
+package com.zync.emqx;
 
 import com.zync.emqx.mqtt.client.EmqClient;
+import com.zync.emqx.mqtt.config.MqttProperties;
 import com.zync.emqx.mqtt.enums.QosEnum;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
@@ -14,14 +16,15 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 测试启动MQTT客户端
- *
+ * EMQX 客户端 paho 测试 启动类
  * @author luocong
- * @version v1.0
- * @date 2022/4/17 18:02
  */
-@Configuration
-public class AppClient {
+@SpringBootApplication(scanBasePackages = {"com.zync.emqx.mqtt"})
+public class EmqxClientApp {
+
+    public static void main(String[] args) {
+        SpringApplication.run(EmqxClientApp.class, args);
+    }
 
     @Autowired
     private EmqClient emqClient;

@@ -3,11 +3,15 @@ package com.zync.emqx;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
-public class EmqxApplication {
+/**
+ *
+ * @author luocong
+ */
+@SpringBootApplication(scanBasePackages = {"com.zync.emqx.server"})
+public class EmqxServerApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(EmqxApplication.class, args);
+        SpringApplication.run(EmqxServerApp.class, args);
     }
 
 }
