@@ -1,0 +1,23 @@
+version: '3'
+services:
+  minio:
+    image: jpillora/dnsmasq
+    container_name: dns-server
+    ports:
+      - "53:53/udp"
+      - "5380:8080"
+    restart: always
+    networks:
+      mynetwork:
+        aliases:
+          - dns-server
+    environment:
+      TZ: Asia/Shanghai
+      HTTP_USER: admin
+      HTTP_PASS: admin
+    volumes:
+      - $PWD/my-dnsmasq.conf:/etc/dnsmasq.conf
+      - $PWD/my-dnsmasq.d/:/etc/dnsmasq.d/
+networks:
+  mynetwork:
+    driver: bridge
