@@ -1285,7 +1285,7 @@ FROM alpine:edge
 LABEL maintainer="luocong2017@gmail.com"
 # webproc release settings
 ENV WEBPROC_VERSION 0.4.0
-ENV WEBPROC_URL https://github.com/jpillora/webproc/releases/download/$WEBPROC_VERSION/webproc_linux_amd64.gz
+ENV WEBPROC_URL https://github.com/jpillora/webproc/releases/download/v"$WEBPROC_VERSION"/webproc_"$WEBPROC_VERSION"_linux_amd64.gz
 # fetch dnsmasq and webproc binary
 RUN apk update \
 	&& apk --no-cache add dnsmasq \
@@ -1310,6 +1310,6 @@ docker build -t luocong/docker-dnsmasq:1.0 .
 ### （3）Docker Run
 
 ```shell
-docker run --name dnsmasq -d -p 53:53/udp -p 5380:8080 -v /opt/dnsmasq.conf:/etc/dnsmasq.conf --log-opt "max-size=100m" -e "HTTP_USER=admin" -e "HTTP_PASS=admin" --restart always jpillora/dnsmasq
+docker run --name dnsmasq -d -p 53:53/udp -p 5380:8080 -v /opt/dnsmasq.conf:/etc/dnsmasq.conf --log-opt "max-size=100m" -e "HTTP_USER=admin" -e "HTTP_PASS=admin" --restart always luocong/docker-dnsmasq:1.0
 ```
 
