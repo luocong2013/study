@@ -1,7 +1,7 @@
 version: '3'
 services:
   minio:
-    image: jpillora/dnsmasq
+    image: registry.cn-hangzhou.aliyuncs.com/luocong/dnsmasq:1.0
     container_name: dns-server
     ports:
       - "53:53/udp"

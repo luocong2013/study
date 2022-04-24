@@ -26,6 +26,13 @@ $ docker push username/repository:tag
 $ docker pull imageName
 ```
 
+5. build
+
+```
+$ docker build -t username/repository:tag .
+$ docker build -t username/repository:tag -f dockerfile1 .
+```
+
 
 
 
