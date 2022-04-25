@@ -4,7 +4,7 @@ services:
         image: nginx:1.21.3
         container_name: nginx-server
         ports:
-            - 7100:80
+            - 80:80
         restart: always
         networks:
             - docker-nginx-network
