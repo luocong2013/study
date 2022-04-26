@@ -1,0 +1,21 @@
+server:
+  port: 7105
+  servlet:
+    context-path: /logback
+
+spring:
+  application:
+    name: logback-kafka
+
+logging:
+  config: classpath:logback-spring.xml
+  file:
+    path: logs
+  extend:
+    logstash-appender:
+      destination: 127.0.0.1:4560
+    kafka-appender:
+      bootstrap-servers: 127.0.0.1:9092
+      topic: logback_to_kafka
+
+

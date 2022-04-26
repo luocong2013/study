@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!-- 引用 Spring Boot 的 logback 基础配置 -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <!-- The custom conversion rules -->
+    <conversionRule conversionWord="wEx2" converterClass="com.zync.logback.kafka.logging.ExtendedWhitespaceThrowableProxyConverter"/>
+
+    <!-- common properties -->
+    <springProperty name="PORT" source="server.port" defaultValue="7104"/>
+    <springProperty name="APPLICATION_NAME" source="spring.application.name" defaultValue="app-server"/>
+
+    <!-- console-appender -->
+    <include resource="logback/console-appender.xml"/>
+
+    <!-- file-appender -->
+    <include resource="logback/file-appender.xml"/>
+
+    <!-- logstash-appender: off by default -->
+    <!--<include resource="logback/logstash-appender.xml"/>-->
+
+    <!-- kafka-appender: off by default -->
+    <include resource="logback/kafka-appender.xml"/>
+
+    <root level="INFO">
+        <!-- console-appender -->
+        <appender-ref ref="CONSOLE"/>
+
+        <!-- file-appender -->
+        <appender-ref ref="FILE_ALL"/>
+        <appender-ref ref="FILE_WARN"/>
+        <appender-ref ref="FILE_ERROR"/>
+
+        <!-- logstash-appender: off by default -->
+        <!--<appender-ref ref="LOGSTASH"/>-->
+
+        <!-- kafka-appender: off by default -->
+        <appender-ref ref="KAFKA"/>
+    </root>
+</configuration>

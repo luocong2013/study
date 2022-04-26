@@ -15,6 +15,7 @@
         <module>spring-boot-logback</module>
         <module>spring-boot-trace</module>
         <module>spring-boot-log4j2</module>
+        <module>spring-boot-logback-kafka</module>
     </modules>
 
     <properties>
@@ -27,6 +28,8 @@
         <hutool-all.version>5.7.20</hutool-all.version>
         <httpclient.version>4.5.13</httpclient.version>
         <disruptor.version>3.4.4</disruptor.version>
+        <logstash-logback-encoder.version>6.5</logstash-logback-encoder.version>
+        <logback-kafka-appender.version>0.2.0-RC2</logback-kafka-appender.version>
     </properties>
 
     <dependencyManagement>
@@ -62,6 +65,18 @@
                 <groupId>com.lmax</groupId>
                 <artifactId>disruptor</artifactId>
                 <version>${disruptor.version}</version>
+            </dependency>
+            <!-- logstash-logback-encoder Dependencies -->
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash-logback-encoder.version}</version>
+            </dependency>
+            <!-- logback-kafka-appender Dependencies -->
+            <dependency>
+                <groupId>com.github.danielwegener</groupId>
+                <artifactId>logback-kafka-appender</artifactId>
+                <version>${logback-kafka-appender.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

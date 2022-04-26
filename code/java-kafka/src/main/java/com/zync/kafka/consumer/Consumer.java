@@ -14,7 +14,7 @@ import java.util.Optional;
 @Component
 public class Consumer {
 
-    @KafkaListener(topics = {"test"})
+    @KafkaListener(topics = {"logback_to_kafka"})
     public void listen(ConsumerRecord<?, ?> record){
         Optional<?> kafkaMessage = Optional.ofNullable(record.value());
 

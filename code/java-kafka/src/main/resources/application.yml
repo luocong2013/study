@@ -4,7 +4,7 @@ server:
   port: 8080
 spring:
   kafka:
-    bootstrap-servers: 10.11.1.133:9092
+    bootstrap-servers: 127.0.0.1:9092
     #生产者的配置，大部分我们可以使用默认的，这里列出几个比较重要的属性
     producer:
       #每批次发送消息的数量
