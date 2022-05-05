@@ -1,5 +1,6 @@
 package com.zync.eight.function;
 
+import java.util.Collection;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -73,6 +74,27 @@ public final class FunctionUtil {
         }
         Objects.requireNonNull(predicate);
         return predicate.test(t) ? defaultIfNull(t, function, nullDefault) : nullDefault;
+    }
+
+    /**
+     * 查找集合中指定ID对应的属性
+     * @param id ID
+     * @param collection 集合
+     * @param functionId 获取对象ID函数
+     * @param functionValue 获取对象属性函数
+     * @param <T>
+     * @param <R>
+     * @return
+     */
+    public static <T, R> R findAttributes(Long id, Collection<T> collection, Function<T, Long> functionId, Function<T, R> functionValue) {
+        if (id == null || collection == null || collection.isEmpty()) {
+            return null;
+        }
+        return collection.parallelStream()
+                .filter(t -> Objects.equals(id, defaultIfNull(t, functionId)))
+                .findFirst()
+                .map(t -> defaultIfNull(t, functionValue))
+                .orElse(null);
     }
 
 
