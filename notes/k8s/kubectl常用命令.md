@@ -74,6 +74,12 @@ fluent-bit uaa-api-spring-server
 iso_tool  jdk1.8.0_221  logs  runtime  server  trace
 
 
+# 直接进入k8s的一个容器
+[root@dev-k8s-master1 ~]# name='uaa-api-spring-server' && kubectl exec -it -n business $(kubectl get po -n business | grep ${name} | awk '{print $1}') -c ${name} /bin/bash
+[root@uaa-api-spring-server-app-66d768cdc-crhdn home]# ls
+iso_tool  jdk1.8.0_221  logs  runtime  server  trace
+
+
 # 如何把容器内的文件复制到本地
 kubectl cp <some-namespace>/<some-pod>:/tmp/foo /tmp/bar -c Container name
 
