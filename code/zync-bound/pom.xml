@@ -22,7 +22,7 @@
         <guava.version>29.0-jre</guava.version>
         <sharding-sphere.version>4.1.0</sharding-sphere.version>
         <!--mongodb-->
-        <mongodb.version>3.12.5</mongodb.version>
+        <mongodb.version>3.12.8</mongodb.version>
         <!--hanlp-->
         <hanlp.version>portable-1.7.7</hanlp.version>
         <!--jasypt spring boot starter-->
