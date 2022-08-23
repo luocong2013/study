@@ -480,11 +480,15 @@ Desired survivor size 213909504 bytes, new threshold 15 (max 15)
 
 - 由上面GC日志分析出，Metaspace剩余51.95M（20.29%）未使用，那么此次Metaspace内存溢出了，使用率却只有79.71%，有两种可能：
 
-  - 这次需要分配的内存达到了51.95（256M*20.29%）以上（不太可能）
+  - 这次需要分配的内存达到了51.95（256M*20.29%）以上（不太可能，由附录3知DelegatingClassLoader只会加载一个类，所以给它们的chunk只有1K）
   
   
-    - 给类加载器分配的chunk使用率很低（从heap dump 提供的信息来看这种可能性更大，因为创建了很多类加载器，而每个类加载器又加载了很少的类）。见附3
+    - 给类加载器分配的chunk使用率很低（从heap dump 提供的信息来看这种可能性更大，因为创建了很多类加载器，而每个类加载器又加载了很少的类，从图中可以看出每个sun.reflect.GeneratedMethodAccessorXXXX大概只占了16byte）。见附3
   
+
+![image-20220823085716330](../../../images/java/oom/image-20220823085716330.png)
+
+![image-20220822225127310](../../../images/java/oom/image-20220822225127310.png)
 
 
 
