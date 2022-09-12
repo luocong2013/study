@@ -1,0 +1,199 @@
+0、查看已启动的端口
+netstat -ntlp
+
+1、查看SSH是否安装
+输入命令：rpm -qa|grep ssh
+注：若没安装SSH，则可输入：yum install openssh-server
+
+2、启动SSH服务
+输入命令：service sshd restart 重启SSH服务
+命令：service sshd start 启动服务
+命令：service sshd stop 停止服务
+重启后可输入：netstat -antp|grep sshd 查看是否启动22端口
+
+3、设置SSH服务为开机启动
+输入命令：chkconfig sshd on
+注：若是 chkconfig sshd off 则是禁止SSH开机启动
+
+注意：
+将某一个服务加入chkconfig列表中
+chkconfig --add xxxx
+查询当前所有自动启动的服务
+chkconfig --list
+如果只想看指定的服务，只需要在 “--list” 之后加上服务名就好了，比如查看httpd服务是否为自动启动：
+chkconfig  --list httpd
+若0~6均为off，则说明该服务不会在系统启动时自动启动
+若2~5都是on，则表明会自动启动
+
+
+
+4、安装JDK
+①查看yum库中都有哪些jdk版本：yum search java|grep jdk
+②选择版本进行安装：yum install java-1.8.0-openjdk
+③安装完之后，默认的安装目录是在: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.111-0.b15.el6_8.x86_64
+④设置环境变量：
+vi /etc/profile
+添加如下内容：
+#set java environment
+JAVA_HOME=/usr/local/java/jdk1.8.0_121
+JRE_HOME=$JAVA_HOME/jre
+CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+PATH=$PATH:$JAVA_HOME/bin
+export JAVA_HOME JRE_HOME CLASSPATH PATH
+让修改生效：
+source /etc/profile
+⑤验证，输入命令：java -version
+
+
+5、rz、sz命令安装
+yum install -y lrzsz
+
+6、安装mysql
+①yum list mysql-server
+②当只有一个的时候：yum insatll mysql-server
+③启动mysql服务：service mysqld start
+④连接一下试一下，直接mysql，然后 \q 关闭连接
+⑤设置mysql开机启动：chkconfig mysqld on
+⑥开启3306端口并保存
+/sbin/iptables -I INPUT -p tcp --dport 3306 -j ACCEPT
+/etc/rc.d/init.d/iptables save
+⑦连接mysql数据库，设置密码：
+use mysql;
+update user set password=password('密码') where user='root';
+flush privileges;
+#重载系统权限
+⑧设置mysql远程访问
+grant all privileges on *.* to 'root'@'%' identified by '123456' with grant option;
+#root是用户名，%代表任意主机，'123456'指定的登录密码（这个和本地的root密码可以设置不同的，互不影响）
+
+
+7、安装wget
+yum install -y wget
+
+8、关闭防火墙
+①CentOS7之前的版本：
+service iptables stop #停止
+chkconfig iptables off #禁用
+②CentOS7：
+systemctl stop firewalld.service #停止
+systemctl disable firewalld.service #禁用
+
+
+9、安装vim
+vim编辑器需要安装三个包：
+vim-enhanced-7.0.109-7.el5
+vim-minimal-7.0.109-7.el5
+vim-common-7.0.109-7.el5
+查看本机已存在的包：rpm -qa|grep vim，如果vim已经正确安装，则会显示上面三个包的名称
+如果缺少了其中某个，比如说： vim-enhanced这个包少了，执行：yum -y install vim-enhanced 命令
+如果三个包一个都没有显示，则直接输入命令：yum -y install vim*
+
+10、重启
+reboot
+
+11、安装zip、unzip
+yum install -y zip unzip
+
+12、安装svn
+yum -y install subversion
+
+#创建版本库repositories_name
+mkdir -p /home/svn/repositories_name
+svnadmin create /home/svn/repositories_name
+
+cd /home/svn/repositories_name/conf
+vim passwd
+#添加用户
+luoc=luoc
+
+vim authz
+#添加权限
+[/]
+luoc = rw
+
+vim svnserve.conf
+#取消一些注释
+anon-access = none #非授权用户无法访问
+auth-access = write  #授权用户有写权限
+password-db = passwd  #密码数据所在目录
+authz-db = authz
+
+#启动SVN
+svnserve -d -r /home/svn/   #注意不包含repositories_name
+ps aux|grep svnserve           #查看服务是否启动
+killall svnserve  #停止
+
+#查看SVN进程
+ps -ef|grep svn|grep -v grep
+#检测SVN端口
+netstat -ln|grep 3690
+
+#删除版本库repositories_name
+rm -rf repositories_name
+
+
+13、升级CentOS 6内核版本
+****升级内核网站：http://elrepo.org/tiki/tiki-index.php
+1)更新key
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+2)查看当前系统内核
+uname -r / uname -a
+3)根据本地CentOS版本下载对应的Elrepo
+rpm -Uvh http://www.elrepo.org/elrepo-release-6-8.el6.elrepo.noarch.rpm
+4)升级内核
+  1.长期支持版本：
+  yum --enablerepo=elrepo-kernel install kernel-lt -y
+  2.线上最新版本
+  yum --enablerepo=elrepo-kernel install kernel-ml -y
+5)更换启动项文件
+更新grub.conf
+vim /etc/grub.conf
+把default=1修改为default=0
+6)reboot
+
+14、安装Docker
+1）rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+2）yum -y install docker-io
+3）docker version
+4）service docker start
+
+
+15、修改CentOS系统时间
+1）date 查看目前本地的时间
+2）hwclock --show 查看硬件的时间
+3）hwclock --set --date '017-01-25 10:36:21'  设置硬件时间
+4）hwclock --hctosys  设置系统时间和硬件时间同步
+5）clock -w  保存时钟
+6）init 6 / reboot 重启
+
+16、安装httpd
+yum -y install httpd
+systemctl enable httpd.service
+systemctl start httpd.service
+
+17、git安装
+yum -y install git 
+#查看Git版本
+git --version
+#服务器端创建git用户，用来管理git服务，并为git用户设置密码
+id git #查看git用户是否存在
+useradd git #添加git用户，用户名为git
+passwd git #为git用户更改密码
+
+#设置/home/git/data/gittest.git为Git仓库
+#然后把git仓库的owner修改为git
+mkdir -p /home/git/data/gittest.git
+git init --bare /home/git/data/gittest.git
+cd /home/git/data/
+chown -R git:git gittest.git
+
+
+
+
+
+
+
+
+
+
+
