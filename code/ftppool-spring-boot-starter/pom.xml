@@ -22,7 +22,7 @@
         <!--apache commons pool2-->
         <commons-pool2.version>2.8.0</commons-pool2.version>
         <!--apache commons net-->
-        <commons-net.version>3.6</commons-net.version>
+        <commons-net.version>3.9.0</commons-net.version>
         <!--plugin-->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
