@@ -1,5 +1,6 @@
 package com.zync.controller;
 
+import com.zync.http.api.DemoApi;
 import com.zync.service.DemoService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,12 +18,20 @@ public class DemoController {
 
     private final DemoService demoService;
 
-    public DemoController(DemoService demoService) {
+    private final DemoApi demoApi;
+
+    public DemoController(DemoService demoService, DemoApi demoApi) {
         this.demoService = demoService;
+        this.demoApi = demoApi;
     }
 
     @GetMapping("/hi/{name}")
     public String hi(@PathVariable("name") String name) {
         return demoService.hi(name);
+    }
+
+    @GetMapping("/weather/{code}")
+    public String weather(@PathVariable("code") String code) {
+        return demoApi.weather(code);
     }
 }
