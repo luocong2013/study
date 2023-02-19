@@ -25,6 +25,6 @@ public class Test6 {
         LocalTime time = LocalTime.of(10, 48, 39);
         LocalTime nowTime = LocalTime.now();
         Duration duration = Duration.between(time, nowTime);
-        System.out.printf("相差: %d 分钟%n", duration.getSeconds());
+        System.out.printf("相差: %d 分钟%n", duration.getSeconds() / 60);
     }
 }
