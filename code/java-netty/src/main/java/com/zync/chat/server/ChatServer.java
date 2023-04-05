@@ -1,6 +1,7 @@
 package com.zync.chat.server;
 
 import com.zync.chat.protocol.MessageCodecSharable;
+import com.zync.chat.protocol.ProtocolFrameDecoder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
@@ -9,7 +10,6 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +39,7 @@ public class ChatServer {
                 @Override
                 protected void initChannel(NioSocketChannel ch) throws Exception {
                     ChannelPipeline pipeline = ch.pipeline();
-                    pipeline.addLast(new LengthFieldBasedFrameDecoder(1024, 12, 4, 0, 0));
+                    pipeline.addLast(new ProtocolFrameDecoder());
                     pipeline.addLast(loggingHandler);
                     pipeline.addLast(messageCodec);
                 }
