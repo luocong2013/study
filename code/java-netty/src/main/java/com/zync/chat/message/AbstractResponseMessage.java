@@ -19,6 +19,10 @@ public abstract class AbstractResponseMessage extends Message {
     public AbstractResponseMessage() {
     }
 
+    public AbstractResponseMessage(boolean success) {
+        this.success = success;
+    }
+
     public AbstractResponseMessage(boolean success, String reason) {
         this.success = success;
         this.reason = reason;

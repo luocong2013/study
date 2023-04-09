@@ -4,6 +4,7 @@ import com.google.common.collect.Sets;
 import com.zync.chat.message.*;
 import com.zync.chat.protocol.MessageCodecSharable;
 import com.zync.chat.protocol.ProtocolFrameDecoder;
+import com.zync.chat.utils.Assert;
 import com.zync.nio.ch5.MultiThreadFactory;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
@@ -12,6 +13,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Scanner;
@@ -84,9 +86,10 @@ public class ChatClient {
                                     return;
                                 }
 
+                                System.out.println("=================👏🏻欢迎您登录聊天系统👏🏻=================");
                                 // 登录成功，进入菜单页
                                 while (true) {
-                                    System.out.println("==================================");
+                                    System.out.println("=================操作菜单=================");
                                     System.out.println("send [username] [content]");
                                     System.out.println("gsend [group name] [content]");
                                     System.out.println("gcreate [group name] [m1,m2,m3...]");
@@ -94,13 +97,16 @@ public class ChatClient {
                                     System.out.println("gjoin [group name]");
                                     System.out.println("gquit [group name]");
                                     System.out.println("quit");
-                                    System.out.println("==================================");
+                                    System.out.println("==================操作菜单================");
                                     String[] command;
                                     try {
                                         String line = scanner.nextLine();
                                         command = StringUtils.split(line, StringUtils.SPACE);
+                                        Assert.isTrue(ArrayUtils.getLength(command) > 0, () -> new IllegalArgumentException("您输入的指令有误"));
                                     } catch (Exception e) {
-                                        break;
+                                        System.out.println("您输入的指令有误, 请重新输入...");
+                                        log.error("您输入的指令有误", e);
+                                        continue;
                                     }
                                     switch (command[0]) {
                                         case "send":
@@ -111,6 +117,7 @@ public class ChatClient {
                                             break;
                                         case "gcreate":
                                             Set<String> set = Sets.newHashSet(StringUtils.split(command[2], ","));
+                                            set.add(username);
                                             ctx.writeAndFlush(new GroupCreateRequestMessage(command[1], set));
                                             break;
                                         case "gmembers":
@@ -126,7 +133,7 @@ public class ChatClient {
                                             ctx.channel().close();
                                             return;
                                         default:
-                                            System.out.println("您输入的指令错误, 请重新输入...");
+                                            System.out.println("您输入的指令有误, 请重新输入...");
                                     }
                                 }
                             }).start();

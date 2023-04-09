@@ -22,6 +22,7 @@ public class ChatResponseMessage extends AbstractResponseMessage {
     }
 
     public ChatResponseMessage(String from, String content) {
+        super(true);
         this.from = from;
         this.content = content;
     }

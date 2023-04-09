@@ -2,8 +2,7 @@ package com.zync.chat.server;
 
 import com.zync.chat.protocol.MessageCodecSharable;
 import com.zync.chat.protocol.ProtocolFrameDecoder;
-import com.zync.chat.server.handler.ChatRequestMessageHandler;
-import com.zync.chat.server.handler.LoginRequestMessageHandler;
+import com.zync.chat.server.handler.*;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
@@ -34,6 +33,11 @@ public class ChatServer {
         MessageCodecSharable messageCodec = new MessageCodecSharable();
         LoginRequestMessageHandler loginHandler = new LoginRequestMessageHandler();
         ChatRequestMessageHandler chatHandler = new ChatRequestMessageHandler();
+        GroupChatRequestMessageHandler groupChatHandler = new GroupChatRequestMessageHandler();
+        GroupCreateRequestMessageHandler groupCreateHandler = new GroupCreateRequestMessageHandler();
+        GroupMembersRequestMessageHandler groupMembersHandler = new GroupMembersRequestMessageHandler();
+        GroupJoinRequestMessageHandler groupJoinHandler = new GroupJoinRequestMessageHandler();
+        GroupQuitRequestMessageHandler groupQuitHandler = new GroupQuitRequestMessageHandler();
 
         try {
             ServerBootstrap bootstrap = new ServerBootstrap();
@@ -48,6 +52,11 @@ public class ChatServer {
                     pipeline.addLast(messageCodec);
                     pipeline.addLast(loginHandler);
                     pipeline.addLast(chatHandler);
+                    pipeline.addLast(groupChatHandler);
+                    pipeline.addLast(groupCreateHandler);
+                    pipeline.addLast(groupMembersHandler);
+                    pipeline.addLast(groupJoinHandler);
+                    pipeline.addLast(groupQuitHandler);
                 }
             });
             Channel channel = bootstrap.bind(8888).sync().channel();

@@ -15,7 +15,7 @@ import java.util.Set;
 public interface GroupSession {
 
     /**
-     * 创建一个聊天组, 如果不存在才能创建成功, 否则返回 null
+     * 创建一个聊天组, 如果不存在才能创建成功 返回 null, 否则返回 已存在的聊天组
      *
      * @param name    组名
      * @param members 成员

@@ -21,6 +21,7 @@ public class GroupChatResponseMessage extends AbstractResponseMessage {
     }
 
     public GroupChatResponseMessage(String from, String content) {
+        super(true);
         this.from = from;
         this.content = content;
     }
