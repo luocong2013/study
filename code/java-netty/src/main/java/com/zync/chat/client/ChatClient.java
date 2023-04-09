@@ -93,6 +93,7 @@ public class ChatClient {
                                     System.out.println("send [username] [content]");
                                     System.out.println("gsend [group name] [content]");
                                     System.out.println("gcreate [group name] [m1,m2,m3...]");
+                                    System.out.println("gremove [group name]");
                                     System.out.println("gmembers [group name]");
                                     System.out.println("gjoin [group name]");
                                     System.out.println("gquit [group name]");
@@ -119,6 +120,9 @@ public class ChatClient {
                                             Set<String> set = Sets.newHashSet(StringUtils.split(command[2], ","));
                                             set.add(username);
                                             ctx.writeAndFlush(new GroupCreateRequestMessage(command[1], set));
+                                            break;
+                                        case "gremove":
+                                            ctx.writeAndFlush(new GroupRemoveRequestMessage(command[1]));
                                             break;
                                         case "gmembers":
                                             ctx.writeAndFlush(new GroupMembersRequestMessage(command[1]));

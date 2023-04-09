@@ -35,6 +35,7 @@ public class ChatServer {
         ChatRequestMessageHandler chatHandler = new ChatRequestMessageHandler();
         GroupChatRequestMessageHandler groupChatHandler = new GroupChatRequestMessageHandler();
         GroupCreateRequestMessageHandler groupCreateHandler = new GroupCreateRequestMessageHandler();
+        GroupRemoveRequestMessageHandler groupRemoveHandler = new GroupRemoveRequestMessageHandler();
         GroupMembersRequestMessageHandler groupMembersHandler = new GroupMembersRequestMessageHandler();
         GroupJoinRequestMessageHandler groupJoinHandler = new GroupJoinRequestMessageHandler();
         GroupQuitRequestMessageHandler groupQuitHandler = new GroupQuitRequestMessageHandler();
@@ -54,6 +55,7 @@ public class ChatServer {
                     pipeline.addLast(chatHandler);
                     pipeline.addLast(groupChatHandler);
                     pipeline.addLast(groupCreateHandler);
+                    pipeline.addLast(groupRemoveHandler);
                     pipeline.addLast(groupMembersHandler);
                     pipeline.addLast(groupJoinHandler);
                     pipeline.addLast(groupQuitHandler);

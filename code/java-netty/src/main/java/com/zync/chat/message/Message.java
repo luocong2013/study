@@ -49,6 +49,8 @@ public abstract class Message implements Serializable {
     public static final int GROUP_CHAT_RESPONSE_MESSAGE = 11;
     public static final int GROUP_MEMBERS_REQUEST_MESSAGE = 12;
     public static final int GROUP_MEMBERS_RESPONSE_MESSAGE = 13;
+    public static final int GROUP_REMOVE_REQUEST_MESSAGE = 14;
+    public static final int GROUP_REMOVE_RESPONSE_MESSAGE = 15;
     private static final Map<Integer, Class<?>> MESSAGE_CLASSES = new HashMap<>();
 
     static {
@@ -66,5 +68,7 @@ public abstract class Message implements Serializable {
         MESSAGE_CLASSES.put(GROUP_CHAT_RESPONSE_MESSAGE, GroupChatResponseMessage.class);
         MESSAGE_CLASSES.put(GROUP_MEMBERS_REQUEST_MESSAGE, GroupMembersRequestMessage.class);
         MESSAGE_CLASSES.put(GROUP_MEMBERS_RESPONSE_MESSAGE, GroupMembersResponseMessage.class);
+        MESSAGE_CLASSES.put(GROUP_REMOVE_REQUEST_MESSAGE, GroupRemoveRequestMessage.class);
+        MESSAGE_CLASSES.put(GROUP_REMOVE_RESPONSE_MESSAGE, GroupRemoveResponseMessage.class);
     }
 }
