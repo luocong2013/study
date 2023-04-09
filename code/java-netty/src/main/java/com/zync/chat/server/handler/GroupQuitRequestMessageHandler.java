@@ -4,7 +4,7 @@ import com.zync.chat.message.GroupQuitRequestMessage;
 import com.zync.chat.message.GroupQuitResponseMessage;
 import com.zync.chat.server.session.Group;
 import com.zync.chat.server.session.GroupSessionFactory;
-import com.zync.chat.utils.StringUtil;
+import com.zync.chat.common.utils.StringUtil;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

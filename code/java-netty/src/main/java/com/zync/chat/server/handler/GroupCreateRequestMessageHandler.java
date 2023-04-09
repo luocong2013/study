@@ -5,7 +5,7 @@ import com.zync.chat.message.GroupCreateResponseMessage;
 import com.zync.chat.server.session.Group;
 import com.zync.chat.server.session.GroupSession;
 import com.zync.chat.server.session.GroupSessionFactory;
-import com.zync.chat.utils.StringUtil;
+import com.zync.chat.common.utils.StringUtil;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;

@@ -1,4 +1,4 @@
-package com.zync.chat.utils;
+package com.zync.chat.common.utils;
 
 import lombok.experimental.UtilityClass;
 

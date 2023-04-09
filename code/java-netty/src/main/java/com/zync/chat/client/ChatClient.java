@@ -4,7 +4,7 @@ import com.google.common.collect.Sets;
 import com.zync.chat.message.*;
 import com.zync.chat.protocol.MessageCodecSharable;
 import com.zync.chat.protocol.ProtocolFrameDecoder;
-import com.zync.chat.utils.Assert;
+import com.zync.chat.common.utils.Assert;
 import com.zync.nio.ch5.MultiThreadFactory;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
@@ -56,7 +56,7 @@ public class ChatClient {
                     log.debug("connected...");
                     ChannelPipeline pipeline = ch.pipeline();
                     pipeline.addLast(new ProtocolFrameDecoder());
-                    //pipeline.addLast(loggingHandler);
+                    pipeline.addLast(loggingHandler);
                     pipeline.addLast(messageCodec);
 
                     // 用来判断是不是 读空闲时间过长，或 写空闲时间过长

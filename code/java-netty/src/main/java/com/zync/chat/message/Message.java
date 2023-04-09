@@ -16,7 +16,7 @@ import java.util.Map;
 @Data
 public abstract class Message implements Serializable {
 
-    public static Class<?> getMessageClass(int messageType) {
+    public static Class<? extends Message> getMessageClass(int messageType) {
         return MESSAGE_CLASSES.get(messageType);
     }
 
@@ -53,7 +53,7 @@ public abstract class Message implements Serializable {
     public static final int GROUP_REMOVE_RESPONSE_MESSAGE = 15;
     public static final int PING_MESSAGE = 16;
     public static final int PONG_MESSAGE = 17;
-    private static final Map<Integer, Class<?>> MESSAGE_CLASSES = new HashMap<>();
+    private static final Map<Integer, Class<? extends Message>> MESSAGE_CLASSES = new HashMap<>();
 
     static {
         MESSAGE_CLASSES.put(LOGIN_REQUEST_MESSAGE, LoginRequestMessage.class);
