@@ -14,6 +14,9 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class GroupJoinResponseMessage extends AbstractResponseMessage {
 
+    public GroupJoinResponseMessage() {
+    }
+
     public GroupJoinResponseMessage(boolean success, String reason) {
         super(success, reason);
     }

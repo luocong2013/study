@@ -9,6 +9,9 @@ package com.zync.chat.message;
  */
 public class GroupRemoveResponseMessage extends AbstractResponseMessage {
 
+    public GroupRemoveResponseMessage() {
+    }
+
     public GroupRemoveResponseMessage(boolean success, String reason) {
         super(success, reason);
     }

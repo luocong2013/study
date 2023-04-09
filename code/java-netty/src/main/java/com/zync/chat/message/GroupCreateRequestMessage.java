@@ -18,6 +18,9 @@ public class GroupCreateRequestMessage extends Message {
     private String groupName;
     private Set<String> members;
 
+    public GroupCreateRequestMessage() {
+    }
+
     public GroupCreateRequestMessage(String groupName, Set<String> members) {
         this.groupName = groupName;
         this.members = members;

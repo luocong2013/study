@@ -14,6 +14,9 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class LoginResponseMessage extends AbstractResponseMessage {
 
+    public LoginResponseMessage() {
+    }
+
     public LoginResponseMessage(boolean success, String reason) {
         super(success, reason);
     }

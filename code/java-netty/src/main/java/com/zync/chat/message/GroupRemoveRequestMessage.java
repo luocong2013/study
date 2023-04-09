@@ -15,6 +15,9 @@ import lombok.ToString;
 public class GroupRemoveRequestMessage extends Message {
     private String groupName;
 
+    public GroupRemoveRequestMessage() {
+    }
+
     public GroupRemoveRequestMessage(String groupName) {
         this.groupName = groupName;
     }

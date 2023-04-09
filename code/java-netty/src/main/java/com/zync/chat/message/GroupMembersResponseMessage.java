@@ -18,6 +18,9 @@ public class GroupMembersResponseMessage extends AbstractResponseMessage {
 
     private Set<String> members;
 
+    public GroupMembersResponseMessage() {
+    }
+
     public GroupMembersResponseMessage(Set<String> members) {
         super(true);
         this.members = members;

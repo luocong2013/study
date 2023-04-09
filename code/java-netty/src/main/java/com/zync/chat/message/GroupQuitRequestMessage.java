@@ -17,6 +17,9 @@ public class GroupQuitRequestMessage extends Message {
 
     private String username;
 
+    public GroupQuitRequestMessage() {
+    }
+
     public GroupQuitRequestMessage(String username, String groupName) {
         this.groupName = groupName;
         this.username = username;

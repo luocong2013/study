@@ -17,6 +17,9 @@ public class GroupJoinRequestMessage extends Message {
 
     private String username;
 
+    public GroupJoinRequestMessage() {
+    }
+
     public GroupJoinRequestMessage(String username, String groupName) {
         this.groupName = groupName;
         this.username = username;

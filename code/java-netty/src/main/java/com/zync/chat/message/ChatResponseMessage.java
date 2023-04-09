@@ -17,6 +17,9 @@ public class ChatResponseMessage extends AbstractResponseMessage {
     private String from;
     private String content;
 
+    public ChatResponseMessage() {
+    }
+
     public ChatResponseMessage(boolean success, String reason) {
         super(success, reason);
     }

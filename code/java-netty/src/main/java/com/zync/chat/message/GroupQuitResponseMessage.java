@@ -13,6 +13,10 @@ import lombok.ToString;
 @Data
 @ToString(callSuper = true)
 public class GroupQuitResponseMessage extends AbstractResponseMessage {
+
+    public GroupQuitResponseMessage() {
+    }
+
     public GroupQuitResponseMessage(boolean success, String reason) {
         super(success, reason);
     }
