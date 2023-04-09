@@ -215,7 +215,7 @@ public class ChatClient {
                          */
                         @Override
                         public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-                            log.debug("连接已经断开，按回车键退出...{}", cause.getMessage());
+                            log.error("连接已经断开，按回车键退出...", cause);
                             exit.set(true);
                         }
                     });

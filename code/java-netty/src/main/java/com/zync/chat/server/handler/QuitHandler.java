@@ -47,6 +47,6 @@ public class QuitHandler extends ChannelInboundHandlerAdapter {
         String username = session.getUsername(channel);
         // 解绑会话
         session.unbind(channel);
-        log.debug("{} 已经异常断开连接, 异常信息是: {}", username, cause.getMessage());
+        log.error("{} 已经异常断开连接", username, cause);
     }
 }

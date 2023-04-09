@@ -34,7 +34,7 @@ public class MessageCodecSharable extends MessageToMessageCodec<ByteBuf, Message
         out.writeByte(1);
         Algorithm algorithm = Config.getSerializerAlgorithm();
         // 3. 1 字节的序列化方式 jdk 0, json 1
-        out.writeByte(algorithm.ordinal());
+        out.writeByte(algorithm.getSerializerAlgorithm());
         // 4. 1 字节的指令类型
         out.writeByte(msg.getMessageType());
         // 5. 4 个字节
@@ -63,7 +63,7 @@ public class MessageCodecSharable extends MessageToMessageCodec<ByteBuf, Message
         in.readBytes(bytes, 0, length);
 
         // 找到序列化算法
-        Algorithm algorithm = Algorithm.values()[serializerAlgorithm];
+        Algorithm algorithm = Algorithm.getAlgorithm(serializerAlgorithm);
         Class<? extends Message> clazz = Message.getMessageClass(messageType);
         Message message = algorithm.deserialize(clazz, bytes);
         log.debug("{}, {}, {}, {}, {}, {}", magicNum, version, serializerAlgorithm, messageType, sequenceId, length);
