@@ -56,7 +56,7 @@ public class ChatClient {
                     log.debug("connected...");
                     ChannelPipeline pipeline = ch.pipeline();
                     pipeline.addLast(new ProtocolFrameDecoder());
-                    pipeline.addLast(loggingHandler);
+                    //pipeline.addLast(loggingHandler);
                     pipeline.addLast(messageCodec);
 
                     // 用来判断是不是 读空闲时间过长，或 写空闲时间过长

@@ -39,6 +39,7 @@ public class ChatServer {
         GroupMembersRequestMessageHandler groupMembersHandler = new GroupMembersRequestMessageHandler();
         GroupJoinRequestMessageHandler groupJoinHandler = new GroupJoinRequestMessageHandler();
         GroupQuitRequestMessageHandler groupQuitHandler = new GroupQuitRequestMessageHandler();
+        PingMessageHandler pingHandler = new PingMessageHandler();
         QuitHandler quit = new QuitHandler();
 
         try {
@@ -83,6 +84,7 @@ public class ChatServer {
                     pipeline.addLast(groupMembersHandler);
                     pipeline.addLast(groupJoinHandler);
                     pipeline.addLast(groupQuitHandler);
+                    pipeline.addLast(pingHandler);
                     pipeline.addLast(quit);
                 }
             });
