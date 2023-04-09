@@ -1,9 +1,12 @@
 package com.zync.eight.function;
 
-import java.util.Collection;
-import java.util.Objects;
+import org.apache.commons.collections4.CollectionUtils;
+
+import java.util.*;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * java 8 function
@@ -95,6 +98,80 @@ public final class FunctionUtil {
                 .findFirst()
                 .map(t -> defaultIfNull(t, functionValue))
                 .orElse(null);
+    }
+
+    /**
+     * list 分页后调用 consumer
+     *
+     * @param list
+     * @param size
+     * @param consumer
+     * @param <T>
+     */
+    public static <T> void pageCall(List<T> list, int size, Consumer<List<T>> consumer) {
+        if (CollectionUtils.isEmpty(list)) {
+            return;
+        }
+        int total = list.size();
+        int pages = (total % size) == 0 ? (total / size) : (total / size) + 1;
+        for (int i = 0; i < pages; i++) {
+            List<T> temp = list.stream().skip((long) i * size).limit(size).collect(Collectors.toList());
+            consumer.accept(temp);
+        }
+    }
+
+    /**
+     * list 分页后调用 function 并返回结果集
+     *
+     * @param list
+     * @param size
+     * @param function
+     * @param <T>
+     * @param <R>
+     * @return
+     */
+    public static <T, R> List<R> pageCallVal(List<T> list, int size, Function<List<T>, R> function) {
+        if (CollectionUtils.isEmpty(list)) {
+            return Collections.emptyList();
+        }
+        int total = list.size();
+        int pages = (total % size) == 0 ? (total / size) : (total / size) + 1;
+        List<R> result = new ArrayList<>();
+        for (int i = 0; i < pages; i++) {
+            List<T> temp = list.stream().skip((long) i * size).limit(size).collect(Collectors.toList());
+            R r = function.apply(temp);
+            if (r != null) {
+                result.add(r);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * list 分页后调用 function 并返回结果集
+     *
+     * @param list
+     * @param size
+     * @param function
+     * @param <T>
+     * @param <R>
+     * @return
+     */
+    public static <T, R> List<R> pageCallMulVal(List<T> list, int size, Function<List<T>, List<R>> function) {
+        if (CollectionUtils.isEmpty(list)) {
+            return Collections.emptyList();
+        }
+        int total = list.size();
+        int pages = (total % size) == 0 ? (total / size) : (total / size) + 1;
+        List<R> result = new ArrayList<>();
+        for (int i = 0; i < pages; i++) {
+            List<T> temp = list.stream().skip((long) i * size).limit(size).collect(Collectors.toList());
+            List<R> r = function.apply(temp);
+            if (CollectionUtils.isNotEmpty(r)) {
+                result.addAll(r);
+            }
+        }
+        return result;
     }
 
 
