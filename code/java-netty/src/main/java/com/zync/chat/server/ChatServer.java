@@ -39,6 +39,7 @@ public class ChatServer {
         GroupMembersRequestMessageHandler groupMembersHandler = new GroupMembersRequestMessageHandler();
         GroupJoinRequestMessageHandler groupJoinHandler = new GroupJoinRequestMessageHandler();
         GroupQuitRequestMessageHandler groupQuitHandler = new GroupQuitRequestMessageHandler();
+        QuitHandler quit = new QuitHandler();
 
         try {
             ServerBootstrap bootstrap = new ServerBootstrap();
@@ -59,6 +60,7 @@ public class ChatServer {
                     pipeline.addLast(groupMembersHandler);
                     pipeline.addLast(groupJoinHandler);
                     pipeline.addLast(groupQuitHandler);
+                    pipeline.addLast(quit);
                 }
             });
             Channel channel = bootstrap.bind(8888).sync().channel();
