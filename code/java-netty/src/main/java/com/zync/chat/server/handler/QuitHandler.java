@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 public class QuitHandler extends ChannelInboundHandlerAdapter {
 
     /**
-     * 当连接断开时触发 inactive 事件
+     * 当 客户端 连接断开时触发 inactive 事件
      * @param ctx
      * @throws Exception
      */
@@ -34,6 +34,12 @@ public class QuitHandler extends ChannelInboundHandlerAdapter {
         log.debug("{} 已经断开连接", username);
     }
 
+    /**
+     * 当 客户端 发生异常时触发
+     * @param ctx
+     * @param cause
+     * @throws Exception
+     */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         Channel channel = ctx.channel();

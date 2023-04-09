@@ -12,6 +12,9 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import io.netty.handler.timeout.IdleState;
+import io.netty.handler.timeout.IdleStateEvent;
+import io.netty.handler.timeout.IdleStateHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -40,6 +43,7 @@ public class ChatClient {
         MessageCodecSharable messageCodec = new MessageCodecSharable();
         CountDownLatch waitForLogin = new CountDownLatch(1);
         AtomicBoolean login = new AtomicBoolean(false);
+        AtomicBoolean exit = new AtomicBoolean(false);
         Scanner scanner = new Scanner(System.in);
 
         try {
@@ -54,6 +58,29 @@ public class ChatClient {
                     pipeline.addLast(new ProtocolFrameDecoder());
                     //pipeline.addLast(loggingHandler);
                     pipeline.addLast(messageCodec);
+
+                    // 用来判断是不是 读空闲时间过长，或 写空闲时间过长
+                    // 4s 内如果没有向服务器写数据，会触发一个 IdleState#WRITER_IDLE 事件
+                    pipeline.addLast(new IdleStateHandler(0, 4, 0));
+                    pipeline.addLast(new ChannelDuplexHandler() {
+                        /**
+                         * 用来处理特殊事件
+                         * @param ctx
+                         * @param evt
+                         * @throws Exception
+                         */
+                        @Override
+                        public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+                            if (evt instanceof IdleStateEvent event) {
+                                // 触发了写空闲事件
+                                if (event.state() == IdleState.WRITER_IDLE) {
+                                    //log.debug("4s 没有写数据了，发送一个心跳包");
+                                    ctx.writeAndFlush(new PingMessage());
+                                }
+                            }
+                        }
+                    });
+
                     pipeline.addLast("client handler", new ChannelInboundHandlerAdapter() {
                         /**
                          * 会在连接建立后触发 active 事件
@@ -66,8 +93,14 @@ public class ChatClient {
                             THREAD_FACTORY.newThread(() -> {
                                 System.out.println("请输入用户名：");
                                 String username = scanner.nextLine();
+                                if (exit.get()) {
+                                    return;
+                                }
                                 System.out.println("请输入密码：");
                                 String password = scanner.nextLine();
+                                if (exit.get()) {
+                                    return;
+                                }
                                 // 构造登录消息
                                 LoginRequestMessage message = new LoginRequestMessage(username, password, null);
                                 // 发送消息
@@ -109,6 +142,10 @@ public class ChatClient {
                                         log.error("您输入的指令有误", e);
                                         continue;
                                     }
+                                    if (exit.get()) {
+                                        return;
+                                    }
+
                                     switch (command[0]) {
                                         case "send":
                                             ctx.writeAndFlush(new ChatRequestMessage(username, command[1], command[2]));
@@ -157,6 +194,29 @@ public class ChatClient {
                                 // 唤醒 system-in- 线程
                                 waitForLogin.countDown();
                             }
+                        }
+
+                        /**
+                         * 当 服务端 断开 客户端 连接时触发
+                         * @param ctx
+                         * @throws Exception
+                         */
+                        @Override
+                        public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+                            log.debug("连接已经断开，按回车键退出...");
+                            exit.set(true);
+                        }
+
+                        /**
+                         * 在出现异常时触发
+                         * @param ctx
+                         * @param cause
+                         * @throws Exception
+                         */
+                        @Override
+                        public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+                            log.debug("连接已经断开，按回车键退出...{}", cause.getMessage());
+                            exit.set(true);
                         }
                     });
                 }

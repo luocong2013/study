@@ -3,6 +3,7 @@ package com.zync.chat.server.session;
 import io.netty.channel.Channel;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -28,7 +29,9 @@ public class SessionMemoryImpl implements Session {
     @Override
     public void unbind(Channel channel) {
         String username = channelUsernameMap.remove(channel);
-        usernameChannelMap.remove(username);
+        if (Objects.nonNull(username)) {
+            usernameChannelMap.remove(username);
+        }
         channelAttributesMap.remove(channel);
     }
 

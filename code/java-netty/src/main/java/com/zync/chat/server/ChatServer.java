@@ -4,15 +4,15 @@ import com.zync.chat.protocol.MessageCodecSharable;
 import com.zync.chat.protocol.ProtocolFrameDecoder;
 import com.zync.chat.server.handler.*;
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelPipeline;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import io.netty.handler.timeout.IdleState;
+import io.netty.handler.timeout.IdleStateEvent;
+import io.netty.handler.timeout.IdleStateHandler;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -52,6 +52,29 @@ public class ChatServer {
                     pipeline.addLast(new ProtocolFrameDecoder());
                     pipeline.addLast(loggingHandler);
                     pipeline.addLast(messageCodec);
+
+                    // 用来判断是不是 读空闲时间过长，或 写空闲时间过长
+                    // 5s 内如果没有收到 channel 的数据，会触发一个 IdleState#READER_IDLE 事件
+                    pipeline.addLast(new IdleStateHandler(5, 0, 0));
+                    pipeline.addLast(new ChannelDuplexHandler() {
+                        /**
+                         * 用来处理特殊事件
+                         * @param ctx
+                         * @param evt
+                         * @throws Exception
+                         */
+                        @Override
+                        public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+                            if (evt instanceof IdleStateEvent event) {
+                                // 触发了 读空闲事件
+                                if (event.state() == IdleState.READER_IDLE) {
+                                    log.debug("已经 5s 没有读到数据了");
+                                    ctx.channel().close();
+                                }
+                            }
+                        }
+                    });
+
                     pipeline.addLast(loginHandler);
                     pipeline.addLast(chatHandler);
                     pipeline.addLast(groupChatHandler);
