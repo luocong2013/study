@@ -10,8 +10,12 @@ import java.nio.charset.StandardCharsets;
 /**
  * ByteBuf学习
  *
+ * 直接内存与堆内存
  * 直接内存创建和销毁的代价昂贵，但读写性能高（少一次内存复制），适合配合池化功能一起用
  * 直接内存对 GC 压力小，因为这部分内存不受 JVM 垃圾回收的管理，但也要注意及时主动释放
+ *
+ * 使用直接内存或堆内存，可以通过下面的系统环境变量来设置
+ * -Dio.netty.noPreferDirect={false|true}
  *
  * 池化与非池化
  * 池化的最大意义在于可以重用 ByteBuf，优点有
