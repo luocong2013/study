@@ -22,7 +22,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class RpcResponseMessageHandler extends SimpleChannelInboundHandler<RpcResponseMessage> {
 
     // 序号 用来接收结果的 promise 对象
-    public static final Map<Integer, Promise<Object>> PROMISES = new ConcurrentHashMap<>();
+    public static final Map<Long, Promise<Object>> PROMISES = new ConcurrentHashMap<>();
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, RpcResponseMessage msg) throws Exception {

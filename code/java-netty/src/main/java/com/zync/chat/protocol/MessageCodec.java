@@ -43,8 +43,8 @@ public class MessageCodec extends ByteToMessageCodec<Message> {
         out.writeByte(0);
         // 4. 1 字节的指令类型
         out.writeByte(msg.getMessageType());
-        // 5. 4 个字节
-        out.writeInt(msg.getSequenceId());
+        // 5. 8 个字节
+        out.writeLong(msg.getSequenceId());
         // 无意义，对齐填充
         out.writeByte(0xff);
         // 6. 获取内容的字节数组
@@ -64,7 +64,7 @@ public class MessageCodec extends ByteToMessageCodec<Message> {
         byte version = in.readByte();
         byte serializerType = in.readByte();
         byte messageType = in.readByte();
-        int sequenceId = in.readInt();
+        long sequenceId = in.readLong();
         in.readByte();
         int length = in.readInt();
         byte[] bytes = new byte[length];

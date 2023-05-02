@@ -23,7 +23,7 @@ public abstract class Message implements Serializable {
     /**
      * 消息序列ID
      */
-    private int sequenceId;
+    private long sequenceId;
     /**
      * 消息类型
      */
