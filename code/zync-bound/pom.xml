@@ -19,7 +19,7 @@
         <elasticsearch.version>7.14.0</elasticsearch.version>
         <!--Curator-->
         <curator.version>4.2.0</curator.version>
-        <guava.version>29.0-jre</guava.version>
+        <guava.version>32.0.0-jre</guava.version>
         <sharding-sphere.version>4.1.0</sharding-sphere.version>
         <!--mongodb-->
         <mongodb.version>3.12.5</mongodb.version>
