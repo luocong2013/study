@@ -16,7 +16,7 @@
 
         <!--Curator-->
         <curator.version>4.2.0</curator.version>
-        <zookeeper.version>3.6.1</zookeeper.version>
+        <zookeeper.version>3.7.2</zookeeper.version>
 
         <!--apache tools-->
         <commons-lang3.version>3.9</commons-lang3.version>
