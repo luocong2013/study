@@ -1,0 +1,12 @@
+# Version 1.0.0
+FROM registry.cn-hangzhou.aliyuncs.com/luocong/paddlepaddle:1.0.0
+
+COPY PaddleOCR-2.7.0 /PaddleOCR
+
+ADD inference/ch_PP-OCRv4_det_infer.tar /PaddleOCR/inference/
+ADD inference/ch_PP-OCRv4_rec_infer.tar /PaddleOCR/inference/
+ADD inference/ch_ppocr_mobile_v2.0_cls_infer.tar /PaddleOCR/inference/
+
+EXPOSE 8868
+
+CMD ["/bin/bash","-c","hub install deploy/hubserving/ocr_system/ && hub serving start -c deploy/hubserving/ocr_system/config.json"]

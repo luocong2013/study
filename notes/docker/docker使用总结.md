@@ -33,6 +33,18 @@ $ docker build -t username/repository:tag .
 $ docker build -t username/repository:tag -f dockerfile1 .
 ```
 
+6. 进入容器
+
+```
+$ docker run -it username/repository:tag /bin/bash
+```
+
+7. 启动容器
+
+```
+$ docker run -d -p 8868:8868 --name containerName username/repository:tag
+```
+
 
 
 
@@ -64,4 +76,25 @@ $ sudo docker push registry.cn-hangzhou.aliyuncs.com/luocong/image-sign:[镜像�
 ```
 $ sudo docker pull registry.cn-hangzhou.aliyuncs.com/luocong/image-sign:[镜像版本号]
 ```
+
+5. build image
+
+```
+$ sudo docker build -t registry.cn-hangzhou.aliyuncs.com/luocong/image-sign:[镜像版本号] .
+$ sudo docker build -t registry.cn-hangzhou.aliyuncs.com/luocong/image-sign:[镜像版本号] -f dockerfile1 .
+```
+
+6. 进入容器
+
+```
+$ sudo docker run -it registry.cn-hangzhou.aliyuncs.com/luocong/image-sign:[镜像版本号] /bin/bash
+```
+
+7. 启动容器
+
+```
+$ sudo docker run -d -p 8868:8868 --name containerName registry.cn-hangzhou.aliyuncs.com/luocong/image-sign:[镜像版本号]
+```
+
+
 
