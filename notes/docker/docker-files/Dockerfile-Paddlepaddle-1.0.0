@@ -1,22 +1,24 @@
 # Version 3.7
 FROM python:3.7
 
+MAINTAINER luocong2017<luocong2017@gmail.com>
+
 ENV TZ=Asia/Shanghai \
     DEBIAN_FRONTEND=noninteractive
-
-RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
-    && echo ${TZ} > /etc/timezone \
-    && dpkg-reconfigure --frontend noninteractive tzdata \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update
-RUN apt-get install ffmpeg libsm6 libxext6 -y
-
-RUN pip3 install --upgrade pip -i https://mirror.baidu.com/pypi/simple
-RUN pip3 install paddlepaddle paddlehub -i https://mirror.baidu.com/pypi/simple
 
 COPY requirements.txt /PaddleOCR/requirements.txt
 
 WORKDIR /PaddleOCR
 
-RUN pip3 install -r requirements.txt -i https://mirror.baidu.com/pypi/simple
+RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
+    && dpkg-reconfigure --frontend noninteractive tzdata \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get update \
+    && apt-get install ffmpeg libsm6 libxext6 -y \
+    && pip3 install --upgrade pip -i https://mirror.baidu.com/pypi/simple \
+    && pip3 install paddlepaddle paddlehub -i https://mirror.baidu.com/pypi/simple \
+    && pip3 install -r requirements.txt -i https://mirror.baidu.com/pypi/simple \
+    && pip3 install --upgrade setuptools wheel -i https://mirror.baidu.com/pypi/simple \
+    && pip cache purge \
+    && rm -rf requirements.txt
