@@ -25,7 +25,7 @@
         <akka.version>2.6.0</akka.version>
 
         <!--log-->
-        <logback.version>1.2.3</logback.version>
+        <logback.version>1.2.13</logback.version>
 
         <!-- JMH 性能测试 -->
         <jmh.version>1.21</jmh.version>
