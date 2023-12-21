@@ -22,7 +22,14 @@
 
  ![](../../images/springboot/springboot-04.png)
 
+3. IDEA 里 Run Configurations里加配置
+
+![](../../images/springboot/springboot-07.png)
+
+
+
 ### 二、继承SpringBootServletInitializer类，并重写configure方法
+
 1. 继承SpringBootServletInitializer类，并重写configure方法
 
  ![](../../images/springboot/springboot-05.png)
@@ -30,3 +37,4 @@
 2. 保持原SpringBoot启动类不变
 
  ![](../../images/springboot/springboot-06.png)
+
