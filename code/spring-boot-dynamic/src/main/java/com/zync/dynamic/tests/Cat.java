@@ -20,6 +20,10 @@ public class Cat {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void run(String name) {
         System.out.println(name + " 用2条腿在跑");
     }

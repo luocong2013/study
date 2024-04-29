@@ -1,20 +1,20 @@
 package com.zync.dynamic.interceptor;
 
 import com.zync.dynamic.aspect.Aspect;
-import net.sf.cglib.proxy.MethodInterceptor;
-import net.sf.cglib.proxy.MethodProxy;
+import org.springframework.cglib.proxy.MethodInterceptor;
+import org.springframework.cglib.proxy.MethodProxy;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * cglib实现的动态代理
+ * spring cglib实现的动态代理
  *
  * @author luocong
  * @version v2.2.1
- * @since 2024/4/28 19:30
+ * @since 2024/4/29 10:38
  */
-public class CglibInterceptor implements MethodInterceptor {
+public class SpringCglibInterceptor implements MethodInterceptor {
 
     private final Object target;
     private final Aspect aspect;
@@ -24,17 +24,18 @@ public class CglibInterceptor implements MethodInterceptor {
      * @param target 被代理对象
      * @param aspect 切面实现类
      */
-    public CglibInterceptor(Object target, Aspect aspect) {
+    public SpringCglibInterceptor(Object target, Aspect aspect) {
         this.target = target;
         this.aspect = aspect;
     }
 
     /**
      *
-     * @param obj 生成的代理对象, 名称类似这种: com.zync.dynamic.tests.Cat$$EnhancerByCGLIB$$74519f57
-     * @param method
-     * @param args
-     * @param proxy
+     * @param obj "this", the enhanced object（即: 生成的代理对象, 名称类似这种: com.zync.dynamic.tests.Cat$$EnhancerByCGLIB$$e43f934）
+     * @param method intercepted Method
+     * @param args argument array; primitive types are wrapped
+     * @param proxy used to invoke super (non-intercepted method); may be called
+     * as many times as needed
      * @return
      * @throws Throwable
      */
