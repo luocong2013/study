@@ -14,7 +14,7 @@ public class JdkProxyTests {
 
     public static void main(String[] args) {
         Animal dog = new Dog("大黄");
-        Animal animal = JdkProxy.getProxy(dog, new SimpleAspect());
+        Animal animal = JdkProxy.createProxy(dog, new SimpleAspect());
         animal.run(animal.getName());
     }
 

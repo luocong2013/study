@@ -1,30 +1,26 @@
 package com.zync.dynamic.tests;
 
 /**
- * 狗
- *
  * @author luocong
  * @version v2.2.1
- * @since 2024/4/28 19:10
+ * @since 2024/4/28 19:45
  */
-public class Dog implements Animal {
+public class Cat {
 
     private String name;
 
-    public Dog() {
+    public Cat() {
     }
 
-    public Dog(String name) {
+    public Cat(String name) {
         this.name = name;
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
-    @Override
     public void run(String name) {
-        System.out.println(name + " 用4条腿在跑");
+        System.out.println(name + " 用2条腿在跑");
     }
 }

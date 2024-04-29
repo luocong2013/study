@@ -15,7 +15,7 @@ import java.lang.reflect.Proxy;
 public class JdkProxy {
 
     @SuppressWarnings("unchecked")
-    public static <T> T getProxy(T target, Aspect aspect) {
+    public static <T> T createProxy(T target, Aspect aspect) {
         Class<?> clazz = target.getClass();
         return (T) Proxy.newProxyInstance(clazz.getClassLoader(), clazz.getInterfaces(), new JdkInterceptor(target, aspect));
     }
