@@ -25,6 +25,7 @@
         <module>service-1</module>
         <module>app</module>
         <module>http-interface</module>
+        <module>request-response-body-advice</module>
     </modules>
 
 </project>
