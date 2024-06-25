@@ -1,8 +1,8 @@
 package com.zync.boot.mybatisplus.ext;
 
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusAutoConfiguration;
-import com.zync.boot.mybatisplus.ext.handler.DefaultMetaObjectHandler;
-import com.zync.boot.mybatisplus.ext.injector.BasicSqlInjector;
+import com.zync.boot.mybatisplus.ext.core.handler.DefaultMetaObjectHandler;
+import com.zync.boot.mybatisplus.ext.core.injector.BasicSqlInjector;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
