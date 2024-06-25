@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.zync.boot</groupId>
         <artifactId>mybatis-plus-ext-starter</artifactId>
-        <version>${revision}</version>
+        <version>1.0.1</version>
     </parent>
 
     <artifactId>mybatis-plus-ext-spring-boot-2.x-starter</artifactId>
@@ -17,6 +17,7 @@
     <description>扩展Mybatis Plus功能的SpringBoot 2.x Starter</description>
 
     <properties>
+        <revision>1.0.1</revision>
         <spring-boot.version>2.7.18</spring-boot.version>
     </properties>
 
