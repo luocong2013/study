@@ -1,8 +1,8 @@
 package com.zync.mybatisplus.tester.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-import com.zync.boot.mybatisplus.ext.annotation.Default;
-import com.zync.boot.mybatisplus.ext.annotation.IgnoreInsert;
+import com.zync.boot.mybatisplus.ext.core.annotation.Default;
+import com.zync.boot.mybatisplus.ext.core.annotation.IgnoreInsert;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;

@@ -1,6 +1,6 @@
 package com.zync.mybatisplus.tester.service.impl;
 
-import com.zync.boot.mybatisplus.ext.service.BasicServiceImpl;
+import com.zync.boot.mybatisplus.ext.core.service.BasicServiceImpl;
 import com.zync.mybatisplus.tester.entity.User;
 import com.zync.mybatisplus.tester.mapper.UserMapper;
 import com.zync.mybatisplus.tester.service.UserService;
