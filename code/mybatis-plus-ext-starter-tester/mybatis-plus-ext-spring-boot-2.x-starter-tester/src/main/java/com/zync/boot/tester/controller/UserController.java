@@ -1,14 +1,13 @@
-package com.zync.mybatisplus.tester.controller;
+package com.zync.boot.tester.controller;
 
 
-import com.zync.mybatisplus.tester.entity.User;
-import com.zync.mybatisplus.tester.service.UserService;
+import com.zync.boot.tester.entity.User;
+import com.zync.boot.tester.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;

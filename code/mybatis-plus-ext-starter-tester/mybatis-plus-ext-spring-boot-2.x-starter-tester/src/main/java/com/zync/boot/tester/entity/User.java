@@ -1,4 +1,4 @@
-package com.zync.mybatisplus.tester.entity;
+package com.zync.boot.tester.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.zync.boot.mybatisplus.ext.core.annotation.Default;

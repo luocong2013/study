@@ -1,4 +1,4 @@
-package com.zync.mybatisplus.tester;
+package com.zync.boot.tester;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

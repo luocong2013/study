@@ -1,9 +1,9 @@
-package com.zync.mybatisplus.tester.service.impl;
+package com.zync.boot.tester.service.impl;
 
 import com.zync.boot.mybatisplus.ext.core.service.BasicServiceImpl;
-import com.zync.mybatisplus.tester.entity.User;
-import com.zync.mybatisplus.tester.mapper.UserMapper;
-import com.zync.mybatisplus.tester.service.UserService;
+import com.zync.boot.tester.entity.User;
+import com.zync.boot.tester.mapper.UserMapper;
+import com.zync.boot.tester.service.UserService;
 import org.springframework.stereotype.Service;
 
 /**

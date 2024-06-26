@@ -1,7 +1,7 @@
-package com.zync.mybatisplus.tester.mapper;
+package com.zync.boot.tester.mapper;
 
 import com.zync.boot.mybatisplus.ext.core.mapper.BasicMapper;
-import com.zync.mybatisplus.tester.entity.User;
+import com.zync.boot.tester.entity.User;
 
 /**
  * <p>

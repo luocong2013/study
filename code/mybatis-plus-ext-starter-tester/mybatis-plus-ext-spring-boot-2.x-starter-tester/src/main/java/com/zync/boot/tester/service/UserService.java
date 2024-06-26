@@ -1,7 +1,7 @@
-package com.zync.mybatisplus.tester.service;
+package com.zync.boot.tester.service;
 
-import com.zync.mybatisplus.tester.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zync.boot.tester.entity.User;
 
 /**
  * <p>
