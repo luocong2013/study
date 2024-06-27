@@ -9,15 +9,15 @@
         <version>1.0.1</version>
     </parent>
 
-    <artifactId>mybatis-plus-ext-spring-boot-2.x-starter-tester</artifactId>
+    <artifactId>mybatis-plus-ext-spring-boot-starter-tester</artifactId>
     <version>${revision}</version>
 
-    <name>mybatis-plus-ext-spring-boot-2.x-starter-tester</name>
-    <description>扩展Mybatis Plus功能的SpringBoot 2.x Starter Tester</description>
+    <name>mybatis-plus-ext-spring-boot-starter-tester</name>
+    <description>扩展Mybatis Plus功能的SpringBoot Starter Tester，基于注解方式（适用于SpringBoot 2.x 和 3.x）</description>
 
     <properties>
         <revision>1.0.1</revision>
-        <spring-boot.version>2.7.18</spring-boot.version>
+        <spring-boot.version>3.3.1</spring-boot.version>
     </properties>
 
     <dependencies>
@@ -25,16 +25,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!-- mybatis plus -->
+        <!-- mybatis plus (spring boot 3) -->
         <dependency>
             <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
             <version>${mybatis-plus.version}</version>
         </dependency>
-        <!-- mybatis plus ext spring boot 2.x starter -->
+        <!-- mybatis plus ext spring boot starter -->
         <dependency>
             <groupId>com.zync.boot</groupId>
-            <artifactId>mybatis-plus-ext-spring-boot-2.x-starter</artifactId>
+            <artifactId>mybatis-plus-ext-spring-boot-starter</artifactId>
             <version>${revision}</version>
         </dependency>
 

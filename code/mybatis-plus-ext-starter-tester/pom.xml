@@ -14,12 +14,13 @@
 
     <modules>
         <module>mybatis-plus-ext-spring-boot-2.x-starter-tester</module>
+        <module>mybatis-plus-ext-spring-boot-starter-tester</module>
     </modules>
 
     <properties>
         <java.version>21</java.version>
         <mybatis-plus.version>3.5.7</mybatis-plus.version>
-        <mysql.version>8.0.18</mysql.version>
+        <mysql.version>8.4.0</mysql.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     </properties>
