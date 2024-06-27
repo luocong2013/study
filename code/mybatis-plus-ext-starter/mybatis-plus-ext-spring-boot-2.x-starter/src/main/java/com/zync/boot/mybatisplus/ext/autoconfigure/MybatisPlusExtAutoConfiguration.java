@@ -1,4 +1,4 @@
-package com.zync.boot.mybatisplus.ext;
+package com.zync.boot.mybatisplus.ext.autoconfigure;
 
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusAutoConfiguration;
 import com.zync.boot.mybatisplus.ext.core.handler.DefaultMetaObjectHandler;
