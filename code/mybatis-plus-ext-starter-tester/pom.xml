@@ -16,6 +16,7 @@
         <module>mybatis-plus-ext-spring-boot-2.x-starter-tester</module>
         <module>mybatis-plus-ext-spring-boot-3.x-starter-tester</module>
         <module>mybatis-plus-ext-spring-boot-starter-tester</module>
+        <module>mybatis-plus-ext-spring-boot-starter-v2-tester</module>
     </modules>
 
     <properties>
