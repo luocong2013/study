@@ -3,32 +3,52 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.zync.boot</groupId>
+        <artifactId>mybatis-plus-ext-starter</artifactId>
+        <version>1.0.1</version>
+    </parent>
 
-    <groupId>com.zync.boot</groupId>
-    <artifactId>mybatis-plus-ext-starter</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0.1</version>
+    <artifactId>mybatis-plus-ext-spring-boot-starter-v2</artifactId>
+    <packaging>jar</packaging>
+    <version>${revision}</version>
 
-    <name>mybatis-plus-ext-starter</name>
-    <description>扩展Mybatis Plus功能的SpringBoot Starter</description>
-
-    <modules>
-        <module>mybatis-plus-ext-spring-boot-2.x-starter</module>
-        <module>mybatis-plus-ext-spring-boot-3.x-starter</module>
-        <module>mybatis-plus-ext-spring-boot-starter</module>
-        <module>mybatis-plus-ext-spring-boot-starter-v2</module>
-    </modules>
+    <name>mybatis-plus-ext-spring-boot-starter-v2</name>
+    <description>扩展Mybatis Plus功能的SpringBoot Starter，基于注解方式二（适用于SpringBoot 2.x 和 3.x）</description>
 
     <properties>
-        <java.version>21</java.version>
-        <mybatis-plus.version>3.5.7</mybatis-plus.version>
-        <!--plugin-->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
-        <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
-        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+        <revision>1.0.1</revision>
+        <spring-boot.version>3.3.1</spring-boot.version>
     </properties>
+
+    <dependencies>
+        <!-- 扩展Mybatis Plus功能的核心包 -->
+        <dependency>
+            <groupId>com.zync.boot</groupId>
+            <artifactId>mybatis-plus-ext-core</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <!-- 自动装配依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>${spring-boot.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- 编译时可生成spring-configuration-metadata.json文件，方便引用此依赖的项目自动提示配置属性 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <version>${spring-boot.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-spring-boot-autoconfigure</artifactId>
+            <version>${mybatis-plus.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
