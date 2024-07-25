@@ -1,5 +1,6 @@
 package com.zync.crypto;
 
+import cn.hutool.core.codec.Base64;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.symmetric.AES;
 
@@ -14,7 +15,7 @@ public class AesTests {
     private static final String SECRET_KEY_BASE64 = "TxS9hwafuhc2KZca3h4cV8jafv++/zHD/1Av4YD8ef0=";
 
     public static void main(String[] args) {
-        AES aes = SecureUtil.aes(SECRET_KEY_BASE64.getBytes());
+        AES aes = SecureUtil.aes(Base64.decode(SECRET_KEY_BASE64));
         String base64 = aes.encryptBase64("张三");
         System.out.println(base64);
 
