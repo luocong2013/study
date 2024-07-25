@@ -101,6 +101,23 @@ public final class FunctionUtil {
     }
 
     /**
+     * 从集合中查找元素
+     *
+     * @param collection
+     * @param predicate
+     * @param nullDefault
+     * @return
+     * @param <T>
+     */
+    public static <T> T findElement(Collection<T> collection, Predicate<T> predicate, T nullDefault) {
+        if (collection == null || collection.isEmpty()) {
+            return nullDefault;
+        }
+        Objects.requireNonNull(predicate);
+        return collection.stream().filter(predicate).findFirst().orElse(nullDefault);
+    }
+
+    /**
      * list 分页后调用 consumer
      *
      * @param list
@@ -169,6 +186,29 @@ public final class FunctionUtil {
             List<R> r = function.apply(temp);
             if (CollectionUtils.isNotEmpty(r)) {
                 result.addAll(r);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Object 转 List
+     *
+     * @param object
+     * @param clazz
+     * @return
+     * @param <T>
+     */
+    public static <T> List<T> castList(Object object, Class<T> clazz) {
+        if (object == null || clazz == null) {
+            return null;
+        }
+        List<T> result = new ArrayList<>();
+        if (object instanceof List<?>) {
+            for (Object o : (List<?>) object) {
+                if (clazz.isInstance(o)) {
+                    result.add(clazz.cast(o));
+                }
             }
         }
         return result;
