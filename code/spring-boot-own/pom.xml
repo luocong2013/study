@@ -30,7 +30,7 @@
 		<mybatis-mapper-generator.version>1.0.4</mybatis-mapper-generator.version>
 
 		<!--swagger2-->
-		<swagger2.version>2.9.2</swagger2.version>
+		<swagger2.version>2.10.0</swagger2.version>
 		<!--lombok-->
 		<lombok.version>1.18.2</lombok.version>
 
