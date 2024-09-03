@@ -8,8 +8,8 @@ Spring Boot 启动会扫描以下位置的application.properties或者applicatio
 
 | 路径              | 描述                          | 优先级     |
 | ----------------- | ----------------------------- | ---------- |
-| file:…/config/    | 项目根目录config文件夹下      | 优先级最高 |
-| file:…/           | 项目根目录下                  | 优先级第二 |
+| file:./config/    | 项目根目录config文件夹下      | 优先级最高 |
+| file:./           | 项目根目录下                  | 优先级第二 |
 | classpath:/config | resources目录中config文件夹下 | 优先级第三 |
 | classpath:/       | resources目录下               | 优先级最低 |
 
@@ -275,7 +275,9 @@ void processAndApply() {
 				contributors.getBinder(null, BinderOption.FAIL_ON_BIND_TO_INACTIVE_SOURCE));
 		contributors = processWithoutProfiles(contributors, importer, activationContext);
 		activationContext = withProfiles(contributors, activationContext);
+  	// 加载指定环境变量的配置文件
 		contributors = processWithProfiles(contributors, importer, activationContext);
+  	// 将配置放入 enviornment（这就能从 enviornment 中拿到配置了）
 		applyToEnvironment(contributors, activationContext, importer.getLoadedLocations(),
 				importer.getOptionalLocations());
 	}
@@ -351,6 +353,7 @@ private Deque<StandardConfigDataReference> getReferencesForConfigName(String nam
 				StandardConfigDataReference reference = new StandardConfigDataReference(configDataLocation, directory,
 						directory + name, profile, extension, propertySourceLoader);
 				if (!references.contains(reference)) {
+          // 注意是 addFirst
 					references.addFirst(reference);
 				}
 			}
@@ -443,5 +446,75 @@ private Map<ConfigDataResolutionResult, ConfigData> load(ConfigDataLoaderContext
 	}
 
 // 将读取的数据封装到ConfigData当中返回。最后将数据组装到ConfigDataEnvironmentContributors中，最后把数据放入当前应用环境中。这样SpringBoot启动时读取文件的流程就结束了。当然后面还有按照当前指定环境profiles读取，但读取流程一致。只要是配置的优先级.
+```
+
+
+
+### 4、配置文件完整的加载顺序
+
+```xml
+1、分目录顺序
+
+file:./config/*/
+file:./config/
+file:./
+classpath:/config/
+classpath:/
+
+
+2、分文件顺序（最全）
+
+file:./config/*/application.properties
+file:./config/*/application.xml
+file:./config/*/application.yml
+file:./config/*/application.yaml
+
+file:./config/application.properties
+file:./config/application.xml
+file:./config/application.yml
+file:./config/application.yaml
+
+file:./application.properties
+file:./application.xml
+file:./application.yml
+file:./application.yaml
+
+classpath:/config/application.properties
+classpath:/config/application.xml
+classpath:/config/application.yml
+classpath:/config/application.yaml
+
+classpath:/application.properties
+classpath:/application.xml
+classpath:/application.yml
+classpath:/application.yaml
+
+
+3、spring.profiles.active 子配置（激活的环境配置）优先级最高
+
+file:./config/*/application-dev.properties
+file:./config/*/application-dev.xml
+file:./config/*/application-dev.yml
+file:./config/*/application-dev.yaml
+
+file:./config/application-dev.properties
+file:./config/application-dev.xml
+file:./config/application-dev.yml
+file:./config/application-dev.yaml
+
+file:./application-dev.properties
+file:./application-dev.xml
+file:./application-dev.yml
+file:./application-dev.yaml
+
+classpath:/config/application-dev.properties
+classpath:/config/application-dev.xml
+classpath:/config/application-dev.yml
+classpath:/config/application-dev.yaml
+
+classpath:/application-dev.properties
+classpath:/application-dev.xml
+classpath:/application-dev.yml
+classpath:/application-dev.yaml
 ```
 
