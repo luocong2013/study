@@ -46,6 +46,25 @@ public final class BeanUtil {
     }
 
     /**
+     * BeanCopier的copy
+     * @param source 源对象
+     * @param target 目标对象
+     */
+    public void shallowCopy(Object source, Object target) {
+        Assert.notNull(source, "source must not be null");
+        Assert.notNull(target, "target must not be null");
+        String key = key(source.getClass(), target.getClass());
+        BeanCopier beanCopier;
+        if (BEAN_COPIER_CACHE.containsKey(key)) {
+            beanCopier = BEAN_COPIER_CACHE.get(key);
+        } else {
+            beanCopier = BeanCopier.create(source.getClass(), target.getClass(), false);
+            BEAN_COPIER_CACHE.put(key, beanCopier);
+        }
+        beanCopier.copy(source, target, null);
+    }
+
+    /**
      * 生成key
      * @param source 源对象的Class
      * @param target 目标对象的Class
