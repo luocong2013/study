@@ -17,7 +17,7 @@
         <activemq-all.version>5.15.4</activemq-all.version>
         <activemq-core.version>5.7.0</activemq-core.version>
         <!--Spring-->
-        <spring.version>4.3.13.RELEASE</spring.version>
+        <spring.version>6.1.14</spring.version>
 
         <!--测试-->
         <junit.version>4.12</junit.version>
