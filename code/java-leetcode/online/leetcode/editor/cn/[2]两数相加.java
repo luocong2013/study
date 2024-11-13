@@ -54,31 +54,28 @@
 class Solution {
     int mod = 0;
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        if (l1 == null) {
-            if (l2 == null) {
-                if (mod != 0) {
-                    return new ListNode(mod);
-                }
-                return l2;
-            }
-            int sum = l2.val + mod;
+        ListNode node = new ListNode();
+        ListNode current = node;
+        int mod = 0;
+        while (l1 != null || l2 != null) {
+            int v1 = l1 == null ? 0 : l1.val;
+            int v2 = l2 == null ? 0 : l2.val;
+            int sum = v1 + v2 + mod;
             mod = sum >= 10 ? 1 : 0;
-            return new ListNode(sum % 10, addTwoNumbers(null, l2.next));
-        }
-        if (l2 == null) {
-            if (l1 == null) {
-                if (mod != 0) {
-                    return new ListNode(mod);
-                }
-                return l1;
+            ListNode next = new ListNode(sum % 10);
+            current.next = next;
+            current = next;
+            if (l1 != null) {
+                l1 = l1.next;
             }
-            int sum = l1.val + mod;
-            mod = sum >= 10 ? 1 : 0;
-            return new ListNode(sum % 10, addTwoNumbers(l1.next, null));
+            if (l2 != null) {
+                l2 = l2.next;
+            }
         }
-        int sum = l1.val + l2.val + mod;
-        mod = sum >= 10 ? 1 : 0;
-        return new ListNode(sum % 10, addTwoNumbers(l1.next, l2.next));
+        if (mod == 1) {
+            current.next = new ListNode(1);
+        }
+        return node.next;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
