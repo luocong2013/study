@@ -120,41 +120,66 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String intToRoman(int num) {
-        Map<Integer, String> map = new HashMap<>(16);
-        map.put(1, "I");
-        map.put(5, "V");
-        map.put(10, "X");
-        map.put(50, "L");
-        map.put(100, "C");
-        map.put(500, "D");
-        map.put(1000, "M");
+        // 方法一
+
+        String[][] param = new String[][] {
+                {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},
+                {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"},
+                {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"},
+                {"", "M", "MM", "MMM"}
+        };
 
         StringBuilder result = new StringBuilder();
 
-        int base = 1;
+        int base = 0;
 
         do {
             int mod = num % 10;
             num = num / 10;
-
-            if (mod == 5) {
-                result.insert(0, map.get(mod * base));
-            } else if (mod == 4 || mod == 9) {
-                result.insert(0, map.get(base) + map.get((mod + 1) * base));
-            } else if (mod < 4) {
-                for (int i = 1; i <= mod; i++) {
-                    result.insert(0, map.get(base));
-                }
-            } else {
-                for (int i = 1; i <= mod - 5; i++) {
-                    result.insert(0, map.get(base));
-                }
-                result.insert(0, map.get(5 * base));
-            }
-            base *= 10;
+            result.insert(0, param[base][mod]);
+            base++;
         } while (num != 0);
 
         return result.toString();
+
+
+        // 方法二
+
+        //Map<Integer, String> map = new HashMap<>(16);
+        //map.put(1, "I");
+        //map.put(5, "V");
+        //map.put(10, "X");
+        //map.put(50, "L");
+        //map.put(100, "C");
+        //map.put(500, "D");
+        //map.put(1000, "M");
+        //
+        //StringBuilder result = new StringBuilder();
+        //
+        //int base = 1;
+        //
+        //do {
+        //    int mod = num % 10;
+        //    num = num / 10;
+        //
+        //    if (mod == 5) {
+        //        result.insert(0, map.get(mod * base));
+        //    } else if (mod == 4 || mod == 9) {
+        //        result.insert(0, map.get(base) + map.get((mod + 1) * base));
+        //    } else if (mod < 4) {
+        //        for (int i = 1; i <= mod; i++) {
+        //            result.insert(0, map.get(base));
+        //        }
+        //    } else {
+        //        for (int i = 1; i <= mod - 5; i++) {
+        //            result.insert(0, map.get(base));
+        //        }
+        //        result.insert(0, map.get(5 * base));
+        //    }
+        //    base *= 10;
+        //} while (num != 0);
+        //
+        //return result.toString();
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
