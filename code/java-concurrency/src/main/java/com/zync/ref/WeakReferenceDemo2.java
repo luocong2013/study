@@ -17,7 +17,8 @@ public class WeakReferenceDemo2 {
         //test1();
         //test2();
         //test3();
-        test4();
+        //test4();
+        test5();
     }
 
     /**
@@ -71,4 +72,25 @@ public class WeakReferenceDemo2 {
         System.gc();
         System.out.println("GC之后，弱引用的值：" + THREAD_LOCAL.get());
     }
+
+    /**
+     * 这种就属于典型的内存泄漏代码
+     * 获取到的 ThreadLocal 没有强引用，那么 ThreadLocal 将在下一次gc时被回收
+     * 导致 ThreadLocalMap.Entry 里 key 被回收，value 还在，但是不能被访问到（内存泄漏）
+     * 强引用链：Thread -> ThreadLocalMap -> Entry -> value
+     */
+    private static void test5() {
+        getThreadLocal();
+        Thread thread = Thread.currentThread();
+        System.gc();
+        thread = Thread.currentThread();
+    }
+
+    private static ThreadLocal<User> getThreadLocal() {
+        ThreadLocal<User> local = ThreadLocal.withInitial(User::new);
+        local.set(new User("张三", "123", 11));
+        return local;
+    }
+
+
 }
