@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.5</version>
+        <version>3.4.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -22,8 +22,8 @@
     </properties>
 
     <modules>
-        <module>service-1</module>
-        <module>app</module>
+        <module>simple-service-1</module>
+        <module>application-core</module>
         <module>http-interface</module>
         <module>request-response-body-advice</module>
     </modules>

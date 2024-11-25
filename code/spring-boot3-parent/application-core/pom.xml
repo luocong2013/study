@@ -9,13 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>app</artifactId>
+    <artifactId>application-core</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>com.zync</groupId>
-            <artifactId>service-1</artifactId>
+            <artifactId>simple-service-1</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
