@@ -1,0 +1,20 @@
+server:
+  port: 8787
+
+spring:
+  application:
+    name: logback-log-format
+
+logging:
+  file:
+    name: log.json
+  structured:
+    format:
+      file: ecs
+    # ecs相关配置 {@link org.springframework.boot.logging.structured.ElasticCommonSchemaProperties}
+    ecs:
+      service:
+        name: MyService
+        version: 1.0.0
+        environment: Production
+        node-name: Primary

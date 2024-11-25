@@ -3,15 +3,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.zync</groupId>
         <artifactId>spring-boot3-parent</artifactId>
+        <groupId>com.zync</groupId>
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>request-response-body-advice</artifactId>
+    <artifactId>logback-log-format</artifactId>
 
-    <description>RequestBodyAdvice 统一解码请求体, ResponseBodyAdvice 统一编码响应体</description>
+    <description>Spring Boot 3.4 结构化日志记录【1、Elastic Common Schema (ECS) 格式；2、Logstash格式；3、Graylog Extended Log Format (GELF)】</description>
 
     <dependencies>
         <dependency>

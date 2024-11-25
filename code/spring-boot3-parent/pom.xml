@@ -26,6 +26,7 @@
         <module>application-core</module>
         <module>http-interface</module>
         <module>request-response-body-advice</module>
+        <module>logback-log-format</module>
     </modules>
 
 </project>
