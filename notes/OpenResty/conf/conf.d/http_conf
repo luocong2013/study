@@ -1,0 +1,87 @@
+##if necessary, ip-change will add 403 server here
+
+server {
+    listen        80;
+    server_name  localhost;
+    proxy_intercept_errors off;
+
+    if ($args ~* "{jndi:") {
+        return 403;
+    }
+    if ($args ~* "%20base64%20") {
+        return 403;
+    }
+    if ($args ~* "\|base64%20") {
+        return 403;
+    }
+    if ($args ~* "%20sh%20") {
+        return 403;
+    }
+    if ($args ~* "\|sh%20") {
+        return 403;
+    }
+    if ($args ~* "%20zsh%20") {
+        return 403;
+    }
+    if ($args ~* "\|zsh%20") {
+        return 403;
+    }
+    if ($args ~ "%20bash%20") {
+        return 403;
+    }
+    if ($args ~ "\|bash%20") {
+        return 403;
+    }
+
+    error_page 500 /500;
+    location = /500 {
+        default_type 'application/json';
+        return 500 '{"errorCode": 500,"developerMessage": "","userMessage": "","moreInfo": "","errorCodeModel": "main"}';
+    }
+
+    error_page  504  /504;
+    location = /504 {
+        default_type 'application/json';
+        return 504 '{"errorCode": 504,"developerMessage": "","userMessage": "","moreInfo": "","errorCodeModel": "main"}';
+    }
+
+    error_page 502 /502;
+    location = /502 {
+        default_type 'application/json';
+        return 502 '{"errorCode": 502,"developerMessage": "","userMessage": "","moreInfo": "","errorCodeModel": "main"}';
+    }
+    error_page 404 /404;
+    location = /404{
+        default_type 'application/json';
+        return 404 '{"errorCode": 404,"developerMessage": "","userMessage": "","moreInfo": "","errorCodeModel": "main"}';
+    }
+
+    error_page 406 /406;
+    location = /406 {
+        default_type 'application/json';
+        return 406 '{"errorCode": 406,"developerMessage": "","userMessage": "","moreInfo": "","errorCodeModel": "main"}';
+    }
+    error_page 405 /405;
+    location = /405{
+        default_type 'application/json';
+        return 405 '{"errorCode": 405,"developerMessage": "","userMessage": "","moreInfo": "","errorCodeModel": "main"}';
+    }
+
+    error_page 403 /403;
+    location = /403{
+        default_type 'application/json';
+        return 403 '{"errorCode": 403,"developerMessage": "","userMessage": "","moreInfo": "","errorCodeModel": "main"}';
+    }
+
+    location = /api/rest/crtt2 {
+        client_max_body_size  40m;
+        proxy_set_header Host $host:$server_port;
+        #proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Nginx-IP $server_addr;
+        limit_req zone=highfrequ burst=20 nodelay;
+        proxy_http_version 1.1;
+        proxy_pass        http://css_server;
+        proxy_next_upstream error timeout invalid_header;
+        proxy_redirect off;
+    }
+}
