@@ -55,13 +55,31 @@ public class DefaultSecurityConfig {
 				)
 				.csrf(AbstractHttpConfigurer::disable)
 				.formLogin(formLogin ->
-						formLogin
-								.loginPage("/login") // ④ 授权服务认证页面（可以配置相对和绝对地址，前后端分离的情况下填前端的url）
+						// 说明：formLogin 和 oauth2Login 都可以重定向到 GET /login 页面，但 formLogin 主要还有处理自定义登录页面登录请求的作用
+						// 1、设置自定义登录页面（需和 sample.web.LoginController#login 地址一致 GET /login）
+						//    鉴权失败后，重定向到 GET /login {@link org.springframework.security.web.access.ExceptionTranslationFilter#sendStartAuthentication}
+						//    this.authenticationEntryPoint.commence(request, response, reason);
+						//    这里是通过 {@link org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer#registerAuthenticationEntryPoint} 方法
+						//    给 ExceptionTranslationFilter 设置 AuthenticationEntryPoint
+
+						// 2、设置登录处理地址为 POST /login（需和自定义登录页面 login.html 中登录处理地址一致）
+						// 3、this.customLoginPage = true; 目的是禁用默认登录页面 {@link org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer#initDefaultLoginFilter}
+						// 4、其他
+						formLogin.loginPage("/login") // ④ 授权服务认证页面（可以配置相对和绝对地址，前后端分离的情况下填前端的url）
 				)
 				.oauth2Login(oauth2Login ->
-						oauth2Login
-								.loginPage("/login")//⑤ oauth2的认证页面（也可配置绝对地址）
-								.successHandler(authenticationSuccessHandler())//⑥ 登录成功后的处理
+						// 说明：formLogin 和 oauth2Login 都可以重定向到 GET /login 页面，但 formLogin 主要还有处理自定义登录页面登录请求的作用
+						// 1、设置自定义登录页面（需和 sample.web.LoginController#login 地址一致 GET /login）
+						//    鉴权失败后，重定向到 GET /login {@link org.springframework.security.web.access.ExceptionTranslationFilter#sendStartAuthentication}
+						//    this.authenticationEntryPoint.commence(request, response, reason);
+						//    这里是通过 {@link org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer#registerAuthenticationEntryPoint} 方法
+						//    给 ExceptionTranslationFilter 设置 AuthenticationEntryPoint
+
+						// 2、登录处理地址默认是：/login/oauth2/code/*
+						// 3、this.customLoginPage = true; 目的是禁用默认登录页面 {@link org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer#initDefaultLoginFilter}
+						// 4、其他
+						oauth2Login.loginPage("/login") // ⑤ oauth2的认证页面（也可配置绝对地址）
+								.successHandler(authenticationSuccessHandler()) // ⑥ 登录成功后的处理
 				);
 
 		return http.build();
