@@ -52,8 +52,9 @@ public class SecurityConfig {
 								.requestMatchers("/jwks", "/logged-out").permitAll()
 								.anyRequest().authenticated()
 				)
-				.oauth2Login(oauth2Login ->
-						oauth2Login.loginPage("/oauth2/authorization/messaging-client-oidc"))
+				//.oauth2Login(oauth2Login ->
+				//		oauth2Login.loginPage("/oauth2/authorization/messaging-client-oidc")) // 这种方式就只会重定向到 /oauth2/authorization/messaging-client-oidc
+				.oauth2Login(withDefaults()) // 这种方式会重定向到系统默认的登录页 / 如果application.yml中只有一个 authorization_code 的配置对应的那个client registration  {@link OAuth2LoginConfigurer#init}
 				.oauth2Client(withDefaults())
 				.logout(logout ->
 						logout.logoutSuccessHandler(oidcLogoutSuccessHandler(clientRegistrationRepository)));
