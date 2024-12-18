@@ -25,10 +25,12 @@ public class TransformProcessor<T, R> extends SubmissionPublisher<R> implements 
     public void onSubscribe(Flow.Subscription subscription) {
         this.subscription = subscription;
         subscription.request(1);
+        System.out.println(Thread.currentThread().getName() + " onSubscribe TransformProcessor");
     }
 
     @Override
     public void onNext(T item) {
+        System.out.println(Thread.currentThread().getName() + " TransformProcessor Received: " + item);
         submit(function.apply(item));
         // 背压
         subscription.request(1);
