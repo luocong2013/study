@@ -52,3 +52,7 @@ for n in range(2, 100):
             break
     else:
         print(n, ' 是质数')
+
+# 生成列表中包含 10个 ok
+test = ['ok' for _ in range(10)]
+print(test)
