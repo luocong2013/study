@@ -1,11 +1,10 @@
 package com.zync.webflux.springbootwebflux.map.handler;
 
-import com.zync.webflux.springbootwebflux.map.dap.CityRepository;
 import com.zync.webflux.springbootwebflux.common.domain.City;
+import com.zync.webflux.springbootwebflux.map.dap.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
@@ -38,8 +37,10 @@ public class CityHandler {
      * @return
      */
     public Mono<ServerResponse> helloCity(ServerRequest request) {
-        return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN)
-                .body(BodyInserters.fromValue("Hello, City！"));
+        City city = new City();
+        city.setCityName("成都");
+        Mono<City> mono = Mono.just(city);
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(mono, City.class);
     }
 
     public Mono<Long> save(City city) {

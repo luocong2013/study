@@ -26,9 +26,8 @@ public class CityRouter {
      */
     @Bean
     public RouterFunction<ServerResponse> routeCity(CityHandler cityHandler) {
-        return RouterFunctions.route(
-                RequestPredicates.GET("/hello")
-                        .and(RequestPredicates.accept(MediaType.TEXT_PLAIN)),
-                cityHandler::helloCity);
+        return RouterFunctions.route()
+                .GET("/hello", RequestPredicates.accept(MediaType.ALL), cityHandler::helloCity)
+                .build();
     }
 }

@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author luocong
  */
 @SpringBootApplication
-public class SpringBootWebfluxApplication {
+public class SpringBootWebFluxApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootWebfluxApplication.class, args);
+        SpringApplication.run(SpringBootWebFluxApplication.class, args);
     }
 
 }
