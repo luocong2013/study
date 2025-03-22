@@ -1,0 +1,15 @@
+version: '3'
+services:
+    ollama:
+        image: ollama/ollama
+        container_name: ollama_ai
+        ports:
+            - "11434:11434"
+        restart: unless-stopped
+        networks:
+            mynetwork:
+                aliases:
+                    - ollama
+networks:
+    mynetwork:
+        driver: bridge

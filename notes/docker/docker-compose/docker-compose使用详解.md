@@ -237,6 +237,7 @@ Compose和Docker兼容性：
             no                    # 禁止自动重启容器(默认)
             always                # 无论如何容器都会重启
             on-failure            # 当出现 on-failure 报错时, 容器重新启动
+            unless-stopped        # 容器退出时重启容器，除非容器被手动停止
 
         其他选项：
             domainname, hostname, ipc, mac_address, privileged, read_only, shm_size, stdin_open, tty, user, working_dir
