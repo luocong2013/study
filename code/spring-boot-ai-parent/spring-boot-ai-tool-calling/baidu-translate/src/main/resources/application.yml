@@ -1,0 +1,19 @@
+server:
+  port: 10005
+spring:
+  application:
+    name: spring-boot-ai-baidu-translate
+  ai:
+    dashscope:
+      api-key: ${AI_DASHSCOPE_API_KEY}
+    alibaba:
+      toolcalling:
+        baidutranslate:
+          enabled: true
+          app-id: ${BAIDU_TRANSLATE_APP_ID}
+          secret-key: ${BAIDU_TRANSLATE_SECRET_KEY}
+
+
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: DEBUG

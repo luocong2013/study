@@ -20,6 +20,7 @@
         <module>spring-boot-ai-hello</module>
         <module>spring-boot-ai-chat</module>
         <module>spring-boot-ai-rag</module>
+        <module>spring-boot-ai-tool-calling</module>
     </modules>
 
     <properties>
@@ -54,5 +55,16 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
 </project>
