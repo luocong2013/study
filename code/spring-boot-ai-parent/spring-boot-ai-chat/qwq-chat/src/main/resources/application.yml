@@ -1,0 +1,16 @@
+server:
+  port: 10003
+spring:
+  application:
+    name: spring-boot-ai-qwq-chat
+  ai:
+    dashscope:
+      api-key: ${AI_DASHSCOPE_API_KEY}
+    chat:
+      options:
+        model: qwq-plus
+
+
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: DEBUG

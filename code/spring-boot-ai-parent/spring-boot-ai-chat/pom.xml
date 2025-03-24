@@ -13,6 +13,7 @@
     <modules>
         <module>dashscope-chat</module>
         <module>ollama-chat</module>
+        <module>qwq-chat</module>
     </modules>
 
 </project>
