@@ -12,6 +12,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>baidu-translate</module>
+        <module>customize-tool</module>
     </modules>
 
 </project>
