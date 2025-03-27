@@ -1,0 +1,20 @@
+server:
+  port: 9001
+
+# 注意：一定要禁用 banner 和 console 日志
+logging:
+  pattern:
+    # 禁用 console 日志
+    console:
+  file:
+    name: logs/author.mcp.server.log
+
+spring:
+  main:
+    # 禁用 banner
+    banner-mode: off
+  ai:
+    mcp:
+      server:
+        enabled: true
+        name: author-mcp-server

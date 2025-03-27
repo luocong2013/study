@@ -15,9 +15,9 @@ spring:
         request-timeout: 30s
         stdio:
           servers-configuration: classpath:/mcp-servers-config.json
-#        sse:
-#          connections:
-#            url: http://localhost:9001
+        sse:
+          connections:
+            url: http://localhost:9001
 
 
 logging:
