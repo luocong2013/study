@@ -22,6 +22,8 @@
         <module>spring-boot-ai-rag</module>
         <module>spring-boot-ai-tool-calling</module>
         <module>spring-boot-ai-agent</module>
+        <module>spring-boot-ai-mcp-server</module>
+        <module>spring-boot-ai-mcp-client</module>
     </modules>
 
     <properties>
