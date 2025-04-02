@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SSE Demo</title>
+</head>
+<body>
+<input type="text" id="userId" placeholder="输入用户ID">
+<button onclick="connectSSE()">连接SSE</button>
+<button onclick="disconnectSSE()">断开连接</button>
+<div id="messages"></div>
+
+<script>
+    let eventSource;
+
+    function connectSSE() {
+        const userId = document.getElementById('userId').value;
+        if (!userId) return alert('请输入用户ID');
+
+        // 创建SSE连接
+        eventSource = new EventSource(`/sse/connect?userId=${userId}`);
+
+        // 通用消息处理
+        eventSource.onmessage = e => {
+            appendMessage(`消息：${e.data}`);
+        };
+
+        // 自定义事件处理
+        eventSource.addEventListener('CUSTOM_MSG', e => {
+            appendMessage(`自定义事件：${e.data}`);
+        });
+
+
+        // 错误处理
+        eventSource.onerror = e => {
+            appendMessage('连接异常');
+            console.error('SSE Error:', e);
+        };
+    }
+
+    function disconnectSSE() {
+        if (eventSource) {
+            const userId = document.getElementById('userId').value;
+            fetch(`/sse/close?userId=${userId}`, { method: 'DELETE' })
+                .then(res => res.text())
+                .then(msg => appendMessage(msg));
+            eventSource.close();
+        }
+    }
+
+    function appendMessage(text) {
+        const div = document.createElement('div');
+        div.textContent = `${new Date().toLocaleString()} - ${text}`;
+        document.getElementById('messages').appendChild(div);
+    }
+</script>
+</body>
+</html>

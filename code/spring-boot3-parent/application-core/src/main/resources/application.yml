@@ -1,2 +1,7 @@
 server:
   port: 8077
+spring:
+  mvc:
+    static-path-pattern: /templates/**
+  thymeleaf:
+    cache: false
