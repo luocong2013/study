@@ -1,7 +1,6 @@
 package com.zync.ai.controller;
 
 import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatOptions;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
@@ -11,9 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Flux;
-
-import java.nio.charset.StandardCharsets;
 
 /**
  * @author admin
@@ -50,19 +46,27 @@ public class McpClientController {
                 .build();
     }
 
-    /**
-     * ChatClient 流式调用
-     * @param query
-     * @return
-     */
-    @GetMapping("/chat")
-    public Flux<String> chat(@RequestParam(value = "query") String query,
-                             HttpServletResponse response) {
-        response.setCharacterEncoding(StandardCharsets.UTF_8.name());
+    // /**
+    //  * ChatClient 流式调用
+    //  * @param query
+    //  * @return
+    //  */
+    // @GetMapping("/chat")
+    // public Flux<String> chat(@RequestParam(value = "query") String query,
+    //                          HttpServletResponse response) {
+    //     response.setCharacterEncoding(StandardCharsets.UTF_8.name());
+    //
+    //     return chatClient
+    //             .prompt(query)
+    //             .stream()
+    //             .content();
+    // }
 
+    @GetMapping("/chat")
+    public String chat(@RequestParam(value = "query") String query) {
         return chatClient
                 .prompt(query)
-                .stream()
+                .call()
                 .content();
     }
 
