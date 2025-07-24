@@ -2,6 +2,7 @@ package com.zync.clone;
 
 import net.sf.cglib.beans.BeanCopier;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.util.Assert;
 
 import java.util.Map;
@@ -28,21 +29,9 @@ public final class BeanUtil {
     public static <T> T shallowCopy(Object source, Class<T> target) {
         Assert.notNull(source, "source must not be null");
         Assert.notNull(target, "target class must not be null");
-        String key = key(source.getClass(), target);
-        BeanCopier beanCopier;
-        if (BEAN_COPIER_CACHE.containsKey(key)) {
-            beanCopier = BEAN_COPIER_CACHE.get(key);
-        } else {
-            beanCopier = BeanCopier.create(source.getClass(), target, false);
-            BEAN_COPIER_CACHE.put(key, beanCopier);
-        }
-        try {
-            T instance = target.newInstance();
-            beanCopier.copy(source, instance, null);
-            return instance;
-        } catch (Exception ignore) {
-        }
-        return null;
+        T instance = BeanUtils.instantiateClass(target);
+        shallowCopy(source, instance);
+        return instance;
     }
 
     /**
@@ -50,7 +39,7 @@ public final class BeanUtil {
      * @param source 源对象
      * @param target 目标对象
      */
-    public void shallowCopy(Object source, Object target) {
+    public static void shallowCopy(Object source, Object target) {
         Assert.notNull(source, "source must not be null");
         Assert.notNull(target, "target must not be null");
         String key = key(source.getClass(), target.getClass());
