@@ -11,12 +11,15 @@ public class CloneDomain implements Cloneable {
 
     private String name;
 
+    private CloneDomainItem cloneDomainItem;
+
     public CloneDomain() {
     }
 
-    public CloneDomain(int age, String name) {
+    public CloneDomain(int age, String name, CloneDomainItem cloneDomainItem) {
         this.age = age;
         this.name = name;
+        this.cloneDomainItem = cloneDomainItem;
     }
 
     public int getAge() {
@@ -33,6 +36,14 @@ public class CloneDomain implements Cloneable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public CloneDomainItem getCloneDomainItem() {
+        return cloneDomainItem;
+    }
+
+    public void setCloneDomainItem(CloneDomainItem cloneDomainItem) {
+        this.cloneDomainItem = cloneDomainItem;
     }
 
     @Override
