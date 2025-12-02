@@ -78,6 +78,22 @@ public class RSAUtil {
     }
 
     /**
+     * RSA私钥加密数据
+     *
+     * @param priKey     Base64 编码的私钥
+     * @param plainText  明文
+     * @return           Base64 编码的加密数据
+     */
+    public String encryptPrivate(String priKey, String plainText) throws Exception {
+        byte[] decoded = Base64.getDecoder().decode(priKey);
+        PrivateKey privateKey = KeyUtil.generateRSAPrivateKey(decoded);
+        Cipher cipher = Cipher.getInstance(AsymmetricAlgorithm.RSA.getValue());
+        cipher.init(Cipher.ENCRYPT_MODE, privateKey);
+        byte[] bytes = cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8));
+        return Base64.getEncoder().encodeToString(bytes);
+    }
+
+    /**
      * RAS私钥解密数据
      *
      * @param priKey     Base64 编码的私钥
@@ -89,6 +105,23 @@ public class RSAUtil {
         PrivateKey privateKey = KeyUtil.generateRSAPrivateKey(decoded);
         Cipher cipher = Cipher.getInstance(AsymmetricAlgorithm.RSA.getValue());
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
+        // Base64 编码的加密数据
+        byte[] bytes = Base64.getDecoder().decode(cipherText);
+        return new String(cipher.doFinal(bytes), StandardCharsets.UTF_8);
+    }
+
+    /**
+     * RSA公钥解密数据
+     *
+     * @param pubKey      Base64 编码的公钥
+     * @param cipherText  Base64 编码的加密数据
+     * @return            明文
+     */
+    public String decryptPublic(String pubKey, String cipherText) throws Exception {
+        byte[] decoded = Base64.getDecoder().decode(pubKey);
+        PublicKey publicKey = KeyUtil.generateRSAPublicKey(decoded);
+        Cipher cipher = Cipher.getInstance(AsymmetricAlgorithm.RSA.getValue());
+        cipher.init(Cipher.DECRYPT_MODE, publicKey);
         // Base64 编码的加密数据
         byte[] bytes = Base64.getDecoder().decode(cipherText);
         return new String(cipher.doFinal(bytes), StandardCharsets.UTF_8);
