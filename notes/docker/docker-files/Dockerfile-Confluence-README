@@ -1,0 +1,9 @@
+# Confluence构建命令
+docker build --build-arg JAVA_OPTS="-Xms2048m -Xmx2048m" -t registry.cn-hangzhou.aliyuncs.com/luocong/confluence:9.2.1 -f Dockerfile-Confluence .
+
+# Confluence启动命令
+
+docker network create confluence-network && docker run -d -p 8004:8090 -v /mnt/confluence/data:/var/confluence --network confluence-network --name confluence-service -e TZ='Asia/Shanghai' registry.cn-hangzhou.aliyuncs.com/luocong/confluence:9.2.1
+
+# 激活码
+docker exec confluence-service java -jar /var/agent/atlassian-agent.jar -d -p conf -m Hello@world.com -n Hello@world.com -o hello-world -s BP8K-TTVD-SACA-AZ3V
