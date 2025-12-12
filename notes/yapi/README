@@ -1,0 +1,8 @@
+利用pm2管理服务
+
+npm install pm2 -g  // 安装pm2
+cd /opt/yapi
+pm2 start "vendors/server/app.js" --name yapi  // pm2管理yapi服务
+pm2 info yapi  // 查看服务信息
+pm2 stop yapi  // 停止服务
+pm2 restart yapi  // 重启服务

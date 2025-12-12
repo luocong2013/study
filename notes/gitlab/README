@@ -1,0 +1,9 @@
+gitlab相关说明
+
+gitlab主配置文件：/etc/gitlab/gitlab.rb
+修改该配置文件后需重载配置：gitlab-ctl reconfigure
+
+查看gitlab服务状态：gitlab-ctl status
+停止gitlab服务：gitlab-ctl stop
+启动gitlab服务：gitlab-ctl start
+重启gitlab服务：gitlab-ctl restart
