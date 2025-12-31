@@ -62,7 +62,7 @@
         <!-- 根据时间来制定滚动策略, 既负责滚动也负责出发滚动 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 滚动后的日志文件名 可相对、和绝对路径 -->
-            <fileNamePattern>${log_dir}/error/${LOGBACK_ROLLINGPOLICY_FILE_NAME_PATTERN:-%d{yyyy-MM-dd}/app_error.log}</fileNamePattern>
+            <fileNamePattern>${log_dir}/error/${LOGBACK_ROLLINGPOLICY_FILE_NAME_PATTERN:-%d{yyyy-MM-dd}/app_error.%i.log.gz}</fileNamePattern>
             <!-- 启动服务时，是否清理历史日志，一般不建议清理 -->
             <cleanHistoryOnStart>${LOGBACK_ROLLINGPOLICY_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
             <!-- 日志文件的总大小，0 表示不限制 -->
@@ -92,7 +92,7 @@
         <!-- 根据大小和时间来制定滚动策略, 既负责滚动也负责出发滚动 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- 滚动后的日志文件名 可相对、和绝对路径 -->
-            <fileNamePattern>${log_dir}/warn/${LOGBACK_ROLLINGPOLICY_FILE_NAME_PATTERN:-%d{yyyy-MM-dd}/app_warn.%i.gz}</fileNamePattern>
+            <fileNamePattern>${log_dir}/warn/${LOGBACK_ROLLINGPOLICY_FILE_NAME_PATTERN:-%d{yyyy-MM-dd}/app_warn.%i.log.gz}</fileNamePattern>
             <!-- 启动服务时，是否清理历史日志，一般不建议清理 -->
             <cleanHistoryOnStart>${LOGBACK_ROLLINGPOLICY_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
             <!-- 日志文件，到达多少容量，进行滚动 -->
@@ -117,7 +117,7 @@
             <onMismatch>DENY</onMismatch>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${log_dir}/info/${LOGBACK_ROLLINGPOLICY_FILE_NAME_PATTERN:-%d{yyyy-MM-dd}/${LOG_FILE:-app_info}.%i.gz}</fileNamePattern>
+            <fileNamePattern>${log_dir}/info/${LOGBACK_ROLLINGPOLICY_FILE_NAME_PATTERN:-%d{yyyy-MM-dd}/${LOG_FILE:-app_info}.%i.log.gz}</fileNamePattern>
             <cleanHistoryOnStart>${LOGBACK_ROLLINGPOLICY_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
             <maxFileSize>${LOGBACK_ROLLINGPOLICY_MAX_FILE_SIZE:-10MB}</maxFileSize>
             <totalSizeCap>${LOGBACK_ROLLINGPOLICY_TOTAL_SIZE_CAP:-0}</totalSizeCap>
@@ -138,7 +138,7 @@
             <onMismatch>DENY</onMismatch>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${log_dir}/debug/${LOGBACK_ROLLINGPOLICY_FILE_NAME_PATTERN:-%d{yyyy-MM-dd}/app_debug.%i.gz}</fileNamePattern>
+            <fileNamePattern>${log_dir}/debug/${LOGBACK_ROLLINGPOLICY_FILE_NAME_PATTERN:-%d{yyyy-MM-dd}/app_debug.%i.log.gz}</fileNamePattern>
             <cleanHistoryOnStart>${LOGBACK_ROLLINGPOLICY_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
             <maxFileSize>${LOGBACK_ROLLINGPOLICY_MAX_FILE_SIZE:-10MB}</maxFileSize>
             <totalSizeCap>${LOGBACK_ROLLINGPOLICY_TOTAL_SIZE_CAP:-0}</totalSizeCap>
@@ -159,7 +159,7 @@
             <onMismatch>DENY</onMismatch>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${log_dir}/trace/${LOGBACK_ROLLINGPOLICY_FILE_NAME_PATTERN:-%d{yyyy-MM-dd}/app_trace.%i.gz}</fileNamePattern>
+            <fileNamePattern>${log_dir}/trace/${LOGBACK_ROLLINGPOLICY_FILE_NAME_PATTERN:-%d{yyyy-MM-dd}/app_trace.%i.log.gz}</fileNamePattern>
             <cleanHistoryOnStart>${LOGBACK_ROLLINGPOLICY_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
             <maxFileSize>${LOGBACK_ROLLINGPOLICY_MAX_FILE_SIZE:-10MB}</maxFileSize>
             <totalSizeCap>${LOGBACK_ROLLINGPOLICY_TOTAL_SIZE_CAP:-0}</totalSizeCap>
