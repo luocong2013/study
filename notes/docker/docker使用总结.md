@@ -36,7 +36,7 @@ $ docker build -t username/repository:tag -f dockerfile1 .
 6. 进入容器
 
 ```
-$ docker run -it username/repository:tag /bin/bash
+$ docker exec -it username/repository:tag /bin/bash
 ```
 
 7. 启动容器
