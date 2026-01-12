@@ -34,9 +34,9 @@ public class JsonClient {
 
         // Jackson
         System.out.println("======================Jackson=======================");
-        String jacksonText = JacksonUtil.bean2Json(domain);
+        String jacksonText = JacksonUtil.toJson(domain);
         System.out.println(jacksonText);
-        JsonDomain jsonDomainJackson = JacksonUtil.json2Bean(jacksonText, JsonDomain.class);
+        JsonDomain jsonDomainJackson = JacksonUtil.toBean(jacksonText, JsonDomain.class);
         System.out.println(jsonDomainJackson);
         System.out.println("======================Jackson=======================\n");
     }
