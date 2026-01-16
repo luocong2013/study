@@ -1,4 +1,4 @@
-package com.customzied.common.pojo;
+package com.customzied.common.common;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -10,14 +10,12 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-
 /**
  * MybatisPlus Entity 基础类
  *
  * @author luocong
  * @version v1.0
- * @date 2023/11/6 18:30
+ * @since 2023/11/6 18:30
  */
 @Getter
 @Setter
@@ -28,27 +26,27 @@ public class BaseEntity<T extends Model<T>> extends Model<T> {
      * ID
      */
     @TableId(type = IdType.ASSIGN_ID)
-    private String id;
+    private Long id;
 
     /**
      * 创建时间
      */
-    private Date gmtCreate;
+    private Long gmtCreate;
 
     /**
      * 修改时间
      */
-    private Date gmtModified;
+    private Long gmtModified;
 
     /**
-     * 创建人
+     * 创建人ID
      */
-    private String creator;
+    private Long creatorId;
 
     /**
-     * 最新修改人
+     * 最后修改人ID
      */
-    private String modifier;
+    private Long modifierId;
 
     /**
      * 备注

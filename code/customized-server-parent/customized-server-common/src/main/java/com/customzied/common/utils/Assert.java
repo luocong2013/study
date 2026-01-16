@@ -10,7 +10,7 @@ import java.util.function.Supplier;
  *
  * @author luocong
  * @version v1.0
- * @date 2023/11/9 17:17
+ * @since 2023/11/9 17:17
  */
 @UtilityClass
 public class Assert {

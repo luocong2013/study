@@ -1,9 +1,9 @@
 package com.customzied.common.configuration.filter;
 
+import com.customzied.common.common.ApiResponseEntity;
+import com.customzied.common.common.Const;
 import com.customzied.common.configuration.wrapper.MultiReadHttpServletRequestWrapper;
 import com.customzied.common.configuration.wrapper.MultiReadHttpServletResponseWrapper;
-import com.customzied.common.constant.Const;
-import com.customzied.common.exception.BaseResponseEntity;
 import com.customzied.common.utils.IpUtil;
 import com.customzied.common.utils.LogTraceIdUtil;
 import jakarta.servlet.FilterChain;
@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author luocong
  * @version v1.0
- * @date 2023/9/4 14:58
+ * @since 2023/9/4 14:58
  */
 @Slf4j
 @Component
@@ -51,7 +51,7 @@ public class CustomizeRequestLoggingFilter extends OncePerRequestFilter {
             logRequestBody(wrappedRequest);
             filterChain.doFilter(wrappedRequest, wrappedResponse);
         } catch (Exception e) {
-            BaseResponseEntity.out(wrappedResponse, e);
+            ApiResponseEntity.out(wrappedResponse, e);
         } finally {
             watch.stop();
             // 记录响应的消息体

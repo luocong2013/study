@@ -1,26 +1,20 @@
-package com.customzied.common.exception;
+package com.customzied.common.common;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.Serial;
-import java.io.Serializable;
-
 /**
- * base rest response
+ * api 响应体
  *
  * @author luocong
- * @version v1.0
- * @date 2023/11/1 11:02
- */
+ * @version 1.0
+ * @since 2026/1/15 14:10
+ **/
 @Getter
 @Setter
 @Builder
-public class BaseMessage implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = -9143234037177972208L;
+public class ApiResponse<T> {
 
     /**
      * 状态码
@@ -29,7 +23,7 @@ public class BaseMessage implements Serializable {
     /**
      * 描述信息（用户）
      */
-    private String userMessage;
+    private String message;
     /**
      * 简要描述信息（开发者）
      */
@@ -38,5 +32,8 @@ public class BaseMessage implements Serializable {
      * 更多详细信息
      */
     private String moreInfo;
-
+    /**
+     * 数据
+     */
+    private T data;
 }

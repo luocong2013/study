@@ -1,4 +1,4 @@
-package com.customzied.common.pojo.enums;
+package com.customzied.common.common.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
  *
  * @author luocong
  * @version v1.0
- * @date 2023/11/8 16:52
+ * @since 2023/11/8 16:52
  */
 @Getter
 @RequiredArgsConstructor

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  *
  * @author luocong
  * @version v1.0
- * @date 2023/11/1 11:52
+ * @since 2023/11/1 11:52
  */
 @Slf4j
 @Component

@@ -1,6 +1,6 @@
 package com.customzied.common.utils;
 
-import com.customzied.common.pojo.enums.DatePatternEnum;
+import com.customzied.common.common.enums.DatePatternEnum;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat;
  *
  * @author luocong
  * @version v1.0
- * @date 2023/11/8 17:14
+ * @since 2023/11/8 17:14
  */
 @Slf4j
 @UtilityClass

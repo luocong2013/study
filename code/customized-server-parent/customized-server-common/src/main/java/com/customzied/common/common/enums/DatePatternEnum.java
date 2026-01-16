@@ -1,4 +1,4 @@
-package com.customzied.common.pojo.enums;
+package com.customzied.common.common.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,7 +8,7 @@ import lombok.Getter;
  *
  * @author luocong
  * @version v1.0
- * @date 2023/11/8 17:18
+ * @since 2023/11/8 17:18
  */
 @Getter
 @AllArgsConstructor

@@ -1,6 +1,6 @@
 package com.customzied.common.utils;
 
-import com.customzied.common.constant.Const;
+import com.customzied.common.common.Const;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.StringUtils;
@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
  *
  * @author luocong
  * @version v1.0
- * @date 2023/11/1 11:42
+ * @since 2023/11/1 11:42
  */
 @UtilityClass
 public class IpUtil {

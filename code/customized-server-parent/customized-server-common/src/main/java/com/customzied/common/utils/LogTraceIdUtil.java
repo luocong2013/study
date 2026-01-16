@@ -8,7 +8,7 @@ import lombok.experimental.UtilityClass;
  *
  * @author luocong
  * @version v1.0
- * @date 2023/10/31 15:47
+ * @since 2023/10/31 15:47
  */
 @UtilityClass
 public class LogTraceIdUtil {

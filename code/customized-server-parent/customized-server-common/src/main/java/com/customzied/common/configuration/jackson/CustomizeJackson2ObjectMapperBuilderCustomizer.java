@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  *
  * @author luocong
  * @version v1.0
- * @date 2023/11/9 10:50
+ * @since 2023/11/9 10:50
  */
 @Component
 public class CustomizeJackson2ObjectMapperBuilderCustomizer implements Jackson2ObjectMapperBuilderCustomizer, Ordered {

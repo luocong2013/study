@@ -1,6 +1,6 @@
 package com.customzied.common.configuration.wrapper;
 
-import com.customzied.common.constant.Const;
+import com.customzied.common.common.Const;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.util.ContentCachingResponseWrapper;
 
@@ -9,7 +9,7 @@ import org.springframework.web.util.ContentCachingResponseWrapper;
  *
  * @author luocong
  * @version v1.0
- * @date 2023/11/2 17:11
+ * @since 2023/11/2 17:11
  */
 public class MultiReadHttpServletResponseWrapper extends ContentCachingResponseWrapper {
 

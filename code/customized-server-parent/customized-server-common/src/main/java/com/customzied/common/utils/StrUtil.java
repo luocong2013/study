@@ -8,7 +8,7 @@ import org.slf4j.helpers.MessageFormatter;
  *
  * @author luocong
  * @version v1.3.2
- * @date 2022/11/25 13:58
+ * @since 2022/11/25 13:58
  */
 @UtilityClass
 public class StrUtil {

@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
  *
  * @author luocong
  * @version v1.0
- * @date 2023/11/6 14:38
+ * @since 2023/11/6 14:38
  */
 @SpringBootConfiguration
 public class MybatisPlusConfiguration {

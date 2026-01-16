@@ -19,7 +19,7 @@ import jakarta.validation.groups.Default;
  *
  * @author luocong
  * @version v1.0
- * @date 2023/11/9 15:10
+ * @since 2023/11/9 15:10
  */
 public interface Create extends Default {
 }

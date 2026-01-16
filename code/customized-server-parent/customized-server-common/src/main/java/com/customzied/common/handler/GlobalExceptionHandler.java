@@ -1,14 +1,12 @@
 package com.customzied.common.handler;
 
-import com.customzied.common.constant.Const;
-import com.customzied.common.exception.BaseMessage;
-import com.customzied.common.exception.BaseResponseEntity;
+import com.customzied.common.common.ApiResponseEntity;
+import com.customzied.common.common.Const;
 import com.customzied.common.exception.BizException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.ServletRequestBindingException;
@@ -23,69 +21,64 @@ import java.util.Map;
  *
  * @author luocong
  * @version v1.0
- * @date 2023/11/1 10:45
+ * @since 2023/11/1 10:45
  */
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
     /**
-     * BizException Handler
+     * Handle BizException
      *
-     * @param request
-     * @param e
-     * @return
+     * @param request HttpServletRequest
+     * @param e       BizException
      */
     @ExceptionHandler(value = BizException.class)
-    public ResponseEntity<BaseMessage> bizExceptionHandler(HttpServletRequest request, BizException e) {
+    public ApiResponseEntity<Object> handleBizException(HttpServletRequest request, BizException e) {
         log.error("BizException error, URI: {}", request.getRequestURI(), e);
-        return BaseResponseEntity.builder(e.getStatus(), e.getMessage(), e.getDeveloperMessage(), e.toString());
+        return ApiResponseEntity.error(e.getStatus(), e.getMessage(), e.getDeveloperMessage(), e.toString());
     }
 
     /**
-     * ServletRequestBindingException Handler
+     * Handle ServletRequestBindingException
      *
-     * @param request
-     * @param e
-     * @return
+     * @param request HttpServletRequest
+     * @param e       ServletRequestBindingException
      */
     @ExceptionHandler(value = ServletRequestBindingException.class)
-    public ResponseEntity<BaseMessage> servletRequestBindingExceptionHandler(HttpServletRequest request, Exception e) {
+    public ApiResponseEntity<Object> handleServletRequestBindingException(HttpServletRequest request, ServletRequestBindingException e) {
         log.error("ServletRequestBindingException error, URI: {}", request.getRequestURI(), e);
-        return BaseResponseEntity.builder(HttpStatus.BAD_REQUEST, "param is error", e.getMessage(), e.toString());
+        return ApiResponseEntity.error(HttpStatus.BAD_REQUEST, "param is error", e.getMessage(), e.toString());
     }
 
     /**
-     * MethodArgumentNotValidException Handler
+     * Handle MethodArgumentNotValidException
      *
-     * @param request
-     * @param e
-     * @return
+     * @param request HttpServletRequest
+     * @param e       MethodArgumentNotValidException
      */
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public ResponseEntity<BaseMessage> methodArgumentNotValidExceptionHandler(HttpServletRequest request, Exception e) {
+    public ApiResponseEntity<Object> handleMethodArgumentNotValidException(HttpServletRequest request, MethodArgumentNotValidException e) {
         log.error("MethodArgumentNotValidException error, URI: {}", request.getRequestURI(), e);
-        MethodArgumentNotValidException exception = (MethodArgumentNotValidException) e;
         // 按需重新封装需要返回的错误信息
         Map<String, String> invalidArguments = new HashMap<>(16);
         // 解析原错误信息，封装后返回，此处返回非法的字段名称，原始值，错误信息
-        for (FieldError error : exception.getFieldErrors()) {
+        for (FieldError error : e.getFieldErrors()) {
             invalidArguments.put(error.getField(), error.getDefaultMessage());
         }
-        return BaseResponseEntity.builder(HttpStatus.BAD_REQUEST, StringUtils.join(invalidArguments.values(), Const.SEMICOLON_CH), invalidArguments.toString(), e.toString());
+        return ApiResponseEntity.error(HttpStatus.BAD_REQUEST, StringUtils.join(invalidArguments.values(), Const.SEMICOLON_CH), invalidArguments.toString(), e.toString());
     }
 
     /**
-     * System Exception Handler
+     * Handle Exception
      *
-     * @param request
-     * @param e
-     * @return
+     * @param request HttpServletRequest
+     * @param e       Exception
      */
     @ExceptionHandler(value = Exception.class)
-    public ResponseEntity<BaseMessage> exceptionHandler(HttpServletRequest request, Exception e) {
+    public ApiResponseEntity<Object> exceptionHandler(HttpServletRequest request, Exception e) {
         log.error("Exception error, URI: {}", request.getRequestURI(), e);
-        return BaseResponseEntity.builder(HttpStatus.INTERNAL_SERVER_ERROR, Const.GLOBAL_EXCEPTION_MESSAGE, e.getMessage(), e.toString());
+        return ApiResponseEntity.error(HttpStatus.INTERNAL_SERVER_ERROR, Const.GLOBAL_EXCEPTION_MESSAGE, e.getMessage(), e.toString());
     }
 
 }

@@ -1,4 +1,4 @@
-package com.customzied.common.constant;
+package com.customzied.common.common;
 
 
 /**
@@ -6,13 +6,13 @@ package com.customzied.common.constant;
  *
  * @author luocong
  * @version v1.0
- * @date 2023/10/31 15:42
+ * @since 2023/10/31 15:42
  */
 public interface Const {
     /**
      * mdc trace id
      */
-    String MDC_TRACE_ID = "trace_id";
+    String MDC_TRACE_ID = "X-Trace-Id";
     /**
      * unknown
      */
