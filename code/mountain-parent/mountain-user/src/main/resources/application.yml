@@ -1,0 +1,46 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: mountain-user
+  profiles:
+    active: dev
+  mvc:
+    servlet:
+      path: /api/rest
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/mountain?socketTimeout=60000&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 1qaz2wsx
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 20
+      validation-timeout: 2500
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: select 1
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+        useLocalSessionState: true
+        rewriteBatchedStatements: true
+        cacheResultSetMetadata: true
+        cacheServerConfiguration: true
+        elideSetAutoCommits: true
+        maintainTimeStats: false
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.mountain.**.pojo.po
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    banner: false
+    db-config:
+      logic-delete-field: deleted #全局逻辑删除字段
+      logic-not-delete-value: "0" #全局逻辑未删除值
+      logic-delete-value: "UNIX_TIMESTAMP()" #全局逻辑删除值，时间戳函数，精确到毫秒
