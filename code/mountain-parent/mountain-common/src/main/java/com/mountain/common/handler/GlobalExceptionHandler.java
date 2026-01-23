@@ -76,7 +76,7 @@ public class GlobalExceptionHandler {
      * @param e       Exception
      */
     @ExceptionHandler(value = Exception.class)
-    public ApiResponseEntity<Object> exceptionHandler(HttpServletRequest request, Exception e) {
+    public ApiResponseEntity<Object> handleException(HttpServletRequest request, Exception e) {
         log.error("Exception error, URI: {}", request.getRequestURI(), e);
         return ApiResponseEntity.error(HttpStatus.INTERNAL_SERVER_ERROR, Const.GLOBAL_EXCEPTION_MESSAGE, e.getMessage(), e.toString());
     }

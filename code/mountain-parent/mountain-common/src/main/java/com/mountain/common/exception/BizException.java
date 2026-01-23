@@ -1,5 +1,6 @@
 package com.mountain.common.exception;
 
+import com.mountain.common.common.Const;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -23,32 +24,38 @@ public class BizException extends RuntimeException {
      */
     private final String developerMessage;
 
-    public BizException(String message, HttpStatusCode status, String developerMessage) {
+    public BizException(HttpStatusCode status, String message, String developerMessage) {
         super(message);
         this.status = status;
         this.developerMessage = developerMessage;
     }
 
-    public BizException(String message, HttpStatusCode status, String developerMessage, Throwable cause) {
+    public BizException(HttpStatusCode status, String message, String developerMessage, Throwable cause) {
         super(message, cause);
         this.status = status;
         this.developerMessage = developerMessage;
     }
 
-    public BizException(String message) {
-        this(message, HttpStatus.INTERNAL_SERVER_ERROR);
+    public BizException(Throwable cause) {
+        super(cause);
+        this.status = HttpStatus.INTERNAL_SERVER_ERROR;
+        this.developerMessage = Const.GLOBAL_EXCEPTION_MESSAGE;
     }
 
-    public BizException(String message, HttpStatusCode status) {
-        this(message, status, message);
+    public BizException(String message) {
+        this(HttpStatus.INTERNAL_SERVER_ERROR, message);
+    }
+
+    public BizException(HttpStatusCode status, String message) {
+        this(status, message, message);
     }
 
     public BizException(String message, Throwable cause) {
-        this(message, HttpStatus.INTERNAL_SERVER_ERROR, cause);
+        this(HttpStatus.INTERNAL_SERVER_ERROR, message, cause);
     }
 
-    public BizException(String message, HttpStatusCode status, Throwable cause) {
-        this(message, status, message, cause);
+    public BizException(HttpStatusCode status, String message, Throwable cause) {
+        this(status, message, message, cause);
     }
 
 }

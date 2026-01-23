@@ -19,7 +19,7 @@ public class IpUtil {
      * 获取客户机ip地址
      *
      * @param request:
-     * @return: java.lang.String
+     * @return java.lang.String
      */
     public String getIpAddress(HttpServletRequest request) {
         String ip = request.getHeader("X-Original-Forwarded-For");
