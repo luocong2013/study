@@ -1,7 +1,7 @@
 package com.mountain.user.controller.internal;
 
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
-import com.mountain.common.common.ApiResponseEntity;
+import com.mountain.common.base.ApiResponseEntity;
 import com.mountain.common.configuration.mybatis.SnowflakeIdWorker;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -1,6 +1,6 @@
 package com.mountain.common.exception;
 
-import com.mountain.common.common.Const;
+import com.mountain.common.base.Const;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;

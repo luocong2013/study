@@ -1,6 +1,6 @@
 package com.mountain.common.configuration.wrapper;
 
-import com.mountain.common.common.Const;
+import com.mountain.common.base.Const;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.util.ContentCachingResponseWrapper;
 

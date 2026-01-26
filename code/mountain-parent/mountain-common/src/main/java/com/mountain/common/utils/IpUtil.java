@@ -1,6 +1,6 @@
 package com.mountain.common.utils;
 
-import com.mountain.common.common.Const;
+import com.mountain.common.base.Const;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.StringUtils;

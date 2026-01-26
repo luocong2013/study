@@ -1,7 +1,7 @@
 package com.mountain.common.handler;
 
-import com.mountain.common.common.ApiResponseEntity;
-import com.mountain.common.common.Const;
+import com.mountain.common.base.ApiResponseEntity;
+import com.mountain.common.base.Const;
 import com.mountain.common.exception.BizException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="false">
+
+    <!-- 引用 Spring Boot 的 logback 基础配置 -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <!-- 定义日志文件 输出位置 -->
+    <property name="LOG_DIR" value="${LOG_PATH:-logs}"/>
+    <!-- 日志输出格式 -->
+    <property name="CUSTOMIZE_LOG_PATTERN" value="%d [%thread] %5level [%X{X-Trace-Id}] %logger{50}:%line - %msg%n"/>
+
+    <!-- ConsoleAppender 输出日志到控制台 -->
+    <appender name="CONSOLE-LOG" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${CUSTOMIZE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 输出日志到文件 -->
+    <appender name="FILE-LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 当前日志输出的文件 -->
+        <file>${LOG_DIR}/mountain_user.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <!-- 根据大小和时间来制定滚动策略, 既负责滚动也负责触发滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- 滚动后的日志文件名 可相对、和绝对路径 -->
+            <fileNamePattern>${LOG_DIR}/mountain_user.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <!-- 日志文件，到达多少容量，进行滚动 -->
+            <maxFileSize>128MB</maxFileSize>
+            <!-- 日志文件的保留天数 -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${CUSTOMIZE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 异步写入日志，提升性能 -->
+    <appender name="ASYNC-FILE-LOG" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 设置不丢失日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列的深度，该值会影响性能。默认值为 256 -->
+        <queueSize>1000</queueSize>
+        <!-- 添加附加的appender，最多只能添加一个 -->
+        <appender-ref ref="FILE-LOG"/>
+    </appender>
+
+    <!-- ROOT 级别 -->
+    <root level="DEBUG">
+        <!-- 控制台输出 -->
+        <appender-ref ref="CONSOLE-LOG"/>
+        <!-- 文件输出 -->
+        <appender-ref ref="ASYNC-FILE-LOG"/>
+    </root>
+
+</configuration>

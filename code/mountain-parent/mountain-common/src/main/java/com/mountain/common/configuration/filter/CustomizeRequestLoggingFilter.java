@@ -1,7 +1,7 @@
 package com.mountain.common.configuration.filter;
 
-import com.mountain.common.common.ApiResponseEntity;
-import com.mountain.common.common.Const;
+import com.mountain.common.base.ApiResponseEntity;
+import com.mountain.common.base.Const;
 import com.mountain.common.configuration.wrapper.MultiReadHttpServletRequestWrapper;
 import com.mountain.common.configuration.wrapper.MultiReadHttpServletResponseWrapper;
 import com.mountain.common.utils.IpUtil;

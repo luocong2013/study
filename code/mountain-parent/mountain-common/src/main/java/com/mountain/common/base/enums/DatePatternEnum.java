@@ -1,4 +1,4 @@
-package com.mountain.common.common.enums;
+package com.mountain.common.base.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

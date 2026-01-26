@@ -1,4 +1,4 @@
-package com.mountain.common.common;
+package com.mountain.common.base;
 
 
 /**

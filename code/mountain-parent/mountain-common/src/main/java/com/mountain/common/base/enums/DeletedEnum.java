@@ -1,4 +1,4 @@
-package com.mountain.common.common.enums;
+package com.mountain.common.base.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import lombok.Getter;

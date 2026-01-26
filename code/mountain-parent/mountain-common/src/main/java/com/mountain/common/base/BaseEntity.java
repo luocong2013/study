@@ -1,4 +1,4 @@
-package com.mountain.common.common;
+package com.mountain.common.base;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;

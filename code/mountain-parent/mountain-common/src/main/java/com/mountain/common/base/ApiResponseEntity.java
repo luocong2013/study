@@ -1,4 +1,4 @@
-package com.mountain.common.common;
+package com.mountain.common.base;
 
 import com.mountain.common.handler.SpringContextHolder;
 import com.fasterxml.jackson.databind.ObjectMapper;
