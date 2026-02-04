@@ -1,11 +1,11 @@
 package com.mountain.common.configuration.filter;
 
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.mountain.common.base.ApiResponseEntity;
 import com.mountain.common.base.Const;
 import com.mountain.common.configuration.wrapper.MultiReadHttpServletRequestWrapper;
 import com.mountain.common.configuration.wrapper.MultiReadHttpServletResponseWrapper;
 import com.mountain.common.utils.IpUtil;
-import com.mountain.common.utils.LogTraceIdUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -65,7 +65,7 @@ public class CustomizeRequestLoggingFilter extends OncePerRequestFilter {
     /**
      * 记录请求的消息体
      *
-     * @param request
+     * @param request HttpServletRequest
      */
     private void logRequestBody(MultiReadHttpServletRequestWrapper request) {
         if (request == null) {
@@ -83,9 +83,9 @@ public class CustomizeRequestLoggingFilter extends OncePerRequestFilter {
     /**
      * 记录响应的消息体
      *
-     * @param request
-     * @param response
-     * @param useTime
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @param useTime 使用时间
      */
     private void logResponseBody(MultiReadHttpServletRequestWrapper request, MultiReadHttpServletResponseWrapper response, long useTime) {
         if (response == null) {
@@ -106,13 +106,13 @@ public class CustomizeRequestLoggingFilter extends OncePerRequestFilter {
     /**
      * add traceId
      *
-     * @param request
-     * @param response
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      */
     private void addTraceId(HttpServletRequest request, HttpServletResponse response) {
         String traceId = request.getHeader(Const.MDC_TRACE_ID);
         if (StringUtils.isBlank(traceId)) {
-            traceId = LogTraceIdUtil.generateTraceId();
+            traceId = IdWorker.getIdStr();
         }
         MDC.put(Const.MDC_TRACE_ID, traceId);
         response.addHeader(Const.MDC_TRACE_ID, traceId);
@@ -121,8 +121,8 @@ public class CustomizeRequestLoggingFilter extends OncePerRequestFilter {
     /**
      * 获取所有请求头信息
      *
-     * @param request
-     * @return
+     * @param request HttpServletRequest
+     * @return Map
      */
     private Map<String, String> headers(HttpServletRequest request) {
         Enumeration<String> enumeration = request.getHeaderNames();

@@ -4,6 +4,7 @@ import com.mountain.common.base.Const;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 /**
  * IP工具类
@@ -18,35 +19,35 @@ public class IpUtil {
     /**
      * 获取客户机ip地址
      *
-     * @param request:
+     * @param request HttpServletRequest
      * @return java.lang.String
      */
     public String getIpAddress(HttpServletRequest request) {
         String ip = request.getHeader("X-Original-Forwarded-For");
-        if (StringUtils.isBlank(ip) || StringUtils.equalsIgnoreCase(Const.UNKNOWN, ip)) {
+        if (StringUtils.isBlank(ip) || Strings.CI.equals(Const.UNKNOWN, ip)) {
             ip = request.getHeader("X-Forwarded-For");
         }
-        if (StringUtils.isBlank(ip) || StringUtils.equalsIgnoreCase(Const.UNKNOWN, ip)) {
+        if (StringUtils.isBlank(ip) || Strings.CI.equals(Const.UNKNOWN, ip)) {
             ip = request.getHeader("Proxy-Client-IP");
         }
-        if (StringUtils.isBlank(ip) || StringUtils.equalsIgnoreCase(Const.UNKNOWN, ip)) {
+        if (StringUtils.isBlank(ip) || Strings.CI.equals(Const.UNKNOWN, ip)) {
             ip = request.getHeader("WL-Proxy-Client-IP");
         }
-        if (StringUtils.isBlank(ip) || StringUtils.equalsIgnoreCase(Const.UNKNOWN, ip)) {
+        if (StringUtils.isBlank(ip) || Strings.CI.equals(Const.UNKNOWN, ip)) {
             ip = request.getHeader("http_client_ip");
         }
-        if (StringUtils.isBlank(ip) || StringUtils.equalsIgnoreCase(Const.UNKNOWN, ip)) {
+        if (StringUtils.isBlank(ip) || Strings.CI.equals(Const.UNKNOWN, ip)) {
             ip = request.getHeader("HTTP_X_FORWARDED_FOR");
         }
-        if (StringUtils.isBlank(ip) || StringUtils.equalsIgnoreCase(Const.UNKNOWN, ip)) {
+        if (StringUtils.isBlank(ip) || Strings.CI.equals(Const.UNKNOWN, ip)) {
             ip = request.getHeader("X-Real-IP");
         }
-        if (StringUtils.isBlank(ip) || StringUtils.equalsIgnoreCase(Const.UNKNOWN, ip)) {
+        if (StringUtils.isBlank(ip) || Strings.CI.equals(Const.UNKNOWN, ip)) {
             ip = request.getRemoteAddr();
         }
         // 如果是多级代理，那么取第一个ip为客户ip
-        if (StringUtils.contains(ip, Const.COMMA)) {
-            ip = StringUtils.substring(ip, StringUtils.lastIndexOf(ip, Const.COMMA) + 1, ip.length());
+        if (Strings.CS.contains(ip, Const.COMMA)) {
+            ip = StringUtils.substring(ip, Strings.CS.lastIndexOf(ip, Const.COMMA) + 1, ip.length());
         }
         return ip;
     }

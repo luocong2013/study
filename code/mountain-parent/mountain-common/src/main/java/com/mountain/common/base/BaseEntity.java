@@ -31,12 +31,12 @@ public class BaseEntity<T extends Model<T>> extends Model<T> {
     /**
      * 创建时间
      */
-    private Long gmtCreate;
+    private Long createTime;
 
     /**
      * 修改时间
      */
-    private Long gmtModified;
+    private Long updateTime;
 
     /**
      * 创建人ID
