@@ -1,4 +1,4 @@
-package com.mountain.user.controller.internal;
+package com.mountain.web.controller.internal;
 
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.mountain.common.base.ApiResponseEntity;

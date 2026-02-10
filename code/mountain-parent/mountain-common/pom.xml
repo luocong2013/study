@@ -11,6 +11,7 @@
 
     <artifactId>mountain-common</artifactId>
     <packaging>jar</packaging>
+    <name>mountain-common</name>
     <description>mountain-公共模块</description>
 
     <dependencies>
@@ -21,10 +22,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -45,7 +42,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
         </dependency>
     </dependencies>
 

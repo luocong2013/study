@@ -12,7 +12,7 @@
 
     <modules>
         <module>mountain-common</module>
-        <module>mountain-user</module>
+        <module>mountain-web</module>
     </modules>
 
     <properties>
