@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mountain.web.basic.mapper.DepartmentMapper">
+
+    <resultMap id="BaseResultMap" type="com.mountain.web.basic.pojo.po.Department">
+        <id property="id" column="id"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="departmentName" column="department_name"/>
+        <result property="departmentCode" column="department_code"/>
+        <result property="managerId" column="manager_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="creatorId" column="creator_id"/>
+        <result property="modifierId" column="modifier_id"/>
+        <result property="remark" column="remark"/>
+        <result property="deleted" column="deleted"/>
+    </resultMap>
+
+</mapper>

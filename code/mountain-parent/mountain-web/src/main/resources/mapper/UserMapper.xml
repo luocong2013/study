@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mountain.web.basic.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.mountain.web.basic.pojo.po.User">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="fullName" column="full_name"/>
+        <result property="majorDepartmentId" column="major_department_id"/>
+        <result property="userPosition" column="user_position"/>
+        <result property="phone" column="phone"/>
+        <result property="phoneVerifyState" column="phone_verify_state"/>
+        <result property="email" column="email"/>
+        <result property="sex" column="sex"/>
+        <result property="isEnable" column="is_enable"/>
+        <result property="userStatus" column="user_status"/>
+        <result property="recentLoginTime" column="recent_login_time"/>
+        <result property="recentLoginIp" column="recent_login_ip"/>
+        <result property="recentLoginCity" column="recent_login_city"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="creatorId" column="creator_id"/>
+        <result property="modifierId" column="modifier_id"/>
+        <result property="remark" column="remark"/>
+        <result property="deleted" column="deleted"/>
+    </resultMap>
+
+</mapper>

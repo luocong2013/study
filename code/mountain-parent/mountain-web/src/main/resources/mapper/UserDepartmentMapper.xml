@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mountain.web.basic.mapper.UserDepartmentMapper">
+
+    <resultMap id="BaseResultMap" type="com.mountain.web.basic.pojo.po.UserDepartment">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="departmentId" column="department_id"/>
+        <result property="departmentCode" column="department_code"/>
+        <result property="isMajorDept" column="is_major_dept"/>
+    </resultMap>
+
+</mapper>

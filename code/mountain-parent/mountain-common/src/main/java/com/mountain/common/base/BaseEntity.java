@@ -25,32 +25,37 @@ public class BaseEntity<T extends Model<T>> extends Model<T> {
     /**
      * ID
      */
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
 
     /**
      * 创建时间
      */
+    @TableField(value = "create_time")
     private Long createTime;
 
     /**
      * 修改时间
      */
+    @TableField(value = "update_time")
     private Long updateTime;
 
     /**
      * 创建人ID
      */
+    @TableField(value = "creator_id")
     private Long creatorId;
 
     /**
      * 最后修改人ID
      */
+    @TableField(value = "modifier_id")
     private Long modifierId;
 
     /**
      * 备注
      */
+    @TableField(value = "remark")
     private String remark;
 
     /**
@@ -58,6 +63,6 @@ public class BaseEntity<T extends Model<T>> extends Model<T> {
      */
     @JsonIgnore
     @TableLogic
-    @TableField(select = false)
+    @TableField(value = "deleted", select = false)
     private Long deleted;
 }
