@@ -44,3 +44,13 @@ mybatis-plus:
       logic-delete-field: deleted #全局逻辑删除字段
       logic-not-delete-value: "0" #全局逻辑未删除值
       logic-delete-value: "UNIX_TIMESTAMP()" #全局逻辑删除值，时间戳函数，精确到毫秒
+
+mountain:
+  auth:
+    # 加密秘钥过期时间（分钟）
+    key-expire: 1440
+    # JWT签名密钥
+    jwt-salt: 16085#4$46-aab4-*^4c99-b03c-17dc43ae1678
+    # 无需授权即可访问的url
+    permit-urls:
+      - /internal/**
