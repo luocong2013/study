@@ -3,6 +3,9 @@ package com.mountain.web.basic.pojo.po;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.mountain.common.base.BaseEntity;
+import com.mountain.web.basic.pojo.enums.AuthorizeTypeEnum;
+import com.mountain.web.basic.pojo.enums.RequestTypeEnum;
+import com.mountain.web.basic.pojo.enums.ResourceTypeEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -39,7 +42,7 @@ public class Resource extends BaseEntity<Resource> {
      * 类型 (0-菜单, 1-按钮, 2-其他)
      */
     @TableField(value = "resource_type")
-    private Integer resourceType;
+    private ResourceTypeEnum resourceType;
 
     /**
      * 请求的URL
@@ -51,13 +54,13 @@ public class Resource extends BaseEntity<Resource> {
      * 请求URL类型 (GET, POST, PUT, DELETE)
      */
     @TableField(value = "request_type")
-    private String requestType;
+    private RequestTypeEnum requestType;
 
     /**
      * 授权类型 (0-角色授权, 1-跟随父资源授权, 2-登录授权)
      */
     @TableField(value = "authorize_type")
-    private Integer authorizeType;
+    private AuthorizeTypeEnum authorizeType;
 
     /**
      * 排序号

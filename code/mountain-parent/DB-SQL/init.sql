@@ -83,6 +83,7 @@ CREATE TABLE `basic_resource` (
 CREATE TABLE `basic_role_resource` (
     `id`                    bigint(20) unsigned   NOT NULL COMMENT '主键ID',
     `role_id`               bigint(20) unsigned   NOT NULL COMMENT '角色ID (basic_role.id)',
+    `role_code`             varchar(128)          NOT NULL COMMENT '角色编码 (basic_role.role_code)',
     `resource_code`         varchar(64)           NOT NULL COMMENT '资源编码 (basic_resource.resource_code)',
     PRIMARY KEY (`id`),
     KEY `idx_role_id` (`role_id`),

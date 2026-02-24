@@ -3,6 +3,8 @@ package com.mountain.web.basic.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.mountain.web.basic.pojo.po.RoleResource;
 
+import java.util.List;
+
 /**
  * 针对表【basic_role_resource(基础设置-角色资源关系)】的数据库操作Service
  *
@@ -11,5 +13,13 @@ import com.mountain.web.basic.pojo.po.RoleResource;
  * @since 2026/2/10 15:30
  */
 public interface RoleResourceService extends IService<RoleResource> {
+
+    /**
+     * 根据资源code查询角色资源关系
+     *
+     * @param resourceCode 资源code
+     * @return 角色资源关系列表
+     */
+    List<RoleResource> selectByResourceCode(String resourceCode);
 
 }

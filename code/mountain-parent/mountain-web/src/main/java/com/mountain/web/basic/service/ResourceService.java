@@ -12,4 +12,13 @@ import com.mountain.web.basic.pojo.po.Resource;
  */
 public interface ResourceService extends IService<Resource> {
 
+    /**
+     * 根据url和请求类型查询资源
+     *
+     * @param url         url
+     * @param requestType 请求类型
+     * @return 资源
+     */
+    Resource selectByUrlRequestType(String url, String requestType);
+
 }

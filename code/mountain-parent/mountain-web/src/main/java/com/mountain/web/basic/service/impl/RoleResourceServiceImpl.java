@@ -4,7 +4,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mountain.web.basic.mapper.RoleResourceMapper;
 import com.mountain.web.basic.pojo.po.RoleResource;
 import com.mountain.web.basic.service.RoleResourceService;
+import io.micrometer.common.util.StringUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 针对表【basic_role_resource(基础设置-角色资源关系)】的数据库操作Service实现
@@ -16,6 +19,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class RoleResourceServiceImpl extends ServiceImpl<RoleResourceMapper, RoleResource> implements RoleResourceService {
 
+    @Override
+    public List<RoleResource> selectByResourceCode(String resourceCode) {
+        if (StringUtils.isEmpty(resourceCode)) {
+            return List.of();
+        }
+        return lambdaQuery().eq(RoleResource::getResourceCode, resourceCode).list();
+    }
 }
 
 

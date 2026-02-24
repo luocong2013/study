@@ -25,6 +25,12 @@ public class RoleResource extends SimpleEntity<RoleResource> {
     private Long roleId;
 
     /**
+     * 角色编码 (basic_role.role_code)
+     */
+    @TableField(value = "role_code")
+    private String roleCode;
+
+    /**
      * 资源编码 (basic_resource.resource_code)
      */
     @TableField(value = "resource_code")
