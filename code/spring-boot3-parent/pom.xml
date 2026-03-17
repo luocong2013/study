@@ -27,6 +27,7 @@
         <module>http-interface</module>
         <module>request-response-body-advice</module>
         <module>logback-log-format</module>
+        <module>simple-websocket</module>
     </modules>
 
 </project>
