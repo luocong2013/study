@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>webSocket</title>
+    <style type="text/css"></style>
+</head>
+<body>
+
+    <h1>WebSocket Demo. SpringBoot</h1>
+    <input type="text" id="context"/>
+    <input type="button" onclick="buttonClick()" value="点我发消息"/>
+
+</body>
+
+<script type="application/javascript">
+    let websocket = {
+        send: function (str) {
+        }
+    };
+    window.onload = function () {
+        if (!'WebSocket' in window)
+            return;
+        webSocketInit();
+    };
+    function webSocketInit() {
+        websocket = new WebSocket("ws://127.0.0.1:8080/ws?userId=1001");
+        //成功建立连接
+        websocket.onopen = function () {
+            // websocket.send("成功连接到服务器");
+            let content = {"type": 2};
+            content.content = "成功连接到服务器";
+            websocket.send(JSON.stringify(content));
+        }
+        //接收到消息
+        websocket.onmessage = function (event) {
+            let data = JSON.parse(event.data);
+            console.log(data);
+            websocket.send(JSON.stringify({"id": data.id}))
+        }
+        //连接发生错误
+        websocket.onerror = function () {
+            alert("WebSocket连接发生错误");
+        }
+        //连接关闭
+        websocket.onclose = function () {
+            alert("WebSocket连接关闭");
+        }
+        //监听窗口关闭事件，当窗口关闭时，主动关闭websocket连接
+        window.onbeforeunload = function () {
+            websocket.close();
+        }
+    }
+    function buttonClick() {
+        let content = {"type": 1};
+        content.content = document.getElementById("context").value;
+        websocket.send(JSON.stringify(content));
+    }
+</script>
+</html>
