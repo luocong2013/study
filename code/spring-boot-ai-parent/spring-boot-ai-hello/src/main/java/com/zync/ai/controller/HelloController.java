@@ -3,10 +3,10 @@ package com.zync.ai.controller;
 import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatOptions;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
-import org.springframework.ai.chat.memory.InMemoryChatMemory;
+import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.chat.memory.MessageWindowChatMemory;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 
@@ -32,18 +32,18 @@ public class HelloController {
                 // 实现 Chat Memory 的 Advisor
                 // 在使用 Chat Memory 时，需要指定对话ID，以便 Spring AI 处理上下文
                 .defaultAdvisors(
-                        new MessageChatMemoryAdvisor(new InMemoryChatMemory())
+                        MessageChatMemoryAdvisor.builder(MessageWindowChatMemory.builder().maxMessages(100).build()).build()
                 )
                 // 实现 Logger 的 Advisor
                 .defaultAdvisors(
                         new SimpleLoggerAdvisor()
                 )
                 // 设置 ChatClient 中 ChatModel 的 Options 参数
-                .defaultOptions(
-                        DashScopeChatOptions.builder()
-                                .withTopP(0.7)
-                                .build()
-                )
+                // .defaultOptions(
+                //         DashScopeChatOptions.builder()
+                //                 .topP(0.7)
+                //                 .build()
+                // )
                 .build();
     }
 
@@ -91,12 +91,43 @@ public class HelloController {
         return chatClient
                 .prompt(query)
                 .advisors(consumer -> consumer
-                        .param(AbstractChatMemoryAdvisor.CHAT_MEMORY_CONVERSATION_ID_KEY, id)
-                        .param(AbstractChatMemoryAdvisor.CHAT_MEMORY_RETRIEVE_SIZE_KEY, 100)
+                        .param(ChatMemory.CONVERSATION_ID, id)
                 ).stream()
                 .content();
     }
 
+    /**
+     * ChatClient 新的聊天接口，支持流式输出和自定义 ChatOptions 配置
+     * eg:
+     * http://127.0.0.1:18080/helloworld/advisor/newChat?query=你好&topP=0.8&temperature=0.9
+     */
+    @GetMapping("/advisor/newChat")
+    public Flux<String> newChat(
+            HttpServletResponse response,
+            @RequestParam(value = "query", defaultValue = "你好，很高兴认识你，能简单介绍一下自己吗？") String query,
+            @RequestParam(value = "topP", required = false) Double topP,
+            @RequestParam(value = "temperature", required = false) Double temperature,
+            @RequestParam(value = "maxTokens", required = false) Integer maxToken) {
 
+        response.setCharacterEncoding("UTF-8");
+
+        // 构建 ChatOptions
+        DashScopeChatOptions.DashScopeChatOptionsBuilder optionsBuilder = DashScopeChatOptions.builder();
+
+        if (topP != null) {
+            optionsBuilder.topP(topP);
+        }
+        if (temperature != null) {
+            optionsBuilder.temperature(temperature);
+        }
+        if (maxToken != null) {
+            optionsBuilder.maxToken(maxToken);
+        }
+
+        return this.chatClient.prompt(query)
+                .options(optionsBuilder.build())
+                .stream()
+                .content();
+    }
 
 }

@@ -2,7 +2,7 @@ package com.zync.ai.sdk;
 
 import io.modelcontextprotocol.client.McpClient;
 import io.modelcontextprotocol.client.transport.HttpClientSseClientTransport;
-import io.modelcontextprotocol.spec.ClientMcpTransport;
+import io.modelcontextprotocol.spec.McpClientTransport;
 import io.modelcontextprotocol.spec.McpSchema;
 
 import java.util.Map;
@@ -17,7 +17,7 @@ public class ClientWebmvc {
 
     public static void main(String[] args) {
 
-        ClientMcpTransport transport = new HttpClientSseClientTransport("http://localhost:9001");
+        McpClientTransport transport = HttpClientSseClientTransport.builder("http://localhost:9001").build();
         try (var client = McpClient.sync(transport).build()) {
 
             client.initialize();

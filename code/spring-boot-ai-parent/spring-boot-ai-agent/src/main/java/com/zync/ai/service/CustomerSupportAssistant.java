@@ -1,11 +1,12 @@
 package com.zync.ai.service;
 
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor;
+import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.PromptChatMemoryAdvisor;
-import org.springframework.ai.chat.client.advisor.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
+import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.chat.memory.MessageWindowChatMemory;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.stereotype.Service;
@@ -40,8 +41,9 @@ public class CustomerSupportAssistant {
                            今天的日期是 {current_date}.
                         """)
                 .defaultAdvisors(
-                        new PromptChatMemoryAdvisor(chatMemory),
-                        new QuestionAnswerAdvisor(vectorStore, SearchRequest.builder().topK(4).similarityThresholdAll().build()),
+                        PromptChatMemoryAdvisor.builder(chatMemory).build(),
+                        QuestionAnswerAdvisor.builder(vectorStore).searchRequest(SearchRequest.builder().topK(4).similarityThresholdAll().build()).build(),
+                        MessageChatMemoryAdvisor.builder(MessageWindowChatMemory.builder().maxMessages(100).build()).build(),
                         new SimpleLoggerAdvisor()
                 )
                 .defaultTools("getBookingDetails", "changeBooking", "cancelBooking")
@@ -55,8 +57,7 @@ public class CustomerSupportAssistant {
                 .system(s -> s.param("current_date", LocalDate.now().toString()))
                 .user(userMessageContent)
                 .advisors(consumer -> consumer
-                        .param(AbstractChatMemoryAdvisor.CHAT_MEMORY_CONVERSATION_ID_KEY, chatId)
-                        .param(AbstractChatMemoryAdvisor.CHAT_MEMORY_RETRIEVE_SIZE_KEY, 100)
+                        .param(ChatMemory.CONVERSATION_ID, chatId)
                 ).stream()
                 .content();
     }

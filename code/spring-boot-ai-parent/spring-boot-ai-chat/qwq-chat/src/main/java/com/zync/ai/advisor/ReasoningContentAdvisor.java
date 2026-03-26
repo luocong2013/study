@@ -2,8 +2,9 @@ package com.zync.ai.advisor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.ai.chat.client.advisor.api.AdvisedRequest;
-import org.springframework.ai.chat.client.advisor.api.AdvisedResponse;
+import org.springframework.ai.chat.client.ChatClientRequest;
+import org.springframework.ai.chat.client.ChatClientResponse;
+import org.springframework.ai.chat.client.advisor.api.AdvisorChain;
 import org.springframework.ai.chat.client.advisor.api.BaseAdvisor;
 import org.springframework.ai.chat.messages.AssistantMessage;
 import org.springframework.ai.chat.model.ChatResponse;
@@ -29,16 +30,15 @@ public class ReasoningContentAdvisor implements BaseAdvisor {
     }
 
     @Override
-    public AdvisedRequest before(AdvisedRequest request) {
-        return request;
+    public ChatClientRequest before(ChatClientRequest chatClientRequest, AdvisorChain advisorChain) {
+        return chatClientRequest;
     }
 
     @Override
-    public AdvisedResponse after(AdvisedResponse advisedResponse) {
-
-        ChatResponse response = advisedResponse.response();
+    public ChatClientResponse after(ChatClientResponse chatClientResponse, AdvisorChain advisorChain) {
+        ChatResponse response = chatClientResponse.chatResponse();
         if (response == null) {
-            return advisedResponse;
+            return chatClientResponse;
         }
 
         logger.debug(String.valueOf(response.getResults().get(0).getOutput().getMetadata()));
@@ -49,21 +49,21 @@ public class ReasoningContentAdvisor implements BaseAdvisor {
             List<Generation> thinkGenerations = response.getResults().stream()
                     .map(generation -> {
                         AssistantMessage output = generation.getOutput();
-                        AssistantMessage thinkAssistantMessage = new AssistantMessage(
-                                String.format("<think>%s</think>", reasoningContent) + output.getText(),
-                                output.getMetadata(),
-                                output.getToolCalls(),
-                                output.getMedia()
-                        );
+                        AssistantMessage thinkAssistantMessage = AssistantMessage.builder()
+                                .content(String.format("<think>%s</think>", reasoningContent) + output.getText())
+                                .properties(output.getMetadata())
+                                .toolCalls(output.getToolCalls())
+                                .media(output.getMedia())
+                                .build();
                         return new Generation(thinkAssistantMessage, generation.getMetadata());
                     }).toList();
 
             ChatResponse thinkChatResp = ChatResponse.builder().from(response).generations(thinkGenerations).build();
-            return AdvisedResponse.from(advisedResponse).response(thinkChatResp).build();
+            return ChatClientResponse.builder().chatResponse(thinkChatResp).build();
 
         }
 
-        return advisedResponse;
+        return chatClientResponse;
     }
 
     @Override

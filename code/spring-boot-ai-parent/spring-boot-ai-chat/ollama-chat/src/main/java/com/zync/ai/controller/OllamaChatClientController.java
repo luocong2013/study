@@ -2,11 +2,11 @@ package com.zync.ai.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
-import org.springframework.ai.chat.memory.InMemoryChatMemory;
-import org.springframework.ai.ollama.api.OllamaOptions;
+import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.chat.memory.MessageWindowChatMemory;
+import org.springframework.ai.ollama.api.OllamaChatOptions;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 
@@ -29,7 +29,7 @@ public class OllamaChatClientController {
                 // 实现 Chat Memory 的 Advisor
                 // 在使用 Chat Memory 时，需要指定对话ID，以便 Spring AI 处理上下文
                 .defaultAdvisors(
-                        new MessageChatMemoryAdvisor(new InMemoryChatMemory())
+                        MessageChatMemoryAdvisor.builder(MessageWindowChatMemory.builder().maxMessages(100).build()).build()
                 )
                 // 实现 Logger 的 Advisor
                 .defaultAdvisors(
@@ -37,8 +37,9 @@ public class OllamaChatClientController {
                 )
                 // 设置 ChatClient 中 ChatModel 的 Options 参数
                 .defaultOptions(
-                        OllamaOptions.builder()
+                        OllamaChatOptions.builder()
                                 .topP(0.7)
+                                .model("deepseek-r1:7b")
                                 .build()
                 )
                 .build();
@@ -90,8 +91,7 @@ public class OllamaChatClientController {
         return chatClient
                 .prompt(query)
                 .advisors(consumer -> consumer
-                        .param(AbstractChatMemoryAdvisor.CHAT_MEMORY_CONVERSATION_ID_KEY, id)
-                        .param(AbstractChatMemoryAdvisor.CHAT_MEMORY_RETRIEVE_SIZE_KEY, 100)
+                        .param(ChatMemory.CONVERSATION_ID, id)
                 ).stream()
                 .content();
     }

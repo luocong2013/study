@@ -5,6 +5,7 @@ import io.modelcontextprotocol.client.McpClient;
 import io.modelcontextprotocol.client.McpSyncClient;
 import io.modelcontextprotocol.client.transport.ServerParameters;
 import io.modelcontextprotocol.client.transport.StdioClientTransport;
+import io.modelcontextprotocol.json.jackson.JacksonMcpJsonMapper;
 import io.modelcontextprotocol.spec.McpSchema;
 
 import java.time.Duration;
@@ -25,7 +26,7 @@ public class McpClientJavaSdkExamples {
                                 "@modelcontextprotocol/server-filesystem",
                                 "D:\\mywork\\study\\code\\spring-boot-ai-parent")
                         .build(),
-                new ObjectMapper()
+                new JacksonMcpJsonMapper(new ObjectMapper())
         );
 
         try (McpSyncClient client = McpClient.sync(transport)

@@ -1,6 +1,5 @@
 package com.zync.ai.controller;
 
-import com.alibaba.cloud.ai.dashscope.api.DashScopeApi;
 import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatOptions;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.ai.chat.model.ChatModel;
@@ -41,7 +40,7 @@ public class DashScopeChatModelController {
         return chatModel.call(
                     new Prompt(query, DashScopeChatOptions
                             .builder()
-                            .withModel(DashScopeApi.ChatModel.QWEN_PLUS.getModel())
+                            .model("qwen3-max-2026-01-23")
                             .build()
                     )
                 )
@@ -61,11 +60,11 @@ public class DashScopeChatModelController {
         response.setCharacterEncoding(StandardCharsets.UTF_8.name());
         Flux<ChatResponse> stream = chatModel.stream(new Prompt(query, DashScopeChatOptions
                     .builder()
-                    .withModel(DashScopeApi.ChatModel.QWEN_PLUS.getModel())
+                    .model("qwen3-max-2026-01-23")
                     .build()
                 )
         );
-        return stream.map(resp -> resp.getResult().getOutput().getText());
+        return stream.mapNotNull(resp -> resp.getResult().getOutput().getText());
     }
 
     /**
@@ -75,10 +74,10 @@ public class DashScopeChatModelController {
     @GetMapping("/custom/chat")
     public String customChat(@RequestParam("query") String query) {
         DashScopeChatOptions options = DashScopeChatOptions.builder()
-                .withModel(DashScopeApi.ChatModel.QWEN_PLUS.getModel())
-                .withTopP(0.7)
-                .withTopK(50)
-                .withTemperature(0.8)
+                .model("qwen3-max-2026-01-23")
+                .topP(0.7)
+                .topK(50)
+                .temperature(0.8)
                 .build();
 
         return chatModel.call(new Prompt(query, options)).getResult().getOutput().getText();

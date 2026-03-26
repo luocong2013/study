@@ -2,9 +2,8 @@ package com.zync.ai.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.ai.chat.model.ChatModel;
-import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
-import org.springframework.ai.ollama.api.OllamaOptions;
+import org.springframework.ai.ollama.api.OllamaChatOptions;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,13 +52,13 @@ public class OllamaChatModelController {
     }
 
     /**
-     * 使用编程方式自定义 LLMs ChatOptions 参数， {@link org.springframework.ai.ollama.api.OllamaOptions}
+     * 使用编程方式自定义 LLMs ChatOptions 参数， {@link org.springframework.ai.ollama.api.OllamaChatOptions}
      * 优先级高于在 application.yml 中配置的 LLMs 参数！
      */
     @GetMapping("/custom/chat")
     public String customChat(@RequestParam("query") String query) {
 
-        OllamaOptions options = OllamaOptions.builder()
+        OllamaChatOptions options = OllamaChatOptions.builder()
                 .topP(0.7)
                 .model("deepseek-r1:7b")
                 .temperature(0.8)

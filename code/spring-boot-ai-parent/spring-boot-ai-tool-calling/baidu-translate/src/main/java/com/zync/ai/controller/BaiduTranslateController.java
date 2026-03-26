@@ -1,11 +1,12 @@
 package com.zync.ai.controller;
 
 import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatOptions;
+import com.alibaba.cloud.ai.toolcalling.baidutranslate.BaiduTranslateConstants;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
-import org.springframework.ai.chat.memory.InMemoryChatMemory;
+import org.springframework.ai.chat.memory.MessageWindowChatMemory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,13 +33,13 @@ public class BaiduTranslateController {
                 // 实现 Chat Memory 的 Advisor
                 // 在使用 Chat Memory 时，需要指定对话ID，以便 Spring AI 处理上下文
                 .defaultAdvisors(
-                        new MessageChatMemoryAdvisor(new InMemoryChatMemory())
+                        MessageChatMemoryAdvisor.builder(MessageWindowChatMemory.builder().maxMessages(100).build()).build()
                 )
                 // 实现 Logger 的 Advisor
                 .defaultAdvisors(
                         new SimpleLoggerAdvisor()
                 )
-                .defaultTools("baiduTranslateFunction")
+                .defaultToolNames(BaiduTranslateConstants.TOOL_NAME)
                 // 设置 ChatClient 中 ChatModel 的 Options 参数
                 .defaultOptions(
                         DashScopeChatOptions.builder()
@@ -60,7 +61,7 @@ public class BaiduTranslateController {
 
         return chatClient
                 .prompt(query)
-                .tools("baiduTranslateFunction")
+                .toolNames(BaiduTranslateConstants.TOOL_NAME)
                 .stream()
                 .content();
     }

@@ -6,7 +6,7 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.ChatClientCustomizer;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
-import org.springframework.ai.chat.memory.InMemoryChatMemory;
+import org.springframework.ai.chat.memory.MessageWindowChatMemory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -24,7 +24,7 @@ public class CustomChatClientCustomizer implements ChatClientCustomizer {
                 // 实现 Chat Memory 的 Advisor
                 // 在使用 Chat Memory 时，需要指定对话ID，以便 Spring AI 处理上下文
                 .defaultAdvisors(
-                        new MessageChatMemoryAdvisor(new InMemoryChatMemory()),
+                        MessageChatMemoryAdvisor.builder(MessageWindowChatMemory.builder().maxMessages(100).build()).build(),
 
                         // 整合 QWQ 的思考过程到输出中
                         new ReasoningContentAdvisor(0)

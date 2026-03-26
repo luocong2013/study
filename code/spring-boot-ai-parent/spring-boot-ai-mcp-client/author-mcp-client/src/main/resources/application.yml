@@ -17,7 +17,8 @@ spring:
           servers-configuration: classpath:/mcp-servers-config.json
         sse:
           connections:
-            url: http://localhost:9001
+            server1:
+              url: http://localhost:9001
 
 
 logging:

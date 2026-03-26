@@ -2,7 +2,7 @@ package com.zync.ai.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor;
+import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 
@@ -93,8 +93,7 @@ public class QWQChatClientController {
         return chatClient
                 .prompt(query)
                 .advisors(consumer -> consumer
-                        .param(AbstractChatMemoryAdvisor.CHAT_MEMORY_CONVERSATION_ID_KEY, id)
-                        .param(AbstractChatMemoryAdvisor.CHAT_MEMORY_RETRIEVE_SIZE_KEY, 100)
+                        .param(ChatMemory.CONVERSATION_ID, id)
                 ).stream()
                 .content();
     }

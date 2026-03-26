@@ -2,7 +2,7 @@ package com.zync.ai.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.client.advisor.QuestionAnswerAdvisor;
+import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
 import org.springframework.ai.rag.Query;
 import org.springframework.ai.rag.preretrieval.query.expansion.MultiQueryExpander;
 import org.springframework.ai.vectorstore.VectorStore;
@@ -45,7 +45,7 @@ public class RagSimpleChatClientController {
 
         return chatClient
                 .prompt(query)
-                .advisors(new QuestionAnswerAdvisor(vectorStore))
+                .advisors(QuestionAnswerAdvisor.builder(vectorStore).build())
                 .stream()
                 .content();
     }
