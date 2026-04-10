@@ -7,6 +7,7 @@ import com.ysyue.im.session.SessionManager;
 import com.ysyue.im.util.IdUtil;
 import com.ysyue.im.util.JacksonUtil;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelOutboundInvoker;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import jakarta.annotation.Resource;
 
@@ -30,7 +31,7 @@ public abstract class AbstractImMessageProcessor implements ImMessageProcessor {
      * @param ctx     通道
      * @param message 消息
      */
-    protected void writeAndFlush(ChannelHandlerContext ctx, ImMessage message) {
+    protected void writeAndFlush(ChannelOutboundInvoker ctx, ImMessage message) {
         ctx.writeAndFlush(new TextWebSocketFrame(JacksonUtil.toJson(message)));
     }
 

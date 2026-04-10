@@ -27,7 +27,7 @@ public class ChatImMessageProcessor extends AbstractImMessageProcessor {
 
         Channel receiverChannel = sessionManager.getChannel(receiverId);
         if (receiverChannel != null && receiverChannel.isActive()) {
-            writeAndFlush(ctx, message);
+            writeAndFlush(receiverChannel, message);
         } else {
             // TODO: 处理离线消息（可以使用Redis存储未读红点，极光推送等）
             log.info("用户 {} 离线，消息转为离线存储", message.getReceiverId());

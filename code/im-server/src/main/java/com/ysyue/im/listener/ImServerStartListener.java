@@ -1,6 +1,7 @@
 package com.ysyue.im.listener;
 
 import com.ysyue.im.server.ImServer;
+import com.ysyue.im.server.ImWebSocketServer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -18,10 +19,12 @@ import org.springframework.stereotype.Component;
 public class ImServerStartListener {
 
     private final ImServer imServer;
+    private final ImWebSocketServer imWebSocketServer;
 
     @EventListener(ApplicationReadyEvent.class)
     public void start() throws InterruptedException {
-        imServer.start();
+        // imServer.start();
+        imWebSocketServer.start();
     }
 
 }

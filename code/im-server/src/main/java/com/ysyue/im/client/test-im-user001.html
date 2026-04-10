@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>IM 测试客户端</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+        #messages { height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; margin: 10px 0; }
+        input, button { padding: 8px; margin: 5px; }
+        .message { margin: 5px 0; padding: 5px; background: #f0f0f0; }
+    </style>
+</head>
+<body>
+<h1>IM 测试客户端</h1>
+<div>
+    <input type="text" id="userId" placeholder="用户ID" value="user_001">
+    <button onclick="connect()">连接</button>
+    <button onclick="disconnect()">断开</button>
+</div>
+<div id="status">状态: 未连接</div>
+<div id="messages"></div>
+<div>
+    <input type="text" id="receiverId" placeholder="接收者ID" value="user_002">
+    <input type="text" id="messageContent" placeholder="消息内容">
+    <button onclick="sendMessage()">发送</button>
+</div>
+
+<script>
+    let ws;
+
+    function connect() {
+        const userId = document.getElementById('userId').value;
+        ws = new WebSocket('ws://localhost:9999/ws');
+
+        ws.onopen = () => {
+            document.getElementById('status').textContent = '状态: 已连接';
+            addMessage('系统', '连接成功');
+
+            // 自动登录
+            const loginMsg = {
+                type: 1,
+                senderId: userId,
+                messageId: 'msg_' + Date.now(),
+                timestamp: Date.now()
+            };
+            ws.send(JSON.stringify(loginMsg));
+            addMessage('系统', '已发送登录请求');
+        };
+
+        ws.onmessage = (event) => {
+            const msg = JSON.parse(event.data);
+            addMessage(msg.type, JSON.stringify(msg));
+        };
+
+        ws.onerror = (error) => {
+            document.getElementById('status').textContent = '状态: 错误';
+            addMessage('系统', '发生错误');
+        };
+
+        ws.onclose = () => {
+            document.getElementById('status').textContent = '状态: 已断开';
+            addMessage('系统', '连接已关闭');
+        };
+    }
+
+    function disconnect() {
+        if (ws) {
+            ws.close();
+        }
+    }
+
+    function sendMessage() {
+        if (!ws || ws.readyState !== WebSocket.OPEN) {
+            alert('请先连接');
+            return;
+        }
+
+        const userId = document.getElementById('userId').value;
+        const receiverId = document.getElementById('receiverId').value;
+        const content = document.getElementById('messageContent').value;
+
+        const chatMsg = {
+            type: 3,
+            senderId: userId,
+            receiverId: receiverId,
+            content: content,
+            messageId: 'msg_' + Date.now(),
+            timestamp: Date.now()
+        };
+
+        ws.send(JSON.stringify(chatMsg));
+        addMessage('发送', content);
+        document.getElementById('messageContent').value = '';
+    }
+
+    function addMessage(type, content) {
+        const div = document.createElement('div');
+        div.className = 'message';
+        div.innerHTML = `<strong>[${type}]</strong> ${content}`;
+        const messagesDiv = document.getElementById('messages');
+        messagesDiv.appendChild(div);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+</script>
+</body>
+</html>

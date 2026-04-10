@@ -1,6 +1,5 @@
 package com.ysyue.im.client;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ysyue.im.codec.ImMessageDecoder;
 import com.ysyue.im.codec.ImMessageEncoder;
 import com.ysyue.im.protocol.ImMessage;
@@ -35,7 +34,6 @@ public class ImClient {
 
     private Channel channel;
     private EventLoopGroup group;
-    private final ObjectMapper objectMapper = new ObjectMapper();
 
     public ImClient(String host, int port, String userId) {
         this.host = host;
