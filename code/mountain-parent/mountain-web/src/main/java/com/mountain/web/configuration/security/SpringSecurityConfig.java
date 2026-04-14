@@ -2,10 +2,13 @@ package com.mountain.web.configuration.security;
 
 import com.mountain.web.configuration.MountainProperties;
 import com.mountain.web.configuration.security.authorization.RbacAuthorizationManager;
+import com.mountain.web.configuration.security.configurers.UsernamePasswordLoginConfigurer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 
 /**
@@ -27,7 +30,10 @@ public class SpringSecurityConfig {
         http.securityMatcher("/**").authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(mountainProperties.getAuth().permitUrls()).permitAll()
                 .anyRequest().access(rbacAuthorizationManager)
-        );
+        ).with(new UsernamePasswordLoginConfigurer<>(), Customizer.withDefaults())
+                .csrf(AbstractHttpConfigurer::disable)
+                .cors(Customizer.withDefaults());
+        // todo
         return http.build();
     }
 
