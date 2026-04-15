@@ -6,6 +6,8 @@ spring:
     name: mountain-user
   profiles:
     active: dev
+  main:
+    allow-circular-references: true
   mvc:
     servlet:
       path: /api/rest
@@ -53,4 +55,5 @@ mountain:
     jwt-salt: 16085#4$46-aab4-*^4c99-b03c-17dc43ae1678
     # 无需授权即可访问的url
     permit-urls:
-      - /internal/**
+#      - /internal/**
+      - /login

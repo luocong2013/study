@@ -96,7 +96,7 @@ public class JwtUtil {
                 .requireAudience(audience)
                 .verifyWith(key(salt))
                 .build()
-                .parseSignedClaims(Strings.CS.replace(jwtToken, "Bearer", StringUtils.EMPTY))
+                .parseSignedClaims(Strings.CS.replace(jwtToken, "Bearer ", StringUtils.EMPTY))
                 .getPayload();
     }
 

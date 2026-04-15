@@ -48,7 +48,7 @@
     </appender>
 
     <!-- ROOT 级别 -->
-    <root level="DEBUG">
+    <root level="INFO">
         <!-- 控制台输出 -->
         <appender-ref ref="CONSOLE-LOG"/>
         <!-- 文件输出 -->

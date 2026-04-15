@@ -3,6 +3,7 @@ package com.mountain.web.configuration.security.provider;
 import com.mountain.web.configuration.security.customize.CustomizeWebAuthenticationDetails;
 import com.mountain.web.configuration.security.details.SecurityUser;
 import com.mountain.web.configuration.security.details.UserLoginDTO;
+import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -25,11 +26,12 @@ import org.springframework.util.Assert;
  **/
 @Slf4j
 @Component
-@RequiredArgsConstructor
 public class CustomizeAuthenticationProvider implements AuthenticationProvider {
 
-    private final PasswordEncoder passwordEncoder;
-    private final UserDetailsService userDetailsService;
+    @Resource
+    private PasswordEncoder passwordEncoder;
+    @Resource
+    private UserDetailsService userDetailsService;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {

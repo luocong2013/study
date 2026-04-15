@@ -31,7 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (Strings.CS.equals(username, "admin")) {
             User user = new User();
             user.setUsername("admin");
-            user.setPassword("");
+            user.setPassword("$2a$10$4LIDO0l20XhSnDvqHSAT0eOKvimziM.0H.WjgK.MPR6s68jhx78NW");
             user.setFullName("超级管理员");
             Role role = new Role();
             role.setRoleName("admin");

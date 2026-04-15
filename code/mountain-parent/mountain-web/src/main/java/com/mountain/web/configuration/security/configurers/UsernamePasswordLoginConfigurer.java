@@ -19,7 +19,7 @@ public class UsernamePasswordLoginConfigurer<H extends HttpSecurityBuilder<H>>
         extends AbstractAuthenticationFilterConfigurer<H, UsernamePasswordLoginConfigurer<H>, UsernamePasswordLoginAuthenticationFilter> {
 
     public UsernamePasswordLoginConfigurer() {
-        super(new UsernamePasswordLoginAuthenticationFilter(), "/login");
+        super(new UsernamePasswordLoginAuthenticationFilter(), "/api/rest/login");
         authenticationDetailsSource(new CustomizeAuthenticationDetailsSource());
     }
 
