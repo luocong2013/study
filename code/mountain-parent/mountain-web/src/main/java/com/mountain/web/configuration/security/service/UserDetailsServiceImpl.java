@@ -1,10 +1,10 @@
-package com.mountain.web.configuration.security.details;
+package com.mountain.web.configuration.security.service;
 
 import com.mountain.web.basic.pojo.po.Role;
 import com.mountain.web.basic.pojo.po.User;
 import com.mountain.web.basic.service.UserService;
+import com.mountain.web.configuration.security.details.SecurityUser;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -31,6 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (Strings.CS.equals(username, "admin")) {
             User user = new User();
             user.setUsername("admin");
+            user.setPassword("");
             user.setFullName("超级管理员");
             Role role = new Role();
             role.setRoleName("admin");

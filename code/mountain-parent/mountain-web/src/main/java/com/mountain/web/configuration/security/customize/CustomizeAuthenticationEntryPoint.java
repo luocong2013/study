@@ -12,8 +12,8 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import java.io.IOException;
 
 /**
- * 自定义 AuthenticationEntryPoint
- * 未登录的情况下访问所有接口都会拦截到此
+ * <p> 自定义 AuthenticationEntryPoint </p>
+ * <p> 未登录的情况下访问所有接口都会拦截到此 </p>
  *
  * @see org.springframework.security.web.access.ExceptionTranslationFilter
  *

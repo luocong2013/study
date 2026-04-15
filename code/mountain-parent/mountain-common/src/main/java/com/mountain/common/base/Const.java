@@ -10,6 +10,10 @@ package com.mountain.common.base;
  */
 public interface Const {
     /**
+     * 服务名
+     */
+    String SELF_SERVICE_NAME = "MOUNTAIN";
+    /**
      * mdc trace id
      */
     String MDC_TRACE_ID = "X-Trace-Id";
@@ -17,6 +21,10 @@ public interface Const {
      * unknown
      */
     String UNKNOWN = "unknown";
+    /**
+     * 认证
+     */
+    String AUTHORIZATION = "Authorization";
     /**
      * 字符串逗号 英文
      */

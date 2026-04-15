@@ -14,7 +14,7 @@ import org.springframework.security.core.AuthenticationException;
 import java.util.List;
 
 /**
- * 自定义 AuthenticationManager
+ * <p> 自定义 AuthenticationManager </p>
  * 对访问的url进行权限认证处理
  *
  * @author luocong
