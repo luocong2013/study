@@ -1,4 +1,4 @@
-package com.mountain.common.handler;
+package com.mountain.common.holder;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;

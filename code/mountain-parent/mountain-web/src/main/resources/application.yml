@@ -34,6 +34,20 @@ spring:
         cacheServerConfiguration: true
         elideSetAutoCommits: true
         maintainTimeStats: false
+  data:
+    redis:
+      host: r-bp1psylw2prl6vl38npd.redis.rds.aliyuncs.com
+      port: 6379
+      username: yiqixingredisdev
+      password: yiQixingredisdev2026_
+      database: 222
+      timeout: 1000
+      lettuce:
+        pool:
+          max-active: 10
+          max-wait: 2000ms
+          max-idle: 8
+          min-idle: 2
 
 mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
@@ -57,3 +71,12 @@ mountain:
     permit-urls:
 #      - /internal/**
       - /login
+
+redis:
+  cache-prefix: "mountain:"
+  default-expire-time: 1800
+  enable-two-level-cache: true
+  cache:
+    configuration:
+      user:cache: 86400
+      dept:cache: 86400

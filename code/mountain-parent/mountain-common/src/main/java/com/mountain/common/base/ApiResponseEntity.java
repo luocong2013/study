@@ -1,6 +1,6 @@
 package com.mountain.common.base;
 
-import com.mountain.common.handler.SpringContextHolder;
+import com.mountain.common.holder.SpringContextHolder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
