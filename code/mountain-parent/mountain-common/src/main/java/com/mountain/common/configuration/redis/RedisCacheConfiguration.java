@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.cache.support.CompositeCacheManager;
 import org.springframework.context.annotation.Bean;
@@ -27,6 +28,7 @@ import java.util.Map;
  * @version 1.0
  * @since 2026/4/21 13:54
  **/
+@EnableCaching
 @RequiredArgsConstructor
 @SpringBootConfiguration
 @EnableConfigurationProperties(RedisCacheProperties.class)

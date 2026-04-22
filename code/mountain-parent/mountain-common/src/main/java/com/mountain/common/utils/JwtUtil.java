@@ -4,6 +4,7 @@ import com.mountain.common.base.Const;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -22,6 +23,7 @@ import java.util.Map;
  * @since 2026/4/15 14:51
  **/
 @Slf4j
+@UtilityClass
 public class JwtUtil {
 
     //===============================================创建jwt token=======================================================//
