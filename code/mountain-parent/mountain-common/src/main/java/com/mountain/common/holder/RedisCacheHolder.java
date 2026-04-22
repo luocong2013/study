@@ -32,15 +32,20 @@ public class RedisCacheHolder {
      * @param time 时间(秒)
      * @return 成功返回true
      */
-    public boolean expire(String key, long time) {
-        try {
-            if (time > 0) {
-                redisTemplate.expire(key, time, TimeUnit.SECONDS);
-            }
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    public Boolean expire(String key, long time) {
+        return expire(key, time, TimeUnit.SECONDS);
+    }
+
+    /**
+     * 获取缓存的过期时间
+     *
+     * @param key  键
+     * @param time 时间(秒)
+     * @param timeUnit 时间单位
+     * @return 缓存的过期时间
+     */
+    public Boolean expire(String key, long time, TimeUnit timeUnit) {
+        return redisTemplate.expire(key, time, timeUnit);
     }
 
     /**
@@ -49,7 +54,7 @@ public class RedisCacheHolder {
      * @param key 键 不能为null
      * @return 时间(秒) 返回0代表为永久有效，返回-2代表键不存在
      */
-    public long getExpire(String key) {
+    public Long getExpire(String key) {
         return redisTemplate.getExpire(key, TimeUnit.SECONDS);
     }
 
@@ -59,12 +64,8 @@ public class RedisCacheHolder {
      * @param key 键
      * @return true 存在 false不存在
      */
-    public boolean hasKey(String key) {
-        try {
-            return redisTemplate.hasKey(key);
-        } catch (Exception e) {
-            return false;
-        }
+    public Boolean hasKey(String key) {
+        return redisTemplate.hasKey(key);
     }
 
     /**
@@ -91,8 +92,8 @@ public class RedisCacheHolder {
      * @return 值
      */
     @SuppressWarnings("unchecked")
-    public <T> T get(String key) {
-        return key == null ? null : (T) redisTemplate.opsForValue().get(key);
+    public <V> V get(String key) {
+        return key == null ? null : (V) redisTemplate.opsForValue().get(key);
     }
 
     /**
@@ -100,15 +101,9 @@ public class RedisCacheHolder {
      *
      * @param key   键
      * @param value 值
-     * @return true成功 false失败
      */
-    public boolean set(String key, Object value) {
-        try {
-            redisTemplate.opsForValue().set(key, value);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    public <V> void set(String key, V value) {
+        redisTemplate.opsForValue().set(key, value);
     }
 
     /**
@@ -117,19 +112,23 @@ public class RedisCacheHolder {
      * @param key   键
      * @param value 值
      * @param time  时间(秒) time要大于0 如果time小于等于0 将设置无限期
-     * @return true成功 false 失败
      */
-    public boolean set(String key, Object value, long time) {
-        try {
-            if (time > 0) {
-                redisTemplate.opsForValue().set(key, value, time, TimeUnit.SECONDS);
-            } else {
-                set(key, value);
-            }
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+    public <V> void set(String key, V value, long time) {
+        set(key, value, time, TimeUnit.SECONDS);
+    }
+
+    /**
+     * 带时间设置缓存
+     *
+     * @param key   键
+     * @param value 值
+     * @param time  时间(秒) time要大于0 如果time小于等于0 将设置无限期
+     */
+    public <V> void set(String key, V value, long time, TimeUnit timeUnit) {
+        if (time > 0) {
+            redisTemplate.opsForValue().set(key, value, time, timeUnit);
+        } else {
+            set(key, value);
         }
     }
 
@@ -141,9 +140,6 @@ public class RedisCacheHolder {
      * @return 增加后的值
      */
     public Long incr(String key, long delta) {
-        if (delta < 0) {
-            throw new RuntimeException("递增因子必须大于0");
-        }
         return redisTemplate.opsForValue().increment(key, delta);
     }
 
@@ -154,11 +150,8 @@ public class RedisCacheHolder {
      * @param delta 要减少几(小于0)
      * @return 减少后的值
      */
-    public long decr(String key, long delta) {
-        if (delta < 0) {
-            throw new RuntimeException("递减因子必须大于0");
-        }
-        return redisTemplate.opsForValue().increment(key, -delta);
+    public Long decr(String key, long delta) {
+        return redisTemplate.opsForValue().decrement(key, delta);
     }
 
     // ================================ Hash (哈希) =================================
@@ -166,12 +159,13 @@ public class RedisCacheHolder {
     /**
      * HashGet
      *
-     * @param key  键 不能为null
-     * @param item 项 不能为null
+     * @param key     键 不能为null
+     * @param hashKey 项 不能为null
      * @return 值
      */
-    public Object hget(String key, String item) {
-        return redisTemplate.opsForHash().get(key, item);
+    @SuppressWarnings("unchecked")
+    public <HV> HV hGet(String key, String hashKey) {
+        return (HV) redisTemplate.opsForHash().get(key, hashKey);
     }
 
     /**
@@ -180,7 +174,7 @@ public class RedisCacheHolder {
      * @param key 键
      * @return 对应的多个键值
      */
-    public Map<Object, Object> hmget(String key) {
+    public Map<Object, Object> hmGet(String key) {
         return redisTemplate.opsForHash().entries(key);
     }
 
@@ -189,55 +183,41 @@ public class RedisCacheHolder {
      *
      * @param key 键
      * @param map 对应多个键值
-     * @return true 成功 false 失败
      */
-    public boolean hmset(String key, Map<String, Object> map) {
-        try {
-            redisTemplate.opsForHash().putAll(key, map);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    public void hmSet(String key, Map<Object, Object> map) {
+        redisTemplate.opsForHash().putAll(key, map);
     }
 
     /**
      * 向一张hash表中放入数据,如果不存在将创建
      *
-     * @param key   键
-     * @param item  项
-     * @param value 值
-     * @return true 成功 false失败
+     * @param key     键
+     * @param hashKey 项
+     * @param hashValue   值
      */
-    public boolean hset(String key, String item, Object value) {
-        try {
-            redisTemplate.opsForHash().put(key, item, value);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    public <HV> void hSet(String key, String hashKey, HV hashValue) {
+        redisTemplate.opsForHash().put(key, hashKey, hashValue);
     }
 
     /**
      * 删除hash表中的值
      *
-     * @param key  键 不能为null
-     * @param item 项 可以使多个 不能为null
+     * @param key      键 不能为null
+     * @param hashKeys 项 可以使多个 不能为null
      */
-    public void hdel(String key, Object... item) {
-        redisTemplate.opsForHash().delete(key, item);
+    public void hDel(String key, Object... hashKeys) {
+        redisTemplate.opsForHash().delete(key, hashKeys);
     }
 
     /**
      * 判断hash表中是否有该项的值
      *
-     * @param key  键 不能为null
-     * @param item 项 不能为null
+     * @param key     键 不能为null
+     * @param hashKey 项 不能为null
      * @return true 存在 false不存在
      */
-    public boolean hHasKey(String key, String item) {
-        return redisTemplate.opsForHash().hasKey(key, item);
+    public Boolean hHasKey(String key, String hashKey) {
+        return redisTemplate.opsForHash().hasKey(key, hashKey);
     }
 
     // ============================ Set (集合) =============================
@@ -249,12 +229,7 @@ public class RedisCacheHolder {
      * @return 值集合
      */
     public Set<Object> sGet(String key) {
-        try {
-            return redisTemplate.opsForSet().members(key);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        return redisTemplate.opsForSet().members(key);
     }
 
     /**
@@ -264,13 +239,8 @@ public class RedisCacheHolder {
      * @param value 值
      * @return true 存在 false不存在
      */
-    public boolean sHasKey(String key, Object value) {
-        try {
-            return redisTemplate.opsForSet().isMember(key, value);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    public Boolean sHasKey(String key, Object value) {
+        return redisTemplate.opsForSet().isMember(key, value);
     }
 
     /**
@@ -280,13 +250,8 @@ public class RedisCacheHolder {
      * @param values 值 可以是多个
      * @return 成功个数
      */
-    public long sSet(String key, Object... values) {
-        try {
-            return redisTemplate.opsForSet().add(key, values);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
+    public Long sSet(String key, Object... values) {
+        return redisTemplate.opsForSet().add(key, values);
     }
 
     /**
@@ -295,13 +260,8 @@ public class RedisCacheHolder {
      * @param key 键
      * @return 长度
      */
-    public long sGetSetSize(String key) {
-        try {
-            return redisTemplate.opsForSet().size(key);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
+    public Long sGetSetSize(String key) {
+        return redisTemplate.opsForSet().size(key);
     }
 
     // =============================== List (列表) =================================
@@ -315,12 +275,7 @@ public class RedisCacheHolder {
      * @return 列表
      */
     public List<Object> lGet(String key, long start, long end) {
-        try {
-            return redisTemplate.opsForList().range(key, start, end);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        return redisTemplate.opsForList().range(key, start, end);
     }
 
     /**
@@ -329,13 +284,8 @@ public class RedisCacheHolder {
      * @param key 键
      * @return 长度
      */
-    public long lGetListSize(String key) {
-        try {
-            return redisTemplate.opsForList().size(key);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
+    public Long lGetListSize(String key) {
+        return redisTemplate.opsForList().size(key);
     }
 
     /**
@@ -343,16 +293,9 @@ public class RedisCacheHolder {
      *
      * @param key   键
      * @param value 值
-     * @return true 成功 false 失败
      */
-    public boolean lSet(String key, Object value) {
-        try {
-            redisTemplate.opsForList().rightPush(key, value);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    public <V> void lSet(String key, V value) {
+        redisTemplate.opsForList().rightPush(key, value);
     }
 
     /**
@@ -360,16 +303,9 @@ public class RedisCacheHolder {
      *
      * @param key   键
      * @param value 值列表
-     * @return true 成功 false 失败
      */
-    public boolean lSetAll(String key, List<Object> value) {
-        try {
-            redisTemplate.opsForList().rightPushAll(key, value);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    public <V> void lSetAll(String key, List<V> value) {
+        redisTemplate.opsForList().rightPushAll(key, value);
     }
 
     // ============================ ZSet (有序集合) =============================
@@ -382,13 +318,8 @@ public class RedisCacheHolder {
      * @param score 分数
      * @return true 成功 false 失败
      */
-    public boolean zsSet(String key, Object value, double score) {
-        try {
-            return redisTemplate.opsForZSet().add(key, value, score);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    public <V> Boolean zsSet(String key, V value, double score) {
+        return redisTemplate.opsForZSet().add(key, value, score);
     }
 
     /**
@@ -398,13 +329,8 @@ public class RedisCacheHolder {
      * @param tuples 包含值和分数的TypedTuple集合
      * @return 成功添加的个数
      */
-    public long zsSetAll(String key, Set<ZSetOperations.TypedTuple<Object>> tuples) {
-        try {
-            return redisTemplate.opsForZSet().add(key, tuples);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
+    public Long zsSetAll(String key, Set<ZSetOperations.TypedTuple<Object>> tuples) {
+        return redisTemplate.opsForZSet().add(key, tuples);
     }
 
     /**
@@ -414,13 +340,8 @@ public class RedisCacheHolder {
      * @param values 值（可多个）
      * @return 成功删除的个数
      */
-    public long zsRemove(String key, Object... values) {
-        try {
-            return redisTemplate.opsForZSet().remove(key, values);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
+    public Long zsRemove(String key, Object... values) {
+        return redisTemplate.opsForZSet().remove(key, values);
     }
 
     /**
@@ -431,13 +352,8 @@ public class RedisCacheHolder {
      * @param delta 要增加的分数（可以为负数表示减少）
      * @return 增加后的分数
      */
-    public Double zsIncrementScore(String key, Object value, double delta) {
-        try {
-            return redisTemplate.opsForZSet().incrementScore(key, value, delta);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+    public <V> Double zsIncrementScore(String key, V value, double delta) {
+        return redisTemplate.opsForZSet().incrementScore(key, value, delta);
     }
 
     /**
@@ -447,13 +363,8 @@ public class RedisCacheHolder {
      * @param value 值
      * @return 分数
      */
-    public Double zsGetScore(String key, Object value) {
-        try {
-            return redisTemplate.opsForZSet().score(key, value);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+    public <V> Double zsGetScore(String key, V value) {
+        return redisTemplate.opsForZSet().score(key, value);
     }
 
     /**
@@ -463,13 +374,8 @@ public class RedisCacheHolder {
      * @param value 值
      * @return 排名（0表示第一名），如果元素不存在返回null
      */
-    public Long zsGetRank(String key, Object value) {
-        try {
-            return redisTemplate.opsForZSet().rank(key, value);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+    public <V> Long zsGetRank(String key, V value) {
+        return redisTemplate.opsForZSet().rank(key, value);
     }
 
     /**
@@ -479,13 +385,8 @@ public class RedisCacheHolder {
      * @param value 值
      * @return 排名（0表示第一名），如果元素不存在返回null
      */
-    public Long zsGetReverseRank(String key, Object value) {
-        try {
-            return redisTemplate.opsForZSet().reverseRank(key, value);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+    public <V> Long zsGetReverseRank(String key, V value) {
+        return redisTemplate.opsForZSet().reverseRank(key, value);
     }
 
     /**
@@ -494,13 +395,8 @@ public class RedisCacheHolder {
      * @param key 键
      * @return 元素个数
      */
-    public long zsGetSize(String key) {
-        try {
-            return redisTemplate.opsForZSet().zCard(key);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
+    public Long zsGetSize(String key) {
+        return redisTemplate.opsForZSet().zCard(key);
     }
 
     /**
@@ -511,13 +407,8 @@ public class RedisCacheHolder {
      * @param max 最大分数
      * @return 元素个数
      */
-    public long zsCount(String key, double min, double max) {
-        try {
-            return redisTemplate.opsForZSet().count(key, min, max);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
+    public Long zsCount(String key, double min, double max) {
+        return redisTemplate.opsForZSet().count(key, min, max);
     }
 
     /**
@@ -529,12 +420,7 @@ public class RedisCacheHolder {
      * @return 元素集合
      */
     public Set<Object> zsRange(String key, long start, long end) {
-        try {
-            return redisTemplate.opsForZSet().range(key, start, end);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        return redisTemplate.opsForZSet().range(key, start, end);
     }
 
     /**
@@ -547,12 +433,7 @@ public class RedisCacheHolder {
      * @return 元素集合
      */
     public Set<Object> zsReverseRange(String key, long start, long end) {
-        try {
-            return redisTemplate.opsForZSet().reverseRange(key, start, end);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        return redisTemplate.opsForZSet().reverseRange(key, start, end);
     }
 
     /**
@@ -564,11 +445,6 @@ public class RedisCacheHolder {
      * @return 包含值和分数的集合
      */
     public Set<ZSetOperations.TypedTuple<Object>> zsReverseRangeWithScores(String key, long start, long end) {
-        try {
-            return redisTemplate.opsForZSet().reverseRangeWithScores(key, start, end);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        return redisTemplate.opsForZSet().reverseRangeWithScores(key, start, end);
     }
 }
