@@ -1,0 +1,50 @@
+package com.mountain.web.security.filter;
+
+import com.mountain.common.base.Const;
+import com.mountain.common.utils.Assert;
+import com.mountain.common.utils.JwtUtil;
+import com.mountain.web.configuration.MountainProperties;
+import io.jsonwebtoken.JwtException;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import java.io.IOException;
+
+/**
+ * JWT登录授权过滤器
+ *
+ * @author luocong
+ * @version 1.0
+ * @since 2026/4/15 16:30
+ **/
+@Slf4j
+@RequiredArgsConstructor
+public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
+
+    private final MountainProperties mountainProperties;
+    private final UserDetailsService userDetailsService;
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        String token = request.getHeader(Const.AUTHORIZATION);
+        Assert.notBlank(token, () -> new JwtException("token is blank"));
+        String username = JwtUtil.getUsername(token, "WEB", mountainProperties.getAuth().jwtSalt());
+        UserDetails user = userDetailsService.loadUserByUsername(username);
+        Assert.notNull(user, () -> new UsernameNotFoundException("username not found"));
+        UsernamePasswordAuthenticationToken authentication = UsernamePasswordAuthenticationToken.authenticated(user, null, user.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        filterChain.doFilter(request, response);
+    }
+
+}

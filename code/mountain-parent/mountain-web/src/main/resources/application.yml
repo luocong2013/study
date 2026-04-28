@@ -34,20 +34,20 @@ spring:
         cacheServerConfiguration: true
         elideSetAutoCommits: true
         maintainTimeStats: false
-  data:
-    redis:
-      host: r-bp1psylw2prl6vl38npd.redis.rds.aliyuncs.com
-      port: 6379
-      username: yiqixingredisdev
-      password: yiQixingredisdev2026_
-      database: 222
-      timeout: 1000
-      lettuce:
-        pool:
-          max-active: 10
-          max-wait: 2000ms
-          max-idle: 8
-          min-idle: 2
+#  data:
+#    redis:
+#      host: r-bp1psylw2prl6vl38npd.redis.rds.aliyuncs.com
+#      port: 6379
+#      username: yiqixingredisdev
+#      password: yiQixingredisdev2026_
+#      database: 222
+#      timeout: 1000
+#      lettuce:
+#        pool:
+#          max-active: 10
+#          max-wait: 2000ms
+#          max-idle: 8
+#          min-idle: 2
 
 mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
@@ -80,3 +80,19 @@ redis:
     configuration:
       user:cache: 86400
       dept:cache: 86400
+  redisson:
+    enabled: true
+    watchdog-timeout: 30000
+    mode: single
+    single:
+      address: "redis://r-bp1psylw2prl6vl38npd.redis.rds.aliyuncs.com:6379"
+      username: "yiqixingredisdev"
+      password: "yiQixingredisdev2026_"
+      database: 222
+    pool:
+      min-idle: 8
+      max-active: 16
+      connect-timeout: 5000
+      idle-timeout: 20000
+      retry-attempts: 5
+      retry-delay: 1000

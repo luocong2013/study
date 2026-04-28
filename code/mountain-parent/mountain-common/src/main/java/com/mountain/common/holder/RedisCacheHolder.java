@@ -1,6 +1,7 @@
 package com.mountain.common.holder;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Component;
@@ -32,8 +33,8 @@ public class RedisCacheHolder {
      * @param time 时间(秒)
      * @return 成功返回true
      */
-    public Boolean expire(String key, long time) {
-        return expire(key, time, TimeUnit.SECONDS);
+    public boolean expire(String key, long time) {
+        return BooleanUtils.toBoolean(expire(key, time, TimeUnit.SECONDS));
     }
 
     /**
@@ -44,8 +45,8 @@ public class RedisCacheHolder {
      * @param timeUnit 时间单位
      * @return 缓存的过期时间
      */
-    public Boolean expire(String key, long time, TimeUnit timeUnit) {
-        return redisTemplate.expire(key, time, timeUnit);
+    public boolean expire(String key, long time, TimeUnit timeUnit) {
+        return BooleanUtils.toBoolean(redisTemplate.expire(key, time, timeUnit));
     }
 
     /**
@@ -64,8 +65,8 @@ public class RedisCacheHolder {
      * @param key 键
      * @return true 存在 false不存在
      */
-    public Boolean hasKey(String key) {
-        return redisTemplate.hasKey(key);
+    public boolean hasKey(String key) {
+        return BooleanUtils.toBoolean(redisTemplate.hasKey(key));
     }
 
     /**
@@ -184,7 +185,7 @@ public class RedisCacheHolder {
      * @param key 键
      * @param map 对应多个键值
      */
-    public void hmSet(String key, Map<Object, Object> map) {
+    public void hmSet(String key, Map<String, Object> map) {
         redisTemplate.opsForHash().putAll(key, map);
     }
 
@@ -216,8 +217,8 @@ public class RedisCacheHolder {
      * @param hashKey 项 不能为null
      * @return true 存在 false不存在
      */
-    public Boolean hHasKey(String key, String hashKey) {
-        return redisTemplate.opsForHash().hasKey(key, hashKey);
+    public boolean hHasKey(String key, String hashKey) {
+        return BooleanUtils.toBoolean(redisTemplate.opsForHash().hasKey(key, hashKey));
     }
 
     // ============================ Set (集合) =============================
@@ -239,8 +240,8 @@ public class RedisCacheHolder {
      * @param value 值
      * @return true 存在 false不存在
      */
-    public Boolean sHasKey(String key, Object value) {
-        return redisTemplate.opsForSet().isMember(key, value);
+    public boolean sHasKey(String key, Object value) {
+        return BooleanUtils.toBoolean(redisTemplate.opsForSet().isMember(key, value));
     }
 
     /**
@@ -318,8 +319,8 @@ public class RedisCacheHolder {
      * @param score 分数
      * @return true 成功 false 失败
      */
-    public <V> Boolean zsSet(String key, V value, double score) {
-        return redisTemplate.opsForZSet().add(key, value, score);
+    public <V> boolean zsSet(String key, V value, double score) {
+        return BooleanUtils.toBoolean(redisTemplate.opsForZSet().add(key, value, score));
     }
 
     /**

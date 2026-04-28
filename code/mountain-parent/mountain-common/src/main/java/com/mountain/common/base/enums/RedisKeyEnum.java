@@ -20,8 +20,8 @@ import java.util.concurrent.TimeUnit;
 public enum RedisKeyEnum {
 
     AUTH_LOGIN_RSA("auth:login:rsa_", 2, TimeUnit.MINUTES, "RSA私钥Key"),
-    AUTH_LOGIN_RSA_LOCK(AUTH_LOGIN_RSA.getKey("rsaLock"), 0, null, "获取RSA公钥私钥加锁Key"),
-    AUTH_LOGIN_RSA_KEY(AUTH_LOGIN_RSA.getKey("rsaKey"), 1, TimeUnit.DAYS, "RSA公钥和私钥Map的Key"),
+    AUTH_LOGIN_RSA_LOCK(AUTH_LOGIN_RSA.getKey("lock"), 0, null, "获取RSA公钥私钥加锁Key"),
+    AUTH_LOGIN_RSA_KEY(AUTH_LOGIN_RSA.getKey("key"), 1, TimeUnit.DAYS, "RSA公钥和私钥Map的Key"),
     ;
 
     /**
@@ -61,7 +61,7 @@ public enum RedisKeyEnum {
      * @return 缓存Key
      */
     public String getKey(Object... objects) {
-        if (ArrayUtils.isEmpty( objects)) {
+        if (ArrayUtils.isEmpty(objects)) {
             return key;
         }
         return key + StringUtils.joinWith(StrPool.UNDERLINE, objects);

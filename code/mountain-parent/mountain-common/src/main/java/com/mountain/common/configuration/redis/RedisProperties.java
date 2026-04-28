@@ -76,6 +76,11 @@ public class RedisProperties {
         private boolean enabled = true;
 
         /**
+         * 看门狗锁超时时间（毫秒）
+         */
+        private long watchdogTimeout = 30000;
+
+        /**
          * 部署模式，默认为单节点模式
          */
         private RedisMode mode = RedisMode.SINGLE;
@@ -113,14 +118,13 @@ public class RedisProperties {
          */
         private String address = "redis://localhost:6379";
         /**
-         * 密码
-         */
-        private String password;
-        /**
          * 用户名
          */
         private String username;
-
+        /**
+         * 密码
+         */
+        private String password;
         /**
          * 数据库索引
          */

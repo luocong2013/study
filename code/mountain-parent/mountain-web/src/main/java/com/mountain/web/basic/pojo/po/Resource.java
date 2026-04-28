@@ -2,7 +2,7 @@ package com.mountain.web.basic.pojo.po;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.mountain.common.base.BaseEntity;
+import com.mountain.common.base.entity.BaseEntity;
 import com.mountain.web.basic.pojo.enums.AuthorizeTypeEnum;
 import com.mountain.web.basic.pojo.enums.RequestTypeEnum;
 import com.mountain.web.basic.pojo.enums.ResourceTypeEnum;

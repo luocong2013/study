@@ -35,13 +35,14 @@ public class RedissonConfiguration {
      */
     @Bean
     public RedissonClient redissonClient() {
-        Config config = new Config();
         RedisProperties.Redisson redissonProperties = redisProperties.getRedisson();
+        Config config = new Config();
+        config.setLockWatchdogTimeout(redissonProperties.getWatchdogTimeout());
         switch (redissonProperties.getMode()) {
             case SINGLE -> configureSingleServer(config);
             case CLUSTER -> configureClusterServers(config);
             case SENTINEL -> configureSentinelServers(config);
-            default -> throw new IllegalArgumentException("Unsupported Redis mode: " + redisProperties.getMode());
+            default -> throw new IllegalArgumentException("Unsupported Redisson mode: " + redissonProperties.getMode());
         }
         return Redisson.create(config);
     }

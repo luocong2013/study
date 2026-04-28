@@ -2,7 +2,7 @@ package com.mountain.web.basic.pojo.po;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.mountain.common.base.SimpleEntity;
+import com.mountain.common.base.entity.SimpleEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
